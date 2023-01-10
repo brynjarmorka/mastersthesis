@@ -1,0 +1,118 @@
+%
+% % Commands and colors
+% 
+
+% defining my own type of theorems for the problem statement and sub-problems
+\usepackage{amsthm} % needs to be loaded high up, else it breaks all references
+\theoremstyle{definition} % extra space around, not italic
+\newtheorem*{mainprob}{\emph{Main problem statement}}
+\theoremstyle{remark}
+\newtheorem{subprob}{Sub-problem}
+
+
+% my own color definitions
+\usepackage[dvipsnames]{xcolor}
+\definecolor{brynjar_red}{RGB}{204, 92, 76}
+\definecolor{ton_green}{RGB}{0, 133, 118}
+\definecolor{link_pink}{RGB}{200, 150, 200}
+
+% dakrmode: make it a little easier on the eyes
+% % % \usepackage{xcolor}
+\definecolor{darkmodepaper}{RGB}{32, 32, 32}
+\definecolor{darkmodetext}{RGB}{212, 212, 212}
+\definecolor{caption_color}{RGB}{200, 150, 20}
+% \pagecolor{darkmodepaper}  %black
+% \color{darkmodetext}  %grey
+
+\definecolor{light_pink}{RGB}{240,218,220}
+\definecolor{dark_purple}{RGB}{80,42,72}
+
+\definecolor{titlepaperbg}{RGB}{69,76,97}
+\definecolor{titletext}{RGB}{226,240,217}
+
+
+% light mode
+\definecolor{caption_color}{RGB}{135, 68, 23}
+\definecolor{link_pink}{RGB}{214, 55, 250}
+
+
+% todo-notes as emphasized text and with color
+\newcommand\brynjar[1]{\textcolor{ton_green}{\textbf{(Brynjar: #1)}}}
+\newcommand\ton[1]{\textcolor{brynjar_red}{\textbf{(Question for Ton: #1)}}}
+
+
+%
+% % Packages
+%
+
+
+% fonts
+% garamond - https://tug.org/FontCatalogue/ebgaramond/
+\usepackage[cmintegrals,cmbraces]{newtxmath} % prettier math
+\usepackage{ebgaramond-maths}
+\usepackage[T1]{fontenc}
+
+% margins
+\usepackage[margin=3cm]{geometry}
+
+% line spacing
+\renewcommand{\baselinestretch}{1.5} % 1.5
+
+% urls
+\usepackage{hyperref} % can use [hidelinks] to hide links
+
+% set link color to pink. Use purple with white background?
+% \hypersetup{colorlinks=true, linkcolor=purple, citecolor=purple, urlcolor=purple}
+\hypersetup{colorlinks=true, linkcolor=link_pink, citecolor=link_pink, urlcolor=link_pink}
+
+
+% clever references
+\usepackage[capitalise, nameinlink, noabbrev]{cleveref}
+% \cref{...} makes a link, \cref*{...} does not make a link
+
+% BibTex
+\usepackage{cite}
+
+% tables and figures, give \includegraphics options and \resizebox
+\usepackage{graphicx}
+
+
+% tables with centered cells and spesific width
+\usepackage{array}
+
+\usepackage[font={color=caption_color},labelfont=bf,]{caption} % remove small? 
+
+
+\usepackage{parskip} % add space between paragraphs and not indent
+
+% appendix package
+\usepackage[toc,page]{appendix}
+
+
+% verbatim with bg color
+% https://tex.stackexchange.com/questions/141100/getting-verbatim-with-soft-grey-background-as-in-tex-stackexchange
+
+\usepackage{fancyvrb,newverbs}
+\definecolor{cverbbg}{RGB}{203,216,195}
+
+
+% include PDF, for appendix
+\usepackage[final]{pdfpages}
+
+
+\newenvironment{lcverbatim}
+{\SaveVerbatim{cverb}}
+{\endSaveVerbatim
+    \flushleft\fboxrule=0pt\fboxsep=.5em
+    \vspace*{0.2cm}
+    \colorbox{cverbbg}{%
+        \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+    }
+    \endflushleft
+    \vspace*{0.2cm}
+}
+
+\newcommand{\ctexttt}[1]{\colorbox{cverbbg}{\texttt{#1}}}
+\newverbcommand{\cverb}
+{\setbox\verbbox\hbox\bgroup}
+{\egroup\colorbox{cverbbg}{\box\verbbox}}
