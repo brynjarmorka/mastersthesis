@@ -1,0 +1,36 @@
+\chapter{Method}
+\label{ch:method}
+
+Intro to the method \dots
+
+% from masteravtalen:
+% •	Characterize detector and beam parameters and use them for better quantification.
+% •	Develop detector characterization and quantification routines for bulk samples in open-source.
+
+\section{Quality control - detector characterization}
+\label{method:qc}
+
+Intro to detector characterization \dots
+
+\subsection{Jupyter notebook input}
+\label{method:qc:input}
+
+The QC notebook was written in Python 3.7 using the Jupyter notebook environment.
+The notebook was designed to be adaptable to spectra with different elements.
+At the top of the notebook the user give the spectrum file, the detector parameters, the elements in the sample, and the elemental lines of interest.
+
+In this project, the QC notebook was used on three different samples: \brynjar{NiO, Cu, GaAs?}
+
+
+
+
+% \subsection{Calibration}
+% \label{method:calibration}
+
+% For some reason, it works better to calibrate the offset and then the scale/dispersion.
+% HyperSpy allows for calibration of offset, scale or energy resolution, but only one at a time.
+% The procedure used was: calibrate offset, calibrate scale, recaliabrate offset, and recalibrate scale.
+% After the recalibration, the difference was compared to the first calibration, and if the change was more than 5\%, the calibration was repeated.
+% By default, the HyperSpy calibration uses all alpha lines.
+% It is possible to specify certain lines to calibrate on, but this yeilded the same or worse results as using all alpha lines.
+% \brynjar{The stuff above is more discussion, at least the last sentence.}
