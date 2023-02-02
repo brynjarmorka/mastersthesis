@@ -28,6 +28,9 @@ When a signal is formed inside the sample, the signal can both be absorbed or sc
 The signals with low energy are absorbed, and will thus only be emitted at the surface, e.g. Auger electrons and secondary electrons.
 The signals which originate from deeper inside the sample, e.g. backscattered electrons and X-rays, can interact with the sample multiple times before they are emitted and detected.
 
+% add typical depth for X-rays, cite eg. Hollas
+
+
 % figures/interaction_volume.png
 \begin{figure}[ht]
     \centering
@@ -42,7 +45,7 @@ The signals which originate from deeper inside the sample, e.g. backscattered el
 \end{figure}
 
 
-\ton{Do you want me to write about the different signals, ie. SE and BSE?}
+% \ton{Do you want me to write about the different signals, ie. SE and BSE?}
 
 
 % The parts in the SEM
@@ -56,7 +59,7 @@ In general a smaller spot allows higher resolution, because the signal is record
 However, this effect is limited by several factors, such as the interaction volume.
 The detectors are placed above the sample.
 
-\ton{What more do you want me to write about the SEM?}
+% \ton{What more do you want me to write about the SEM?}
 
 % figure/SEM_setup.png
 \begin{figure}[ht]
@@ -73,12 +76,32 @@ The detectors are placed above the sample.
 
 
 
+
+
+\subsection{EDS}
+
+% figure with x,y,z, azumuthal angle, WD, etc. See DTSA-II Figure 5
+% file:///C:/Users/Brynjar/Documents/Masteroppgave/potensielle%20kilder/getting-started-with-nist-dtsa-ii%20(2).pdf 
+
+
+
+
+% write about geometry in EDS, feedback
+
+
+
+
+% section "instruments" end
+
+
+
 \section{Quality control - detector characterization}
 \label{theory:qc}
 
-The aim of this work is to improve EDS bulk quantification, and one way to do this is to make the input parameters of the quantification more accurate and doing a health check on the detector.
-Manufactors of EDS detectors like Oxford Instruments provide a guide for how to perform quality control on their detector, but these guides focus only on calibration of energy resolution and scale \cite{aztec_manual}.
-The state of an EDS setup is characterized by more than its energy resolution and scale, and this section describes how to perform a health check on the detector.
+The aim of this work is to improve EDS bulk quantification, and one way to do this is to do a health check of the EDS set up.
+A health check can both reveil errors in the setup and make the input parameters of the quantification more accurate.
+Manufactors of EDS detectors like Oxford Instruments provide a guide for how to perform quality control on their detector, but these guides focus on calibration of energy resolution and scale \cite{aztec_manual}.
+The state of an EDS setup is characterized by more than its energy resolution and scale \cite{goldstein_scanning_2018}
 Little literature is published on quality control programs for SEM EDS setups, but there are several papers on tests for TEM EDS.
 % Mari: The tests are described by Watanabe in [30] and in the info-sheet by Ted Pella [33] which is based on the original work by R.F. Egerton and C.S. Cheng from 1994 [16].
 % The complete test routine has several characteristics. Here only the most essential to this work are discussed, and an overview is found in Tab. 2.3.
@@ -87,20 +110,45 @@ Each test characteristics is described with what it is, how it is measured, and 
 
 
 
-\subsection{Duane-Hunt}
+\subsection{Duane-Hunt limit}
 \label{theory:qc:duanehunt}
 % put after calibration? It is done before in the code, but it is not a part of AZtec.
 
 % What
-Finding the real $E_0$.
-Used to slice the spectrum at the correct energy.
+The Duane-Hunt limit originates from a paper from Duane and Hunt in 1915 \cite{Duane_Hunt_1915}, and the Duane-Hunt limit is the maximum energy of the X-ray background radiation.
+The Duane-Hunt limit is the indicent beam energy, E$_0$. \brynjar{Ref E$_1$ in figure/previous theory?}
+The acceleration voltage from the instrument is the nominal beam energy, while the effective beam energy is the Duane-Hunt limit, and these two values can deviate significantly.
+As seen in \cref{fig:duanehunt}, the detected X-rays decline rapidly and linearly towards the beam energy, but the counts does not go to zero.
+It is not possible to excite X-rays above the beam energy, thus the spectrum should be cut off at the beam energy to allow better model fitting.
+The counts above the Duane-Hunt limit are due to coincidence counts, where two X-rays are detected as one.
+The tail of coincidence counts makes the exact beam energy is ambiguous, which is solved by calculating the Duane-Hunt limit as a linear fit of the background, and the beam energy is the intersection of the linear fit and the x-axis \cite{software_dtsaii} \cite[Ch. 9.1.3]{goldstein_scanning_2018}.
+
+% figures/Duane-Hunt.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/Duane-Hunt.png}
+    \caption{
+        Illustration of the Duane-Hunt limit.
+        The blue dots are the X-ray counts, and the red line is a linear fit of the background.
+        The gray dashed line is the nominal beam energy, and the black line is the effective beam energy.
+    }
+    \label{fig:duanehunt}
+\end{figure}
 
 % How
-Linear regression of background.
+% covered above
 
 % Acceptable values
-$E_0$ should be within X\% of the specified acceleration voltage.
-Large deviations implicate \dots
+There will be some deviation between the nominal beam energy and the effective beam energy, typically up to 0.2 keV.
+Different specimen will have different deviation, due to varying conductivity.
+Specimen with low conductivity will get problems with charging, which will lowers the effective beam energy.
+Thus, a deviation between the nominal and effective beam energy of several kilo-electronvolts is a sign of charging \cite{dtsaii_2_manipulating_spectra}.
+Charging of specimen are covered in detail in a paper by Postek and Vladár \cite{postek_charging_2015}.
+
+
+
+
+
 
 \subsection{Calibration of energy resolution}
 \label{theory:qc:energyres}
@@ -168,7 +216,12 @@ Large deviations implicate \dots
 
 \subsection{Peak ratio}
 \label{theory:qc:peakratio}
-% contaminations, at least for TEM
+% contaminations, at least for TEM: change of Ka/La, eg in Ni
+% also used for stray radiation measurements 
+% stray intensity: (Ni Ka/Mo Ka) 
+% stray predominent source: (Mo Ka/Mo La), only for TEM?
+
+% the flexibility, since eg a pure Cu sample will give some statistics but not stray information.
 
 
 \subsection{Peak shape}
@@ -185,3 +238,15 @@ Large deviations implicate \dots
 % How to represent the measure better? Ratio, percentage, absolute value, etc.
 % Fiori P/B is a measure already covered.
 
+
+\subsection{Stray radiation measurements - when possible}
+\label{theory:qc:stray}
+% both intensity and source.
+% intensity:  a major line and a stray line.
+% source:  Mo Ka and Mo La ratio
+
+
+
+% The two most important tests, according to Goldstein, are linearity and stability.
+% requires multiple spectra of the same sample with different beam currents.
+% Goldstein p. 232.
