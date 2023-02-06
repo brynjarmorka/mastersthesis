@@ -6,7 +6,7 @@
 \section{Instruments}
 \label{theory:instruments}
 
-The data in this project was aqcuired in an SEM with an EDS detector, which both are described in this section.
+The data in this project was acquired in an SEM with an EDS detector, which both are described in this section.
 
 
 \subsection{SEM}
@@ -89,18 +89,29 @@ The detectors are placed above the sample.
 % write about geometry in EDS, feedback
 
 
+% write about escape depth of different materials.
+% the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
+
+
+% explain counts input
+% explain counts output
+
+
 
 
 % section "instruments" end
 
 
 
+
 \section{Quality control - detector characterization}
 \label{theory:qc}
 
+\brynjar{Do not use quality control, Ton does not like it. Health check?}
+
 The aim of this work is to improve EDS bulk quantification, and one way to do this is to do a health check of the EDS set up.
 A health check can both reveil errors in the setup and make the input parameters of the quantification more accurate.
-Manufactors of EDS detectors like Oxford Instruments provide a guide for how to perform quality control on their detector, but these guides focus on calibration of energy resolution and scale \cite{aztec_manual}.
+Manufacturers of EDS detectors like Oxford Instruments provide a guide for how to perform quality control on their detector, but these guides focus on calibration of energy resolution and scale \cite{aztec_manual}.
 The state of an EDS setup is characterized by more than its energy resolution and scale \cite{goldstein_scanning_2018}
 Little literature is published on quality control programs for SEM EDS setups, but there are several papers on tests for TEM EDS.
 % Mari: The tests are described by Watanabe in [30] and in the info-sheet by Ted Pella [33] which is based on the original work by R.F. Egerton and C.S. Cheng from 1994 [16].
@@ -153,22 +164,80 @@ Charging of specimen are covered in detail in a paper by Postek and Vladár \cit
 \subsection{Calibration of energy resolution}
 \label{theory:qc:energyres}
 
+\brynjar{Remove "Calibration of"? Also for the next two}
+
 % What
-What is the energy resolution.
-What is a good energy resolution.
-Why Mn K$\alpha$?
-Finding the calibrated energy resolution, Mn K$\alpha$.
+The energy resolution of an EDS system is the ability to distinguish two lines at different energies, and is measured by the FWHM of the Mn K$\alpha$ peak.
+The convention of using the Mn K$\alpha$ peak as the reference for the energy resolution is its position at 5.8987 keV, which gives an indication for both the lower and higher energies used in EDS.
+The first SDD \brynjar{(explain earlier in EDS part)} detectors had an energy resolution between 160 and 200 eV, while modern detectors can achieve energy resolution lower than 120 eV, which allow closer peaks to be seperated \cite{keith_energy_res_2013} \brynjar{(Thompson refers to Goldstein\dots)}.
+An instrument is stated to have a certain energy resolution, however the actual resolution of a given spectrum varies with the acquisition settings.
+In \cite{keith_energy_res_2013} Thompson show that with constand dead time a higher input count rate gives worse resolution, with the example of 121 eV resolution with <5000 cps, and 140-150 eV resolution with >100,000 cps.
+Because of this, Thompson explains that EDS specifications are based on acquisition designs with low input counts.
+Changes in dead time are also affecting the energy resolution, where shorter dead time give degraded resolution, because a lower dead time gives the computer shorter time to process the incoming signal and sets the channel value less accurate of each count \brynjar{Ref?}.
+
+
+% What is the energy resolution.
+% What is a good energy resolution.
+% Why Mn K$\alpha$?
+% Finding the calibrated energy resolution, Mn K$\alpha$.
+
+% Approaching the theoretical limit? Find source, Goldstein?
+% TODO: amplifier noise is described with an equation in Woldseth 1973, referenced in bennett_egerton_1995.
+% Woldseth 1973 figure remake in Goldstein 2003 3rd ed.: It can readily be seen that even if the noise contribution were totally eliminated, the theoretical energy resolution limit would still be greater than 100 eV for Fe Ka at 6.4 keV
 
 % How
-Measure the FWHM of a Mn K$\alpha$ peak if possible.
+
+% Direct measurement
 \brynjar{Implement check for Mn K$\alpha$ peak in the code.}
-Else, use HS function for estimating a peak width at the Mn K$\alpha$ energy.
-Alternatively, as Ted Pella suggests, use the FWHM of Ni K$\alpha$ peak and multiply by 0.926, which is based on data from multiple detectors.
+The most straight forward way of finding a detectors energy resolution is to measure the FWHM of the Mn K$\alpha$ peak in a sample with Mn, preferably with high concentration as that provides more defined peaks.
+The FWHM measurement should be from a Gaussian fit of the peak, because of variations in the count statistics as explained in \verb|\cref{gaussian_something}| \brynjar{fix internal reference}.
+\brynjar{One paragraph for each method?}
+
+
+% Ni Ka * 0.926
+Another approach, which can be used when a sample with Ni is avaliable, is to measure the FWHM of Ni K$\alpha$ and multiply the value with 0.926 \cite{bennett_egerton_1995}.
+This approach is based on a study in 1995 where five TEM laboratories were given a NiO test specimen with a series of EDS test measurements to be done, where one of the tests were focused on the energy resolution.
+The test used the Ni K$\alpha$ and O K$\alpha$ peaks, where the FWHM of these two lines were measured, and a linear correlation between photon energy and the square of the energy resoltion was assumed.
+Then the FWHM of Mn K$\alpha$ was determined by interpolation, and the factor 0.926 was reported as a sufficiently good conversion between Ni K$\alpha$ and Mn K$\alpha$.
+
+
+% HyperSpy
+A third and more general approach, is to use the energy calibration method in HyperSpy, which estimates the FWHM of Mn K$\alpha$.
+The method, \verb|m.calibrate_energy_axis(calibrate='resolution', xray_lines='all_alpha')|, is used on a model of a spectrum and does the estimation in two steps.
+The first step is to fit the width of all the lines in the spectrum, which is needed to get a correct reference peak width, i.e. an account for the peak broadening of the detector \ton{This I read from the HS code, line 50 in: \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
+The second step utilize an equation from Fiori and Newbury from 1978 (\brynjar{Fiori, C. E., and Newbury, D. E. (1978). In SEM/1978/I, SEM, Inc., AFM O'Hare, Illinois, p. 401.}), which calculates the FWHM of an given energy located anywhere in the spectrum by:
+
+\begin{equation}
+    \label{eq:estimateFWHM}
+    \textnormal{FWHM} =  \sqrt{2.5 * (E - E_\textnormal{ref}) + \textnormal{FWHM}^2_{\textnormal{ref}}}
+\end{equation}
+
+Where $E$ is the energy of the wanted FWHM, i.e. Mn K$\alpha$.
+$E_\textnormal{ref}$ is the energy of a reference line in the spectrum, and $\textnormal{FWHM}_{\textnormal{ref}}$ is the FWHM of that line.
+When using the HyperSpy method \verb|calibrate_energy_axis|, the user should be aware of the argument \verb|xray_lines|, which can either be a list of strings with line names or \verb|'all_alpha'|, which is the default value for the argument.
+As of HyperSpy v1.7.3, the reference line in \cref{eq:estimateFWHM} is the first line in \verb|xray_lines|, which is the alphabetically first alpha line when \verb|xray_lines='all_alpha'|.
+The reference line must be a well defined peak for the method to work properly.
+\brynjar{Discuss: when taking a series of spectra with different Vacc, the first line (eg AsKa in GaAs or AlKa in SU9000) is poorly defined for 10 kV and 5 kV respectively, resulting in weirdly poor Mn Ka estimate.}
+\ton{I have examples where this does not work as intended, and I can suggest a change in HyperSpy to eg. use the line with highest counts as the reference. It took me some time to figure this out, but now I know what causes this.}
+
+
+% links for HyperSpy:
+% https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py
+% search for:
+% % calibrate_energy_axis
+% % _set_energy_resolution
+% % _get_sigma
+
 
 % Acceptable values
-The energy resolution should be close to what the manufacturer specifies.
-HyperSpy defines a energy resolution below 110 eV as impossible \brynjar{Check the number and add reference to the code line}.
-Large deviations implicate \dots
+% TODO: run this by ton
+\ton{This paragraph about acceptable values are bad. Any suggestions here?}
+The energy resolution of a taken spectrum should be close to what the specifications of the EDS.
+Deviations implicate \dots (High cps? Low DT? What else?)
+As explained, the theoretical limit of the FWHM of Mn K$\alpha$ is XXX \brynjar{explain above!}.
+The HyperSpy method will raise an ValueError if the estimated energy resolution is below 110 eV \brynjar{line 450, \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
+
+
 
 
 \subsection{Calibration of scale and offset}
@@ -250,3 +319,20 @@ Large deviations implicate \dots
 % The two most important tests, according to Goldstein, are linearity and stability.
 % requires multiple spectra of the same sample with different beam currents.
 % Goldstein p. 232.
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%% EDS Issues
+% Several issues can perturb an EDS spectrum, including peak broadening, peak distortion, silicon x-ray escape peaks, absorption edges, and the silicon internal fluorescence peak. In addition, several hardware-related problems, such as pulse pileup rejection by the main amplifier, acoustic coupling on the co-axial connector between the detector and the amplifier, ground loops, and ice in the detector system, can occur.
+% https://www.semitracks.com/reference-material/failure-and-yield-analysis/failure-analysis-materials-characterization/energy-dispersive-x-ray-spectrometry.php#:~:text=History,used%20for%20x%2Dray%20characterization.
