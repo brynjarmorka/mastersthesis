@@ -7,15 +7,13 @@
 }
 
 @book{hollas_modern_2004,
-  address   = {Chichester ; Hoboken, NJ},
-  edition   = {4th ed},
+  edition   = {4},
   title     = {Modern spectroscopy},
   isbn      = {978-0-470-84415-1 978-0-470-84416-8},
   language  = {en},
-  publisher = {J. Wiley},
+  publisher = {Wiley},
   author    = {Hollas, J. Michael},
-  year      = {2004},
-  keywords  = {Spectrum analysis, EDS}
+  year      = {2004}
 }
 
 @mastersthesis{lundeby_improving_2019,
@@ -27,15 +25,14 @@
 
 % master, theory
 @book{goldstein_scanning_2018,
-  address   = {New York, NY},
   title     = {Scanning {Electron} {Microscopy} and {X}-{Ray} {Microanalysis}},
   isbn      = {978-1-4939-6674-5 978-1-4939-6676-9},
   url       = {http://link.springer.com/10.1007/978-1-4939-6676-9},
-  language  = {en},
   urldate   = {2022-10-19},
-  publisher = {Springer New York},
+  publisher = {Springer},
   author    = {Goldstein, Joseph I. and Newbury, Dale E. and Michael, Joseph R. and Ritchie, Nicholas W. M. and Scott, John Henry J. and Joy, David C.},
   year      = {2018},
+  edition   = {4},
   doi       = {10.1007/978-1-4939-6676-9}
 }
 
@@ -93,7 +90,7 @@
 
 @misc{hyperspy_1.7.1,
   author    = {Francisco de la Peña and Eric Prestat and Vidar Tonaas Fauske and Pierre Burdet and Jonas Lähnemann and Petras Jokubauskas and Tom Furnival and Magnus Nord and Tomas Ostasevicius and Katherine E. MacArthur and Duncan N. Johnstone and Mike Sarahan and Thomas Aarholt and Joshua Taillon and pquinn-dls and Vadim Migunov and Alberto Eljarrat and Jan Caron and Carter Francis and T. Nemoto and Timothy Poon and Stefano Mazzucco and actions-user and Nicolas Tappy and Niels Cautaerts and Suhas Somnath and Tom Slater and Michael Walls and Florian Winkler and DENSmerijn},
-  title     = {hyperspy/hyperspy: Release v1.7.1},
+  title     = {Hyperspy/hyperspy: Release v1.7.1},
   month     = jun,
   year      = 2022,
   publisher = {Zenodo},
@@ -261,6 +258,18 @@
 }
 
 % master, theory
+% DTSA-ii 1: Manipulating Spectra with DTSA-II
+@article{dtsaii_1_getting_started,
+  author  = {Ritchie, Nicholas},
+  year    = {2011},
+  month   = {01},
+  title   = {{Getting Started with NIST DTSA-II}},
+  volume  = {19},
+  journal = {Microscopy Today},
+  doi     = {10.1017/S155192951000132X}
+}
+
+% master, theory
 % DTSA-ii 2: Manipulating Spectra with DTSA-II
 @article{dtsaii_2_manipulating_spectra,
   author  = {Ritchie, Nicholas W M},
@@ -283,7 +292,7 @@
   author  = {Postek, Michael and Vladár, András},
   year    = {2015},
   month   = {10},
-  title   = {Does Your SEM Really Tell the Truth?-How Would You Know? Part 4: Charging and its Mitigation},
+  title   = {{Does Your SEM Really Tell the Truth?-How Would You Know? Part 4: Charging and its Mitigation}},
   volume  = {9636},
   journal = {Proceedings of SPIE--the International Society for Optical Engineering},
   doi     = {10.1117/12.2195344}
@@ -328,13 +337,13 @@
   organization = {{Ted Pella, Inc.}},
   year         = {2019},
   address      = {Redding, CA, USA},
-  note         = {Accessed 10.02.2023 at https://www.tedpella.com/}
+  note         = {Accessed 10.02.2023 through https://www.tedpella.com/}
 }
 
 
-% master, theory
+% master, introduction, theory
 % original NiO test sample paper
-@article{egerton_eds_1994,
+@article{egerton_nio_characterization_1994,
   title   = {Characterization of an analytical electron microscope with a NiO test specimen},
   journal = {Ultramicroscopy},
   volume  = {55},
@@ -398,31 +407,132 @@ Francisco Press, San Francisco, CA.
 
 
 % master, theory
-% Egerton and Cheng, 1994
-R. C. S. Egerton, 
-"Characterization of an analytical electron microscope with a NiO test speciment,"
-Ultramicroscopy, vol. 55, pp. 43-54, 1994
-@article{egerton_characterization_1994,
-  author  = {Egerton, R. F.  and Cheng, S. C.},
-  title   = {Characterization of an analytical electron microscope with a NiO test speciment},
-  journal = {Ultramicroscopy},
-  volume  = {55},
-  pages   = {43-54},
-  year    = {1994},
-  issn    = {0304-3991},
-  doi     = {https://doi.org/10.1016/0304-3991(94)90079-5},
-  url     = {https://www.sciencedirect.com/science/article/pii/0304399194900795}
-}
-
-
-% master, theory
 % EDAX insight Vol. 16 No. 3 - september 2018
 @article{edax_insight_2018,
   author  = {{EDAX}},
-  title   = {EDAX Insight},
-  journal = {EDAX Insight},
+  title   = {{Elite T EDS System for the TEM}},
+  journal = {{EDAX} Insight},
   volume  = {16},
   number  = {3},
   year    = {2018},
   month   = {09}
+}
+
+
+% master, introduction
+% .emsa ISO standard
+@techreport{iso_emsa,
+  type        = {Standard},
+  author      = {ISO},
+  key         = {ISO 22029:2022},
+  month       = 10,
+  year        = {2022},
+  title       = {Microbeam analysis — EMSA/MAS standard file format for spectral-data exchange},
+  institution = {Microbeam analysis},
+  number      = 3,
+  note        = {Accessed 16.02.2023 at https://www.iso.org/standard/78268.html}
+}
+
+
+% master, introduction
+% jenkins_xrayspectroscopy, Practcal X-ray Spectroscopy
+@book{jenkins_xrayspectroscopy,
+  author    = {R. Jenkins and J. L. {De Vries}},
+  title     = {Practical X-ray Spectroscopy},
+  publisher = {Springer},
+  year      = {1982},
+  edition   = {2}
+}
+
+
+% master, introduction
+% XRF resolution
+@article{xrf_spatial_resolution,
+  author  = {Dehlinger, M. and Fauquet, C. and Lavandier, S. and Aumporn, O. and Jandard, F. and Arkadiev, V. and Bjeoumikhov, A. and Tonneau, D.},
+  journal = {Nanoscale research letters},
+  number  = {1},
+  title   = {Spatial resolution of confocal {XRF} technique using capillary optics},
+  volume  = {8},
+  year    = {2013},
+  doi     = {https://doi.org/10.1186/1556-276X-8-271}
+}
+
+
+% master, introduction
+% Nilsen, factorless quantification
+J. S. Nilsen and A. T. van Helvoort, ‘Composition analysis by STEM-EDX of ternary
+semiconductors by internal references’, Microscopy and Microanalysis, vol. 28, pp. 61–69,
+2021.
+@article{nilsen_factorless_2021,
+  author  = {Nilsen, J. S. and van Helvoort, A. T.},
+  title   = {Composition analysis by STEM-EDX of ternary semiconductors by internal references},
+  journal = {Microscopy and Microanalysis},
+  volume  = {28},
+  pages   = {61-69},
+  year    = {2021}
+}
+
+
+% master, introduction
+% importance of open-source
+@article{opensource_2013,
+  author  = {Tchantchaleishvili, Vakhtang and Wilson, Michael},
+  year    = {2013},
+  month   = {06},
+  title   = {The Importance of Free and Open Source Software and Open Standards in Modern Scientific Publishing},
+  volume  = {1},
+  journal = {Publications},
+  doi     = {10.3390/publications1020049}
+}
+
+% Inger-Emma Nylund, 2017, Evaluation of energy-dispersive spectroscopy characteristics for improved compositional analysis
+@mastersthesis{nylund_evaluation_2017,
+  author = {Nylund, Inger-Emma},
+  title  = {Evaluation of energy-dispersive spectroscopy characteristics for improved compositional analysis},
+  year   = {2017},
+  school = {Norwegian University of Science and Technology}
+}
+
+
+% master, introduction
+xrf_detection_limit
+@incollection{xrf_detection_limit,
+  title     = {13 - {Arsenic}},
+  editor    = {Robert D. Morrison and Brian L. Murphy},
+  booktitle = {Environmental Forensics},
+  publisher = {Academic Press},
+  address   = {Burlington},
+  pages     = {279-292},
+  year      = {1964},
+  isbn      = {978-0-12-507751-4},
+  doi       = {https://doi.org/10.1016/B978-012507751-4/50035-5},
+  url       = {https://www.sciencedirect.com/science/article/pii/B9780125077514500355},
+  author    = {Jennifer K. Saxe and Teresa S. Bowers and Kim Reynolds Reid}
+}
+
+
+% master, theory
+% Webpage from Oxford Instruments
+% https://nano.oxinst.com/products/ultim-max 
+@misc{oxford_ultim_max,
+  author = {{Oxford Instruments}},
+  title  = {Ultim {Max}},
+  year   = {2022},
+  note   = {Accessed 10.02.23 at https://nano.oxinst.com/products/ultim-max}
+}
+
+
+% master, theory
+% SDD detector
+@article{sdd_lechner_2001,
+  title   = {{Silicon drift detectors for high count rate X-ray spectroscopy at room temperature}},
+  journal = {{Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment}},
+  volume  = {458},
+  number  = {1},
+  pages   = {281-287},
+  year    = {2001},
+  issn    = {0168-9002},
+  doi     = {https://doi.org/10.1016/S0168-9002(00)00872-X},
+  url     = {https://www.sciencedirect.com/science/article/pii/S016890020000872X},
+  author  = {P. Lechner and C. Fiorini and R. Hartmann and J. Kemmer and N. Krause and P. Leutenegger and A. Longoni and H. Soltau and D. Stötter and R. Stötter and L. Strüder and U. Weber}
 }
