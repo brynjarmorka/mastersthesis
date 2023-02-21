@@ -123,6 +123,9 @@ Since electron-hole pairs can be thermally excited, the detector is cooled to li
 The liquid nitrogen cooling also prevents the lithium from diffusing and reduce the electronic noise from the amplifiers in the electronics.
 
 % The SDD detector
+% Ton: Det er noe fundamentele ting med EDX vi må akseptere. Kanksje det er bra å state i teori eller diskusjon. 
+% Andre detaljer, som mye i EDX literatur, er basert på gamle teori. 
+% Om nye SDD er det mye mindre publisert og selve teknologi utvikler seg
 
 % SDD vs Si(Li) detectors
 The cooling needed in the more modern silicon drift detectors (SDD) is not as strong as for the Si(Li) detectors, which is one of the differences between the detector types.
@@ -400,7 +403,7 @@ The HyperSpy method will raise an ValueError if the estimated energy resolution 
 \label{theory:detector_status:fiori}
 
 % What
-One of the metrics describing the quality of a spectrum is the relation between the signal in peaks and in the background, which is most commonly described by the Fiori peak-to-background ratio (P/B), at least for TEM EDS \cite{carter2016transmission}.
+One of the metrics describing the quality of a spectrum is the relation between the signal in peaks and in the background, which is most commonly described by the Fiori peak-to-background ratio (P/B), at least for TEM EDS \cite{williams_carter_tem_2009}.
 Some modern detectors can acquire extremely high counts per second, partly because of the larger sensor sizes, like the newest Oxford Instruments detector Ultim Max EDS with up to 170 mm$^2$, which supposedly can acquire up to 1.5 million counts per second \cite{oxford_ultim_max}.
 However, having a high count rate does not necessarily mean that the spectrum yielded will have high quality, because the signal in the peaks can be very low compared to the background.
 Having a metric for the ratio between the signal in peaks and in the background is therefore important both for establishing what makes a good detector, and also if an acquired spectrum have high quality.
