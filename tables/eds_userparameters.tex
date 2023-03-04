@@ -1,0 +1,28 @@
+\begin{table}[pht]
+    \begin{center}
+        \caption{Definitions and references for various terms related to the user settings in EDS, \cref{theory:eds:user_controlled_parameters}.}
+        \renewcommand*{\arraystretch}{1.4}
+        \label{tab:eds:userparameters}
+        % \begin{tabular}{|l|p{10cm}|l|}
+        \begin{tabular}{p{2.6cm}p{10cm}l}
+            \hline
+            \textbf{Name}                     & \textbf{Definition}                                                                                                                                                                                                        & \textbf{Reference} \\
+            \hline
+            Beam energy, E$_0$                & The energy of the electrons from the beam when they enter the specimen.                                                                                                                                                    &                    \\
+            Critical ionization energy, E$_C$ & The energy required to ionize the element of interest. Dependent on Z and the orbital to excite.                                                                                                                           &                    \\
+            Overvoltage, U                    & $ U = E_0 / E_C $, and is required to be at least 1.5 to achieve a good signal from the wanted line.                                                                                                                       &                    \\
+            Beam current, I$_0$               & The current used to emit the electrons from the electron gun.                                                                                                                                                              &                    \\
+            Probe current                     & The current that hits the specimen.                                                                                                                                                                                        &                    \\
+            Count rate                        & The number of X-ray counts per second (cps).                                                                                                                                                                               &                    \\
+            Input count rate, ICR             & The number X-rays per second creating electron-hole paris in the active layer in the detector.                                                                                                                             &                    \\
+            Output count rate, OCR            & The actual number of counts registered and outputted to the memory. The OCR is lower than the ICR because of the dead time, and because the OCR includes coincidence events.                                               &                    \\
+            Throughput                        & How much information a system can process per units of time. In EDS the throughput is the OCR.                                                                                                                             &                    \\
+            Real time                         & The time in seconds in takes to acquire a spectrum. Real time = dead time + live time                                                                                                                                      &                    \\
+            Dead time, DT                     & The amount of time when the input to the electronics is shut off, because an analouge voltage signals is being converted to a digital count. Dead time is both expressed in seconds and as a percentage of the real time.  &                    \\
+            Live time                         & The time in seconds when the detector is actively registering counts.                                                                                                                                                      &                    \\
+            Process time                      & A system setting for how much time the electronics have to convert the voltage signal. Longer times give more accurate assessment of the energy. The process time is a trade-off between throughput and energy resolution. &                    \\
+            Dwell time                        & The time the electron beam is on each pixel in the 2D image. Higher times increase signal intensities and spatial resolution, but can introduce issues.                                                                    &                    \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}

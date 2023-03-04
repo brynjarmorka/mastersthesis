@@ -1,75 +1,95 @@
 \chapter{Theory}
 \label{ch:theory}
 
+\brynjar{ISO 22309: "The area of a peak, in counts divided by the preset live time,
+    gives the intensity of X-rays striking the active area of the detector. On the assumption that the same incident electron
+    beam current and same recording live time are used, the peak area in counts is an appropriate measure to compare X-ray
+    intensities for quantitative analysis, and therefore the terms “peak intensity” and “peak area” are used in this International
+    Standard."}
+
+
+\brynjar{ASTM E1508: The surface must be flat and polished to get good results. "Note that these
+    requirements for surface preparation preclude the quantitative
+    analysis of casual samples, such as unpolished surfaces like
+    fracture surfaces and particles. Although data can be generated
+    on these casual surfaces, the results would be of significantly
+    lower precision with unpredictable variations."}
+
+
 \emph{Write an intro to the chapter}.
 
-\section{Instruments}
-\label{theory:instruments}
-
-The data in this project was acquired in an SEM with an EDS detector, which both are described in this section.
 
 
-\subsection{SEM}
-\label{theory:instruments:sem}
 
-This subsection about SEM is based on Goldstein \cite{goldstein_scanning_2018}.
+\section{SEM}
+\label{theory:sem}
 
-Scanning electron microscopes provide a high spatial resolution of micro- and nanoscale features.
-The features revealed can be size, composition, shapes, topology, crystallography, and other chemical and physical properties. % Kinda copied from Goldstein p. VII
-The working principle of an SEM is based on the interaction of a finely focused beam of electrons with the sample, where the beam is scanned over the sample surface to create a 2D image.
-The interactions between the beam and the sample produce multiple signals, both as electrons and photons, which provide different information about the sample.
-Auger electrons and secondary electrons give information about the surface of the sample, while backscattered electrons and X-rays give information about the composition of the sample.
-The signals are not only created at the surface, but also inside the sample, and the region where the signals are created is called the interaction volume.
-
-% The inteaction volume
-After the interaction and creation of a signal, the signal must escape the sample to be registered by a detector.
-The escape depth of the signal types is illustrated in \cref{fig:interaction_volume}.
-When a signal is formed inside the sample, the signal can both be absorbed or scattered within the sample.
-The signals with low energy are absorbed, and will thus only be emitted at the surface, e.g. Auger electrons and secondary electrons.
-The signals which originate from deeper inside the sample, e.g. backscattered electrons and X-rays, can interact with the sample multiple times before they are emitted and detected.
-
-% add typical depth for X-rays, cite eg. Hollas
+% intro
+This study involves the use of a nanometer-scale electron beam to generate an X-ray spectrum for analyzing the composition of small volumes, more specifically a SEM equipped with an EDS detector.
+Both SEMs and TEMs are often equipped with an EDS detector to provide analytical capabilities that complement imaging and diffraction analyses.
+This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection in SEM and image contrast, and a brief overview of TEM.
+If not stated otherwise, this section on SEM is based on Goldstein \cite{goldstein_scanning_2018}.
+A schematic of a SEM is shown in \cref{fig:SEM_setup}.
 
 
-% figures/interaction_volume.png
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/interaction_volume.png}
-    \caption{
-        Illustration of the interaction volume of the different signals.
-        The signals are emitted in all directions, which is why the interaction volume is spherical.
-        The blue signals are electrons and the orange signals are X-rays.
-        The depths are not to scale.
-        \brynjar{Add depth ranges?}
-    }
-    \label{fig:interaction_volume}
-\end{figure}
+\subsection{Electron beam generation and control - the SEM setup}
+\label{theory:sem:setup}
 
+% Creating the electron beam
+The \textbf{electron gun} is the source of the electron beam, where electrons are emitted with high kinetic energy by a high voltage.
+The emittance of the electron gun is controlled by the user with the beam current and the accelerating voltage.
+The acceleration voltage, or the beam energy $E_0$, is typically in the range of 1-30 keV.
+The beam current is typically in the range of 0.01-10 nA.
 
-% \ton{Do you want me to write about the different signals, ie. SE and BSE?}
-
-
-% The parts in the SEM
-An SEM consists of several parts, which are illustrated in \cref{fig:SEM_setup}.
-The electron gun is the source of the electrons.
-The condenser lens focuses the electrons to a small beam.
-The two apertures sets the size of the beam, which is important since the electrons closest to the central axis of the beam have the fewest aberrations.
-The scanning coils are used to scan the beam over the sample in the raster fashion.
-The objective lens focuses the beam to a small spot on the sample.
-In general a smaller spot allows higher resolution, because the signal is recorded from a smaller area.
-However, this effect is limited by several factors, such as the interaction volume.
-The detectors are placed above the sample.
-
-% \ton{What more do you want me to write about the SEM?}
 
 % figure/SEM_setup.png
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/SEM_setup.png}
     \caption{
-        Illustration of the parts in an SEM.
+        Illustration of the main parts in an SEM.
     }
     \label{fig:SEM_setup}
+\end{figure}
+
+
+% Controlling the electron beam with lenses
+The electron beam is shaped and controlled by \textbf{electro magnetic lenses and apertures}.
+A narrower beam is wanted for higher resolution, as both the probe size is smaller and the electrons closer to the center of the beam axis have less aberrations \cite{goodhew_2001}.
+The apertures are a physical barrier that limits the beam size.
+A smaller probe with less aberrations is better for high resolution details, but the signal is also reduced as there are fewer electrons in the probe.
+The condensor lenses are used to control the spot size and the shape of the beam.
+The final lens, the objective lens, fine-tunes the beam's focus on the sample surface.
+If the specimen is magnetic, the beam can be affected by the magnetic field of the sample.
+Stigmators are used to prevent the beam from being elliptical.
+The user of the microscope adjusts the focus with the objective lens and roundness of the probe with the stigmators.
+The probe size can also be adjusted by changing the working distance, which is the distance between the objective lens exit and the sample surface.
+Short working distances can produce the smallest probes, but they limit the depth in imaging and possibly the amount of signal that reaches the EDS detector.
+
+
+% the scanning coils, with a raster scan illustration
+The position of the probe on the surface is controlled by the \textbf{scanning coils} located between the condenser and objective lenses.
+These scanning coils are used to create a raster scan, where the probe is moved in a grid pattern across the sample surface.
+In each position the detector(s) register a signal, which is put together to form an 2D image, where each probe position corresponds to a pixel in the image.
+The raster scan is vizualized in \cref{fig:sem_rasterscan}.
+The figure shows a probe that is moved in a grid pattern across the sample surface, resulting in a 2D image with different intensities.
+The EDS signal is chosen for the visualization in the figure, but the same principle with the image being an intensity map applies to other signals like secondary electrons.
+Scanning the probe over a smaller area, with equally many pixels, results in a zoomed in image.
+The scan is controlled by the dwell time, which is the time spent recording a signal in each position.
+Higher dwell times giving higher signal intensity which usually results in a clearer image, but long dwell time can result in beam damage issues, e.g. carbon deposition on the sample surface.
+% A wave generator can generate a saw-tooth profile that rasterizes the probe across the sample. 
+
+% figure/SEM_raster.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/SEM_raster.png}
+    \caption{
+        Illustration of a raster scan in an SEM.
+        The probe is moved in a grid pattern across the specimen surface, and the detector(s) register a signal for each position.
+        The signal intensity recorded in each position corresponds to the color of the pixel in the resulting 2D image.
+        This figure is borrowed from Skomedal \cite[Fig. 2.14]{skomedal_improving_2022}.
+    }
+    \label{fig:sem_rasterscan}
 \end{figure}
 
 
@@ -77,6 +97,148 @@ The detectors are placed above the sample.
 
 
 
+\subsection{SEM signals and image formation}
+\label{theory:sem:sem_signals}
+
+% The different signals
+The different signals illustrated in \cref{fig:interaction_volume} are generated by different interactions of the electron beam with the specimen.
+The signals are briefly described in the following paragraphs, and they are: Auger electrons, secondary electrons, backscattered electrons,characteristic X-rays and background X-rays.
+
+
+
+% The interaction volume
+When the electron beam hits the specimen, a range of interactions can happen. % being the source of the different signals in the SEM.
+The different signals originate from different depths in the specimen, illustrated by the \textbf{interaction volume} in \cref{fig:interaction_volume}.
+The interaction volume has a droplet shape showing where the different signals are formed and emitted from.
+The depth of formation is dependent on the beam energy, as higher $E_0$ makes the electron beam penetrate deeper into the specimen.
+When a signal is formed inside the specimen, the signal can be absorbed or scattered within the specimen.
+The probability of the escape of a signal is dependent on the energy of the signal, the depth of generation, and the properties of the elements in the specimen.
+Higher energy signals penetrate longer, and can thus escape from deeper inside the specimen.
+Both the density of the specimen and the atomic number of the elements in the specimen affect the probability of escape.
+Additionally, the geometry of the specimen can affect the probability of escape.
+\cref{fig:interaction_volume} is annotated with very rough estimates for the depth of origin of the different signals based on \cite{goldstein_scanning_2018,hollas_modern_2004}.
+As the samples in TEMs are around 100 nm, the interaction volume in TEM samples is very small, resulting in less signals generated, as a larger portion of the beam passes through the sample without generating singals.
+An more accurate escape depth and interaction volume can be achieved by using a Monte Carlo simulation, which is a computer simulation of the interaction of the beam with the sample \cite[Ch. 4.3.4]{goldstein_scanning_2018}.
+\cref{fig:montecarlo_BSE} shows an example of a Monte Carlo simulation in a bulk sample.
+
+
+% figures/interaction_volume.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/interaction_volume.png}
+    \caption{
+        Illustration of the interaction volume in a bulk sample, which is the regions from where the generated signals can escape the sample.
+        The blue signals are electrons and the green signals are X-rays.
+        The given depths are very rough estimates \cite{goldstein_scanning_2018,hollas_modern_2004}, as the depth strongly depends on the beam energy and the elements in the sample, as well as the geometry of the sample.
+    }
+    \label{fig:interaction_volume}
+\end{figure}
+
+
+
+% Auger electrons
+\textbf{Auger electrons} are emitted in the following way: an incident electron ionizes an inner shell electron of an atom, which makes an outer shell electron relax to the hole in the inner shell, and the energy difference is used to emit another electron, which is an Auger electron.
+Auger electrons have very low energy and are only emitted from the surface of the specimen \cite{hollas_modern_2004}.
+
+
+% Secondary electrons
+\textbf{Secondary electrons (SE)} are formed by inelastic scattering between incident beam electrons and valence electrons of the atoms in the specimen.
+The weakly bound valence electron are knocked out of the atom, but with low kinetic energy from 0 to 50 eV.
+A plot of the distribution of the kinetic energy of the SE is shown in \cref{fig:SEM_SE_spectrums}, which is from a Cu sample with a 1 keV beam.
+Since the SE have low energy, they cannot travel far inside the sample before they are absorbed or scattered, and the SE signal is thus used to get topological information.
+If the beam is hitting the surface near an edge, the SE can escape at the edge, giving topological contrast.
+
+
+% Backscattered electrons
+\textbf{Backscattered electrons (BSE)} are from elastic scattering between incident beam electrons and atoms, where the scattering results in a reversation of the trajectory and thus making the incident electrons escape up through the sample surface.
+The scattering process is interactions with the orbitals and the nuclei of the atoms, and since the BSE are the incident electrons, their kinetic energy is in the keV range.
+Monte Carlo simulations shown in Goldstein \cite[Fig. 2.16 b]{goldstein_scanning_2018} show that more than half of the backscattered electrons in carbon retain more than 50\% of the initial energy of the incident beam electrons.
+Atoms with higher atomic number have more protons and more electrons, giving them a higher probability of the scattering process, and thus making the BSE signal proportional to the atomic number, Z, of the atoms.
+As the BSE signal originates from deeper inside the sample, the topological information is limited.
+\cref{fig:montecarlo_BSE} show Monte Carlo simulations with a 20 keV beam energy on C, Si, Cu, and Au.
+The figure show that a higher Z gives more BSE, marked as red lines.
+Additionally, the figure show that the size of the interaction volume is dependent on Z too, as all the scatterings are more concentrated in pannel (d) with Au.
+The blue lines are electrons which have had all their energy absorbed within the specimen.
+In addition to the three types of electron signals, the beam interaction can also create X-ray photons.
+
+
+% Characteristic X-rays and background X-rays
+Formation of \textbf{characteristic X-rays} are covered in detail in \brynjar{cref to chapter on XRD}.
+In short, formation of characteristic follow the same principle as Auger electrons, but the energy difference between the outer and inner orbital is used to emit X-rays instead of electrons.
+Typical escape depths for X-ray signals are around 4000 nm \cite{hollas_modern_2004}.
+Lastly, the \textbf{background X-rays} are formed by the deacceleration of the incident beam electrons because of the Coulomb fields of the atoms in the specimen, and this deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
+The background X-rays are white noise, giving no information about the sample, and is generated in the whole interaction volume.
+
+
+
+%figures/SEM_montecarlo_BSE.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/SEM_montecarlo_BSE.png}
+    \caption{
+        Monte Carlo simulation of the interaction volume in C, Si, Cu, and Au with 20 keV beam energy.
+        The red lines mark the incident electrons with reversed trajectory, which are the BSE.
+        The figure is borrowed from Goldstein \cite[Fig. 2.2]{goldstein_scanning_2018}.
+    }
+    \label{fig:montecarlo_BSE}
+\end{figure}
+
+
+% The absorption of signals generated
+The signals generated in the interaction volume can be \textbf{absorbed or scattered within the specimen}.
+Secondary electrons can for example be generated near the surface by BSE, and is then called SE$_2$.
+The SE$_2$ signal carries the same information as the BSE signal, since the amount of SE$_2$ is proportional to the amount of BSE.
+An SE signal generated from a BSE hitting something in the chamber is called a SE$_3$ signal, and SE signal from pre-specimen sources like the final aperture is called SE$_4$.
+The final SE image is an combination of all the SE classes, but it is the SE signal from the sample which give the topological contrast.
+Other examples of signal absorption is the generated X-ray strays due to fluorescence, which is covered in \brynjar{cref to chapter on strays}.
+
+
+% Detection of the signals as spectra
+While a range of signals are formed by the interaction of the beam with the specimen, \textbf{the observed signals} depends on the detector used.
+One type of SE detectors are the Everhart-Thornley detector \cite{everhart_detector1960}, which combines the SE signal with the BSE signal to get both topological and compositional contrast in the same image.
+BSE detectors can be annular solid state detectors or in-lens detectors.
+BSE imaging or combination of BSE and SE can be used to get initial compositional information before detailed quantitative EDS analysis.
+EDS detectors can be either a silicon drift detector or a semiconductor detector, and are covered in detail in \cref{theory:eds}.
+The signal from all types of detectors can be viewed as a spectrum, where the intensity of the signal is proportional to the number of electrons or X-rays detected.
+A SE image is the 2D representation of a set of spectra, where each pixel have one 1D spectrum with the number of SE electrons detected as a function of energy.
+\cref{fig:SEM_SE_spectrums} show what the spectrum from a single pixel in a SE image would look like.
+The same is true for BSE images, only with a higher energy range.
+Both SE and BSE detectors are counting the number of electrons detected, and the energy of the electrons is not used.
+However, in EDS detectors the signal is recorded in each pixel as a digital histogram of the energy of the detected X-rays, making a spectrum map.
+This allows for the creation of a 2D map of the elemental composition of the sample, as specific elements can be given colors in the image.
+This is a very powerful tool for the analysis of samples, and is covered in detail in \cref{theory:eds}.
+EDS spectra can also be recorded as a 1D spectrum from a point on the sample.
+
+% figures/SEM_SE_spectrums.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/SEM_SE_spectrums.png}
+    \caption{
+        The figure show the spectrum from a single pixel in a SE image.
+        The specimen is Cu, and the incident beam energy is 1 keV.
+        Similar spectrum would be recorded in a BSE image, but with peaks at different energies for the different elements.
+        Normal SE and BSE images only record the sum of the registered electrons, and not the energy of the electrons.
+        The figure is borrowed from Goldstein \cite[Fig. 3.1 a]{goldstein_scanning_2018}, wich use data from \cite{koshikawa_SE_spectrum_1973}.
+    }
+    \label{fig:SEM_SE_spectrums}
+\end{figure}
+
+
+\subsection{Briefly on TEM}
+\label{theory:sem:tem}
+
+There are many similarities between the above described SEM and TEM setups.
+In this work, the focus is on SEM EDS, which on multiple occations is compared to TEM EDS.
+Thus, this section will briefly describe the TEM setup based on Williams and Carter \cite{williams_carter_tem_2009}, with a focus on the relevant differences to SEM EDS.
+In TEM the electron optics is similar to SEM, and the use of EDS in TEM is usually done in scanning mode.
+The TEM instrument contains additional optics after the specimen and before the forward imaging detectors.
+One of the main differences is that the beam energy is much higher in TEM, typically 100-300 kV, compared to 1-30 kV in SEM.
+The other main difference is that the sample is much thinner in TEM, typically 100 nm, compared to bulk samples used in SEM.
+Unlike SEM, imaging detectors in TEM EDS are placed under the specimen both due to the signal in TEM EDS being waker due to the small interaction volume and limited space around the TEM specimen to place detectors.
+The placement of the detector affect the collection angle, which is discussed in \brynjar{cref the right section}.
+The thinner sample and higher beam energy in TEM EDS can lower the signal as there is less volume where the beam can interact, and this can limit the signal-to-noise ratio (SNR) in TEM EDS.
+However, absorption and fluorescence can be ignored for very thin specimens, simplifying the quantification routines in TEM EDS.
+TEM image formation is not discussed further in this work.
 
 
 
@@ -86,69 +248,145 @@ The detectors are placed above the sample.
 
 
 
-\subsection{The EDS system}
 
+
+
+\clearpage
+
+
+\section{The EDS system}
+\label{theory:eds}
+
+
+% Ok to discus principle of detection using Si(Li). Have a figure. 
+
+% But add SDD, and the details/differences that matter 
+
+% Add here geometry sample-detector as it will affect your results (phenomena absorption you have to have in section 1 or 2). 
+
+% Intro
+Energy dispersive X-ray spectroscopy (EDS) is a technique for the analysis of the elemental composition of a sample with high spatial resolution.
 The EDS system is made up of the detector, the electronics, and the software on the computer.
-Traditionally, the EDS detector have been a Si(Li) detector, but now the most common detector is a silicon drift detector (SDD).
-An overview of the two detectors is given below.
-Both detectors are Si based diode-structures, which have different structures, but the same a three-step process for the detection of X-rays.
-% detecting X-rays
-First an incoming X-ray is absorbed in the detector, which ionizes Si atoms, creating a number of electron-hole pairs proportional to the energy of the incoming X-ray.
-Secondly the electron-hole pairs is driven by an electric field towards the contact points, where they are converted into a voltage signal and amplified by FET transistors.
-Finally, the electronics converts the voltage signal into a count, which is assigned to a specific energy range, called a channel.
-A channel is usually around 10 eV wide, and the number of channels is typically 1024 or 2048.
-% dead time
-The electronics uses a finite time to convert the voltage signal into a count, and while the voltage signal is being converted, the detector is not able to detect any new X-rays.
-While the electronics is converting the voltage signal, the detector is shut down by the software, and this time is called the dead time.
-% Sum peaks
-Longer processing time allow the electronics to assess the energy range more precisely, but high dead time will reduce the count rate  and an artifact called coincidence peaks get more pronounced.
-Coincidence peaks, or sum peaks, is the result of two X-rays being counted as one, where the assigned energy is the sum of the two X-ray photons.
-The dead time is usually measured in percentage, where the percentage is the time the detector is shut down compared to the time the detector is able to detect X-rays, called the live time.
-The real time is the sum of the dead time and the live time.
+The output of an EDS analysis is either a spectrum or a spectrum map, where the spectrum is a histogram with the number of X-rays detected as a function of energy.
 Even though the resulting spectrum appears to be acquired simultaneously at all energies, the spectrum is actually acquired one channel at a time.
-% What the spectrum really is
-The resulting spectrum is a histogram of the counts in each channel, which is the number of X-rays detected in each energy range.
+This section covers first the hardware and the principles of EDS detectors, then the information in a spectrum, and finally user controlled parameters in the EDS analysis.
+The next section covers parameters used to quantify the status of the EDS system. %and the quality of a spectrum.
+% based on Goldstein
+This section is based on Goldstein \cite{goldstein_scanning_2018} and Jenkins \cite{jenkins_xrayspectroscopy}, if not stated otherwise.
+
+
+
+
+\subsection{EDS detectors hardware}
+\label{theory:eds:hardware}
+
+% Ton: Det er noe fundamentele ting med EDS vi må akseptere. Kanksje det er bra å state i teori eller diskusjon. 
+% Andre detaljer, som mye i EDS literatur, er basert på gamle teori. 
+% Om nye SDD er det mye mindre publisert og selve teknologi utvikler seg
+
+% how the detectors detect
+Detecting X-rays is a three-step process illustrated in \cref{fig:detecting_xrays}, usually done with a silicon drift detector (SDD).
+The older Si(Li) have similar working principles, but are generally performing worse than SDD.
+However, parts of the literature is old and based on the Si(Li) detector, and thus both detector types is described below.
+Both detectors are Si based diode-structures, where incoming X-rays ionize Si atoms, creating electron-hole pairs.
+The number of electron-hole pairs proportional to the energy of the incoming X-ray.
+The electron-hole pairs is driven by an electric field towards the contact points, where they are converted into a voltage signal and amplified by FET transistors.
+Finally, the electronics assigns the voltage signal to a specific energy range, called a channel.
+While the electronics is converting the voltage signal, the detector is shut down by the controlling software.
+The time the detector is shut down is called dead time, and is discussed in \cref{theory:eds:user_controlled_parameters}.
+Each voltage signal registered corresponds to one count in the given channel.
+The width of a channel is usually set to 10 eV, thus the scale of most spectra is 10 eV per channel.
+The number of channels in a spectrum is typically 1024 or 2048.
+The number of counts stored in a channel is the signal intensity.
+Details about the signal is covered in \cref{theory:eds:spectrum_info}.
+\cref{tab:eds:hardware} summarize this section.
+
+
+% figures/detecting_xrays.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/detecting_xrays.png}
+    \caption{
+        The figure show the three-step process of detecting X-rays in EDS detectors.
+    }
+    \label{fig:detecting_xrays}
+\end{figure}
+
+
 
 
 % The Si(Li) detector
 The Si(Li) detectors are silicon crystals drifted with lithium, with a p-i-n diode structure.
-The generation of detectable electron-hole pairs happens in the thick intrinsic region, while the thinner n- and p-type regions are referred to as dead layers, because the electron-hole pairs generated there are not collected.
+The generation of detectable electron-hole pairs happens in the thick intrinsic region.
+The thinner n- and p-type regions are referred to as dead layers, because the electron-hole pairs generated there are not collected.
+The layer where detectable electron-hole pairs are generated is called the active layer.
 The thickness of the detector is typically 2-5 $\mu$m, which allows for a high detection efficiency at higher energies, since few X-rays are able to pass through the intrinsic layer without generating electron-hole pairs.
-\ton{Is detection efficiency is the right word here?}
-\brynjar{Si dip is also there, because of the Si in the detector.}
+% \brynjar{Si dip is also there, because of the Si in the detector.} % Ignore?
 When operating the detector, X-rays enter through the p-type end into the intrinsic region, where they have a high probability of being absorbed and thus ionizing a Si atom, which creates electron-hole pairs.
 The number of electron-hole pairs created is proportional to the energy of the X-ray, since one pair requires 3.8 eV of energy.
-A reverse bias over the detector makes the charge carriers drift towards the detector contacts, where they are measured by the electronics after being amplified.
+A reverse bias over the detector makes the charge carriers drift towards the detector contact, where they are measured by the electronics after being amplified.
 Since electron-hole pairs can be thermally excited, the detector is cooled to liquid nitrogen temperature to prevent this.
 The liquid nitrogen cooling also prevents the lithium from diffusing and reduce the electronic noise from the amplifiers in the electronics.
 
-% The SDD detector
-% Ton: Det er noe fundamentele ting med EDX vi må akseptere. Kanksje det er bra å state i teori eller diskusjon. 
-% Andre detaljer, som mye i EDX literatur, er basert på gamle teori. 
-% Om nye SDD er det mye mindre publisert og selve teknologi utvikler seg
+% The SDDs
+The SDDs are also silicon crystals, but with a much thinner active layer and generally a different design.
+A schematic of an SDD is shown in \cref{fig:eds_sdd}.
+Incoming electrons pass trough the collimator, which is an aperture that limits the angle which the X-rays can enter the detector.
+The collimator prevents detection of X-rays from other parts of the sample and the chamber.
+The detector window is a barrier that maintains vacuum in the detector, usually made of beryllium or being polymer based.
+Be windows strongly absorbs low energy X-rays, allowing only X-rays above Na to pass through, while polymer windows are transparent down to 100 eV, but are less robust.
+Some detectors, especially in TEM, are windowless.
+The sensor in SDDs is a thin layer of doped Si, with ring electrodes on the anode side.
+The X-rays enter through the cathode side, ionize Si atoms, and create electron-hole pairs, which are drifted by the ring electrodes towards the center.
+In the center of the backside is a small anode, where the electron-hole pairs are collected.
+The anode is connected to a FET transistor which amplifies the voltage signal.
+The signal is then sent to the electronics, where the pulse processor is converting the analogue signals to digital signals.
+The digital signals are sent to the multi-channel analyser, which makes a spectrum from the digital signals.
+The spectrum is then sent to the computer, where the user can analyse the spectrum.
+
+
+% figures/EDS_SDD.png
+\begin{figure}[pht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/EDS_SDD.png}
+    \caption{
+        A schematic of the sideview of a silicon drift detector (SDD).
+        The collimator and window would be placed in front of the cathode.
+        % The electronics are after the FET transistor.
+        The figure is borrowed from Oxford Instruments \cite{oxford_sdd_explained}.
+    }
+    \label{fig:eds_sdd}
+\end{figure}
+
+
 
 % SDD vs Si(Li) detectors
+There are some key differences between the Si(Li) and SDD detectors.%, making the SDDs in general both better and more user friendly.
 The cooling needed in the more modern silicon drift detectors (SDD) is not as strong as for the Si(Li) detectors, which is one of the differences between the detector types.
-The SDDs need no more than a Peltier cooling, which is easier to operate and maintain.
+The SDDs need no more than a Peltier cooling, which is easy to operate and maintain.
 The anode in the SDDs is just a small centerpiece, while in the Si(Li) detectors the anode covers the whole detector.
-As the anode is smaller, the capacitance is lower and the voltage noise is reduced \brynjar{ref?}.
-In SDDs the anode size can be kept constant while increasing the area of the active layer, which makes the SDDs scalable in detection size without increasing the capacitance \brynjar{ref el.mag.?}, which would limit both resolution and throughput \cite[Ch. 16.3.9]{goldstein_scanning_2018}.
-A bigger active area is also increasing the solid angle, explained further down.
+As the anode is smaller, the capacitance is lower and the voltage noise is reduced.
+In SDDs the anode size can be kept constant while increasing the area of the active layer, withouth increased capacitance \cite{notaros_electromagnetics_2010}.
+An increase in capacitance is not good, as it is limiting both resolution and throughput \cite[Ch. 16.3.9]{goldstein_scanning_2018}.
+A bigger active area allows more counts per second, as it is increasing the solid angle, explained further down.
 The much lower voltage noise in SDDs allow both a cleaner signal and a shorter process time, because the pulse processor does not need to do signal averaging.
-The shorter process time allow much higher count rates and high speed mapping, which is one key element in SEM EDS, as one of the major advantages of EDS compared to other X-ray analysis methods is the spatial resolution in 2D spectra, which is user-friendly and relatively fast.
-One of the drawbacks of the SDDs compared to the Si(Li) detectors, is that the active layer in SDDs are thinner, which allows more of the X-rays to pass through the active layer without generating electron-hole pairs, which lowers the detector efficiency.
-The decrease in detector efficiency begins around 6-9 keV, and the effect increase with higher energies, illustrated in \cref{fig:detector_efficiency}.
+The shorter process time allow much higher count rates and high speed mapping.
+High speed mapping is a key feature in SEM EDS, compared to other X-ray analysis methods with limited spatial resolution in 2D maps.
+One of the drawbacks of the SDDs compared to the Si(Li) detectors, is the detector efficiency, illustrated in \cref{fig:detector_efficiency}.
+The lower efficiency of the SDDs is due to the thinner active layer, which allows high energy X-rays to pass through without generating electron-hole pairs.
+% This effects begins around 6-9 keV, and the effect increase with higher energies.
+% with origin in the thinner active layer, it that the SDDs allows more of the X-rays to pass through the active layer without generating electron-hole pairs, which lowers the detector efficiency.
+% The decrease in detector efficiency begins around 6-9 keV, and the effect increase with higher energies, illustrated in \cref{fig:detector_efficiency}.
 
 
 % figure/detector_efficiency_illustration.png
-\begin{figure}[ht]
+\begin{figure}[pht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/detector_efficiency_illustration.png}
+    \includegraphics[width=0.65\linewidth]{figures/detector_efficiency_illustration.png}
     \caption{
         Illustration of the detector efficiency of a Si(Li) and an SDD.
         The efficiency of the SDDs decrease at higher energies because the active layer is thin, and thus high energy X-ray photons have a higher probability of passing through without creating an electron-hole pair.
-        Remake of \brynjar{find one, e.g. https://www.globalsino.com/EM/page4655.html}
-        \ton{Is it correct with detector efficiency at the y-axis here?}
+        % Remake of \brynjar{find one, e.g. https://www.globalsino.com/EM/page4655.html}
     }
     \label{fig:detector_efficiency}
 \end{figure}
@@ -156,41 +394,194 @@ The decrease in detector efficiency begins around 6-9 keV, and the effect increa
 
 
 
+% Geometry
+The geometry of the detector affects the analysis, and is illustrated in \cref{fig:eds_geometry}.
+The number of X-rays hitting the active area of the detector is dependent on the solid angle ($\Omega$) and take-off angle (TOA), which covers both tilt of the specimen and the detector.
+The solid angle, $\Omega$, is an expression of the fraction of the sphere with radius from the center of the detector to the sample that the detector is covering.
+In \cref{fig:eds_geometry} the solid angle is marked as a yellow triangle, but in 3D it has a cone shape, measured in steradians.
+The whole hemisphere above the surface of the sample has a solid angle of 2$\pi$ steradians, and the solid angle of the detector is the fraction of this hemisphere that is covered by the detector.
+A bigger detector covers a bigger fraction of the hemisphere, and thus collects more X-rays.
+$\Omega$ is the active area of the detector divided by the square of r, the distance from the sample to the detector.
+Moving the detector closer to the sample increases the solid angle, and thus the number of counts.
+When the sample is not tilted, the TOA is equal to the elevation angle of the detector, which is typically between 35 and 40 degrees \cite{dtsaii_1_getting_started}.
+The azimuthal angle is marked as A in the figure, and is the position of the detector in the xy-plane, measured from the x-axis.
+The azimuthal angle is important in the link between a SEM image and the corresponding EDS spectrum, as the azimuthal angle tells where the apparently X-ray illumination is coming from.
+The working distance (WD) is the distance from the end of the SEM column to the sample, and is marked as WD in the figure.
+Both a too low and too high WD will limit the number of counts, and most EDS operating softwares specify an optimal WD for the detector.
+
+
+
+
+% figure/EDS_geometry.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/EDS_geometry.png}
+    \caption{
+        A schematic of the geometry of the sample and detector in EDS.
+        The solid angle ($\Omega$) is a function of A and r, giving the fraction of the hemisphere above the sample that is covered by the detector.
+        X-rays with trajectory outside the yellow triangle will not hit the detector.
+        The TOA is take-off angle, WD is working distance, az is the azimuthal angle, A is the active area of the detector, and r is the distance from the sample to the detector.
+    }
+    \label{fig:eds_geometry}
+\end{figure}
+
+
+
+
+
+
 % Peak broadening due to electronics
+One of the main drawbacks of the EDS is the peak broadening due to the electronics.
+The natural line widths of the X-ray lines treated in this work is around 10 eV, but the peak widths in EDS spectra are ten times larger.
+The shape of the natural lines are Lorentzians, but the electronics broadens the peaks to Gaussians.
+This effect is due to the electronics, which handles X-ray pulses corresponding to energies between 100 eV and 40 keV.
+The energy resolution of an EDS detector is usually reported as the FWHM of the Mn K$\alpha$ line, which is in SDDs is typically between 120 and 140 eV.
+More on the energy resolution is discussed in \cref{theory:detector_status:energyres}.
 
 
-% somewhing about the controlling software, and then Vacc, Ibeam etc.?
+
+\input{tables/eds_hardware.tex}
 
 
 
-%   - the detection system
-%     - detector efficiency
-%     - detector resolution
-%     - dead time
-%     - angle/placement of detector
+
+\clearpage
+
+
+
+\subsection{The user controlled parameters}
+\label{theory:eds:user_controlled_parameters}
+
+The acquisition of EDS spectra is controlled by a set of parameters, which the user can adjust to optimize the analysis.
+This section will discuss the most important parameters, and how they affect the analysis.
+At the end of the section the parameters are summarized in \cref{tab:eds:userparameters}.
+
+% beam energy
+The \textbf{beam energy} (E$_0$) is the kinetic energy of the electrons which are exciting the X-rays, and this energy is set by the acceleration voltage of the electron beam.
+The beam energy must be higher than the \textbf{critical ionization energy} (E$_C$) of the element of interest, which is the minimum energy needed to remove an electron from an atom.
+However, having E$_0$ just above E$_C$ is not enough to produce a satisfactory amount of X-rays, as the ionization cross section is also important.
+The \textbf{ionization cross section} is the probability of an ionization, originally described by Bethe \cite{inokuti_on_bethe_1971} as:
+
+\begin{equation}
+    \sigma_T = \frac{\pi e^4 b_s n_s}{E_0 E_C}  \log\left(\frac{c_s E_0}{E_C}\right)
+\end{equation}
+
+where $\sigma_T$ is the total scattering cross section, $e$ is the elementary charge, $n_s$ is the number of electrons in the ionized shell, and $b_s$ and $c_s$ are constants for the shell of ionization.
+The ratio of the beam energy to the critical ionization energy is the \textbf{overvoltage} (U), where $ U = E_0/E_C$.
+% \begin{equation}
+%     U = \frac{E_0}{E_C}
+% \end{equation}
+The ionization cross section is strongly dependent on the atomic number of the element of interest, and higher Z requires higher U to produce a satisfactory amount of X-rays.
+ISO 22309 about quantitative analysis in SEM advice an overvoltage of 1.8, and ASTM E1508 on the same topic adcive an overvoltage of at least 1.5.
+In Goldstein the adviced overvoltage is also above 1.5 \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
+A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the inteaction volume is increased with higher E$_0$.
+
+
+% beam current
+The \textbf{beam current} (I$_0$) is the current of the electron beam, and is measured in nA.
+A higher current will produce more X-rays.
+Multiple papers and textbooks like Goldstein advice the measurement of the current hitting the specimen, but this has not been possible in the SEMs used in this work.
+The beam current in this work is thus the current set on the SEM and not the current hitting the specimen.
+When the current hitting the specimen is discussed, it is referred to as the \textbf{probe current}.
+Increasing the beam current do increase the probe current, but some of the electrons are lost in the SEM column, and the probe current is thus lower than the beam current.
+The user can control the beam current directly, but not the probe current.
+Some specimen are sensitive to beam damage, and on such specimen the beam current should be low.
+Controlling the beam current is done to achieve suitable counts per second, depending on needs for the specimen and analysis.
+
+
+% count rate, ICR and OCR. mention coincidence peaks
+The \textbf{count rate} is the number of counts per second (cps), and is affected by multiple factors like the beam energy, beam current, the solid angle and the processing capabilities of the electronics.
+A good spectrum needs many counts in total, especially if the specimen contain minor or trace elements.
+% \brynjar{Is minor and trace elements defined earlier?} % TODO
+The number of X-rays per second which produce electron-hole pairs in the active layer of the detector is called the \textbf{input count rate} (ICR).
+The number of counts being outputted from the electronics to the memeory of the computer is called the \textbf{output count rate} (OCR).
+The OCR is limited by the processing capabilities of the electronics, as the electronics needs a certain amount of time to convert the voltage signal into a count.
+When a voltage signal is converted into a count, the input of the electronics is shut down for a short time, and this time is called the \textbf{dead time}.
+Thus, the OCR is lower than the ICR.
+The OCR also include the coincidence peaks, which is when two X-rays are counted as one.
+Coincidence peaks are discussed in \cref{theory:eds:spectrum_info}.
+The OCR is the \textbf{throughput} of the detector.
+Throughput is a general term for the measure of how much information a system can process per units of time, and in EDS the information is the X-ray counts.
+
+
+
+% dead time, live time, and real time
+As mentioned above and in \cref{theory:eds:hardware}, the detector needs to shut down the input of the electronics while converting a voltage signal into a count.
+This time is called the \textbf{dead time} (DT), and is according to the ISO standard 15632 measured in seconds.
+The dead time is often reported as a percentage of the \textbf{real time}, which is the total time it takes to acquire a spectrum.
+The time when the detector is actively detecting X-rays is called the \textbf{live time}, and is the real time minus the dead time.
+A high dead time reduce the OCR relative to the ICR.
+A higher count rate increase the dead time, as there will be more events to process.
+More events per unit of time also increase the probability of coincidence peaks.
+Different sources advice slightly different thresholds for the dead time to prevent coincidence peak events.
+According to the ASTM 1508 the highest throughput is achieved with a dead time around 40\% \cite{astm_e1508_standard_2019}.
+However, the standard also state that coincidence peak events are beginning to become a problem at dead times above 40\%, and advice dead times between 20\% and 30\% to get good spectra.
+In Goldstein it is stated that the Si(Li) detectors handles coincidence events better than SDDs, and that 30\% dead time was "close to optimal for all vendors and most samples" \cite[p. 466]{goldstein_scanning_2018}.
+Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable coincidence rate.
+% This requires the user to make a pre-analysis of the spectrum to determine the coincidence rate, and then adjust the dead time accordingly.
+This requires the user to make a pre-analysis of the coincidence rate.
+
+
+% process time
+% Goldstein p 312:
+% A short time constant enables more photons to be processed per unit of real (clock) time, but the trade-off of faster processing is poorer accuracy in assigning the photon energy.
+The dead time is influenced by the \textbf{process time}, which is the time the electronics have to process the signal from the detector.
+A longer process time makes the energy resolution better, as the electronics have more time to assess the the photon energy.
+However, a longer process time also reduce the count rate, as the detector is shut down for a longer time.
+Thus, the process time is a trade-off between throughput and energy resolution.
+
+
+% dwell time, for maps
+When mapping a specimen, the \textbf{dwell time} is the time the electron beam is on each position (pixel) the specimen.
+Higher dwell time tends to give higher signal intensities and better spatial resolution, but factors like charging, specimen drift, beam damage, and contamination can limit the effect of increased dwell time.
+Charging is when the specimen is charged by the electron beam, and can cause the incoming electrons to be deflected.
+Charging can be identified by a significant lower effective beam energy than the set beam energy, which is explained in \cref{theory:detector_status:duanehunt}.
+If the specimen is drifting (moving) slightly during the mapping, the spatial resolution will be reduced harshly.
+Faster mapping will reduce the effect of specimen drift.
+Beam damage on the specimen can be change in the chemistry of the specimen or milling of the specimen surface, where the specimen is milled by the electron beam.
+Contamination introduced by the electron beam is typically in the form of carbon, which if present in the chamber can be deposited on the specimen surface by the beam.
+Carbon contamination can be revealed by a low voltage SEM image, where the carbon will appear as a darker square on the surface.
+
+
+% \brynjar{TODO: lese over det her så langt.  Så neste subsection.}
+
+
+%tables/eds_userparameters.tex
+\input{tables/eds_userparameters.tex}
+
+\clearpage
+
+
+\subsection{The information in the spectrum}
+\label{theory:eds:spectrum_info}
+
+\dots
+
 %     - beam issues
 %     - stray: secondary excitations in the sample
 %     - Si stray
 %     - holder / chamber stray detection
 
-% figure with x,y,z, azumuthal angle, WD, etc. See DTSA-II Figure 5
-% file:///C:/Users/Brynjar/Documents/Masteroppgave/potensielle%20kilder/getting-started-with-nist-dtsa-ii%20(2).pdf 
+
+
+% Sum peaks
+Longer processing time allow the electronics to assess the energy range more precisely, but high dead time will reduce the count rate and an artifact called coincidence peaks get more pronounced.
+Coincidence peaks, or sum peaks, is the result of two X-rays being counted as one, where the assigned energy is the sum of the two X-ray photons.
+The dead time is usually measured in percentage, where the percentage is the time the detector is shut down compared to the time the detector is able to detect X-rays, called the live time.
+The real time is the sum of the dead time and the live time.
 
 
 
 
-% write about geometry in EDS, feedback
+
+
 
 
 % write about escape depth of different materials.
 % the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
 
 
-% explain counts input
-% explain counts output
 
-
-% section "instruments" end
 
 \clearpage
 
@@ -210,8 +601,13 @@ The decrease in detector efficiency begins around 6-9 keV, and the effect increa
 
 
 
-\section{Detector status}
+\section{EDS detector status}
 \label{theory:detector_status}
+
+
+
+% For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are set-up, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
+
 
 % \brynjar{Do not use quality control, Ton does not like it. Health check? Detector status}
 
@@ -221,6 +617,8 @@ Manufacturers of EDS detectors like Oxford Instruments provide a guide for how t
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
 In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{define AEM earlier}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
 Routines for a status check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
+An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics.
+\brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
 Some literature is available on status checks for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
 Literature on status checks for SEM EDS setups are less common, but some papers are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
 The similarities between EDS in SEM and TEM allow much overlap in the status checks, but there are also some differences.
@@ -271,10 +669,21 @@ Thus, a deviation between the nominal and effective beam energy of several kilo-
 Charging of specimen are covered in detail in a paper by Postek and Vladár \cite{postek_charging_2015}.
 
 
+\brynjar{ISO 22309 Quantitative: " 5.6 For standardless analysis, check the measured spectrum using the Duane-Hunt rule.
+    NOTE - Deviations of the high-energy end of the bremsstrahlung background from the indicated high voltage means
+    either charging of the specimen or a wrong high voltage indicated by the SEM. No quantitative analysis can be done in
+    these cases."}
 
 
-
-
+\brynjar{ASTM 1508: Vacc is not always the same as effective beam energy.
+    "The actual accelerating voltage of the electron beam does not
+    always correspond with the voltage selected on the instrument.
+    It can be determined by expanding the vertical scale of the EDS
+    spectrum and observing the energy above which continuum X
+    rays do not occur."
+    From Ritchie: The Duane-Hunt is useful not so much to test the EDS detector as to ensure
+    the accelerating voltage is correct and to demonstrate that there is a
+    conductive path from the stage to ground.}
 
 
 
@@ -358,6 +767,12 @@ As explained, the theoretical limit of the FWHM of Mn K$\alpha$ is XXX \brynjar{
 The HyperSpy method will raise an ValueError if the estimated energy resolution is below 110 eV \brynjar{line 450, \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
 
 
+% The ISO standard
+\brynjar{ISO 15632: "The
+    resolution value shall be accompanied by a statement of count rate for which the specification is valid.
+    For most detector systems the best energy resolution is attained at an ICR < 1 000 counts/s and the
+    best energy resolution shall be specified. Where detector systems offer higher count rate capability, e.g.
+    SDD EDS, the energy resolution shall also be specified at high ICR, e.g. 50 000 counts/s, 500 000 counts/s."}
 
 
 \subsection{Scale and offset}
@@ -406,6 +821,7 @@ The HyperSpy method will raise an ValueError if the estimated energy resolution 
 One of the metrics describing the quality of a spectrum is the relation between the signal in peaks and in the background, which is most commonly described by the Fiori peak-to-background ratio (P/B), at least for TEM EDS \cite{williams_carter_tem_2009}.
 Some modern detectors can acquire extremely high counts per second, partly because of the larger sensor sizes, like the newest Oxford Instruments detector Ultim Max EDS with up to 170 mm$^2$, which supposedly can acquire up to 1.5 million counts per second \cite{oxford_ultim_max}.
 However, having a high count rate does not necessarily mean that the spectrum yielded will have high quality, because the signal in the peaks can be very low compared to the background.
+\brynjar{From ISO 15632 on performance parameters: "Some detector systems are capable of very high count rates, but at high count rates other specifications like energy resolution may alter and artefacts may appear in the spectrum. All specifications should therefore be accompanied by a statement of the count rate at which they are measured and it should not be assumed that the specification will be the same at other count rates."}
 Having a metric for the ratio between the signal in peaks and in the background is therefore important both for establishing what makes a good detector, and also if an acquired spectrum have high quality.
 The peak-to-background ratio in a certain detector will vary with the specimen studied and the detector settings, and can thus be used as a parameter to assess the quality of a spectrum.
 The Fiori P/B was originally made for TEM and STEM, but arguments for why and how it is relevant for SEM are presented below.
@@ -474,7 +890,14 @@ This is probably a result of different materials, i.e. Cr and Ni, having differe
 The inconsistency of the actual calculation of the Fiori P/B is a problem for the metric.
 This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B.
 This would make the metric truer to the original definition, and make it more robust as the users subjective opinions does not affect the calculation, and results from different materials might be more comparable.
-This option is explored in this work. \ton{Ok to mention?}
+This option is explored in this work.
+
+Additionally, it is stated in Williams and Carter \cite[p. 614]{williams_carter_tem_2009} that in a well constructed AEM the the Fiori P/B ratio should increase with increasing beam energy.
+This would probably be true for SEM EDS setups too, as higher beam energy should give more counts in the peaks.
+\brynjar{This is unfinished.}
+
+% "In a well-constructed AEM, the P/B ratio will increase with keV." (Williams and Carter, p.614)
+
 
 
 
@@ -517,8 +940,41 @@ This is explored and focused on in this work, rather than trying to find a SEM t
 % EDAX: https://www.edax.com/-/media/ametekedax/files/news_events/insight_newsletter/edax-insight-vol-16-no3.pdf?la=en&revision=d212987b-0524-4056-939e-858c59d06446
 % TED PELLA: file:///C:/Users/Brynjar/Documents/Masteroppgave/potensielle%20kilder/Ted%20Pella%20NiOx%20description.pdf
 
-\subsection{Peak ratio}
+
+% The ISO standard
+\brynjar{The ISO standard is pretty bad here, as it seems to be aimed at manufactures of SEM EDS, and not users.
+    It goes: "The peak-to-background ratio shall be derived at the point of manufacture of the spectrometer from
+    an acquired spectrum of an 55Fe source as a characteristic spectrometer parameter. The ratio shall be
+    given by the peak height of the manganese K$\alpha$ line divided by the background. The background shall be
+    calculated as the mean number of counts per channel within the energy range from 0.9 keV to 1.1 keV.
+    Sufficient counts shall be recorded in the spectrum to make the measure statistically significant (as
+    per A.4) and the electronic threshold(s) shall be set up so that any energy cut-off occurs well below the
+    specified range. \dots Beside other factors, the peak-to-background ratio depends on spectrometer resolution. Therefore,
+    the ratio is only relevant for the comparison of spectrometers with similar resolution performance."}
+
+\subsection{Peak ratios - contamination and stray radiation}
 \label{theory:detector_status:peakratio}
+
+A peak ratio, i.e. the counts in one peak divided by the counts in another peak, can be used to discover different issues with a detector.
+Egerton and Cheng \cite{egerton_nio_characterization_1994} show that a change in the ratio of the Ni K$\alpha$ to the Ni L$\alpha$ peak can be used to discover hydrocarbon contamination and icing of the detector.
+The latter is not an issue with the newer SDD detectors, as they are not cooled down with liquid nitrogen.
+The Ni K$\alpha$ line is at 7.48 keV, while the Ni L$\alpha$ line is at 0.85 keV, the latter being closer to the C K$\alpha$ line at 0.28 keV, resulting in a higher sensitivity to hydrocarbon contamination.
+Other peaks could also be used for this purpose, as long as one is close and above the C K$\alpha$ line and the other is far above.
+The Ted Pella Info sheet \cite{ted_pella_nio_tem_2019} contains a formula for calculating the thickness of the contamination layer, but the used assumptions are not valid for SEM EDS signals.
+Any good reference numbers have not been found for this metric for SEM EDS.
+However, detecting the contamination is done by comparing the peak ratio over time, and if the ratio is falling, it is an indication of contamination.
+
+Another use of peak ratios is to give information about the stray radiation.
+This requires a specimen with a certain geometry, more specifically a specimen where the beam can be directed at one point with certain elements, and electrons deflected from the beam and secondary fluorescence happens at another point with different elements.
+An example of such a specimen is a thin film on a substrate with a grid pattern suspending the film, for example the NiO thin film on a Mo TEM grid from Ted Pella.
+The beam is directed at the thin film, and the strays are recorded from the grid.
+Two different metrics can be determined from such a specimen: (i) the intensity of the strays, and (ii) the predominent source of the strays.
+(i) The intensity of the strays is given by the ratio of Ni K$\alpha$ peak to Mo K$\alpha$ peak.
+An ideal setup have zero intensity in the Mo K$\alpha$ peak.
+The stray radiations are unwanted signals, which can be a problem for quantification.
+(ii) The predominent source of the strays is given by the ratio of Mo K$\alpha$ peak to Mo L$\alpha$ peak.
+This is based on the assumption that the high energy Mo K$\alpha$ at 17.48 keV are from deflected electrons with a high energy, while the lower energy Mo L$\alpha$ at 2.29 keV are primarily from secondary fluorescence.
+Both X-ray photons from background radiation and other elements can excite the Mo L$\alpha$ line, but the Mo K$\alpha$ line is almost only excited by electrons with a high energy, as the background is low at higher energies.
 % contaminations, at least for TEM: change of Ka/La, eg in Ni
 % also used for stray radiation measurements 
 % stray intensity: (Ni Ka/Mo Ka) 
@@ -542,22 +998,57 @@ This is explored and focused on in this work, rather than trying to find a SEM t
 % Fiori P/B is a measure already covered.
 
 
-\subsection{Stray radiation measurements - when possible}
-\label{theory:detector_status:stray}
+% \subsection{Stray radiation measurements - when possible}
+% \label{theory:detector_status:stray}
 % both intensity and source.
 % intensity:  a major line and a stray line.
 % source:  Mo Ka and Mo La ratio
 
 
-\subsection{Other tests}
+\subsection{Other tests - stability and linearity}
+\label{theory:detector_status:other}
+
+\subsubsection*{Linearity and stability}
+Some other tests were found in the literature, but they were not used in this work.
+The reason for this is mainly their dependence on a way to measure the probe current, which e.g. can be done with a Faraday cup.
+This type of setup was not inculded in this work, however the tests could be used in the future and are therefore breifly described here.
+In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests are linearity and stability.
+Linearity of the detector is that the number of X-rays measured is proportional to the number of X-rays generated.
+Stability is that the detector resolution and the peak positions does not change significantly with different probe currents.
+Both tests requires multiple spectra of the same sample with different probe currents.
+
+\brynjar{ISO 22309: "Whatever type of detector is being used, the count rate capabilities of the system should be checked by
+    comparing a spectrum obtained at a count rate below 2 000 counts/s with a spectrum obtained at the highest
+    count rate to be used, to look for peak shift and pile-up distortion that might affect relative peak heights. A
+    minimum of two checks on beam stability, using a Faraday cup, or a known reference specimen, should be
+    made prior to and following the analysis."}
+
 
 % linearity. nah, må ha Faraday cup
 % stability
-% "In a well-constructed AEM, the P/B ratio will increase with keV." (Williams and Carter, p.614)
 
 % The two most important tests, according to Goldstein, are linearity and stability.
 % requires multiple spectra of the same sample with different beam currents.
 % Goldstein p. 232.
+
+
+\subsubsection*{Shadowing}
+\brynjar{From ISO 15632: "In many cases the specific geometry of the EDS detector at a particular SEM/EPMA chamber can result in a reduction of the net active sensor area as expected after subtraction of shadowing area caused by the window grid. For example, a falsely mounted collimator, electron trap or shadowing by other parts in the SEM chamber can reduce additionally the illumination of the detector with X-rays. A practical procedure how to determine experimentally the effective area of an EDS detector and under which conditions is described in Reference [5]."}
+% [5] Procop M., Hodoroaba V.-D., Terborg R., Berger D., Determination of the Effective
+% Detector Area of an Energy-Dispersive X-Ray Spectrometer at the Scanning Electron
+% Microscope Using Experimental and Theoretical X-Ray Emission Yields, Microsc. Microanal.,
+% 22 (2016), pp. 1360-1368
+% Shadowing
+
+\subsubsection*{Energy dependence of instrumental detection efficiency - K/L ratio}
+\brynjar{ISO 15632: "The minimum specification for the energy dependence of the instrumental detection efficiency shall be
+    the intensity ratio of a low energy line and a high energy line in the characteristic X‑ray spectrum of a
+    given material. This ratio shall be given as the net peak area of the L series lines divided by the net peak
+    area of K$\alpha$ series lines in the spectrum of a pure nickel or copper specimen, excited by a 20 keV electron
+    beam perpendicular to the specimen surface and collected by the detector at a take-off angle of 35 degrees. The
+    specimens to be used, the measurement conditions, the calculation of L/K ratio and its conversion for
+    TOA not equal 35 degrees are given in Annex B. \dots These measures are only appropriate for a detector thick enough to absorb at least 95 % of the incident
+    X‑ray energy at 8 keV."}
 
 
 
@@ -584,3 +1075,93 @@ This is explored and focused on in this work, rather than trying to find a SEM t
 
 
 % OBS: efficiency of the detector is important
+
+
+\subsection{Regarding the ISO 15632 standard}
+\label{theory:detector_status:iso15632}
+
+BAM (Federal Institute for Materials Research and Testing) has a test sample for SEM EDS with a accompanying software, which satisfies the ISO 15632 standard.
+However, the price per 28.02.2023 for this sample (EDS TM002) is 334 EUR and 335 EUR for the software.
+A full test in accordance with the ISO standard could probably be done with a cheaper sample and a Jupyter Notebook, where the user would see all the steps and the results.
+This has not been a main focus in this work, but some of the parameters in the ISO standard are covered in this work.
+
+\url{https://webshop.bam.de/webshop_de/eds-tm002.html}
+
+paper at \url{https://www.cambridge.org/core/services/aop-cambridge-core/content/view/17A1D769BB6B9B76B5AC815911FAE7FD/S1431927613008271a.pdf/check-and-specification-of-the-performance-of-eds-systems-attached-to-the-sem-by-means-of-a-new-test-material-eds-tm002-and-an-updated-evaluation-software-package-eds-spectrometer-test-version-3-4.pdf}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Stuff to add / notes}
+
+
+
+
+Coincidence peaks, ASTM 1508:
+"8.3.1 [...] Systems with SDDs generally have smaller pileup
+peaks under the same conditions, because the reduced capacitance
+of the SDD makes it easier for the pulse processing
+electronics to recognize close coincidences as separate events.
+EDS systems often have software to model pileup peaks and
+correct for them."
+
+
+Silocon escape peak, ASTM 1508:
+"8.3.2 A silicon escape peak [...].
+This artifact is greatest at about 2 keV. [...]
+The artifact cannot occur at energies
+below the absorption edge of the Si K line, and it becomes
+negligible at higher energies such as the Cu Ka line. [...]
+SDD are thinner and have more silicon escape peaks."
+
+
+When looking at artifacts from the strongest line, ASTM 1508:
+"9.2.4 While working with the most intense line, look for
+escape and sum peaks. If they are not found for this line, they
+are unlikely to cause interferences. If they are present, keep
+looking for them after other identifications."
+
+
+Overlapping peaks, ASTM 1508:
+"9.2.5 Next look for peak overlaps. If (1) a peak is displaced
+relative to its marker, (2) relative intensities are wrong, or (3)
+there is a distortion in the peak shape, then there is an
+overlapping element. All three conditions will be present in an
+overlap situation."
+
+
+Matrix correction, ASTM 1508:
+10.2.1 "If the unknown and standard were
+identical, each of these factors would equal one. There are
+many such “ZAF” computer programs available,[...].
+The differences in the results each produces are usually
+much less than the precision of the analysis."
+10.2.2 "10.2.2 There are also many computer programs using the“
+phi-rho-z” method.  These approach the problem of matrix
+correction using more fundamental physics and sometimes
+combine the effects of Z and A into one, but they too require a
+set of fundamental parameters optimized to each program.
+Many phi-rho-z programs claim greater accuracy because they
+account for absorption better than the older ZAF programs.
+Consequently, one would expect the most improvement using
+a phi-rho-z method in light element analysis. However, in the
+absence of light elements, it is unlikely that the accuracy of
+most EDS analyses is limited by the matrix correction."
+
+
+
