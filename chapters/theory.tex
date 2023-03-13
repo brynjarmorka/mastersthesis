@@ -1,25 +1,217 @@
 \chapter{Theory}
 \label{ch:theory}
 
-\brynjar{ISO 22309: "The area of a peak, in counts divided by the preset live time,
-    gives the intensity of X-rays striking the active area of the detector. On the assumption that the same incident electron
-    beam current and same recording live time are used, the peak area in counts is an appropriate measure to compare X-ray
-    intensities for quantitative analysis, and therefore the terms “peak intensity” and “peak area” are used in this International
-    Standard."}
+% trash?
+% \brynjar{ISO 22309: "The area of a peak, in counts divided by the preset live time,
+%     gives the intensity of X-rays striking the active area of the detector. On the assumption that the same incident electron
+%     beam current and same recording live time are used, the peak area in counts is an appropriate measure to compare X-ray
+%     intensities for quantitative analysis, and therefore the terms “peak intensity” and “peak area” are used in this International
+%     Standard."}
 
 
-\brynjar{ASTM E1508: The surface must be flat and polished to get good results. "Note that these
-    requirements for surface preparation preclude the quantitative
-    analysis of casual samples, such as unpolished surfaces like
-    fracture surfaces and particles. Although data can be generated
-    on these casual surfaces, the results would be of significantly
-    lower precision with unpredictable variations."}
-
-
-\emph{Write an intro to the chapter}.
+% % on the specimen surface:
+% \brynjar{ASTM E1508: The surface must be flat and polished to get good results. "Note that these
+%     requirements for surface preparation preclude the quantitative
+%     analysis of casual samples, such as unpolished surfaces like
+%     fracture surfaces and particles. Although data can be generated
+%     on these casual surfaces, the results would be of significantly
+%     lower precision with unpredictable variations."}
 
 
 
+% intro to the section
+% partly from project
+Energy dispersive X-ray spectroscopy (EDS) is a technique for analyzing the elemental composition of a sample with a spatial resolution, widely used in SEM and TEM.
+The technique is based on excitation of core shell electrons, which are bound to the atom with different strengths in different elements, and the electron relaxation results in very specific photon energies.
+EDS can be used to determine both the qualitative and quantitative composition of a sample.
+This theory chapter will cover the generation of X-rays, the SEM system, the EDS detector, data processing of spectra, and performance metrics for EDS.
+
+
+
+\section{Generation of X-rays}
+\label{theory:xray_formation}
+
+
+% intro
+% The first step towards improving the performance of EDS is to understand how the characteristic X-rays are generated, as this is the basis for the EDS detector and the data processing of the spectra.
+To improve the performance of EDS, it is crucial to have a solid understanding of the generation of characteristic X-rays, which forms the basis for the EDS detector and data processing of spectra.
+The quantum mechanical process of X-ray formation is well understood, and the details can be found in Goldstein \cite[Ch. 4.2]{goldstein_scanning_2018}, Jenkins \cite{jenkins_xrayspectroscopy}, and Hollas \cite[Ch. 8.2]{hollas_modern_2004}.
+This section will provide an overview of the fundamental elements in the process, drawing from these sources unless otherwise noted.
+It should be noted that a similar section was included in the author's previous TFY4520 project report \cite{project_report}, but this section has been updated and expanded for this master's thesis.
+This section covers the formation of characteristic X-rays, their naming convention, energy and intensity, and background X-rays.
+
+
+
+
+\subsection{Characteristic X-rays}
+\label{theory:xray_formation:characteristic}
+
+The formation of characteristic X-rays from an incident electron beam is an inelastic quantum mechanical scattering process.
+The formation can be viewed as a two-step process, where the first step is the ionization of an inner shell in the atom, and the second step is the relaxation of an electron from a higher orbital to the hole left by the ejected electron.
+The energy difference in the relaxation is the energy of the characteristic X-ray.
+\cref{fig:characteristic_xray_formation} shows the formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
+The figure show three possible relaxations, which produce three characteristic X-rays with different energies.
+
+
+%figures/characteristic_xray_formation.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/characteristic_xray_formation.png}
+    \caption{
+        The formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
+        The three relaxations showed produce three characteristic X-rays with different energies.
+        Increased energy is illustrated as X-rays with shorter wavelengths.
+    }
+    \label{fig:characteristic_xray_formation}
+\end{figure}
+
+
+The incident electron, marked with the blue arrow and annotated as $\textnormal{e}^-_{0}$, interacts with the atom A and ionizes an inner shell electron, marked with the green arrow and annotated as $\textnormal{e}^-_{1}$.
+The ionization leaves a hole in the core orbital.
+The electron from the beam have a kinetic energy of E$_{0}$, and loose energy to both breaking the binding energy of the core orbital and to the kinetic energy of the ionized electron.
+The binding energy of the core orbital is E$_C$, named the critical ionization energy.
+E$_C$ is dependent on the atomic number of the atom, as higher Z binds the core electron tighter to the nucleus.
+For an ionization to happen, E$_0$ must be higher than E$_C$.
+The ionization is given in \cref{eq:theory:xray_formation:characteristic:step1}, and the energy balance is given in \cref{eq:theory:xray_formation:characteristic:step1:energy_balance}.
+An X-ray with energy higher than the binding energy of the core orbital can also do the ionization.
+If a characteristic X-ray photon is doing the ionization, the resulting photon is called a secondary X-ray and the process is fluorescence.
+Fluorescence is covered in \brynjar{cref to section}.
+
+% step 1, ionize the atom
+\begin{equation}
+    \label{eq:theory:xray_formation:characteristic:step1}
+    \textnormal{e}^-_{0 \textnormal{, incident}} + A \rightarrow \textnormal{e}^-_{0 \textnormal{, outgoing}} + A^+ + \textnormal{e}^-_{1 \textnormal{, ionized}}
+\end{equation}
+
+% step 1, energy balance
+\begin{equation}
+    \label{eq:theory:xray_formation:characteristic:step1:energy_balance}
+    E_{0 {\textnormal{, incident}}} = E_{0 {\textnormal{, outgoing}}} + E_{C} + E_{1 {\textnormal{, kinetic}}}
+\end{equation}
+
+
+
+
+% relax the electron
+In the second step is the relaxation, illustrated in the bottom part of \cref{fig:characteristic_xray_formation} and expressed in \cref{eq:theory:xray_formation:characteristic:step2}.
+An outer shell electron, annotated as $\textnormal{e}^-_{2}$, relaxes to the hole in the inner shell, and the difference in energy between the orbital is emitted as a photon.
+This photon is the characteristic X-ray, and the energy of the photon can be expressed as $h\nu$ \cite[Eq. (8.12)]{hollas_modern_2004}
+The energy of the characteristic X-ray is the difference in energy between the ionized orbital and the orbital filling the hole, shown in \cref{eq:theory:xray_formation:characteristic:step2:energy}.
+The energy of the characteristic X-ray is usually measured directly in keV \cite[Eq. (4.2b)]{goldstein_scanning_2018}.
+
+
+% outer orbital relaxation
+\begin{equation}
+    \label{eq:theory:xray_formation:characteristic:step2}
+    \textnormal{e}^-_{2 {\textnormal{, outer shell}}} + \textnormal{"hole"} \rightarrow \textnormal{e}^-_{2 {\textnormal{, inner shell}}} + h\nu_{\textnormal{X-ray}}
+\end{equation}
+
+
+% the energy of the relaxation
+\begin{equation}
+    \label{eq:theory:xray_formation:characteristic:step2:energy}
+    h\nu_{\textnormal{X-ray}} = E_C - E_{2 {\textnormal{, binding of outer shell}}}
+\end{equation}
+
+
+% comment on the E_C, which is slightly higher than the energy of the photon
+As seen in \cref{eq:theory:xray_formation:characteristic:step2:energy}, the energy of the characteristic X-ray is somewhat lower than the critical ionization energy, E$_C$.
+The binding energy of the inner shell electron is far stronger than for the outer shell electron.
+The difference makes E$_C$ slightly higher than the energy of the characteristic X-ray, which prevents for instance a K$\alpha$ X-ray from Fe to ionize the same transition in another Fe atom.
+The probability of ionization is greatest when the energy is just above the critical ionization energy.
+If the energy is significantly higher than the critical ionization energy, the probability of ionization is lowered \cite[p. 78]{curry_radiology_k_absorption}.
+
+
+When the outer shell electron is relaxed, a new hole is generated in the outer shell.
+This leads to a cascade of relaxation event, but the energies of these transitions are too low to emit characteristic X-rays.
+Thus, they will therefore not be discussed further.
+
+
+% mention Auger electrons, because of the fluorescence (quantum) yield
+% the kinetic energy is essential for Auger electrons, i.e. E_{2_{\textnormal{kinetic}}}
+In the second step of the X-ray formation process described in \cref{eq:theory:xray_formation:characteristic:step2}, there is also a probability that the relaxation energy will be used to eject another electron from a higher energy orbital, giving it kinetic energy. This results in the ejection of two electrons, one from the core orbital and another from the higher energy orbital, known as an Auger electron. Auger electrons are useful for surface studies since they can penetrate approximately 2 nm of solid material, thereby not escaping from inside the sample. The emitted X-rays, on the other hand, are emitted in all directions and can typically penetrate up to 4000 nm, making them the signal in EDS. The ratio of characteristic X-ray photons to Auger electrons is known as the fluorescence (quantum) yield, $\omega$.
+
+% fluorescence yield, definition
+\begin{equation}
+    \label{eq:theory:theoreticalxray:yield}
+    \omega = \frac{\textnormal{X-ray photons}}{\textnormal{Auger electrons}}
+\end{equation}
+
+The fluorescence yield is heavily dependent on the ionized atom, with higher yields for heavier atoms.
+$\omega$ is also dependent on the shell that is ionized, with the typical trend being K > L >> M \cite[p. 267]{goldstein_scanning_2018}.
+The dependence on $Z$ and the shell is shown in \cref{fig:theory:fluorescence_yield}, a figure borrowed from Goldstein \cite{goldstein_scanning_2018}.
+
+% figure/fluorescence_yield_Goldstein_Fig4.3.d.png
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/fluorescence_yield_Goldstein_Fig4-3-d.png}
+    \caption{
+        Fluorescent yield for K-, L- and M-shell, as a function of atomic number $Z$.
+        The figure is borrowed from Goldstein \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
+    }
+    \label{fig:theory:fluorescence_yield}
+\end{figure}
+
+
+
+
+
+
+
+
+\subsection{The naming convention of characteristic X-rays}
+\label{theory:xray_formation:naming}
+
+% add motivation for why this is included.
+
+
+\subsection{Energy and intensity of characteristic X-rays}
+\label{theory:xray_formation:energy_intensity}
+
+
+% intensity of formation is not the same as intensity of detection
+% TODO: include something about the escape depth of the X-rays, which increases with energy.
+
+% from line to peak here?
+
+% at least include the natural line width, with a plot of a theoretical spectrum.
+
+
+% absorption edges
+
+
+\subsection{Background X-rays}
+\label{theory:xray_formation:background}
+
+% intro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
 
 \section{SEM}
 \label{theory:sem}
@@ -472,7 +664,11 @@ The ratio of the beam energy to the critical ionization energy is the \textbf{ov
 %     U = \frac{E_0}{E_C}
 % \end{equation}
 The ionization cross section is strongly dependent on the atomic number of the element of interest, and higher Z requires higher U to produce a satisfactory amount of X-rays.
-ISO 22309 about quantitative analysis in SEM advice an overvoltage of 1.8, and ASTM E1508 on the same topic adcive an overvoltage of at least 1.5.
+This is because the beam electron loose energy for every scatter process within the specimen, and as shown in the simulated interactions in \cref{fig:montecarlo_BSE}, there are multiple scattering processes.
+If the overvoltage for an excitation is 1, the incident electrons can only ionize this excitation close to the surface and will not produce many X-rays.
+When the overvoltage is higher, the electrons can scatter multiple times within the specimen before they ionize the highest excitation, which makes the probability of that ionization higher.
+\ton{Is this explaination of why we need U > 1.5 good?}
+ISO 22309 about quantitative analysis in SEM advice an overvoltage of 1.8 \cite{iso_emsa_22029}, and ASTM E1508 on the same topic adcive an overvoltage of at least 1.5 \cite{astm_e1508_eds_quantification}.
 In Goldstein the adviced overvoltage is also above 1.5 \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
 A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the inteaction volume is increased with higher E$_0$.
 
@@ -507,14 +703,14 @@ Throughput is a general term for the measure of how much information a system ca
 
 % dead time, live time, and real time
 As mentioned above and in \cref{theory:eds:hardware}, the detector needs to shut down the input of the electronics while converting a voltage signal into a count.
-This time is called the \textbf{dead time} (DT), and is according to the ISO standard 15632 measured in seconds.
+This time is called the \textbf{dead time} (DT), and is according to the ISO standard 15632 measured in seconds \cite{iso_qc_15632}.
 The dead time is often reported as a percentage of the \textbf{real time}, which is the total time it takes to acquire a spectrum.
 The time when the detector is actively detecting X-rays is called the \textbf{live time}, and is the real time minus the dead time.
 A high dead time reduce the OCR relative to the ICR.
 A higher count rate increase the dead time, as there will be more events to process.
 More events per unit of time also increase the probability of coincidence peaks.
 Different sources advice slightly different thresholds for the dead time to prevent coincidence peak events.
-According to the ASTM 1508 the highest throughput is achieved with a dead time around 40\% \cite{astm_e1508_standard_2019}.
+According to the ASTM 1508 the highest throughput is achieved with a dead time around 40\% \cite{astm_e1508_eds_quantification}.
 However, the standard also state that coincidence peak events are beginning to become a problem at dead times above 40\%, and advice dead times between 20\% and 30\% to get good spectra.
 In Goldstein it is stated that the Si(Li) detectors handles coincidence events better than SDDs, and that 30\% dead time was "close to optimal for all vendors and most samples" \cite[p. 466]{goldstein_scanning_2018}.
 Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable coincidence rate.
@@ -617,7 +813,7 @@ Manufacturers of EDS detectors like Oxford Instruments provide a guide for how t
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
 In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{define AEM earlier}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
 Routines for a status check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
-An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics.
+An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
 \brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
 Some literature is available on status checks for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
 Literature on status checks for SEM EDS setups are less common, but some papers are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
