@@ -258,6 +258,7 @@ In gallium the K$\alpha_1 = 9252$ eV and K$\alpha_2 = 9223$ eV \cite{thompson_x-
 
 The energy of the X-rays is the energy difference between the orbitals, and the spread in energy from a singel line is typically between 1-10 eV.
 The energy difference between the orbitals increase with atomic number Z, as the electrons are bound tighter to the nucleus.
+A table with the energies of the relevant characteristic X-rays in this thesis is given in \cref{tab:theory:lineEnergies}.
 The most central parts of the energy of the X-rays have been mentioned earlier, but the width of the lines is also important.
 This section also includes a short discussion of where to find the energy of the X-rays.
 
@@ -268,7 +269,7 @@ The broadness of the peaks in EDS increase with energy, and the peak broadening 
 Techniques have been developed to identify and separate peaks which overlap in energy, like peak deconvolution and peak fitting.
 
 
-\ton{Should I include a figure with natural line widths and actual line widths?}
+\ton{Should I include a figure with natural line widths and actual line widths in a spectrum?}
 
 
 % where to find the energy
@@ -290,7 +291,7 @@ The reason for the missing M-lines in the HyperSpy database is probably the low 
 % the selection rules, forbidden transitions
 Just as the energy of the X-ray lines increase with atomic number, the number of possible lines increase too.
 As the energy difference between orbitalt increse, close lines like K$\alpha_1$ and K$\alpha_2$ are, as explained earlier, resolved.
-The number of possible lines increase because there are more orbitals giving more possible transitions.
+The number of possible lines increase with Z because there are more orbitals giving more possible transitions.
 However, not all transitions are allowed, and their intensity varies.
 The selection rules, given in \cref{eq:theory:selectionrules}, govern which transitions are allowed.
 The selection rule applies to the electron which is being relaxed, and it is \cite[Sec. 8.2.2.2]{hollas_modern_2004}:
@@ -351,23 +352,21 @@ This process is called fluorescence, and is discussed in \brynjar{Ref to right s
 % intro
 In addition to the characteristic X-rays generated, the electron beam also generates background X-rays.
 The background radiation is also called the bremsstrahlung, breaking radiation, and the continuum radiation.
-These X-rays are formed by the deacceleration of the incident beam electrons because of the Coulomb fields of the atoms in the specimen, where the electron loose kinetic energy.
+These X-rays are formed by the deacceleration of the incident beam electrons in the Coulomb fields of the atoms in the specimen, where the electron loose kinetic energy.
 This effect include both velocity and directional changes, and the changes in the incident electrons paths are visualized in a Monte Carlo simulation in \cref{fig:montecarlo_BSE}.
 Acceleration and deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
 The background X-rays are white noise, giving no information about the sample.
 However, the background radiation can be used to calculate at least one parameter describing the detector performance, namely the Duane-Hunt limit covered in \cref{theory:detector_status:duanehunt}.
-Pre-modelling the background based on the sample geometry and composition can be used to check for incorrect tilt or shadowing \cite{edax_insight_2019}.
+Through pre-modelling of the background based on the sample geometry and composition, the background signal can also be used to check for incorrect tilt or shadowing \cite{edax_insight_2019}.
 To do accurate qualitative analysis, the background radiation must be subtracted from the total spectrum.
 This is can be done in multiple ways, like pre-modelling, linear interpolation, background filtering, and background modelling \cite{liao2006practical}
 In this thesis, background modelling is used, where the background is modelled as a polynomial function of the energy.
-
-
-\ton{More on modelling here? I think no, and maybe add more in the data section.}
+Modelling of the background is discussed in \brynjar{Ref to right section}.
 
 
 % the energy, 1/E
-The energy lost by an electron in a single scattering event can be any value from zero to the incident electron energy, E$_0$.
-In other words, the background X-rays can have any energy from 100 eV to the incident electron energy \cite[Ch. 4.3]{goldstein_scanning_2018}.
+The energy lost by an electron in a single scattering event can be any value from almost zero to the incident electron energy, E$_0$.
+In other words, the background X-rays can have any energy from around 100 eV to the incident electron energy \cite[Ch. 4.3]{goldstein_scanning_2018}.
 The probability of a background X-ray with energy E can be described by the Kramer's cross section:
 
 % N(E) = (K Z (E_0-E))/E
@@ -380,20 +379,42 @@ where $N(E)$ is the number of background X-rays with energy $E$, $K$ is Kramer's
 As seen in \cref{eq:theory:xray_formation:background}, the formation of background radiation is inversely proportional to the energy of the X-rays, i.e. $N(E) \propto 1/E$.
 However, the low energy X-rays formed inside the specimen are absorbed by the specimen, resulting in a difference between the detected and the generated background X-rays.
 The difference between the generated and detected background X-rays is visualized in \cref{fig:background_xrays}.
-The detected background X-rays have a peak in the low keV region, depending on the specimen and acceleration voltage, and goes rapidly towards zero when the energy approach zero.
+The detected background X-rays have a peak in the low keV region, depending on the specimen and acceleration voltage.
+The peak is typically around 2 keV.
+When the energy approach zero, the detected background decrease rapidly.
 In addition, the absorption edges of the materials in the specimen influence the intensity of the background radiation.
 As the specimen absorbs more above an absorption edge, the intensity of the background can be observed to decrease abrupt just above a strong absorption edge \cite[p. 59]{goldstein_scanning_2018}.
 This effect was observed in the authors project thesis, with a suggestion of splitting the background modelling into two parts, one for the low energy background and one for the high energy background \cite{project_report}.
+The effect of the absorption edge was observed to variate, being strongest for the highest peak in the lower keV region.
+An example of the effect of the absorption edge is shown in \cref{fig:background_absorptionEdgeSi}.
+This has not been a focus in this thesis, but could be a potential improvement of the model fitting, and thus making the qualitative analysis more accurate.
+\ton{Ok to mention?}
+
 
 % figures/background_generated_detected.png
-\begin{figure}[ht]
+\begin{figure}[pht]
     \centering
-    \includegraphics[width=0.65\linewidth]{figures/background_generated_detected.png}
+    \includegraphics[width=0.8\linewidth]{figures/background_generated_detected.png}
     \caption{
         The difference between the generated and detected background X-rays.
         The detected background is shown in blue, and the generated background is shown in the dashed black line.
     }
     \label{fig:background_xrays}
+\end{figure}
+
+% figures/background_absorptionEdge_Si.png
+\begin{figure}[pht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/background_absorptionEdge_Si.png}
+    \caption{
+        The effect of the absorption edge on the background radiation.
+        The spectrum in blue is from a Si wafer and the red dashed line is the Si K absorption edge at 1839 eV \cite{absorptionEdges_1967,hyperspy_1.7.1}.
+        The spectrum show the overlapping Si K$\alpha$ and K$\beta$ peaks, the Si sum peak and a small O K$\alpha$ peak.
+        Sum peaks are discussed in \cref{theory:eds:spectrum_info}.
+        Notice how the background is abruptly reduced just above the absorption edge.
+        \brynjar{NTNU NanoLab stuff \dots}
+    }
+    \label{fig:background_absorptionEdgeSi}
 \end{figure}
 
 
@@ -415,7 +436,7 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 
 
 
-
+\input{tables/line_energies.tex}
 
 
 
