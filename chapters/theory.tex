@@ -62,7 +62,7 @@ The figure show three possible relaxations, which produce three characteristic X
     \includegraphics[width=0.7\linewidth]{figures/characteristic_xray_formation.png}
     \caption{
         The formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
-        The three relaxations showed produce three characteristic X-rays with different energies.
+        The three relaxations shown produce three characteristic X-rays with different energies.
         Increased energy is illustrated as X-rays with shorter wavelengths.
     }
     \label{fig:characteristic_xray_formation}
@@ -157,7 +157,7 @@ The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yiel
     \centering
     \includegraphics[width=0.7\textwidth]{figures/fluorescence_yield_Goldstein_Fig4-3-d.png}
     \caption{
-        Fluorescent yield for K-, L- and M-shell, as a function of atomic number Z.
+        Fluorescence yield for K-, L- and M-shell, as a function of atomic number Z.
         The figure is borrowed from Goldstein \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
     }
     \label{fig:theory:fluorescence_yield}
@@ -410,7 +410,7 @@ This has not been a focus in this thesis, but could be a potential improvement o
         The effect of the absorption edge on the background radiation.
         The spectrum in blue is from a Si wafer and the red dashed line is the Si K absorption edge at 1839 eV \cite{absorptionEdges_1967,hyperspy_1.7.1}.
         The spectrum show the overlapping Si K$\alpha$ and K$\beta$ peaks, the Si sum peak and a small O K$\alpha$ peak.
-        Sum peaks are discussed in \cref{theory:eds:spectrum_info}.
+        Sum peaks are discussed in \cref{theory:eds:artifacts}.
         Notice how the background is abruptly reduced just above the absorption edge.
         \brynjar{NTNU NanoLab stuff \dots}
     }
@@ -432,11 +432,16 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 
 
 
-
-
-
-
 \input{tables/line_energies.tex}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -600,7 +605,11 @@ In addition to the three types of electron signals, the beam interaction can als
 % Characteristic X-rays and background X-rays
 Formation of \textbf{characteristic X-rays} are covered in detail in \cref{theory:xray_formation:characteristic}.
 In short, formation of characteristic follow the same principle as Auger electrons, but the energy difference between the outer and inner orbital is used to emit X-rays instead of electrons.
-Typical escape depths for X-ray signals are around 4000 nm \cite{hollas_modern_2004}.
+Typical escape depths for X-ray signals are around 4000 nm \cite{hollas_modern_2004}, but the variations are large.
+The escape depth depends on the energy of the photon and the density of the sample.
+\brynjar{Mention Li escape depth in range of tens of nm? Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?}
+% The lower energy X-rays from Li (Z=3) have a shallow escape depth of only 
+% the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few tens of nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
 Lastly, the \textbf{background X-rays} are formed by the deacceleration of the incident beam electrons because of the Coulomb fields of the atoms in the specimen, and this deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
 The background X-rays are white noise, giving no information about the sample, and is generated in the whole interaction volume.
 
@@ -686,6 +695,24 @@ TEM image formation is not discussed further in this work.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \clearpage
 
 
@@ -733,7 +760,7 @@ Each voltage signal registered corresponds to one count in the given channel.
 The width of a channel is usually set to 10 eV, thus the scale of most spectra is 10 eV per channel.
 The number of channels in a spectrum is typically 1024 or 2048.
 The number of counts stored in a channel is the signal intensity.
-Details about the signal is covered in \cref{theory:eds:spectrum_info}.
+Details about the signal is covered in \cref{theory:eds:artifacts}.
 \cref{tab:eds:hardware} summarize this section.
 
 
@@ -874,11 +901,46 @@ The energy resolution of an EDS detector is usually reported as the FWHM of the 
 More on the energy resolution is discussed in \cref{theory:detector_status:energyres}.
 
 
-\brynjar{Add Gaussian formula here?}
+As the electronics broadens the peaks to Gaussian curves, the model fitting of the peaks are done by the following equation:
+
+\begin{equation}
+    \label{eq:gaussian}
+    f(x) = \frac{A}{\sqrt{2\pi}\sigma}\exp\left[{-\frac{(x-x_0)^2}{2\sigma^2}}\right]
+\end{equation}
+
+where $A$ is the amplitude, $x_0$ is the mean, $\sigma$ is the standard deviation, and $x$ is the energy.
+The model fitting in this thesis is done using the HyperSpy package \cite{hyperspy_1.7.1}.
+With the sigma of a Gaussian curve, the full width at half maximum (FWHM) can be calculated as FWHM $= 2\sqrt{2\ln(2)}\sigma$.
+The FWHM of different peaks are used as the widths of the peaks in EDS analysis.
+As previously mentioned, the detector broadens the peaks, and as different detectors and detector settings can give different peak widths, the FWHM are used as a measurement of the resolution of the detector.
 
 
 
 \input{tables/eds_hardware.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -941,7 +1003,7 @@ The OCR is limited by the processing capabilities of the electronics, as the ele
 When a voltage signal is converted into a count, the input of the electronics is shut down for a short time, and this time is called the \textbf{dead time}.
 Thus, the OCR is lower than the ICR.
 The OCR also include the coincidence peaks, which is when two X-rays are counted as one.
-Coincidence peaks are discussed in \cref{theory:eds:spectrum_info}.
+Coincidence peaks are discussed in \cref{theory:eds:artifacts}.
 The OCR is the \textbf{throughput} of the detector.
 Throughput is a general term for the measure of how much information a system can process per units of time, and in EDS the information is the X-ray counts.
 
@@ -952,12 +1014,21 @@ As mentioned above and in \cref{theory:eds:hardware}, the detector needs to shut
 This time is called the \textbf{dead time} (DT), and is according to the ISO standard 15632 measured in seconds \cite{iso_qc_15632}.
 The dead time is often reported as a percentage of the \textbf{real time}, which is the total time it takes to acquire a spectrum.
 The time when the detector is actively detecting X-rays is called the \textbf{live time}, and is the real time minus the dead time.
+The dead time can be described by the real time and live time, or by the ICR and OCR.
+
+\begin{equation}
+    \label{eq:dead_time}
+    % DT = (real time - live time) / real time = 1 - (OCR / ICR)
+    DT \% = \frac{\textnormal{Real time} - \textnormal{Live time}}{\textnormal{Real time}} = 1 - \frac{\textnormal{OCR}}{\textnormal{ICR}}
+\end{equation}
+
 A high dead time reduce the OCR relative to the ICR.
 A higher count rate increase the dead time, as there will be more events to process.
 More events per unit of time also increase the probability of coincidence peaks.
 Different sources advice slightly different thresholds for the dead time to prevent coincidence peak events.
 According to the ASTM 1508 the highest throughput is achieved with a dead time around 40\% \cite{astm_e1508_eds_quantification}.
 However, the standard also state that coincidence peak events are beginning to become a problem at dead times above 40\%, and advice dead times between 20\% and 30\% to get good spectra.
+Another source, a paper from 2015 by D. Newbury and N. Ritchie on high accuracy quantification with SDDs, advice a dead time below 15\%, preferably below 10\% \cite{newbury_deadtime_2014}.
 In Goldstein it is stated that the Si(Li) detectors handles coincidence events better than SDDs, and that 30\% dead time was "close to optimal for all vendors and most samples" \cite[p. 466]{goldstein_scanning_2018}.
 Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable coincidence rate.
 % This requires the user to make a pre-analysis of the spectrum to determine the coincidence rate, and then adjust the dead time accordingly.
@@ -994,38 +1065,107 @@ Carbon contamination can be revealed by a low voltage SEM image, where the carbo
 \clearpage
 
 
-\subsection{The information in the spectrum}
-\label{theory:eds:spectrum_info}
+\subsection{Artifacts - additional information in the spectrum}
+\label{theory:eds:artifacts}
 
-\dots
 
-%     - beam issues
-%     - stray: secondary excitations in the sample
-%     - Si stray
-%     - holder / chamber stray detection
 
+The full spectrum contains the peaks from the characteristic X-rays, the background radiation, and other artifacts.
+As the characteristic X-rays and the background have been covered above, this section is an overview of the other artifacts.
+These include coincidence peaks, the zero peak, strays/spurious X-rays, the Si escape peak, and internal Si fluorescence peak.
+The artifacts can be used to characterize the performance of the detector and the selected settings for the acquisition.
+In general, the artifacts are unwanted, as they reduce the signal in the actual peaks and clutter the analysis.
+Thus, awareness of the possible artifacts is important for a thurogh analysis of the spectrum.
 
 
 % Sum peaks
-Longer processing time allow the electronics to assess the energy range more precisely, but high dead time will reduce the count rate and an artifact called coincidence peaks get more pronounced.
-Coincidence peaks, or sum peaks, is the result of two X-rays being counted as one, where the assigned energy is the sum of the two X-ray photons.
-The dead time is usually measured in percentage, where the percentage is the time the detector is shut down compared to the time the detector is able to detect X-rays, called the live time.
-The real time is the sum of the dead time and the live time.
+% TODO: only use coincidence, or use the mix?
+Acquiering a good spectrum requires a certain amount of counts, but having a high count rate increase the probability of coincidence peaks.
+Coincidence peaks are also called sum peaks.
+Coincidence peaks are when two X-rays are counted as one, where the assigned energy is the sum of the two X-rays.
+If the detector is open and two X-rays hit the active area in the same small time, both X-rays produce electron-hole pairs and the resulting voltage pulse is equal to the sum of the energies.
+This effect is called pulse pile-up.
+The probability of pulse pile-up is proportional to the count rate.
+Different detectors can achieve different count rates, their electronics are designed to handle their possible count rates.
+This is reflected in the detectors process time settings, which have to be different for a detector that can reach 10E3 cps compared to a detector that can reach 10E5 cps.
+The count rate is related to the dead time through the ICR and OCR, as described in \cref{eq:dead_time}.
+As such, it has been common to suggest a certain dead time to avoid coincidence peaks, which was discussed in \cref{theory:eds:user_controlled_parameters}.
+A coincidence peak from Si is shown in \cref{fig:background_absorptionEdgeSi}, and coincidence counts from the background is shown in \cref{fig:duanehunt}.
+Limiting the coincidence peaks is important for accurate quantification, as the coincidence peaks are counts belonging to other peaks, and a coincidence peak can lead to misidentification of elements not present.
+
+
+% Strays
+% - Outside the targeted area
+% - Si 
+% - Holder / chamber 
+
+Another artifact with give similar issues as coincidence peaks is strays, or spurious X-rays.
+Strays are X-ray signals which originate from outside the targeted area, and are thus not part of the spectrum of interest.
+The strays can be generated from either a deflected electron or from an X-ray through fluorescence.
+Deflected electrons are from the beam, or BSE electrons, which both have a high energy.
+\brynjar{TODO: Skrive om fluorescence ett eller annet sted.}
+The fluorescence X-ray are generated by characteristic X-rays or background X-rays, which typically have lower energy than the deflected electrons.
+This difference in energy can be used to determine the origin of the strays, which is discussed in \cref{theory:detector_status:peakratio}, based on the work by Egerton and Cheng \cite{egerton_nio_characterization_1994}.
+The spatial regions where a stray X-ray can originate is: (a) inside the specimen, but outside the targeted area, (b) from the chamber, (c) from an eventual specimen holder, and (d) from the detector.
+To limit the strays, the collimator on the detector is a physical barrier which only allows X-rays from a certain angle to reach the detector.
+This requires the detector to be aligned correctly, which could be tested with a tilt series.
+\ton{Do you want a illustration here of a, b, c, d?}
+
+Strays originating from the (d) the detector results in both the internal fluorescence peak and escape peaks.
+The incoming X-ray can ionize Si atoms in the detector.
+If the ionized Si is in the dead layer of the detector, the ionized Si will emit a characteristic X-ray which can be detected in the active area of the detector.
+This is the internal fluorescence peak, and is located at 1.74 keV, i.e. the Si K$\alpha$ peak.
+As SDDs have much thinner dead layers than the Si(Li) detectors, the internal fluorescence peak is much smaller for the SDDs.
+The incoming X-ray which ionizes an Si atom loose some energy, which results in the count being recorded at 1.74 keV lower than the incoming X-ray.
+The counts at 1.74 keV lower than the incoming X-ray make the escape peak.
+
+
+% Noise peak
+Most spectrums have a peak around 0 keV, which is present due to electronic noise in the detector \cite{aztec_manual}.
+The noise peak is also called the zero peak.
+All detectors have this type of noise, but some vendor software remove the noise peak automatically.
+The AZtec software does not remove the noise peak, and it is therefore important to be aware of the noise peak.
+During model fitting, the noise peak should be removed to avoid a bad background fit in the lower energy region.
+The simple solution is to inspect where the noise peak ends, and cut of the spectrum at that energy.
+As the noise peak is located sufficiently close to zero, no information is lost by cutting off the spectrum at the noise peak.
 
 
 
-
-
-
-
-
-% write about escape depth of different materials.
-% the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
+% vendor software handling of artifacts
+The artifacts mentioned above are in varying degrees present when acquiring a spectrum, but some vendor software have built-in methods to remove the artifacts.
+In Goldstein at page 274, it in shown that an escape peak was present using the 2011 software, but digitally removed in the 2014 software \cite[Fig. 18.7]{goldstein_scanning_2018}.
+The AZtec software have a built-in method to remove coincidence peaks, called "Pulse Pile Up Correction" \cite{aztec_manual}.
+The AZtec user manual state that this method works best for single pixels or areas with the same composition, and that it might produce bad results when scanning over a larger heterogenous area \cite[p. 99]{aztec_manual}.
+Aside from this brief description, a user does not get any information on how the method works.
+This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can produce bad results.
 
 
 
 
 \clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
