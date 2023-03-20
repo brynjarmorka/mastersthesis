@@ -30,7 +30,7 @@ Even though EDS have limited energy resolution and is affected by several artifa
 
 % Paragraph 1.5, weakness of XRF and WDS
 There are three main techniques in EM for analyzing characteristic X-rays: X-ray fluorescence (XRF), wavelength dispersive spectrometers (WDS), and energy dispersive X-ray spectroscopy \cite{jenkins_xrayspectroscopy}.
-In XRF the material is excited by a beam of high-energy X-rays or gamma rays, but the spatial resolution of XRF is limited both by the fact that the beam cannot be focused as well as the electron beam and that the X-rays can penetrate deeper into the material \cite{xrf_spatial_resolution}.
+In XRF the material is excited by a beam of high-energy X-rays or gamma rays, but the spatial resolution of XRF is limited both by the fact that the beam cannot be focused as thin as the electron beam and that the X-rays can penetrate deeper into the material \cite{xrf_spatial_resolution}.
 XRF have some advantages over EDS, such as a very low detection limit and the possibility of being handheld, but the limit in spatial resolution makes it less suitable for EM, thus XRF is therefore not used in this work.
 In WDS the material is excited by electrons as in EDS, but the detector has a mechanical spectrometer which is tuned to only one wavelength at a time, that gives a high energy resolution around 10 eV and a high quality spectrum, i.e. a high peak-to-back-ground ratio and limited number of artifacts.
 The main issue with WDS is that the setup is much larger than a normal SEM and that the WDS technique is much slower than EDS, usually without the spatial resolution of a SEM \cite{goldstein_scanning_2018}.
@@ -56,7 +56,7 @@ This is schematically illustrated in \cref{fig:intro:parameters}.
 Additionally, the (ii) acquisition parameters are somewhat different in SEM and TEM.
 TEM samples are typically very thin, at around 100 nm, whereas SEM samples are usually bulk specimens.
 Hence, for TEM the SNR can be a limiting factor.
-For SEM, addition corrections might be required as signal is created non-uniformally over a larger volume and secondary effects as absorption and fluorescence need to be accounted for.
+For SEM, addition corrections might be required as signal is created non-uniformly over a larger volume and secondary effects as absorption and fluorescence need to be accounted for.
 The beam energy is also different, where TEM is typically operated at 100-300 kV, and SEM is typically operated at 1-30 kV.
 The latter energy range is similar to the energy of characteristic X-rays central to this work, and thus the overvoltage effect is significant \cite{williams_carter_companion_volume_2016}.
 % (iii)
@@ -125,9 +125,9 @@ The main focus will be on the experimental characteristics and new data processi
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
 The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer-ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
 Alternatively, the Phi-Rho-Z quantification method can correct for the bulk effects \brynjar{cite}.
-Neither the ZAF or Phi-Rho-Z-corrections are implemented in HyperSpy, where the quantification analysis utilize the thin-film approximation.
+Neither the ZAF nor Phi-Rho-Z-corrections are implemented in HyperSpy, where the quantification analysis utilize the thin-film approximation.
 Other methods like the factorless internal composition determination \cite{nilsen_factorless_2021} \ton{is this correctly phrased?} can also be used for quantification.
-This work aims to explore whether iterative ZAF or Z Phi-Rho-Z-corrections can be inplemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
+This work aims to explore whether iterative ZAF or Z Phi-Rho-Z-corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
 
 
 
