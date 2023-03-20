@@ -47,7 +47,7 @@ In order to improve the performance of SEM EDS, it is necessary to examine the e
 By doing so, it becomes possible to identify and address factors that may be responsible for reduced performance.
 The EDS signal can be influenced by a range of factors between its creation and detection.
 As such, it is important to have a comprehensive understanding of (i) the experimental setup characteristics, (ii) the acquisition parameters, and (iii) the possible post-acquisition data treatment in order to improve the performance of SEM EDS.
-This is schematically illustrated in \cref{fig:parameters}.
+This is schematically illustrated in \cref{fig:intro:parameters}.
 % (i)
 (i) Experimental setup characteristics includes energy resolution in the acquired spectrum, signal-to-noise ratio (SNR) like the Fiori peak-to-background \cite{fiori_peak_background_1982}, detector efficiency, take off angle (TOA), shadowing, and system related artifacts such as strays, all play a crucial role in the quality of the acquired data \cite{goldstein_scanning_2018}.
 % Ton did not want: WD, linearity between generation and detection, and stability of resolution and peak positions,
@@ -74,7 +74,7 @@ Characterization of key parameters is necessary to ensure that a spectrum is acq
     Schematic illustration of parameters that can affect the performance and results of SEM EDS in the three groups.
     This work focuses on some parameters, with the aim of improving the performance of SEM EDS.
   }
-  \label{fig:parameters}
+  \label{fig:intro:parameters}
 \end{figure}
 
 
@@ -120,7 +120,7 @@ This work will contribute to improving the EDS setup and acquisition of EDS data
 %%%%%%% Paragraph 5: the more hairy goal of adding bulk quantification to HyperSpy
 % A second, more ambitious, goal 
 The overall aim, as stated by the project title, is to improve EDS.
-The first goal is to systematically go through the parameter listed in \cref{fig:parameters}, and characterize the performance of a SEM EDS setup.
+The first goal is to systematically go through the parameter listed in \cref{fig:intro:parameters}, and characterize the performance of a SEM EDS setup.
 The main focus will be on the experimental characteristics and new data processing routines that become available through open-source packages.
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
 The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer-ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.

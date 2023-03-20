@@ -206,7 +206,7 @@ The IUPAC naming convention note both the orbital in the inner and outer shell, 
 
 
 % table with naming convention
-\input{tables/naming_lines_transitions.tex}
+\input{tables/table_naming_lines_transitions.tex}
 
 % figure with actual L-peaks in Sb
 \begin{figure}[p]
@@ -356,7 +356,7 @@ These X-rays are formed by the deacceleration of the incident beam electrons in 
 This effect include both velocity and directional changes, and the changes in the incident electrons paths are visualized in a Monte Carlo simulation in \cref{fig:montecarlo_BSE}.
 Acceleration and deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
 The background X-rays are white noise, giving no information about the sample.
-However, the background radiation can be used to calculate at least one parameter describing the detector performance, namely the Duane-Hunt limit covered in \cref{theory:detector_status:duanehunt}.
+However, the background radiation can be used to calculate at least one parameter describing the detector performance, namely the Duane-Hunt limit covered in \cref{theory:eds_performance:duanehunt}.
 Through pre-modelling of the background based on the sample geometry and composition, the background signal can also be used to check for incorrect tilt or shadowing \cite{edax_insight_2019}.
 To do accurate qualitative analysis, the background radiation must be subtracted from the total spectrum.
 This is can be done in multiple ways, like pre-modelling, linear interpolation, background filtering, and background modelling \cite{liao2006practical}
@@ -432,7 +432,7 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 
 
 
-\input{tables/line_energies.tex}
+\input{tables/table_line_energies.tex}
 
 
 
@@ -732,7 +732,7 @@ The EDS system is made up of the detector, the electronics, and the software on 
 The output of an EDS analysis is either a spectrum or a spectrum map, where the spectrum is a histogram with the number of X-rays detected as a function of energy.
 Even though the resulting spectrum appears to be acquired simultaneously at all energies, the spectrum is actually acquired one channel at a time.
 This section covers first the hardware and the principles of EDS detectors, then the information in a spectrum, and finally user controlled parameters in the EDS analysis.
-The next section covers parameters used to quantify the status of the EDS system. %and the quality of a spectrum.
+The next section covers parameters used to quantify the performance of the EDS system. %and the quality of a spectrum.
 % based on Goldstein
 This section is based on Goldstein \cite{goldstein_scanning_2018} and Jenkins \cite{jenkins_xrayspectroscopy}, if not stated otherwise.
 
@@ -898,7 +898,7 @@ The natural line widths of the X-ray lines treated in this work is around 10 eV,
 The shape of the natural lines are Lorentzians, but the electronics broadens the peaks to Gaussians.
 This effect is due to the electronics, which handles X-ray pulses corresponding to energies between 100 eV and 40 keV.
 The energy resolution of an EDS detector is usually reported as the FWHM of the Mn K$\alpha$ line, which is in SDDs is typically between 120 and 140 eV.
-More on the energy resolution is discussed in \cref{theory:detector_status:energyres}.
+More on the energy resolution is discussed in \cref{theory:eds_performance:energyres}.
 
 
 As the electronics broadens the peaks to Gaussian curves, the model fitting of the peaks are done by the following equation:
@@ -916,7 +916,7 @@ As previously mentioned, the detector broadens the peaks, and as different detec
 
 
 
-\input{tables/eds_hardware.tex}
+\input{tables/table_eds_hardware.tex}
 
 
 
@@ -1048,7 +1048,7 @@ Thus, the process time is a trade-off between throughput and energy resolution.
 When mapping a specimen, the \textbf{dwell time} is the time the electron beam is on each position (pixel) the specimen.
 Higher dwell time tends to give higher signal intensities and better spatial resolution, but factors like charging, specimen drift, beam damage, and contamination can limit the effect of increased dwell time.
 Charging is when the specimen is charged by the electron beam, and can cause the incoming electrons to be deflected.
-Charging can be identified by a significant lower effective beam energy than the set beam energy, which is explained in \cref{theory:detector_status:duanehunt}.
+Charging can be identified by a significant lower effective beam energy than the set beam energy, which is explained in \cref{theory:eds_performance:duanehunt}.
 If the specimen is drifting (moving) slightly during the mapping, the spatial resolution will be reduced harshly.
 Faster mapping will reduce the effect of specimen drift.
 Beam damage on the specimen can be change in the chemistry of the specimen or milling of the specimen surface, where the specimen is milled by the electron beam.
@@ -1059,8 +1059,8 @@ Carbon contamination can be revealed by a low voltage SEM image, where the carbo
 % \brynjar{TODO: lese over det her så langt.  Så neste subsection.}
 
 
-%tables/eds_userparameters.tex
-\input{tables/eds_userparameters.tex}
+%tables/table_eds_userparameters.tex
+\input{tables/table_eds_userparameters.tex}
 
 \clearpage
 
@@ -1105,7 +1105,7 @@ The strays can be generated from either a deflected electron or from an X-ray th
 Deflected electrons are from the beam, or BSE electrons, which both have a high energy.
 \brynjar{TODO: Skrive om fluorescence ett eller annet sted.}
 The fluorescence X-ray are generated by characteristic X-rays or background X-rays, which typically have lower energy than the deflected electrons.
-This difference in energy can be used to determine the origin of the strays, which is discussed in \cref{theory:detector_status:peakratio}, based on the work by Egerton and Cheng \cite{egerton_nio_characterization_1994}.
+This difference in energy can be used to determine the origin of the strays, which is discussed in \cref{theory:eds_performance:peakratio}, based on the work by Egerton and Cheng \cite{egerton_nio_characterization_1994}.
 The spatial regions where a stray X-ray can originate is: (a) inside the specimen, but outside the targeted area, (b) from the chamber, (c) from an eventual specimen holder, and (d) from the detector.
 To limit the strays, the collimator on the detector is a physical barrier which only allows X-rays from a certain angle to reach the detector.
 This requires the detector to be aligned correctly, which could be tested with a tilt series.
@@ -1183,38 +1183,87 @@ This illustrates one of the challenges with digital solutions implemented by the
 
 
 
-\section{EDS detector status}
-\label{theory:detector_status}
+\section{EDS performance parameters}
+\label{theory:eds_performance}
 
 
 
 % For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are set-up, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
 
+% TODO: manufacturer -> vendor
 
-% \brynjar{Do not use quality control, Ton does not like it. Health check? Detector status}
-
-The aim of this work is to improve EDS bulk quantification, and one way to do that is to make a health or status check for detectors.
-A status check can both reveal errors in the setup and make the input parameters for the quantification more accurate.
-Manufacturers of EDS detectors like Oxford Instruments provide a guide for how to perform quality control on their detector, but these guides focus on calibration of energy resolution and scale \cite{aztec_manual}.
+The aim of this work is to improve EDS bulk quantification, and one way to do that is to improve the performance of the EDS setup.
+Identifying potential issues with the EDS setup can be done through certain performance parameters.
+A performance check can reveal errors in the setup and acquisition parameters, and it can make the input parameters for the quantification more accurate.
+Vendors of EDS detectors like Oxford Instruments provide a guide for how to calibrate the detector, but these guides are limited to calibration of energy resolution and scale \cite{aztec_manual}.
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
 In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{define AEM earlier}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
-Routines for a status check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
+Routines for a performance check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
 An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
-\brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
-Some literature is available on status checks for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
-Literature on status checks for SEM EDS setups are less common, but some papers are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
-The similarities between EDS in SEM and TEM allow much overlap in the status checks, but there are also some differences.
-One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a healthy detector.
-The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDD detectors.
+% \brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
+Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
+Literature on performance parameters for SEM EDS setups are less common, but some papers are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
+Goldstein also include details on a range of parameters and possible SEM EDS issues.
+The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
+One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a well performing detector.
+The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDDs.
 In this section, each of the test characteristics is described with what it is, how it is measured, and what values are acceptable.
+Before the test characteristics are described, an overview is given and a summary table is presented in \cref{tab:eds_performance_parameters}.
 
 % Mari: The tests are described by Watanabe in [30] and in the info-sheet by Ted Pella [33] which is based on the original work by R.F. Egerton and C.S. Cheng from 1994 [16].
 % The complete test routine has several characteristics. Here only the most essential to this work are discussed, and an overview is found in Tab. 2.3.
 
 
+\subsection{Overview of the performance parameters}
+\label{theory:eds_performance:overview}
+
+% 35
+%   Duane-Hunt limit 
+%   Energy resolution 
+%   Scale and offset 
+%   deviations in peak positions 
+%   Fiori peak-to-background ratio 
+%   Peak ratios - contamination and stray radiation 
+%   XXXXX Peak shape XXXXX
+%   Number of counts in peaks vs background 
+%   Other tests - stability and linearity 
+%    What material to use? 
+%    Regarding the ISO 15632 standard 
+%    Stuff to add / notes 
+
+
+
+The performance parameters presented below are divided into two categories: detector and acquisition parameters.
+The detector parameters are related to the detector itself, while the acquisition parameters are related to the acquisition setup.
+These performance parameters does not include the data treatment step, illustrated in \cref{fig:intro:parameters}, as it is a characterization of the detector and acquisition setup.
+The parameters of the detector are: energy resolution, the energy scale and offset, peak ratios, and deviations in peak positions.
+The parameters of the acquisition are: the Duane-Hunt limit, the Fiori peak-to-background ratio, and portion of counts in peaks vs background.
+The energy resolution is affected by both the detector and the acquisition setup.
+At the end there is a section on other test, which are of interest but have not been included in this work.
+
+
+The goal of the performance check is to identify potential issues with the detector and acquisition setup.
+Is the detector performing as expected and stated in the specifications?
+Is the spectrum reflecting the acquisition parameters set by the user?
+How well are the peaks defined?
+Are the peaks in the correct positions?
+Can the spectrum reveal contamination?
+Is the spectrum affected by stray radiation?
+The performance parameters below can be used to answer these questions.
+\cref{tab:eds_performance_parameters} give a brief introduction to each parameter, how it is measured, what values are acceptable, and what it can reveal.
+\brynjar{Maybe add some schematics for this intro section.}
+
+
+\input{tables/table_performance_parameters.tex}
+
+
+
+
+
+
 
 \subsection{Duane-Hunt limit}
-\label{theory:detector_status:duanehunt}
+\label{theory:eds_performance:duanehunt}
 % put after calibration? It is done before in the code, but it is not a part of AZtec.
 
 % What
@@ -1275,7 +1324,7 @@ Charging of specimen are covered in detail in a paper by Postek and Vladár \cit
 
 
 \subsection{Energy resolution}
-\label{theory:detector_status:energyres}
+\label{theory:eds_performance:energyres}
 
 
 % What
@@ -1358,7 +1407,8 @@ The HyperSpy method will raise an ValueError if the estimated energy resolution 
 
 
 \subsection{Scale and offset}
-\label{theory:detector_status:scaleoffset}
+\label{theory:eds_performance:scaleoffset}
+
 % scale and offset in one subsection?
 
 % % What
@@ -1374,8 +1424,9 @@ The HyperSpy method will raise an ValueError if the estimated energy resolution 
 % Large deviations implicate \dots
 
 
-\subsection{Calibrating peak positions}
-\label{theory:detector_status:peakpositions}
+\subsection{Deviations in peak positions}
+\label{theory:eds_performance:peakpositions}
+
 
 % % What
 % What is the peak position.
@@ -1397,7 +1448,8 @@ The HyperSpy method will raise an ValueError if the estimated energy resolution 
 % Line           True E [keV]   Calib. E [keV] Area [counts]  Max (fit)      Sigma [keV]    FWHM [eV]      Fiori P_10/B
 
 \subsection{Fiori peak-to-background ratio}
-\label{theory:detector_status:fiori}
+\label{theory:eds_performance:fiori}
+
 
 % What
 One of the metrics describing the quality of a spectrum is the relation between the signal in peaks and in the background, which is most commonly described by the Fiori peak-to-background ratio (P/B), at least for TEM EDS \cite{williams_carter_tem_2009}.
@@ -1535,7 +1587,7 @@ This is explored and focused on in this work, rather than trying to find a SEM t
     the ratio is only relevant for the comparison of spectrometers with similar resolution performance."}
 
 \subsection{Peak ratios - contamination and stray radiation}
-\label{theory:detector_status:peakratio}
+\label{theory:eds_performance:peakratio}
 
 A peak ratio, i.e. the counts in one peak divided by the counts in another peak, can be used to discover different issues with a detector.
 Egerton and Cheng \cite{egerton_nio_characterization_1994} show that a change in the ratio of the Ni K$\alpha$ to the Ni L$\alpha$ peak can be used to discover hydrocarbon contamination and icing of the detector.
@@ -1565,15 +1617,16 @@ Both X-ray photons from background radiation and other elements can excite the M
 % the flexibility, since eg a pure Cu sample will give some statistics but not stray information.
 
 
-\subsection{Peak shape}
-\label{theory:detector_status:peakshape}
-% The real lines are Lorentzians with width of 1-10 eV, but the peaks are wider due to electronic noise.
-% Peaks are gaussians by electronic noise.
-% a measure of the peak shape is the FWTM/FWHM
+% \subsection{Peak shape}
+% \label{theory:eds_performance:peakshape}
+% % The real lines are Lorentzians with width of 1-10 eV, but the peaks are wider due to electronic noise.
+% % Peaks are gaussians by electronic noise.
+% % a measure of the peak shape is the FWTM/FWHM
 
 
-\subsection{Number of counts in peaks vs background}
-\label{theory:detector_status:counts}
+\subsection{Background portion}
+\label{theory:eds_performance:bacgrkound_portion}
+
 
 % Total counts, background counts.
 % How to represent the measure better? Ratio, percentage, absolute value, etc.
@@ -1581,14 +1634,14 @@ Both X-ray photons from background radiation and other elements can excite the M
 
 
 % \subsection{Stray radiation measurements - when possible}
-% \label{theory:detector_status:stray}
+% \label{theory:eds_performance:stray}
 % both intensity and source.
 % intensity:  a major line and a stray line.
 % source:  Mo Ka and Mo La ratio
 
 
 \subsection{Other tests - stability and linearity}
-\label{theory:detector_status:other}
+\label{theory:eds_performance:other}
 
 \subsubsection*{Linearity and stability}
 Some other tests were found in the literature, but they were not used in this work.
@@ -1660,7 +1713,7 @@ Both tests requires multiple spectra of the same sample with different probe cur
 
 
 \subsection{Regarding the ISO 15632 standard}
-\label{theory:detector_status:iso15632}
+\label{theory:eds_performance:iso15632}
 
 BAM (Federal Institute for Materials Research and Testing) has a test sample for SEM EDS with a accompanying software, which satisfies the ISO 15632 standard.
 However, the price per 28.02.2023 for this sample (EDS TM002) is 334 EUR and 335 EUR for the software.
