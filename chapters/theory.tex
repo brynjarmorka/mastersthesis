@@ -77,8 +77,8 @@ E$_C$ is dependent on the atomic number of the atom, as higher Z binds the core 
 For an ionization to happen, E$_0$ must be higher than E$_C$.
 The ionization is given in \cref{eq:theory:xray_formation:characteristic:step1}, and the energy balance is given in \cref{eq:theory:xray_formation:characteristic:step1:energy_balance}.
 An X-ray with energy higher than the binding energy of the core orbital can also do the ionization.
-If a characteristic X-ray photon is doing the ionization, the resulting photon is called a secondary X-ray and the process is fluorescence.
-Fluorescence is covered in \brynjar{cref to section}.
+If a characteristic X-ray photon is doing the ionization, the process is named the fluorescence effect and the resulting photon is called a secondary X-ray.
+% The fluorescence effect is covered in \brynjar{cref to section}.
 
 % step 1, ionize the atom
 \begin{equation}
@@ -106,7 +106,7 @@ The energy of the characteristic X-ray is usually measured directly in keV \cite
 % outer orbital relaxation
 \begin{equation}
     \label{eq:theory:xray_formation:characteristic:step2}
-    \textnormal{e}^-_{2 {\textnormal{, outer shell}}} + \textnormal{"hole"} \rightarrow \textnormal{e}^-_{2 {\textnormal{, inner shell}}} + h\nu_{\textnormal{X-ray}}
+    \textnormal{e}^-_{2 {\textnormal{, outer shell}}} + \textnormal{"inner shell hole"} \rightarrow \textnormal{e}^-_{2 {\textnormal{, inner shell}}} + h\nu_{\textnormal{X-ray}}
 \end{equation}
 
 
@@ -148,8 +148,8 @@ The ratio of characteristic X-ray photons to Auger electrons is known as the flu
     \omega = \frac{\textnormal{X-ray photons}}{\textnormal{Auger electrons}}
 \end{equation}
 
-The fluorescence yield is heavily dependent on the ionized atom, with higher yields for heavier atoms.
-$\omega$ is also dependent on the shell that is ionized, with the typical trend being K > L > > M \cite[p. 267]{goldstein_scanning_2018}.
+The fluorescence yield is heavily dependent on the ionized atom, with in general higher yields for heavier atoms.
+$\omega$ is also dependent on the shell that is ionized, with the typical trend being $\omega_K$ > $\omega_L$ > > $\omega_M$ \cite[p. 267]{goldstein_scanning_2018}.
 The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yield}, a figure borrowed from Goldstein \cite{goldstein_scanning_2018}.
 
 % figure/fluorescence_yield_Goldstein_Fig4.3.d.png
@@ -158,7 +158,7 @@ The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yiel
     \includegraphics[width=0.7\textwidth]{figures/fluorescence_yield_Goldstein_Fig4-3-d.png}
     \caption{
         Fluorescence yield for K-, L- and M-shell, as a function of atomic number Z.
-        The figure is borrowed from Goldstein \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
+        The figure is adapted from \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
     }
     \label{fig:theory:fluorescence_yield}
 \end{figure}
@@ -242,7 +242,7 @@ Heavier element have both more possible lines and more resolved lines, as the or
 
 % total naming with example
 Putting these three naming conventions together, we name the transition $\textnormal{L}_3 \rightarrow \textnormal{K}_1$ as K$\alpha_1$, and $\textnormal{L}_2 \rightarrow \textnormal{K}_1$ as K$\alpha_2$, with more examples in \cref{fig:theory:xray_formation:lines}.
-The transition $\textnormal{L}_1 \rightarrow \textnormal{K}_1$ has $\Delta l = 0$ and is thus forbidden by the selection rules, see \verb|\cref{eq:theory:theoreticalxray:energyintensity:selectionrules}|.
+The transition $\textnormal{L}_1 \rightarrow \textnormal{K}_1$ has $\Delta l = \Delta j = 0$ and is thus forbidden by the selection rules, see \cref{eq:theory:selectionrules}.
 In gallium the K$\alpha_1 = 9252$ eV and K$\alpha_2 = 9223$ eV \cite{thompson_x-ray_2004} have an energy difference of $\Delta E = 27$ eV, which is too low to be resolved in EDS.
 % \ton{I had a figure with the Ga Ka peak in the project thesis. Should I include it?}
 % # now i have Sb 
@@ -259,8 +259,10 @@ In gallium the K$\alpha_1 = 9252$ eV and K$\alpha_2 = 9223$ eV \cite{thompson_x-
 The energy of the X-rays is the energy difference between the orbitals, and the spread in energy from a single line is typically between 1-10 eV.
 The energy difference between the orbitals increase with atomic number Z, as the electrons are bound tighter to the nucleus.
 A table with the energies of the relevant characteristic X-rays in this thesis is given in \cref{tab:theory:lineEnergies}.
+The table also includes the relative weight of the lines, which is the intensity of the line relative to the strongest line in the lines group.
 The most central parts of the energy of the X-rays have been mentioned earlier, but the width of the lines is also important.
-This section also includes a short discussion of where to find the energy of the X-rays.
+This section also includes where the energy of X-rays can be found.
+
 
 % widths
 The natural width of Mn K$\alpha$ is around 1.5 eV, while the measured width in EDS is typically between 120-140 eV \cite[Ch. 16.1.1]{goldstein_scanning_2018}.
@@ -287,6 +289,8 @@ The reason for the missing M-lines in the HyperSpy database is probably the low 
 \subsection{Intensity of characteristic X-rays}
 \label{theory:xray_formation:intensity}
 
+\brynjar{Lese over denne delen, flyttet litt rundt på greier.}
+
 % some transitions are present, but intensity differs
 % the selection rules, forbidden transitions
 Just as the energy of the X-ray lines increase with atomic number, the number of possible lines increase too.
@@ -307,32 +311,47 @@ The three quantum numbers are included in \cref{fig:theory:xray_formation:lines}
 Lines which are forbidden by the selection rules, like the transition from K to L$_1$, have an intensity of zero.
 Some lines are allowed, but have too low intensity to be detected in EDS.
 
+
+% moved, ionization cross-section
+The ionization cross-section is the probability of an ionization for a given line, originally described by Bethe \cite{inokuti_on_bethe_1971} as:
+\begin{equation}
+    \label{eq:ionizationcrosssection}
+    \sigma_T = \frac{\pi e^4 b_s n_s}{E_0 E_C}  \log\left(\frac{c_s E_0}{E_C}\right)
+\end{equation}
+
+where $\sigma_T$ is the total scattering cross-section, $e$ is the elementary charge, $n_s$ is the number of electrons in the ionized shell, $b_s$ and $c_s$ are constants for the shell of ionization, $E_0$ is the incident electron energy, and $E_C$ is the critical ionization energy.
+The ionization cross-section is strongly dependent on the atomic number of the element of interest, and higher Z have higher $E_C$.
+
+
 % the intensity of allowed lines
-The intensity of the allowed lines is proportional to the concentration of the element in the sample, along with effects like the atomic number through the scattering cross-section and fluorescence yield covered in \cref{theory:xray_formation:characteristic}.
-The dependence on the concentration or weight fraction, is the basis for the quantitative analysis in EDS.
-The other effects which influence the intensity are not trivial to calculate accurately, and can make the quantitative analysis less accurate.
-Corrections for the effect of the atomic number on the intensity of the lines are discussed in \brynjar{Cref ZAF / PRZ}.
-Goldstein includes an experimentally based equation for the intensity of X-rays from bulk specimen \cite[Eq. 4.8]{goldstein_scanning_2018}:
+The generated intensity of the allowed lines is proportional to the electron dose from the probe, the number of atoms and the atomic weight of the given element, the fluorescence yield, and the ionization cross-section. %the detector efficiency, and the size of the detector.
+The electron dose is a function of the probe current and the acquisition time.
+The dependency of the number of atoms of the given element is crucial, as this is the basis for the quantitative analysis in EDS.
+The factors mentioned above are discussed further in the section on quantitative analysis in EDS \cref{theory:quantitative_analysis}.
+Calculating the intensity of characteristic X-ray lines from bulk specimen is not trivial, but in Goldstein there is an experimental based equation for this: \cite[Eq. 4.8]{goldstein_scanning_2018}:
+% Goldstein includes an experimentally based equation for the intensity of X-rays from bulk specimen \cite[Eq. 4.8]{goldstein_scanning_2018}:
 
 \begin{equation}
     \label{eq:theory:xray_formation:intensity}
     I \approx i_p (U-1)^n
 \end{equation}
 
-where $I$ is the relative intensity of X-rays from different atomic numbers and shells, $i_p$ is the beam current, U is the overvoltage (covered in \cref{theory:eds:user_controlled_parameters}), and $n$ is a constant which depends on Z and the excited orbital.
+where $I$ is the relative intensity of X-rays from different atomic numbers and shells, $i_p$ is the beam current, $U$ is the overvoltage (covered in \cref{theory:eds:user_controlled_parameters}), and $n$ is a constant which depends on Z and the excited orbital.
 It is stated in Goldstein that $n$ is typically between 1.5 and 2.0, and the equation is based on the work presented and published by Lifshin et al. 1980 \cite{lifshin1980}.
+
 
 
 % intensity of formation is not the same as intensity of detection
 % TODO: include something about the escape depth of the X-rays, which increases with energy.
 Additionally, the intensity of detected X-rays is not the same as the intensity of the X-rays which are generated.
-The probability of absorption increase with density and with the travel distance, and is also dependent on the absorption edges of the materials in the specimen.
-Photons with lower energy are absorbed more easily than photons with higher energy, i.e. the escape depth of the X-rays increase with their energy.
-When an X-ray photon is absorbed within the specimen, it can ionize an atom and generate a new X-ray with a lower energy.
-This process is called fluorescence, and is discussed in \brynjar{Ref to right section}.
-
-
-\ton{Is this enough about energy and intensity?}
+The probability of absorption increase with density and with the travel distance.
+Photons with lower energy are absorbed more easily than photons with higher energy, i.e. the escape depth of the X-rays increase in general with energy, but is also dependent on the absorption edges present.
+When an X-ray photon is absorbed within the specimen, it can ionize an atom and generate a new X-ray with a lower energy, which is the previously mentioned fluorescence effect.
+When thin samples are analyzed, the fluorescence effect can be ignored, but when thicker samples are analyzed, the fluorescence effect can be significant.
+For secondary fluorescence to happen, a characteristic X-ray must be absrobed and it must have higher energy than the critical ionization energy of other lines in the material.
+If the absorbed X-ray have a energy higher than the E$_C$ + 5 keV of the other lines, the fluorescence effect is negligible \cite[p. 306]{goldstein_scanning_2018}.
+The fluorescence effect is also dependent on the path length of the X-rays in the specimen.
+Compensation for the fluorescence effect is discussed in \brynjar{Cref ZAF / PRZ}.
 
 
 
@@ -418,10 +437,9 @@ This has not been a focus in this thesis, but could be a potential improvement o
 \end{figure}
 
 
-% figure
 
 
-% SEM vs TEM
+% SEM vs TEM on background
 The formation of background radiation is anisotropic, with more signal in the direction that the electrons are travelling.
 In thin samples, where the electron beam trajectories are almost aligned, this anisotropy can cause a variation in the continuum intensity along the beam, with the forward direction differing from the backward direction.
 However, in thick samples, elastic scattering randomizes the beam electron trajectory segments, effectively eliminating this anisotropy and resulting in an isotropic X-ray continuum.
@@ -431,12 +449,12 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 
 
 
-
+%
 \input{tables/table_line_energies.tex}
 
 
 
-
+\input{tables/table_xray_generation.tex}
 
 
 
@@ -470,6 +488,7 @@ Both SEMs and TEMs are often equipped with an EDS detector to provide analytical
 This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection in SEM and image contrast, and a brief overview of TEM.
 If not stated otherwise, this section on SEM is based on Goldstein \cite{goldstein_scanning_2018}.
 A schematic of a SEM is shown in \cref{fig:SEM_setup}.
+A summary of the section is provided in \cref{tab:sem}.
 
 
 \subsection{Electron beam generation and control - the SEM setup}
@@ -686,7 +705,7 @@ TEM image formation is not discussed further in this work.
 
 
 
-
+\input{tables/table_sem_setup.tex}
 
 
 
@@ -959,23 +978,35 @@ At the end of the section the parameters are summarized in \cref{tab:eds:userpar
 % beam energy
 The \textbf{beam energy} (E$_0$) is the kinetic energy of the electrons which are exciting the X-rays, and this energy is set by the acceleration voltage of the electron beam.
 The beam energy must be higher than the \textbf{critical ionization energy} (E$_C$) of the element of interest, which is the minimum energy needed to remove an electron from an atom.
-However, having E$_0$ just above E$_C$ is not enough to produce a satisfactory amount of X-rays, as the ionization cross-section is also important.
-The \textbf{ionization cross-section} is the probability of an ionization, originally described by Bethe \cite{inokuti_on_bethe_1971} as:
+The ratio of the beam energy to the critical ionization energy is the \textbf{overvoltage} (U):
 
 \begin{equation}
-    \sigma_T = \frac{\pi e^4 b_s n_s}{E_0 E_C}  \log\left(\frac{c_s E_0}{E_C}\right)
+    U = \frac{E_0}{E_C}
 \end{equation}
 
-where $\sigma_T$ is the total scattering cross-section, $e$ is the elementary charge, $n_s$ is the number of electrons in the ionized shell, and $b_s$ and $c_s$ are constants for the shell of ionization.
-The ratio of the beam energy to the critical ionization energy is the \textbf{overvoltage} (U), where $ U = E_0/E_C$.
-% \begin{equation}
-%     U = \frac{E_0}{E_C}
-% \end{equation}
-The ionization cross-section is strongly dependent on the atomic number of the element of interest, and higher Z requires higher U to produce a satisfactory amount of X-rays.
-This is because the beam electron loose energy for every scatter process within the specimen, and as shown in the simulated interactions in \cref{fig:montecarlo_BSE}, there are multiple scattering processes.
-If the overvoltage for an excitation is 1, the incident electrons can only ionize this excitation close to the surface and will not produce many X-rays.
+The overvoltage is different for all the lines in the spectrum, as it is dependent on the critical ionization energy of each line.
+When the overvoltage for a specimen is discussed, it is refering to the overvoltage for the line of interest with highest critical ionization energy.
+
+
+% overvoltage and ionization cross-section
+To produce a satisfactory amount of X-rays, it is not enough to just have the overvoltage slightly above 1, as the \textbf{ionization cross-section}, $\sigma_T$, plays a critical role.
+The ionization cross-section is the probability of an ionization, described in detail in \verb|\cref{...}|.
+The relation between the overvoltage and the ionization cross-section is shown in \cref{fig:overvoltage2ionizationcrosssection}.
+% Mari adapted her figure from:
+% FIGURE 4.4 - C. B. Carter and D. B. Williams, Transmission electron microscopy: Diffraction, imaging, and spectrometry. Springer, 2009.
+As seen in the figure, the probability of ionization increase sharply until U is around 5, and then it decrease logarithmic and flattens.
+Having an overvoltage below 1 results in no X-rays generated for the line of interest.
+With SEM EDS the overvoltage is typically in the area where the ionization cross-section is changing the most, thus the overvoltage is an important parameter.
+In addition to the effect of the ionization cross-section, the overvoltage is important for how deep the electron can penetrate and still ionize the higher energy lines.
+In each scattering process, illustrated in \cref{fig:montecarlo_BSE}, the electron loose energy.
+If the overvoltage for a line is 1, the electrons which loose energy near the surface will not have enough energy to ionize the line of interest.
+This results in fewer generations of X-rays from that line, i.e. low intensity of the line.
+As the overvoltage increase from 1, both the ionization cross-section and the amount of electrons with enough energy to scatter first and still ionize the line of interest increase.
+
+
+
+% If the overvoltage for an excitation is 1, the incident electrons can only ionize this excitation close to the surface and will not produce many X-rays.
 When the overvoltage is higher, the electrons can scatter multiple times within the specimen before they ionize the highest excitation, which makes the probability of that ionization higher.
-\ton{Is this explaination of why we need U > 1.5 good?}
 ISO 22309 about quantitative analysis in SEM advise an overvoltage of 1.8 \cite{iso_emsa_22029}, and ASTM E1508 on the same topic advise an overvoltage of at least 1.5 \cite{astm_e1508_eds_quantification}.
 In Goldstein the advice is to keep the overvoltage above 1.5 \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
 A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with higher E$_0$.
@@ -1076,11 +1107,12 @@ These include coincidence peaks, the zero peak, strays/spurious X-rays, the Si e
 The artifacts can be used to characterize the performance of the detector and the selected settings for the acquisition.
 In general, the artifacts are unwanted, as they reduce the signal in the actual peaks and clutter the analysis.
 Thus, awareness of the possible artifacts is important for a thurough analysis of the spectrum.
+The artifacts are illustrated in \cref{fig:eds_artifacts}, and summarized in \cref{tab:eds_artifacts}.
 
 
 % Sum peaks
 % TODO: only use coincidence, or use the mix?
-Acquiring a good spectrum requires a certain amount of counts, but having a high count rate increase the probability of coincidence peaks.
+Acquiring a good spectrum requires a certain amount of counts, but having a high count rate increase the probability of \textbf{coincidence peaks}.
 Coincidence peaks are also called sum peaks.
 Coincidence peaks are when two X-rays are counted as one, where the assigned energy is the sum of the two X-rays.
 If the detector is open and two X-rays hit the active area in the same time window, both X-rays produce electron-hole pairs and the resulting voltage pulse is equal to the sum of the energies.
@@ -1099,7 +1131,7 @@ Limiting the coincidence peaks is important for accurate quantification, as the 
 % - Si 
 % - Holder / chamber 
 
-Another artifact with give similar issues as coincidence peaks is strays, or spurious X-rays.
+Another artifact with give similar issues as coincidence peaks is \textbf{stray radiation, or spurious X-rays}.
 Strays are X-ray signals which originate from outside the targeted area, and are thus not part of the spectrum of interest.
 The strays can be generated from either a deflected electron or from an X-ray through fluorescence.
 Deflected electrons are from the beam, or BSE electrons, which both have a high energy.
@@ -1111,7 +1143,7 @@ To limit the strays, the collimator on the detector is a physical barrier which 
 This requires the detector to be aligned correctly, which could be tested with a tilt series.
 \ton{Do you want an illustration here of a, b, c, d?}
 
-Strays originating from the (d) the detector results in both the internal fluorescence peak and escape peaks.
+Strays originating from the (d) the detector results in both the \textbf{internal fluorescence} peak and \textbf{escape peaks}.
 The incoming X-ray can ionize Si atoms in the detector.
 If the ionized Si is in the dead layer of the detector, the ionized Si will emit a characteristic X-ray which can be detected in the active area of the detector.
 This is the internal fluorescence peak, and is located at 1.74 keV, i.e. the Si K$\alpha$ peak.
@@ -1121,7 +1153,7 @@ The counts at 1.74 keV lower than the incoming X-ray make the escape peak.
 
 
 % Noise peak
-Most spectrums have a peak around 0 keV, which is present due to electronic noise in the detector \cite{aztec_manual}.
+Most spectrums have a \textbf{noise peak} around 0 keV, which is present due to electronic noise in the detector \cite{aztec_manual}.
 The noise peak is also called the zero peak.
 All detectors have this type of noise, but some vendor software remove the noise peak automatically.
 The AZtec software does not remove the noise peak, and it is therefore important to be aware of the noise peak.
@@ -1132,14 +1164,26 @@ As the noise peak is located sufficiently close to zero, no information is lost 
 
 
 % vendor software handling of artifacts
-The artifacts mentioned above are in varying degrees present when acquiring a spectrum, but some vendor software have built-in methods to remove the artifacts.
+The artifacts mentioned above are in varying degrees present when acquiring a spectrum, but some vendor software have built-in methods to remove or reduce the artifacts.
 In Goldstein at page 274, it is shown that an escape peak was present using the 2011 software, but digitally removed in the 2014 software \cite[Fig. 18.7]{goldstein_scanning_2018}.
 The AZtec software have a built-in method to remove coincidence peaks, called "Pulse Pile Up Correction" \cite{aztec_manual}.
 The AZtec user manual state that this method works best for single pixels or areas with the same composition, and that it might produce bad results when scanning over a larger heterogeneous area \cite[p. 99]{aztec_manual}.
 Aside from this brief description, a user does not get any information on how the method works.
-This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can produce bad results.
+This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can enhance the spectrum, but also produce bad results. %can produce bad results.
 
 
+% figures/artifacts.png
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/eds_artifacts.png}
+    \caption{
+        Some of the possible artifacts in EDS spectra.
+    }
+    \label{fig:eds_artifacts}
+\end{figure}
+
+
+\input{tables/table_artifacts.tex}
 
 
 \clearpage
@@ -1199,6 +1243,9 @@ Vendors of EDS detectors like Oxford Instruments provide a guide for how to cali
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
 In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{define AEM earlier}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
 Routines for a performance check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
+
+
+% not new paragraph?
 An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
 % \brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
 Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
@@ -1457,7 +1504,21 @@ Thus, the user should adjust the trade-off according to the specimen used.
 % What is the scale and offset.
 % Typical values for the scale.
 
-What \dots
+The scale and offset are the parameters used to set the energy axis.
+The scale is the energy width of one channel, and the offset is the energy of the first channel in the spectrum.
+Another name for the scale is the gain or the dispersion.
+Calibration of the energy axis is done by: (1) fitting the background and Gaussian curves to the peaks in the spectrum, (2) calculate the theoretical energy difference between two or more peaks, and (3) use the difference between the theoretical and the measured energy difference to calibrate the energy axis.
+The calibration can be done by hand, or by using the HyperSpy function \verb|calibrate_energy_axis|.
+The HyperSpy function needs the argument \verb|calibrate| to be either \verb|'scale'| or \verb|'offset'|, which specifies if the scale or the offset should be calibrated.
+The function also takes the argument \verb|xray_lines|, which is used to specify the peaks that should be used for the calibration.
+
+
+% Why
+Calculating the scale and offset is done to verify that the system is operating correctly.
+The scale and offset should be close to the values that are set by the user for the acquisition.
+If there is a noticable deviation, the user should probably contact the EDS detector vendor for support.
+If the user finds deviations between different specimen or different acquisitions settings, the \dots
+
 
 % % How
 % Measure two far apart peaks and find their distance in the spectrum.
@@ -1798,8 +1859,12 @@ However, an analyst should be aware of the peak shape, as it can be useful if a 
 
 
 
+\subsubsection*{Optimal WD}
 
 
+\url{https://www.cstl.nist.gov/div837/837.02/epq/dtsa2/FaultsFoiblesEDS.pdf}
+
+\brynjar{En geometrigreie. Er det forskjellig for ulike materialer? Passer under acquisition params}
 
 
 
@@ -1932,3 +1997,45 @@ most EDS analyses is limited by the matrix correction."
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Quantitativt analysis in EDS}
+\label{theory:quantitative_analysis}
+
+
+\brynjar{Finish this section later.}
+
+
+% the intensity of different elements
+As the intensity of the X-rays is proportional to the number of atoms of the given element, the intensities can be compared to find the relative abundance of the different elements.
+In the ideal case, the concentration of the different elements are the same as the relative intensity of the X-rays in their corresponding characteristic X-ray lines.
+
+% C_a / C_b = I_a / I_b
+\begin{equation}
+    \label{eq:theory:xray_formation:simple_intensity_ratio}
+    \frac{C_a}{C_b} = \frac{I_a}{I_b}
+\end{equation}
+
+However, the intensity is affected by multiple factors mentioned above, so the intensity ratio needs a correction factor.
+Multiple of the factors fall out, as they are present in both the numerator and denominator.
+The factors that are left are the ones which are dependent on the atomic number.

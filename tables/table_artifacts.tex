@@ -1,0 +1,23 @@
+\begin{table}[hbtp]
+    \begin{center}
+        \caption{
+            The spectrum artifacts in EDS, \cref{theory:eds:artifacts}.
+            See \cref{fig:eds_artifacts} for an illustration of the artifacts.
+        }
+        \renewcommand*{\arraystretch}{1.4}
+        \label{tab:eds_artifacts}
+        \begin{tabular}{p{4cm}p{10.6cm}}
+            \hline
+            \textbf{Artifact name}     & \textbf{Definition}                                                                                                                                                                                          \\
+            \hline
+            Background X-rays          & The white noise generated as $1/E_0$. The detected background is reduced at low energies due to absorption, see \cref{fig:background_xrays}.                                                      \\
+            Coincidence peaks          & When two X-rays are counted as one, giving twice the energy. Increase with count rate, but advices to limit the artifact is usually given in terms of dead time. See \cref{fig:background_absorptionEdgeSi}. \\
+            Stray radiation            & X-ray signals which originate from outside the targeted area. Generated from deflected electrons or X-ray photons. Can originate from the specimen, the chamber, an eventual holder, or the detector.                \\
+            Internal fluorescence peak & A stray from the detector, where Si have been ionized in the dead layer and the X-ray is detected by the detector.                                                                                           \\
+            Escape peak                & A signal from a characteristic line which have lost 1.74 keV due to its ionization of an Si atom in the detector.                                                                                            \\
+            Noise peak                 & The peak around 0 keV, which is present in all detectors due to electronic noise.                                                                                                                            \\
+            % Software correction        & Some vendors have software which reduce or remove the artifacts in the spectrum.                                                                                                                             \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
