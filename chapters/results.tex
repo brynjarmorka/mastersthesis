@@ -7,15 +7,45 @@
 
 
 
-\section{Detector status}
-\label{sec:detectorstatus}
+% \input{tables/results/table_model-lines.tex}
 
-% intro to detector status
-
-\input{tables/results/table_model-lines.tex}
-
-\input{tables/results/table_energy-res-calibration-GaAs.tex}
+% \input{tables/results/table_energy-res-calibration-GaAs.tex}
 
 
-\subsection{Energy resolution}
-\label{results:resolution}
+% \subsection{Energy resolution}
+% \label{results:resolution}
+
+
+\section{Optimization of the acquisition parameters}
+\label{results:acquisition_parameters}
+
+
+\subsection{Process time}
+\label{results:process_time}
+
+
+One of the parameters which was tested was the process time.
+The process time is a trade-off between the energy resolution and the throughput.
+This effect is illustrated in \cref{fig:results:energy_resolutions_process_time}, which is a plot of the a GaSb spectrum at minimum and maximum process time for a SDD.
+The figure have three panels, one for low, medium, and high energy X-rays.
+The effect of the lowered energy resolution is most prominent for the low energy X-rays, but the effects is most dependent on what lines are present in the spectrum.
+The difference between the peak centers and theoretical line energies in panel (a) is due to the poorer calibration at low energies.
+Data was acquired with process time 2 and 4 too (not shown), which is included in talbe \dots
+
+
+% figures eds_energyResolutions_process_time.pdf
+\begin{figure}[hptb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/results/eds_energyResolutions_process_time.pdf}
+    \caption{
+        Illustration of different energy resolutions on the same specimen, because of different process times.
+        The maximum (red) and minimum (blue) process time (PT) on the instrument is used.
+        Panel (a) is the spectrum at low energy, where the effect most influential.
+        Here both the Sb M$\eta$ and O K$\alpha$, and the Ga Ll and Ga L$\alpha$ are overlapping too much with PT1.
+        Panel (b) is the spectrum at medium energy, where the effect less influential.
+        Panel (c) is the spectrum at high energy, where the effect is almost negligible.
+        All three panels span 1.13 keV and have the same range of counts.
+        The vertical lines are the theoretical line energies.
+    }
+    \label{fig:results:energy_resolutions_process_time}
+\end{figure}

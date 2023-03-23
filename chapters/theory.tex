@@ -150,7 +150,7 @@ The ratio of characteristic X-ray photons to Auger electrons is known as the flu
 
 The fluorescence yield is heavily dependent on the ionized atom, with in general higher yields for heavier atoms.
 $\omega$ is also dependent on the shell that is ionized, with the typical trend being $\omega_K$ > $\omega_L$ > > $\omega_M$ \cite[p. 267]{goldstein_scanning_2018}.
-The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yield}, a figure borrowed from Goldstein \cite{goldstein_scanning_2018}.
+The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yield}, a figure adapted from Goldstein \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
 
 % figure/fluorescence_yield_Goldstein_Fig4.3.d.png
 \begin{figure}[ht]
@@ -211,7 +211,7 @@ The IUPAC naming convention note both the orbital in the inner and outer shell, 
 % figure with actual L-peaks in Sb
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/Sb_L-peaks_30kV_50pA.png}
+    \includegraphics[width=0.95\linewidth]{figures/Sb_L-peaks_30kV_50pA.pdf}
     \caption{
         The Sb L-peaks in a GaSb wafer.
         Taken at 30 kV, 50 pA, process time 6, live time 120 s, ICR at 17000 cps, and 43\% DT.
@@ -268,10 +268,8 @@ This section also includes where the energy of X-rays can be found.
 The natural width of Mn K$\alpha$ is around 1.5 eV, while the measured width in EDS is typically between 120-140 eV \cite[Ch. 16.1.1]{goldstein_scanning_2018}.
 This peak broadening is due to counting statistics and instrument electronics, which is discussed in \cref{theory:eds:hardware}.
 The broadness of the peaks in EDS increase with energy, and the peak broadening effect is the most limiting factor for the energy resolution of EDS.
+The change from lines to broadened peaks is illustrated in \cref{fig:eds_theoretical2realSpectrum}.
 Techniques have been developed to identify and separate peaks which overlap in energy, like peak deconvolution and peak fitting.
-
-
-\ton{Should I include a figure with natural line widths and actual line widths in a spectrum?}
 
 
 % where to find the energy
@@ -410,10 +408,10 @@ This has not been a focus in this thesis, but could be a potential improvement o
 \ton{Ok to mention?}
 
 
-% figures/background_generated_detected.png
+% figures/background_generated_detected.pdf
 \begin{figure}[pht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/background_generated_detected.png}
+    \includegraphics[width=0.8\linewidth]{figures/background_generated_detected.pdf}
     \caption{
         The difference between the generated and detected background X-rays.
         The detected background is shown in blue, and the generated background is shown in the dashed black line.
@@ -421,10 +419,10 @@ This has not been a focus in this thesis, but could be a potential improvement o
     \label{fig:background_xrays}
 \end{figure}
 
-% figures/background_absorptionEdge_Si.png
+% figures/background_absorptionEdge_Si.pdf
 \begin{figure}[pht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/background_absorptionEdge_Si.png}
+    \includegraphics[width=0.8\linewidth]{figures/background_absorptionEdge_Si.pdf}
     \caption{
         The effect of the absorption edge on the background radiation.
         The spectrum in blue is from a Si wafer and the red dashed line is the Si K absorption edge at 1839 eV \cite{absorptionEdges_1967,hyperspy_1.7.1}.
@@ -447,6 +445,35 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 \ton{Do you want this paragraph about SEM vs TEM included?}
 
 
+
+\subsection{From theory to a real spectrum}
+\label{theory:eds:fromtheorytoreal}
+
+This last part of the section combines the different parts of the theory to the real spectrum.
+\cref{fig:eds_theoretical2realSpectrum} shows a schematic of the steps from a theoretical spectrum to a real spectrum of GaAs.
+Panel (a) shows a theoretical spectrum with only the characteristic lines.
+Panel (b) shows the lines broadened to Gaussian peaks on a background, where the background is modelled as a polynomial function of the energy.
+Notice how the peaks broaden more with higher energy.
+Panel (c) shows a real spectrum, where the unevenness of the recorded countings is visible.
+The real spectrum is recorded in a SEM with an EDS detector, which is discussed in \cref{theory:sem} and \cref{theory:eds} respectively.
+The real spectrum also shows some additional artifacts, like a noise peak and a small Si K$\alpha$ peak at 1.74 keV for the internal fluorescence peak.
+The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
+
+
+% figures/eds_theoretical2realSpectrum.pdf
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.99\linewidth]{figures/eds_theoretical2realSpectrum.pdf}
+    \caption{
+        From theory to a real spectrum.
+        (a) a theoretical spectrum with only the characteristic lines, (b) lines broadened to peaks on a background, and (c) a real spectrum.
+        The spectrum is of GaAs, and the peak names are annotated in (a).
+        The background in (b) is modelled as a polynomial function of the energy.
+        (c) show the noise peak and a small internal fluorescence peak at 1.74 keV (Si K$\alpha$).
+    }
+    \label{fig:eds_theoretical2realSpectrum}
+
+\end{figure}
 
 
 %
@@ -546,7 +573,7 @@ Higher dwell times giving higher signal intensity which usually results in a cle
         Illustration of a raster scan in an SEM.
         The probe is moved in a grid pattern across the specimen surface, and the detector(s) register a signal for each position.
         The signal intensity recorded in each position corresponds to the color of the pixel in the resulting 2D image.
-        This figure is borrowed from Skomedal \cite[Fig. 2.14]{skomedal_improving_2022}.
+        This figure is adapted from Skomedal \cite[Fig. 2.14]{skomedal_improving_2022}.
     }
     \label{fig:sem_rasterscan}
 \end{figure}
@@ -634,14 +661,14 @@ The background X-rays are white noise, giving no information about the sample, a
 
 
 
-%figures/SEM_montecarlo_BSE.png
+%figures/SEM_montecarlo_BSE.pdf
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/SEM_montecarlo_BSE.png}
+    \includegraphics[width=0.8\linewidth]{figures/SEM_montecarlo_BSE.pdf}
     \caption{
         Monte Carlo simulation of the interaction volume in C, Si, Cu, and Au with 20 keV beam energy.
         The red lines mark the incident electrons with reversed trajectory, which are the BSE.
-        The figure is borrowed from Goldstein \cite[Fig. 2.2]{goldstein_scanning_2018}.
+        The figure is adapted from Goldstein \cite[Fig. 2.2]{goldstein_scanning_2018}.
     }
     \label{fig:montecarlo_BSE}
 \end{figure}
@@ -681,7 +708,7 @@ EDS spectra can also be recorded as a 1D spectrum from a point on the sample.
         The specimen is Cu, and the incident beam energy is 1 keV.
         Similar spectrum would be recorded in a BSE image, but with peaks at different energies for the different elements.
         Normal SE and BSE images only record the sum of the registered electrons, and not the energy of the electrons.
-        The figure is borrowed from Goldstein \cite[Fig. 3.1 a]{goldstein_scanning_2018}, which use data from \cite{koshikawa_SE_spectrum_1973}.
+        The figure is adapted from Goldstein \cite[Fig. 3.1 a]{goldstein_scanning_2018}, which use data from \cite{koshikawa_SE_spectrum_1973}.
     }
     \label{fig:SEM_SE_spectrums}
 \end{figure}
@@ -834,7 +861,7 @@ The spectrum is then sent to the computer, where the user can analyze the spectr
         A schematic of the side view of a silicon drift detector (SDD).
         The collimator and window would be placed in front of the cathode.
         % The electronics are after the FET transistor.
-        The figure is borrowed from Oxford Instruments \cite{oxford_sdd_explained}.
+        The figure is adapted from Oxford Instruments \cite{oxford_sdd_explained}.
     }
     \label{fig:eds_sdd}
 \end{figure}
@@ -853,20 +880,21 @@ A bigger active area allows more counts per second, as it is increasing the soli
 The much lower voltage noise in SDDs allow both a cleaner signal and a shorter process time, because the pulse processor does not need to do signal averaging.
 The shorter process time allow much higher count rates and high speed mapping.
 High speed mapping is a key feature in SEM EDS, compared to other X-ray analysis methods with limited spatial resolution in 2D maps.
-One of the drawbacks of the SDDs compared to the Si(Li) detectors, is the detector efficiency, illustrated in \cref{fig:detector_efficiency}.
+One of the drawbacks of the SDDs compared to the Si(Li) detectors, is the detector efficiency ($\epsilon$), illustrated in \cref{fig:detector_efficiency}.
 The lower efficiency of the SDDs is due to the thinner active layer, which allows high energy X-rays to pass through without generating electron-hole pairs.
 % This effects begins around 6-9 keV, and the effect increase with higher energies.
 % with origin in the thinner active layer, it that the SDDs allows more of the X-rays to pass through the active layer without generating electron-hole pairs, which lowers the detector efficiency.
 % The decrease in detector efficiency begins around 6-9 keV, and the effect increase with higher energies, illustrated in \cref{fig:detector_efficiency}.
 
 
-% figure/detector_efficiency_illustration.png
+% figure/detector_efficiency_illustration.pdf
 \begin{figure}[pht]
     \centering
-    \includegraphics[width=0.65\linewidth]{figures/detector_efficiency_illustration.png}
+    \includegraphics[width=0.65\linewidth]{figures/detector_efficiency_illustration.pdf}
     \caption{
-        Illustration of the detector efficiency of a Si(Li) and an SDD.
+        Illustration of the detector efficiency, $\epsilon$ of a Si(Li) and an SDD, as a function of the X-ray energy.
         The efficiency of the SDDs decrease at higher energies because the active layer is thin, and thus high energy X-ray photons have a higher probability of passing through without creating an electron-hole pair.
+        Figure adapted from \cite[Fig. 4655c]{liao2006practical}
         % Remake of \brynjar{find one, e.g. https://www.globalsino.com/EM/page4655.html}
     }
     \label{fig:detector_efficiency}
@@ -917,7 +945,34 @@ The natural line widths of the X-ray lines treated in this work is around 10 eV,
 The shape of the natural lines are Lorentzians, but the electronics broadens the peaks to Gaussians.
 This effect is due to the electronics, which handles X-ray pulses corresponding to energies between 100 eV and 40 keV.
 The energy resolution of an EDS detector is usually reported as the FWHM of the Mn K$\alpha$ line, which is in SDDs is typically between 120 and 140 eV.
-More on the energy resolution is discussed in \cref{theory:eds_performance:energyres}.
+A higher FWHM means a lower energy resolution, because the peaks still have the same amount of counts, but are spread out over a larger energy range.
+When peaks are spread more, it is harder to distinguish between them, and thus FWHM is a measure of the energy resolution.
+This effect is illustrated in \cref{fig:theory:energy_resolution}, which is a plot of the Mn K$\alpha$ line with the same total counts and different FWHMs.
+The plot shows both a linear and logarithmic y-axis, to illustrate the difference between the two.
+The FWHMs are marked as dashed lines.
+The acquisition parameters can also affect the energy resolution, mainly due to the process time, discussed more in \cref{theory:eds:user_controlled_parameters}.
+The process time is a trade-off between the energy resolution and the throughput.
+Energy resolution is also discussed more in \cref{theory:eds_performance:energyres}.
+
+
+
+% figure/eds_energyResolutionMnKa.pdf
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/eds_energyResolutionsMnKa.pdf}
+    \caption{
+        Illustration of different energy resolutions of EDS detectors.
+        The natural line width of the Mn K$\alpha$ line is around 10 eV, but the peak width is more than ten times larger.
+        The energy resolution depends on the detector, but also the acquisition parameters.
+        The total counts in the peaks are the same.
+        The dashed lines are the FWHM of the peaks.
+        Panel (a) is a logarithmic y-axis, and panel (b) is a linear y-axis.
+        }
+        \label{fig:theory:energy_resolution}
+    \end{figure}
+    
+    
+
 
 
 As the electronics broadens the peaks to Gaussian curves, the model fitting of the peaks are done by the following equation:
@@ -990,26 +1045,42 @@ When the overvoltage for a specimen is discussed, it is refering to the overvolt
 
 % overvoltage and ionization cross-section
 To produce a satisfactory amount of X-rays, it is not enough to just have the overvoltage slightly above 1, as the \textbf{ionization cross-section}, $\sigma_T$, plays a critical role.
-The ionization cross-section is the probability of an ionization, described in detail in \verb|\cref{...}|.
+The ionization cross-section is the probability of an ionization, as described in \cref{theory:xray_formation:intensity} and \cref{eq:ionizationcrosssection}.
 The relation between the overvoltage and the ionization cross-section is shown in \cref{fig:overvoltage2ionizationcrosssection}.
 % Mari adapted her figure from:
 % FIGURE 4.4 - C. B. Carter and D. B. Williams, Transmission electron microscopy: Diffraction, imaging, and spectrometry. Springer, 2009.
-As seen in the figure, the probability of ionization increase sharply until U is around 5, and then it decrease logarithmic and flattens.
-Having an overvoltage below 1 results in no X-rays generated for the line of interest.
+As seen in the figure, the probability of ionization increase sharply until U is around 4-5, and then it decreases.
+Having an overvoltage below 1 results in no X-rays generated for the line of interest, which is sees as the line starts at 1.
 With SEM EDS the overvoltage is typically in the area where the ionization cross-section is changing the most, thus the overvoltage is an important parameter.
 In addition to the effect of the ionization cross-section, the overvoltage is important for how deep the electron can penetrate and still ionize the higher energy lines.
 In each scattering process, illustrated in \cref{fig:montecarlo_BSE}, the electron loose energy.
-If the overvoltage for a line is 1, the electrons which loose energy near the surface will not have enough energy to ionize the line of interest.
+If the overvoltage for a line is 1, an electron which already have scattered and lost some energy will not have enough energy to ionize the line of interest.
 This results in fewer generations of X-rays from that line, i.e. low intensity of the line.
-As the overvoltage increase from 1, both the ionization cross-section and the amount of electrons with enough energy to scatter first and still ionize the line of interest increase.
-
-
-
+As the overvoltage increase from 1, there is an increase in both the ionization cross-section and the amount of electrons with enough energy to scatter multiple times and still ionize the line of interest.
 % If the overvoltage for an excitation is 1, the incident electrons can only ionize this excitation close to the surface and will not produce many X-rays.
 When the overvoltage is higher, the electrons can scatter multiple times within the specimen before they ionize the highest excitation, which makes the probability of that ionization higher.
 ISO 22309 about quantitative analysis in SEM advise an overvoltage of 1.8 \cite{iso_emsa_22029}, and ASTM E1508 on the same topic advise an overvoltage of at least 1.5 \cite{astm_e1508_eds_quantification}.
 In Goldstein the advice is to keep the overvoltage above 1.5 \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
-A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with higher E$_0$.
+A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with E$_0$.
+
+
+% figres/overvoltage2ionizationcrosssection.pdf
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/overvoltage2ionizationcrosssection.pdf}
+    \caption{
+        The ionization cross-section as a function of overvoltage.
+        % The units of $\sigma_T$ are arbitrary
+        Adapted from \cite[Fig. 4.4]{williams_carter_tem_2009}.
+    }
+    \label{fig:overvoltage2ionizationcrosssection}
+\end{figure}
+
+
+
+
+
+
 
 
 % beam current
@@ -1172,10 +1243,10 @@ Aside from this brief description, a user does not get any information on how th
 This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can enhance the spectrum, but also produce bad results. %can produce bad results.
 
 
-% figures/artifacts.png
+% figures/artifacts.pdf
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/eds_artifacts.png}
+    \includegraphics[width=0.95\linewidth]{figures/eds_artifacts.pdf}
     \caption{
         Some of the possible artifacts in EDS spectra.
     }
@@ -1326,10 +1397,10 @@ The counts above the Duane-Hunt limit are due to coincidence events, where two X
 Finding the effective beam energy is done by fitting a linear function to background, where the intersection of the linear fit and the x-axis is the effective beam energy \cite{software_dtsaii} \cite[Ch. 9.1.3]{goldstein_scanning_2018}.
 This solves the ambiguity of the exact beam energy, which is present because of the coincidence counts that gives the spectrum a tail past the effective beam energy.
 
-% figures/Duane-Hunt.png
+% figures/Duane-Hunt.pdf
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/Duane-Hunt.png}
+    \includegraphics[width=0.8\linewidth]{figures/Duane-Hunt.pdf}
     \caption{
         Illustration of the Duane-Hunt limit.
         The blue dots are the X-ray counts, and the red line is a linear fit of the background.
@@ -1632,7 +1703,7 @@ All these arguments were made for TEM, but they are equally true for SEM, and th
         Illustration of the Fiori P/B.
         P is all the counts in the actual peak, i.e. the part with the horizontal lines that does not including the background.
         B is the counts in a 10 eV window at the peak center.
-        Figure borrowed from \cite{zemyan_standard_performance_1994}.
+        Figure adapted from \cite{zemyan_standard_performance_1994}.
         \brynjar{TODO: remake this figure?}}
     \label{fig:fiori_pb}
 \end{figure}
@@ -1680,9 +1751,11 @@ This option is explored in this work.
 \begin{figure}
     \centering
     \includegraphics[width=0.6\linewidth]{figures/FioriPB_reality_TODO_remake.png}
-    \caption{Illustration of how the Fiori P/B is calculated in practice.
+    \caption{
+        Illustration of how the Fiori P/B is calculated in practice, with integration windows.
+        Figure adapted from \cite{zemyan_standard_performance_1994}.
         \brynjar{TODO: remake this figure?}
-        Figure borrowed from \cite{zemyan_standard_performance_1994}.}
+        }
     \label{fig:fiori_pb_reality}
 \end{figure}
 
