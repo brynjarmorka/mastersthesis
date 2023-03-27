@@ -1,0 +1,43 @@
+\begin{table}[hbtp]
+    \begin{center}
+        \caption{
+            The voltage series measured on GaAs and GaSb.
+            Settings not mentioned are kept constant.
+        }
+        \renewcommand*{\arraystretch}{1.4}
+        \label{tab:method:acquisition_settings:voltage}
+        \begin{tabular}{p{4cm}cp{8cm}}
+            \hline
+            \textbf{Setting}             & \textbf{Vary} & \textbf{Purpose}                                                                                  \\
+            \hline
+            Beam energy                  & Yes           & Study the effect of the acceleration voltage. 30, 15, 10, 5 kV.                                   \\
+            Beam current                 & No            & Kept constant for each specimen to compare the spectra. Set so that DT was around 30\% for 30 kV. \\
+            Process time                 & No            & Set to 6 (max) to influence the analysis as little as possible.                                   \\
+            Data type (PointID vs map)   & No            & Only PointID.                                                                                     \\
+            Area (polished vs scratched) & No            & Polished.                                                                                         \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%					
+\begin{table}[hbtp]
+    \begin{center}
+        \caption{
+            The measurements on GaSb with varying parameters.
+            Settings not mentioned are kept constant.
+        }
+        \renewcommand*{\arraystretch}{1.4}
+        \label{tab:method:acquisition_settings:other}
+        \begin{tabular}{p{4cm}cp{8cm}}
+            \hline
+            \textbf{Setting}             & \textbf{Vary} & \textbf{Purpose}                                                         \\
+            \hline
+            Beam energy                  & Yes           & Further inspect 30 vs 15 kV, because of the Sb K-peaks just below 30 kV. \\
+            Beam current                 & Yes           & Study different ICR and dead times.                                      \\
+            Process time                 & Yes           & Study the effect of different PT, e.g. on coincidence events.            \\
+            Data type (PointID vs map)   & Yes           & Compare PointID to map.                                                  \\
+            Area (polished vs scratched) & Yes           & Study the difference between a scratched and polished area.              \\
+            \hline                                                                                                                  \\
+        \end{tabular}
+    \end{center}
+\end{table}

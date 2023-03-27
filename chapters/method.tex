@@ -1,52 +1,231 @@
 \chapter{Method}
 \label{ch:method}
 
-Intro to the method \dots
+\ton{I am not sure what more to write in methods, but it does not feel finished. Any tips?}
+
+This chapter describes the method used in this project.
+The method is divided into four parts: the materials studied, the instruments used, the acquisition settings in the measurement series, and the data treatment.
+The data treatment is described in detail with the documentation and code in the Jupyter notebooks \verb|\cref{Appendix A}|.
+The notebooks and the data is avaliable at GitHub, \verb|\cref or cite or footnote or hyperref|.
 
 % from masteravtalen:
 % •	Characterize detector and beam parameters and use them for better quantification.
 % •	Develop detector characterization and quantification routines for bulk samples in open-source.
 
 
-\section{Qualitative analysis}
-\label{method:qualitative_analysis}
-
-See Annex A in ISO 22309. Also make a notebook, which can be shared with HyperSpy people.
-Show the use of find_peak_ohaver, refering to O'Haver's paper, with different settings.
-Also show nice plotly plots, eventually plt with plotting all lines in HS for the element.
-And maybe also fitting, where the area is shown to see if any added elements are 0.
-Can refer to autoID, and it's flaws.
-
-Rule for what a peak is? See eg Annex A in ISO 22309: I > (BG + 3 x sqrt(BG)), wher BG is mean of BG (probably at the given energy)
-
-\brynjar{ISO 22309: "typically a value of 30 eV can
-    be critical; peaks separated by more than this figure should not be confused by either automatic or manual
-    identification procedures."}
-
-\section{Detector status}
-\label{method:eds_performance}
-
-Intro to detector characterization \dots
-
-\subsection{Jupyter notebook input}
-\label{method:eds_performance:input}
-
-The QC notebook was written in Python 3.7 using the Jupyter notebook environment.
-The notebook was designed to be adaptable to spectra with different elements.
-At the top of the notebook the user give the spectrum file, the detector parameters, the elements in the sample, and the elemental lines of interest.
-
-In this project, the QC notebook was used on three different samples: \brynjar{NiO, Cu, GaAs?}
 
 
 
 
-% \subsection{Calibration}
-% \label{method:calibration}
 
-% For some reason, it works better to calibrate the offset and then the scale/dispersion.
-% HyperSpy allows for calibration of offset, scale or energy resolution, but only one at a time.
-% The procedure used was: calibrate offset, calibrate scale, recaliabrate offset, and recalibrate scale.
-% After the recalibration, the difference was compared to the first calibration, and if the change was more than 5\%, the calibration was repeated.
-% By default, the HyperSpy calibration uses all alpha lines.
-% It is possible to specify certain lines to calibrate on, but this yeilded the same or worse results as using all alpha lines.
-% \brynjar{The stuff above is more discussion, at least the last sentence.}
+
+
+\section{Materials and specimen}
+\label{method:materials}
+
+In this study, two different materials were studied: GaAs and GaSb.
+A TEM Cu grid was added to the specimen to measure stray radiation, but this did not work out as planned, and these measurements are not included in this study.
+% ref to appendix:SE_images as Appendix B
+SE images of the analyzed areas are included the \hyperref[appendix:SE_images]{Appendix B}.
+Overview images are shown in \cref{fig:SE_images:Overview_GaAs_GaSb}, and the close up images are shown in \cref{fig:SE_images:GaAs}, \cref{fig:SE_images:GaSb}, and \cref{fig:SE_images:GaSb_map}.
+The analyzed areas are annotated in the images.
+Both specimen were assumed to be heterostructures, with a 1:1 ratio of Ga and As or Sb, respectively.
+
+
+\subsection{GaAs}
+\label{method:materials:gaas}
+
+The GaAs specimen was a 300 \textmu m thick GaAs wafer, with a 1:1 ratio of Ga and As.
+Ga has Z=31 and As has Z=33, where both have L-peaks in the low energy range, and K-peaks in the mid/high energy range.
+See \cref{tab:theory:lineEnergies} for the theoretical line energies.
+
+\ton{What more to write? Should I add a theoretical spectrum from GaAs? Should the SE images be here?}
+
+
+\subsection{GaSb}
+\label{method:materials:gasb}
+
+The GaSb specimen was a 300 \textmu m thick GaSb wafer, with a 1:1 ratio of Ga and Sb.
+Ga has Z=31 and Sb has Z=51.
+Ga have L-peaks in the low energy range, and K-peaks in the mid/high energy range.
+Sb have L-peaks in the mid energy range, and K-peaks in the highest energy range for SEM.
+See \cref{tab:theory:lineEnergies} for the theoretical line energies.
+
+
+
+
+
+
+
+\section{Instruments}
+\label{method:instruments}
+
+The acquisition of the spectra was done with a Oxford Xmax$^N$ 80 mm$^2$ EDS detector, equipped on a SEM Apreo from FEI.
+The Apreo is a field emmission SEM, which in addition to the EDS sensor has a Everhart-Thornley detector, in-lens detectors for SE and BSE, a directional BSE detector, and a navigation camera.
+The maximum accelerating voltage is 30 kV, and the maximum beam current is 400 nA.
+During this work, the acceleration voltage has been in the range 5-30 kV, and the beam current has been in the range 25-400 pA.
+The acquisition settings used in this study are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
+The instrument is located at the NTNU NanoLab, a NorFab facility.
+\brynjar{Cite NorFab?}
+
+\brynjar{IT IS XMAX-N! FIX}
+The details about the EDS detector is from \cite{oxford_xmax_80} and the description provided by NanoLab.
+The Oxford Xmax$^N$ SDD has a 80 mm$^2$ active area, which gives a solid angle of 0.03409 sr at WD=10 mm.
+The detector is from before 2010, with a claimed count rate of > 500,000 cps and throughout > 200,000 cps \cite{oxford_xmax_80}.
+The specifications lists an energy resolution of 127 eV, with typical FWHM(Mn K$\alpha$) of 125 eV.
+The specified resolution is in compliance with the ISO 15632:2002 standard, the older verison of \cite{iso_qc_15632}.
+All elements from Be to Pu can be analyzed.
+The detector is mounted at 35\textdegree.
+The process time settings range from 1 to 6, and they have no further explanation of what the number indicates.
+The detector is operated with the AZtec software, provided by Oxford Instruments NanoAnalysis \cite{aztec_manual}.
+
+
+
+\section{Acquisition settings in the measurement series}
+\label{method:acquisition_settings}
+
+The settings selected are based on Goldstein \cite{goldstein_scanning_2018} and the parameters which was going to be analyzed.
+The acquisition is divided into two parts: acquisition with varying acceleration voltage and constant beam current, and other acquisition settings.
+The voltage series is used to study the effect of the acceleration voltage, to figure out if an optimal voltage exists.
+The other acquisition settings tested variations of different settings on the GaSb specimen, to see if any of these settings could improve the quality of the spectra.
+The varied settings were beam current, process time (PT), and data type.
+The acquisition settings are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
+An overview of all acquisition settings for each spectrum is given in \cref{tab:method:acquisition_settings:all_spectra}.
+Dead time (DT) and input count rate (ICR) is a function of the other settings.
+
+
+% constant variables
+Some variables were kept constant during allt the acquisition.
+The tilt of the specimen was kept at 0\textdegree.
+The live time for each spectrum was 120 s.
+The range of the spectra was 0-20 keV, with a scale of 10 eV/channel.
+
+
+\input{tables/table_method_settings.tex}
+
+
+\input{tables/table_method_all_spectra.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Data treatment}
+\label{method:data_treatment}
+
+The data treatment is divided into three parts: acquisition and extraction, performance parameters, and quantification.
+
+\subsection{Acquisition and extraction - AZtec}
+\label{method:data_treatment:aztec}
+
+Acquisition and extraction is done with AZtec, provided by Oxford Instruments NanoAnalysis \cite{aztec_manual}.
+Steps for acquisition is described in Appendix A of Lundeby \cite{lundeby_improving_2019}.
+Point measurements was done with "Point \& ID", and map measurements was done with "Map".
+The point spectra was extracted as ".emsa" files.
+The data from the map spectra was exported as ".emsa", ".raw", ".rpl", and ".txt" files, which was merged to one ".hdf5" file with the script from Lundeby in A.3 \cite{lundeby_improving_2019}.
+The merge script and the relevant Appendix from Lundeby is avaliable at the author of this thesis' GitHub \verb|\cref{} or link|.
+
+
+Initial qualitative analysis was done with the AZtec software, to get an overview of the spectra.
+Additionally, all spectra was analysed with the AZtec software, to get the quantification results and the theoretically calculated k-factors.
+
+
+
+\subsection{Performance parameters - Jupyter notebooks}
+\label{method:data_treatment:notebook}
+
+The Jupyter notebooks developed runs on Python 3.10, with the packages listed in \cref{tab:method:packages}.
+The notebooks are both attatched in the appendix of this thesis, and avaliable at the author of this thesis' GitHub \verb|\cref{} or link|.
+Two notebooks were made for the performance parameters of the SEM EDS system: one for analysis of a single spectrum with a ".csv" output, and one for statistics on a set of outputted ".csv" files.
+The following paragraphs describes the steps in the notebooks.
+
+\input{tables/table_method_packages.tex}
+
+
+\subsubsection{Performance parameter notebook}
+\label{method:data_treatment:notebook:performance}
+
+The performance parameter notebook does the following steps:
+
+\begin{enumerate}
+    \item Import the packages
+    \item Import the data with HyperSpy, and set the elements in the spectrum
+    \item Set the variables like the beam current, acceleration voltage, ICR, and PT for the output
+    \item Slice off the noise peak
+    \item Calculate the Duane-Hunt limit, and slice the spectrum to the limit
+    \item Make a model of the spectrum, with the background as a polynomial and the peaks as Gaussian functions
+    \item Fit the background, then fit the whole model
+    \item Calibrate the offset and scale
+    \item Calibrate the energy resolution
+    \item Calibrate the energy and width of the peaks
+    \item Calculate Fiori P/B, peak intensities, FWHMs, and peak deviations
+    \item Calculate the relavant peak ratios
+          % \item Calculate the relavant FWTM/FWHM 
+    \item Calculate the total count statistics
+    \item Make a DataFrame with the results and output it as a ".csv" file
+\end{enumerate}
+
+
+The statistics notebook loads the wanted ".csv" files into DataFrames, which are then used to calculate the statistics and look at differences in the metrics.
+Some of the data is plotted, some are shown in tables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Quantification - HyperSpy and Jupyter notebooks}
+\label{method:data_treatment:quantification}
+
+
+Intro \dots
+
+
+
