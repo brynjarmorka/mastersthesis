@@ -1,28 +1,218 @@
 \chapter{Results}
 \label{ch:results}
 
+% sections
+% 1 qualitative analysis (added by me)
+% 2 setup
+% 3 acquisition params
+% 4 data treatment
+
 
 
 % intro to results
+This chapter presents the results of the thesis.
+The results are divided into four parts: qualitative analysis, characterization of the setup, optimization of the acquisition parameters, and data treatment.
+SE images of the analyzed areas are included the \hyperref[appendix:SE_images]{Appendix B}.
 
 
 
-% \input{tables/results/table_model-lines.tex}
+% 1 qualitative analysis
+\section{Qualitative analysis}
+\label{results:qualitative_analysis}
 
-% \input{tables/results/table_energy-res-calibration-GaAs.tex}
+The qualitative analysis present general plots of the spectra, where the lines and the artifacts are identified.
+Selected spectra are plotted in \cref{fig:results:overviewGaSb_withArtifacts,fig:results:GaSb_voltages,fig:results:GaAs_voltages}.
+The y-axis have a logarithmic scale, and the x-axis have a linear scale.
+\cref{fig:results:overviewGaSb_withArtifacts} have annotated relevant information in the spectra.
 
 
-% \subsection{Energy resolution}
-% \label{results:resolution}
+% figures/results/spectrum_overview.pdf
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/results/spectrum_overviews.pdf}
+    \caption{
+        Overview of the GaSb spectra.
+        The blue line in panel (a) have lower resolution and more artifacts than the red line.
+        The red line is plotted in panel (b) over a shorter energy range.
+        Panel (c) show the red line on a even shorter energy range, with the GaAs spectrum in light blue for reference.
+    }
+    \label{fig:results:overviewGaSb_withArtifacts}
+\end{figure}
 
 
+% figures/results/GaSb_voltages.pdf
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/results/GaSb_voltages.pdf}
+    \caption{
+        The GaSb voltage series.
+        Equal beam current and process time are used for all spectra.
+    }
+    \label{fig:results:GaSb_voltages}
+\end{figure}
+
+
+% figures/results/GaAs_voltages.pdf
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/results/GaAs_voltages.pdf}
+    \caption{
+        The GaAs voltage series.
+        Equal beam current and process time are used for all spectra.
+    }
+    \label{fig:results:GaAs_voltages}
+\end{figure}
+
+
+
+\subsection*{Lines}
+\label{results:qualitative_analysis:lines}
+
+All the lines given in \cref{tab:theory:lineEnergies} for Ga, As, and Sb have been identified in the spectra.
+All spectra also had a peak at C K$\alpha$.
+The GaSb spectra included a O K$\alpha$ peak.
+As annotated in \cref{fig:results:overviewGaSb_withArtifacts}, the GaSb spectra also included two Sb M-peaks: $\eta$ and $\gamma$.
+These two M-peaks are not listed in the HyperSpy database, but were found through AZtec \cite{aztec_manual} and other literature \cite{liao2006practical}.
+
+
+
+
+% the missing M-lines in HS, which were identified with AZtec.
+
+
+\subsection*{Artifacts}
+\label{results:qualitative_analysis:artifacts}
+
+Artifacts are present in all spectra, in varying degrees.
+The artifacts identified are listed and described in \cref{tab:results:artifacts}.
+The artifacts present in the spectra are the background, the noise peak, the carbon and oxygen peak, the coincidence peaks, the internal fluorescence peak, and the Si escape peak from Sb La.
+
+% The background is present in all spectra, and with increasing background intensity with higher count rates.
+% The effect of a strong absorption edge which reduce the background intensity above its energy is most prominent in the GaAs spectra.
+% Here it is the absorption edge in the L-peaks which reduce the background intensity abruptly above the L-peaks.
+% Coincidence peaks are only present in some spectra, and are most prominent in the spectra with very high count rates.
+% The spectra with beam energy 5, 10, and 15 keV also show coincidence events above E$_0$, e.g. visible in panel (a) in \cref{fig:results:GaSb_voltages}.
+
+
+\input{tables/results/table_results_artifacts.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% 2 setup
+\section{Characterization of the setup}
+\label{results:setup}
+
+The parameters of the setup are: energy resolution, the energy scale and offset, peak ratios, and deviations in peak positions.
+
+
+
+\subsection*{Energy resolution of the detector}
+\label{results:setup:energy_resolution}
+
+The energy resolution, as the FWHM of the estimated or calculated Mn K$\alpha$ peak, is both a function of the detector and the acquisition parameters.
+The best energy resolution obtained was 124 eV for the GaSb spectra, and 127 eV for the GaAs spectra.
+The data show that the energy resolution is dependent on both the process time and input count rate, where the input count rate change with beam current and beam energy.
+As the acquisition parameters affect the energy resolution, the energy resolutions listed in \cref{tab:results:energy_resolutions} are given with the relevant acquisition parameters.
+All the values are given as the FWHM of the Mn K$\alpha$ peak, which is calculated with \cref{eq:estimateFWHM} through HyperSpy.
+Specifying a single energy resolution for the detector should be accompanied by the acquisition parameters used to obtain the energy resolution, and by the method used to estimate the energy resolution.
+Averaging the numbers have not been done as this neglects the effect of the acquisition parameters on the energy resolution.
+
+
+\input{tables/results/table_energy_res_GaSb_GaAs.tex}
+
+
+\subsection*{Energy scale and offset}
+\label{results:setup:scale_offset}
+
+The energy scale and offset are the parameters which are used to calibrate the spectra.
+Both metrics are quite consistent between the spectra, and the energy scale match with the setting used in the acquisition (10 eV per channel).
+The averaged values and the standard deviations are listed in \cref{tab:results:scale_offset}.
+The scale of the detector is 10 eV per channel, and the offset is -0.205 keV.
+The standard deviation of the scale is very low, while the standard deviation of the offset is closer to the average value.
+The offset given by the instrument in the ".emsa" files is -0.2 keV, which is a deviation of half a channel.
+However, as the calibrated offsets show in the table, there are slight deviations between the spectra as the standard deviation is 0.04 keV.
+
+\input{tables/results/table_scale_offset.tex}
+
+
+
+\subsection*{Peak ratios}
+\label{results:setup:peak_ratios}
+
+The results from the peak ratios are listed in \cref{tab:results:peak_ratios}.
+The peak ratios are useful to alert carbon contamination over time, and to identify and quantify stray radiation with certain sample geometry.
+As the results are neither a series over time or taken with the required sample geometry, the results in the table are a demonstration of the metric without any further interpretation.
+
+
+\brynjar{TODO: Make the peak ratios table.}
+
+
+\brynjar{Eventually, take a new set of data to look at carbon contamination over time. Then make the table.}
+
+
+
+\subsection*{Deviations in peak positions}
+\label{results:setup:peak_positions}
+
+The deviations in peak positions for the main lines are listed in \cref{tab:results:peak_positions}.
+
+
+
+\brynjar{Make table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% 3
 \section{Optimization of the acquisition parameters}
 \label{results:acquisition_parameters}
+
+The performance metrics of the acquisition are: the Duane-Hunt limit, the Fiori peak-to-background ratio, and portion of counts in peaks vs background.
+Additionally, results from selected user parameters are presented, such as the process time, beam energy, and beam current.
+The energy resolution is affected by both the detector and the acquisition setup, and the relevant results are presented in \cref{results:setup:energy_resolution}.
+
 
 
 \subsection{Process time}
 \label{results:process_time}
-
 
 One of the parameters which was tested was the process time.
 The process time is a trade-off between the energy resolution and the throughput.
@@ -49,3 +239,38 @@ Data was acquired with process time 2 and 4 too (not shown), which is included i
     }
     \label{fig:results:energy_resolutions_process_time}
 \end{figure}
+
+
+The effect of the process time on the FWHM of the lines is shown in \cref{tab:results:PTvsFWHMs}.
+The table shows the measured FWHM of Ga L$\alpha$, Sb L$\alpha$, and Ga K$\alpha$ for different process times.
+The measurement is done on the Gaussian fit of the peaks.
+Additionally, the FWHM of the Mn K$\alpha$ is estimated for each process time.
+The table shows the variations on the GaSb specimen with process time (PT) 1, 2, 4, and 6.
+The last row shows the FWHM in the GaAs specimen at PT 6 for reference.
+All spectra in the table were acquired at 30 kV.
+The "*" indicate I$_\textnormal{beam}$ = 400 pA, all other values for I$_\textnormal{beam}$ is 50 pA.
+
+
+\input{tables/results/table_PTvsFWHMs.tex}
+
+
+
+
+
+
+% 4
+\section{Data treatment}
+\label{results:data_treatment}
+
+
+\brynjar{Coming soon.}
+
+
+
+
+
+% Old
+% \input{tables/results/table_model-lines.tex}
+% \input{tables/results/table_energy-res-calibration-GaAs.tex}
+% \subsection{Energy resolution}
+% \label{results:resolution}
