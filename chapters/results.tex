@@ -23,13 +23,15 @@ SE images of the analyzed areas are included the \hyperref[appendix:SE_images]{A
 The qualitative analysis present general plots of the spectra, where the lines and the artifacts are identified.
 Selected spectra are plotted in \cref{fig:results:overviewGaSb_withArtifacts,fig:results:GaSb_voltages,fig:results:GaAs_voltages}.
 The y-axis have a logarithmic scale, and the x-axis have a linear scale.
+The y-axis is the intensity of the signal, i.e. the number of counts in each channel.
+The x-axis is the energy of the signal.
 \cref{fig:results:overviewGaSb_withArtifacts} have annotated relevant information in the spectra.
 
 
 % figures/results/spectrum_overview.pdf
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/results/spectrum_overviews.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/results/spectrum_overviews.pdf}
     \caption{
         Overview of the GaSb spectra.
         The blue line in panel (a) have lower resolution and more artifacts than the red line.
@@ -43,7 +45,7 @@ The y-axis have a logarithmic scale, and the x-axis have a linear scale.
 % figures/results/GaSb_voltages.pdf
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/results/GaSb_voltages.pdf}
+    \includegraphics[width=0.90\linewidth]{figures/results/GaSb_voltages.pdf}
     \caption{
         The GaSb voltage series.
         Equal beam current and process time are used for all spectra.
@@ -55,7 +57,7 @@ The y-axis have a logarithmic scale, and the x-axis have a linear scale.
 % figures/results/GaAs_voltages.pdf
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/results/GaAs_voltages.pdf}
+    \includegraphics[width=0.90\linewidth]{figures/results/GaAs_voltages.pdf}
     \caption{
         The GaAs voltage series.
         Equal beam current and process time are used for all spectra.
@@ -85,7 +87,7 @@ These two M-peaks are not listed in the HyperSpy database, but were found throug
 
 Artifacts are present in all spectra, in varying degrees.
 The artifacts identified are listed and described in \cref{tab:results:artifacts}.
-The artifacts present in the spectra are the background, the noise peak, the carbon and oxygen peak, the coincidence peaks, the internal fluorescence peak, and the Si escape peak from Sb La.
+The artifacts present in the spectra are the background, the noise peak, the carbon and oxygen stray peak, coincidence peaks, the internal Si fluorescence peak, and the Si escape peak from Sb La.
 
 % The background is present in all spectra, and with increasing background intensity with higher count rates.
 % The effect of a strong absorption edge which reduce the background intensity above its energy is most prominent in the GaAs spectra.
@@ -150,10 +152,11 @@ Averaging the numbers have not been done as this neglects the effect of the acqu
 The energy scale and offset are the parameters which are used to calibrate the spectra.
 Both metrics are quite consistent between the spectra, and the energy scale match with the setting used in the acquisition (10 eV per channel).
 The averaged values and the standard deviations are listed in \cref{tab:results:scale_offset}.
-The scale of the detector is 10 eV per channel, and the offset is -0.205 keV.
-The standard deviation of the scale is very low, while the standard deviation of the offset is closer to the average value.
-The offset given by the instrument in the ".emsa" files is -0.2 keV, which is a deviation of half a channel.
-However, as the calibrated offsets show in the table, there are slight deviations between the spectra as the standard deviation is 0.04 keV.
+The calculated scale of the detector is equal to the instrument setting at 10 eV per channel, with very low standard deviation between the spectra at 0.04 eV/channel.
+The zero offset was calculated to be -0.205 keV, which is a deviation of half a channel from the instrument setting of -0.2 keV.
+The standard deviation of the offset is 0.004 keV.
+
+% TODO: Comment that the std of the offset is one order of magnitude closer to the avg compared to the std vs avg of the scale.
 
 \input{tables/results/table_scale_offset.tex}
 
@@ -165,9 +168,11 @@ However, as the calibrated offsets show in the table, there are slight deviation
 The results from the peak ratios are listed in \cref{tab:results:peak_ratios}.
 The peak ratios are useful to alert carbon contamination over time, and to identify and quantify stray radiation with certain sample geometry.
 As the results are neither a series over time or taken with the required sample geometry, the results in the table are a demonstration of the metric without any further interpretation.
+Peak ratios are also used for quantification, but needs bulk corrections. 
+The table show that some of the peak ratios vary greatly with the acquisition parameters, e.g. the ratio between Ga L$\alpha$ and Sb L$\alpha$. 
 
 
-\brynjar{TODO: Make the peak ratios table.}
+\input{tables/results/table_peak_ratios.tex}
 
 
 \brynjar{Eventually, take a new set of data to look at carbon contamination over time. Then make the table.}
