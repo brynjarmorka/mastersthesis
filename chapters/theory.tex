@@ -21,11 +21,12 @@
 
 % intro to the section
 % partly from project
-Energy dispersive X-ray spectroscopy (EDS) is a technique for analyzing the elemental composition of a sample with a spatial resolution, widely used in SEM and TEM.
+Energy dispersive X-ray spectroscopy (EDS) is a technique for analyzing the elemental composition of a sample with a spatial resolution, widely used in scanning electron microscopy (SEM) and transmission electron microscopy (TEM) \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
 The technique is based on excitation of core shell electrons, which are bound to the atom with different strengths in different elements, and an electron relaxation which results in an emitted photon with very specific energy.
 EDS can be used to determine both the qualitative and quantitative composition of a sample.
 This theory chapter will cover the generation of X-rays, the SEM system, the EDS detector, data processing of spectra, and performance metrics for EDS.
 \brynjar{Sentence about quantification, ZAF and PhiRhoZ will be added.}
+It should be noted that a similar chapter was included in the author's previous TFY4520 project report \cite{project_report}, but the chapter has been updated and expanded in this master's thesis.
 
 
 
@@ -37,8 +38,8 @@ This theory chapter will cover the generation of X-rays, the SEM system, the EDS
 To improve the performance of EDS, it is crucial to have a solid understanding of the generation of characteristic X-rays, which forms the basis for the EDS detector and data processing of spectra.
 The quantum mechanical process of X-ray formation is well understood, and the details can be found in Goldstein \cite[Ch. 4.2]{goldstein_scanning_2018}, Jenkins \cite{jenkins_xrayspectroscopy}, and Hollas \cite[Ch. 8.2]{hollas_modern_2004}.
 This section will provide an overview of the fundamental elements in the process, drawing from these sources unless otherwise noted.
-It should be noted that a similar section was included in the author's previous TFY4520 project report \cite{project_report}, but the section has been updated and expanded for this master's thesis.
 This section covers the formation of characteristic X-rays, their naming convention, energy and intensity, and background X-rays.
+The central elements of the section is summarized in \cref{tab:xray_generation}.
 
 
 
@@ -46,11 +47,11 @@ This section covers the formation of characteristic X-rays, their naming convent
 \subsection{Characteristic X-rays}
 \label{theory:xray_formation:characteristic}
 
-The formation of characteristic X-rays from an incident electron beam is an inelastic quantum mechanical scattering process.
+The formation of characteristic X-rays from an incident electron beam, or a high (>0.5 kV) energy photon, is an inelastic quantum mechanical scattering process.
 The formation can be viewed as a two-step process, where the first step is the ionization of an inner shell in the atom, and the second step is the relaxation of an electron from a higher orbital to the hole left by the ejected electron.
 The energy difference in the relaxation is the energy of the characteristic X-ray.
-\cref{fig:characteristic_xray_formation} shows the formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
-The figure show three possible relaxations, which produce three characteristic X-rays with different energies.
+\cref{fig:characteristic_xray_formation} shows in a chematic way the formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
+The figure show three possible radiative relaxations, which produce three characteristic X-rays with different energies.
 
 
 %figures/characteristic_xray_formation.png
@@ -61,6 +62,8 @@ The figure show three possible relaxations, which produce three characteristic X
         The formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
         The three relaxations shown produce three characteristic X-rays with different energies.
         Increased energy is illustrated as X-rays with shorter wavelengths.
+        % TODO: kommentar fra Ton: Maybe have rings not evenly spaced and use (a) and (b) for panels.
+        % jeg tenker nej til kommentaren.
     }
     \label{fig:characteristic_xray_formation}
 \end{figure}
@@ -128,7 +131,7 @@ This implies that using a higher energy for ionization is not necessarily better
 
 When the outer shell electron is relaxed, a new hole is generated in the outer shell.
 This leads to a cascade of relaxation events, but the energies of these transitions are too low to emit characteristic X-rays.
-Thus, they will not be discussed further.
+These and other non-radiative relaxations will not be discussed further.
 
 
 % mention Auger electrons, because of the fluorescence (quantum) yield
@@ -136,7 +139,7 @@ Thus, they will not be discussed further.
 In the second step of the X-ray formation process described in \cref{eq:theory:xray_formation:characteristic:step2}, there is also a probability that the energy from the relaxation is not used to emit a photon, but used to eject another electron from a higher energy orbital, giving it kinetic energy.
 This results in the ejection of two electrons, one from the core orbital and another from the higher energy orbital, known as an Auger electron.
 Auger electrons are useful for surface studies since they can penetrate approximately 2 nm of solid material, thereby not escaping from inside the sample.
-The emitted X-rays, on the other hand, are emitted in all directions and can typically penetrate up to 4000 nm. %, making them the signal in EDS. 
+The emitted X-rays, on the other hand, are isotropically emitted from a large volume and can penetrate up to 4000 nm, as the absorption of X-ray photon is far less likely than that of a charged electron. %, making them the signal in EDS. 
 The ratio of characteristic X-ray photons to Auger electrons is known as the \textbf{fluorescence (quantum) yield}, $\omega$.
 
 % fluorescence yield, definition
@@ -145,7 +148,7 @@ The ratio of characteristic X-ray photons to Auger electrons is known as the \te
     \omega = \frac{\textnormal{X-ray photons}}{\textnormal{Auger electrons}}
 \end{equation}
 
-The fluorescence yield is heavily dependent on the ionized atom, with in general higher yields for heavier atoms.
+The fluorescence yield is heavily dependent on the ionized atom, with in general higher fluorescence yields for heavier atoms.
 $\omega$ is also dependent on the shell that is ionized, with the typical trend being $\omega_K$ > $\omega_L$ > > $\omega_M$ \cite[p. 267]{goldstein_scanning_2018}.
 The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yield}, a figure adapted from Goldstein \cite[Fig. 4.3 (d)]{goldstein_scanning_2018}.
 
@@ -172,12 +175,17 @@ The dependence on Z and the shell is shown in \cref{fig:theory:fluorescence_yiel
 
 % add motivation for why this is included.
 
-The next two paragraphs explaining the naming convention is not essential for the understanding of the thesis, but is included for completeness and was made out of curiosity.
-% The reader can skip this section knowing that it is the Siegbahn notation which is used in this thesis.
-The author was curious about the origin of the naming convention, as it is a system that follows some logical rules, while also being somewhat cryptic.
-Looking at possible orbital transitions in a schematic figure like \cref{fig:theory:xray_formation:lines}, the first letter makes sense, but the Greek letter and the number seems to be less systematic.
+% The next two paragraphs explaining the naming convention is not essential for the understanding of the thesis, but is included for completeness and was made out of curiosity.
+% % The reader can skip this section knowing that it is the Siegbahn notation which is used in this thesis.
+% The author was curious about the origin of the naming convention, as it is a system that follows some logical rules, while also being somewhat cryptic.
+% Looking at possible orbital transitions in a schematic figure like \cref{fig:theory:xray_formation:lines}, the first letter makes sense, but the Greek letter and the number seems to be less systematic.
+
+This subsection explains the Siegbahn naming convention for characteristic X-rays, which is used in this thesis.
+The Siegbahn notation is based on the Bohr model of the atom and intensities of the X-ray lines in a spectrum.
+As the Bohr model is a simplification of the actual atom, the Siegbahn notation is somewhat confusing when looking at the actual orbital transitions, as they are illustrated in \cref{fig:theory:xray_formation:lines}.
 It should be noted that The International Union of Pure and Applied Chemistry (IUPAC) made a new and systematic naming convention for X-ray lines \cite{IUPAC_nomenclature1991}.
 However, the Siegbahn notation is still the most used convention \cite[Ch. 4.2.4]{goldstein_scanning_2018}, for example used in HyperSpy, and is therefore used in this thesis.
+Additionally, the IUPAC notation is not connected to the intensity of the X-ray lines, which is a useful property when discussing the X-ray lines in a spectrum.
 A table showing the correspondence between the two naming conventions is shown in \cref{tab:theory:naming_convention}.
 The IUPAC naming convention notes both the orbital in the inner and outer shell, thus \cref{tab:theory:naming_convention} shows what the possible observable transitions in EDS between 0.1 and 25 keV are.
 \cref{fig:theory:xray_formation:Sb_L-peaks} shows the actual L-lines from Sb in an EDS spectrum.
@@ -208,11 +216,11 @@ The IUPAC naming convention notes both the orbital in the inner and outer shell,
 % figure with actual L-peaks in Sb
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/Sb_L-peaks_30kV_50pA.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/Sb_L-peaks_30kV_50pA.pdf}
     \caption{
-        The Sb L-peaks in a GaSb wafer.
+        Example spectrum of the Sb L-peaks in a GaSb wafer.
         Taken at 30 kV, 50 pA, process time 6, live time 120 s, ICR at 17000 cps, and 43\% DT.
-        Data from the Oxford X-max 80 mm$^2$ at the SEM Apreo at NTNU NanoLab.
+        For further experimental details, see \cref{ch:method}.
     }
     \label{fig:theory:xray_formation:Sb_L-peaks}
 \end{figure}
@@ -225,16 +233,19 @@ The IUPAC naming convention notes both the orbital in the inner and outer shell,
 The transition lines are grouped and named based on the orbital the vacancy is in, and the orbital the electron is relaxed from.
 The naming convention is semi-systematic because it is the original empirical system published in Nature by the Swedish physicist Kai Siegbahn in 1916 \cite{siegbahn_relations_1916}, without the modern theoretical knowledge on orbitals.
 % K, L, M
-The X-rays are first named by which shell in the Bohr model the vacancy is in, i.e. the principal quantum number $n$ of the vacancy orbital.
+The X-rays lines categorized in families which are named by the shell in the Bohr model where the vacancy is, i.e. the principal quantum number $n$ of the vacancy orbital.
 Relaxations to the innermost shell $n=1$ is named K-transitions, relaxations to $n=2$ is L-transitions, relaxations to $n=3$ is M-transitions.
+% LOL, Github Copilot foreslo setningen under utfra "K, "
+% K, L, and M are the first letters in the German words for the shells, Korbital, Lorbital, and Morbital.
 % alpha, beta, gamma
-The X-ray lines are further grouped in families with Greek letters or other symbols, where the order is related to their relative intensity: $\alpha > \beta > \gamma > \nu > \zeta$.
+The lines in the families are further grouped with Greek letters or other symbols, where the order is related to their relative intensity: $\alpha > \beta > \gamma > \nu > \zeta$.
 Additionally, the minor L-shell transitions in split into families notated with Latin letter subscripts: l, s, t, u, and v \cite[Ch. 4.2.4]{goldstein_scanning_2018}.
 % subscripts
 Lines which are closely related are given a subscript number, where 1 is the most intense line.
 As the energy resolution of EDS is limited, a single peak in a spectrum can consist of multiple transitions which are closely related, e.g. K$\alpha_1$ and K$\alpha_2$ making the K$\alpha$ line.
 Resolving K$\alpha_1$ and K$\alpha_2$ in EDS is usually first possible for elements heavier than tin with $ Z = 50$ \cite[Ch. 8.2.2.3]{hollas_modern_2004}. %, where the $\Delta E = 227.3$ eV.
 Heavier element have both more possible lines and more resolved lines, as the orbitals have higher energy differences.
+\brynjar{Legge til kommentar om intensity, som er inkludert i Siegbahn med ikke i international. Som gir Siegbahn en praktisk fordel.}
 % dropping the stuff about spin-orbit coulpling
 
 
@@ -267,7 +278,10 @@ The natural width of Mn K$\alpha$ is around 1.5 eV, while the measured width in 
 This peak broadening is due to counting statistics and instrument electronics, which is discussed in \cref{theory:eds:hardware}.
 The broadness of the peaks in EDS increase with energy, and the peak broadening effect is the most limiting factor for the energy resolution of EDS.
 The change from lines to broadened peaks is illustrated in \cref{fig:eds_theoretical2realSpectrum}.
-Techniques have been developed to identify and separate peaks which overlap in energy, like peak deconvolution and peak fitting.
+Data tools have been developed for EDS to identify and separate peaks which overlap in energy, like peak deconvolution and peak fitting.
+% From Ton, rewrite: To achieve higher energy resolution, the wavelength rather than energy can be analyzed. This so called wave length dispersive (WDS) has energy resolution of ca. 10 eV [Goldstein, Williams and Carter], but is less practical easy than EDS and will not be discussed further here.
+Higher resolution can be achieved by analyzing the wavelength rather than the energy of the X-rays.
+This is called wavelength dispersive X-ray spectroscopy (WDS), and has an energy resolution of ca. 10 eV \cite{goldstein_scanning_2018}, but is less practical than EDS and will not be discussed further here.
 
 
 % where to find the energy
@@ -277,8 +291,9 @@ One source is the X-ray Data Booklet \cite{thompson_x-ray_2004}, another is one 
 The Python package HyperSpy includes an elemental database with the energy of characteristic X-rays \cite{hyperspy_1.7.1}, which is based on NIST database 66, "X-Ray Form Factor, Attenuation, and Scattering Tables" \cite{nist_xraydatabase_hyperspy}.
 The different sources are focused on certain areas, like how the NIST database 128 includes experimental data, while the HyperSpy database is less comprehensive but faster to use.
 An analyst should be aware of the limitations of the used source, like how the HyperSpy database does not include the M-lines for Sb.
-Trusting a source blindly can lead to mislabeling in the qualitative analysis, which is discussed in \brynjar{Ref to discussion on this}.
-The reason for the missing M-lines in the HyperSpy database is probably the low intensity of the M-lines, which is discussed in the next section.
+% Trusting a source blindly can lead 
+The limited energy resolution of EDS combined with overlapping peaks can lead to mislabeling in the qualitative analysis, which is discussed in \brynjar{Ref to discussion on this}.
+The reason for the missing M-lines in the HyperSpy database is probably a down prioritization due to the low intensity of these M-lines, which is discussed in the next section.
 
 
 
@@ -341,6 +356,16 @@ It is stated in Goldstein that $n$ is typically between 1.5 and 2.0, and the equ
 Additionally, the intensity of detected X-rays is not the same as the intensity of the X-rays which are generated.
 The probability of absorption is a function of density and increase with the travel distance.
 Photons with lower energy are absorbed more easily than photons with higher energy, i.e. the escape depth of the X-rays increase in general with energy.
+Expressed in terms of the absorption coefficient $\mu$ and the path length $l$, the intensity is reduced by:
+
+\begin{equation}
+    \label{eq:theory:xray_formation:escape}
+    I_{\textnormal{escaped}} = I_{\textnormal{generated}} \exp(-\mu l)
+\end{equation}
+
+where $\mu$ is dependent on the material (Z) and the energy of the X-rays.
+When a thin specimen (<30 nm) is analyzed \cite{watanabe_williams_zeta_2006}, the absorption effect can be ignored, the so-called thin film approximation used in Cliff-Lorimer quantification, see \cref{theory:quantitative_analysis}.
+When thicker samples are analyzed, the absorption and fluorescence effect must be taken into account for the quantitative analysis \cite{goldstein_scanning_2018}.
 Escape probability and depth is also dependent on the absorption edges present.
 When an X-ray photon is absorbed within the specimen, it can ionize an atom and generate a new X-ray with a lower energy, which is the previously mentioned fluorescence effect.
 When thin samples are analyzed, the fluorescence effect can be ignored, but when thicker samples are analyzed, the fluorescence effect can be significant.
@@ -365,7 +390,8 @@ Compensation for the fluorescence effect is discussed in \brynjar{Cref ZAF / PRZ
 % The background X-rays are white noise, giving no information about the sample, and is generated in the whole interaction volume.
 
 % intro
-In addition to the characteristic X-rays generated, the electron beam also generates background X-rays.
+The detectected spectrum contains more than peaks from characteristic X-ray lines as discussed so far.
+In addition to the characteristic X-rays generated, the electron beam generates background X-rays.
 The background radiation is also called the bremsstrahlung, breaking radiation, and the continuum radiation.
 These X-rays are formed by the deacceleration of the incident beam electrons in the Coulomb fields of the atoms in the specimen, where the electron loose kinetic energy.
 This effect includes both velocity and directional changes, and the changes in the incident electrons paths are visualized in a Monte Carlo simulation in \cref{fig:montecarlo_BSE}.
@@ -382,7 +408,7 @@ Modelling of the background is discussed in \brynjar{Ref to right section}.
 % the energy, 1/E
 The energy lost by an electron in a single scattering event can be any value from almost zero to the incident electron energy, E$_0$.
 In other words, the background X-rays can have any energy from around 100 eV to the incident electron energy \cite[Ch. 4.3]{goldstein_scanning_2018}.
-The probability of a background X-ray with energy E can be described by the Kramer's cross-section:
+The probability of a background X-ray with energy E can be described by the Kramer's cross-section and empirically estimated as:
 
 % N(E) = (K Z (E_0-E))/E
 \begin{equation}
@@ -397,13 +423,12 @@ The difference between the generated and detected background X-rays is visualize
 The detected background X-rays have a peak in the low keV region, depending on the specimen and acceleration voltage.
 The peak is typically around 2 keV.
 When the energy approach zero, the detected background decrease rapidly.
-In addition, the absorption edges of the materials in the specimen influence the intensity of the background radiation.
+In addition, the absorption edges of the materials in the specimen influence the intensity of the background radiation, as described in \cref{theory:xray_formation:characteristic}.
 As the specimen absorbs more above an absorption edge, the intensity of the background can be observed to decrease abrupt just above a strong absorption edge \cite[p. 59]{goldstein_scanning_2018}.
 This effect was observed in the authors project thesis, with a suggestion of splitting the background modelling into two parts, one for the low energy background and one for the high energy background \cite{project_report}.
 The effect of the absorption edge was observed to variate, being strongest for the highest peak in the lower keV region.
 An example of the effect of the absorption edge is shown in \cref{fig:background_absorptionEdgeSi}.
-This has not been a focus in this thesis, but could be a potential improvement of the model fitting, and thus making the qualitative analysis more accurate, especially for low keV analysis.
-\ton{Ok to mention?}
+This correction could be a potential improvement of the model fitting \cite{hyperspy_1.7.1,nilsen_factorless_2021}, and thus making the qualitative analysis more accurate, especially for low keV analysis.
 
 
 % figures/background_generated_detected.pdf
@@ -424,10 +449,10 @@ This has not been a focus in this thesis, but could be a potential improvement o
     \caption{
         The effect of the absorption edge on the background radiation.
         The spectrum in blue is from a Si wafer and the red dashed line is the Si K absorption edge at 1839 eV \cite{absorptionEdges_1967,hyperspy_1.7.1}.
-        The spectrum shows the overlapping Si K$\alpha$ and K$\beta$ peaks, the Si sum peak and a small O K$\alpha$ peak.
+        The background is abruptly reduced just above the absorption edge.
+        The spectrum shows the overlapping Si K$\alpha$ and K$\beta$ peaks, the Si sum peak and a small O K$\alpha$ signal.
         Sum peaks are discussed in \cref{theory:eds:artifacts}.
-        Notice how the background is abruptly reduced just above the absorption edge.
-        \brynjar{NTNU NanoLab stuff \dots}
+        The data is from \cite{project_report}.
     }
     \label{fig:background_absorptionEdgeSi}
 \end{figure}
@@ -436,25 +461,29 @@ This has not been a focus in this thesis, but could be a potential improvement o
 
 
 % SEM vs TEM on background
-The formation of background radiation is anisotropic, with more signal in the direction that the electrons are travelling.
+The formation of background radiation is anisotropic, with higher intensity for the forward scattered signal.
 In thin samples, where the electron beam trajectories are almost aligned, this anisotropy can cause a variation in the continuum intensity along the beam, with the forward direction differing from the backward direction.
 However, in thick samples, elastic scattering randomizes the beam electron trajectory segments, effectively eliminating this anisotropy and resulting in an isotropic X-ray continuum.
 This is visualized in the schematic of the interaction volume in \cref{fig:interaction_volume}, and the previous mentioned Monte Carlo simulation in \cref{fig:montecarlo_BSE}.
-\ton{Do you want this paragraph about SEM vs TEM included?}
+% \ton{Do you want this paragraph about SEM vs TEM included?}
+% answer: Keep here, works fine. Had to read twice as in TEM is reason to place EDX detector above [Williams and Carter], but is correct. The figures are bit far ahead, but keep for now.
 
 
 
-\subsection{From theory to a real spectrum}
+\subsection{From theory to an observed spectrum}
 \label{theory:eds:fromtheorytoreal}
 
-This last part of the section combines the different parts of the theory to the real spectrum.
-\cref{fig:eds_theoretical2realSpectrum} shows a schematic of the steps from a theoretical spectrum to a real spectrum of GaAs.
+This last part of the section combines the different parts of the theory to the observed spectrum.
+\cref{fig:eds_theoretical2realSpectrum} shows a schematic of the steps from a theoretical spectrum to a observed spectrum of GaAs.
 Panel (a) shows a theoretical spectrum with only the characteristic lines.
-Panel (b) shows the lines broadened to Gaussian peaks on a background, where the background is modelled as a polynomial function of the energy.
+Panel (b) shows the lines broadened to Gaussian peaks due to the limited energy resolution (see \cref{theory:xray_formation:energy}) on a background, where the detected background is modelled as a polynomial function of the energy.
+The generated background is described by Kramer's cross-section in \cref{eq:theory:xray_formation:background}, while a modelled background is typically just the best fitting sixth order polynomial when the peaks are removed \cite{hyperspy_1.7.1}.
 Notice how the peaks broaden more with higher energy.
-Panel (c) shows a real spectrum, where the unevenness of the recorded countings is visible.
-The real spectrum is recorded in a SEM with an EDS detector, which is discussed in \cref{theory:sem} and \cref{theory:eds} respectively.
-The real spectrum also shows some additional artifacts, like a noise peak and a small Si K$\alpha$ peak at 1.74 keV, which is the internal fluorescence peak.
+Peak broadening with energy is discussed more in \cref{theory:eds_performance:energyres} and described with \cref{eq:estimateFWHM}.
+Panel (c) shows a observed spectrum, where the unevenness of the recorded countings is visible.
+The observed spectrum is recorded in a SEM with an EDS detector.
+The experimental setup is discussed in \cref{theory:sem} and \cref{theory:eds}.
+The observed spectrum also shows peaks which are artifacts, like a noise peak and a small Si K$\alpha$ peak at 1.74 keV, which is the internal fluorescence peak.
 The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
 
 
@@ -463,11 +492,12 @@ The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
     \centering
     \includegraphics[width=0.99\linewidth]{figures/eds_theoretical2realSpectrum.pdf}
     \caption{
-        From theory to a real spectrum.
-        (a) a theoretical spectrum with only the characteristic lines, (b) lines broadened to peaks on a background, and (c) a real spectrum.
+        From theory to a observed spectrum.
+        (a) a theoretical spectrum with only the characteristic lines, (b) lines broadened to peaks on a background, and (c) a observed spectrum.
         The spectrum is of GaAs, and the peak names are annotated in (a).
         The background in (b) is modelled as a polynomial function of the energy.
         (c) show the noise peak and a small internal fluorescence peak at 1.74 keV (Si K$\alpha$).
+        \brynjar{TODO: mark artifacts by arrow}
     }
     \label{fig:eds_theoretical2realSpectrum}
 
@@ -504,23 +534,27 @@ The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
 
 \clearpage
 
-\section{SEM}
+\section{Scanning electron microscopy (SEM)}
 \label{theory:sem}
 
 % intro
-This study involves the use of a nanometer-scale electron beam to generate an X-ray spectrum for analyzing the composition of small volumes, more specifically a SEM equipped with an EDS detector.
-Both SEMs and TEMs are often equipped with an EDS detector to provide analytical capabilities that complement imaging and diffraction analyzes.
-This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection in SEM and image contrast, and a brief overview of TEM.
+This study involves the use of a controllable nanometer-scale electron beam to generate an X-ray spectrum for analyzing the composition of small volumes, primarily a SEM equipped with an EDS detector.
+In SEM the electron beam has energies in the range 1-30 kV and bulk specimens are usually analyzed.
+In Tem the electron beam has energies in the range 100-300 kV and thin specimens (> 100 nm) are usually analyzed.
+The differences for EDS analysis will be addressed at the end.
+Electron microscopes are often equipped with an EDS detector to provide analytical capabilities that complement imaging and diffraction analyzes.
+This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection and image contrastin SEM.
 If not stated otherwise, this section on SEM is based on Goldstein \cite{goldstein_scanning_2018}.
-A schematic of a SEM is shown in \cref{fig:SEM_setup}.
-A summary of the section is provided in \cref{tab:sem}.
+
+A summary of terms in the section is provided in \cref{tab:sem}.
 
 
-\subsection{Electron beam generation and control - the SEM setup}
+\subsection{Electron beam generation and control}
 \label{theory:sem:setup}
 
 % Creating the electron beam
-The \textbf{electron gun} is the source of the electron beam, where electrons are emitted with high kinetic energy by a high voltage.
+A schematic of a SEM is shown in \cref{fig:SEM_setup}. The \textbf{electron gun} is the source of the electron beam, where electrons are emitted with high kinetic energy by a high voltage.
+Currently the field emission guns are standard because they produce a brilliant beam compared to thermoinonic filament, and thereby high signal and good spatial resolution with the possibility of sum nm spot size.
 The emittance of the electron gun is controlled by the user with the beam current and the accelerating voltage.
 The acceleration voltage, or the beam energy $E_0$, is typically in the range of 1-30 keV.
 The beam current is typically in the range of 0.01-10 nA.
@@ -581,12 +615,14 @@ Higher dwell times giving higher signal intensity which usually results in a cle
 
 
 
-\subsection{SEM signals and image formation}
+\subsection{Signals and image formation}
 \label{theory:sem:sem_signals}
 
 % The different signals
-The different signals illustrated in \cref{fig:interaction_volume} are generated by different interactions of the electron beam with the specimen.
+The interaction between the electron beam and the specimen results in a range of signals, illustrated in \cref{fig:interaction_volume}.
+% The different signals illustrated in \cref{fig:interaction_volume} are generated by different interactions of the electron beam with the specimen.
 The signals are briefly described in the following paragraphs, and they are: Auger electrons, secondary electrons, backscattered electrons, characteristic X-rays and background X-rays.
+The detected signals are determined by what type of detector is used.
 
 
 
@@ -595,15 +631,18 @@ When the electron beam hits the specimen, a range of interactions can happen. % 
 The different signals originate from different depths in the specimen, illustrated by the \textbf{interaction volume} in \cref{fig:interaction_volume}.
 The interaction volume has a droplet shape showing where the different signals are formed and emitted from.
 The depth of formation is dependent on the beam energy, as higher $E_0$ makes the electron beam penetrate deeper into the specimen.
-When a signal is formed inside the specimen, the signal can be absorbed or scattered within the specimen.
+When a signal is formed inside the specimen, the signal can be absorbed or scattered within the specimen before it is detected.
 The probability of the escape of a signal is dependent on the energy of the signal, the depth of generation, and the properties of the elements in the specimen.
 Higher energy signals penetrate longer, and can thus escape from deeper inside the specimen.
 Both the density of the specimen and the atomic number of the elements in the specimen affect the probability of escape.
 Additionally, the geometry of the specimen can affect the probability of escape.
-\cref{fig:interaction_volume} is annotated with very rough estimates for the depth of origin of the different signals based on \cite{goldstein_scanning_2018,hollas_modern_2004}.
-As the samples in TEMs are around 100 nm, the interaction volume in TEM samples is very small, resulting in less signals generated, as a larger portion of the beam passes through the sample without generating signals.
+\cref{fig:interaction_volume} is annotated with schematically estimates for the depth of origin of the different signals detected \cite{goldstein_scanning_2018,hollas_modern_2004}.
+Hence, the specimen geometry can be important.
+% As the samples in TEMs are around 100 nm, the interaction volume in TEM samples is very small, resulting in less signals generated, as a larger portion of the beam passes through the sample without generating signals.
+% Ton skriver om setningen over: Maybe more clear to delete this here, first describe SEM and later TEM (+ refering back)
 A more accurate escape depth and interaction volume can be achieved by using a Monte Carlo simulation, which is a computer simulation of the interaction of the beam with the sample \cite[Ch. 4.3.4]{goldstein_scanning_2018}.
-\cref{fig:montecarlo_BSE} shows an example of a Monte Carlo simulation in a bulk sample.
+\cref{fig:montecarlo_BSE} shows an example of Monte Carlo simulations in a bulk samples for different materials. 
+Note that SE yield and interaction volume depends on Z the beam energy.
 
 
 % figures/interaction_volume.png
@@ -622,7 +661,7 @@ A more accurate escape depth and interaction volume can be achieved by using a M
 
 % Auger electrons
 \textbf{Auger electrons} are emitted in the following way: an incident electron ionizes an inner shell electron of an atom, which makes an outer shell electron relax to the hole in the inner shell, and the energy difference is used to emit another electron, which is an Auger electron.
-Auger electrons have very low energy and are only emitted from the surface of the specimen \cite{hollas_modern_2004}.
+Auger electrons have very low specific energy and are only detectable from the surface of the specimen, having an escape depth around 2 nm \cite{hollas_modern_2004}.
 
 
 % Secondary electrons
@@ -638,6 +677,7 @@ If the beam is hitting the surface near an edge, the SE can escape at the edge, 
 The scattering process is interactions with the orbitals and the nuclei of the atoms, and since the BSE are the incident electrons, their kinetic energy is in the keV range.
 Monte Carlo simulations shown in Goldstein \cite[Fig. 2.16 b]{goldstein_scanning_2018} show that more than half of the backscattered electrons in carbon retain more than 50\% of the initial energy of the incident beam electrons.
 Atoms with higher atomic number have more protons and more electrons, giving them a higher probability of the scattering process, and thus making the BSE signal proportional to the atomic number, Z, of the atoms.
+Thereby BSE images can give a fast and rough qualitative overview of the composition distribution.
 As the BSE signal originates from deeper inside the sample, the topological information is limited.
 \cref{fig:montecarlo_BSE} show Monte Carlo simulations with a 20 keV beam energy on C, Si, Cu, and Au.
 The figure show that a higher Z gives more BSE, marked as red lines.
@@ -646,12 +686,15 @@ The blue lines are electrons which have had all their energy absorbed within the
 In addition to the three types of electron signals, the beam interaction can also create X-ray photons.
 
 
+\brynjar{Insert SE and BSE images of C-film on Cu-grid with Ga. Topology and Z-contrast.}
+
+
 % Characteristic X-rays and background X-rays
 Formation of \textbf{characteristic X-rays} are covered in detail in \cref{theory:xray_formation:characteristic}.
 In short, formation of characteristic follow the same principle as Auger electrons, but the energy difference between the outer and inner orbital is used to emit X-rays instead of electrons.
 Typical escape depths for X-ray signals are around 4000 nm \cite{hollas_modern_2004}, but the variations are large.
 The escape depth depends on the energy of the photon and the density of the sample.
-\brynjar{Mention Li escape depth in range of tens of nm? Keith Thompson: Is Energy Resolution Still an Important Specification in EDS?}
+% \brynjar{Mention Li escape depth in range of tens of nm? Keith Thompson: Is Energy Resolution Still an Important Specification in EDS?} % Ton: nei
 % The lower energy X-rays from Li (Z=3) have a shallow escape depth of only 
 % the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few tens of nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
 Lastly, the \textbf{background X-rays} are formed by the deacceleration of the incident beam electrons because of the Coulomb fields of the atoms in the specimen, and this deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
@@ -674,10 +717,12 @@ The background X-rays are white noise, giving no information about the sample, a
 
 % The absorption of signals generated
 The signals generated in the interaction volume can be \textbf{absorbed or scattered within the specimen}.
-Secondary electrons can for example be generated near the surface by BSE, and is then called SE$_2$.
+For example, secondary electrons can be generated near the surface by BSE, and are then called SE$_2$.
+The SE with topological contrast (from the targeted area) are called SE$_1$.
 The SE$_2$ signal carries the same information as the BSE signal, since the amount of SE$_2$ is proportional to the amount of BSE.
 An SE signal generated from a BSE hitting something in the chamber is called a SE$_3$ signal, and SE signal from pre-specimen sources like the final aperture is called SE$_4$.
-The final SE image is a combination of all the SE classes, but it is the SE signal from the sample which give the topological contrast.
+The final SE image can be a combination of all the SE classes. 
+The SE detector can be optimized, for example with  in-lens configuration, to only detect SE$_1$ and thereby give a better spatial resolution. 
 Other examples of signal absorption is the generated X-ray strays due to fluorescence, which is covered in \cref{theory:eds:artifacts}.
 
 
@@ -689,10 +734,11 @@ BSE imaging or combination of BSE and SE can be used to get initial compositiona
 EDS detectors are covered in detail in \cref{theory:eds}.
 The signal from all types of detectors can be viewed as a spectrum, where the intensity of the signal is proportional to the number of electrons or X-rays detected.
 A SE image is the 2D representation of a set of spectra, where each pixel is a 1D spectrum with the number of SE electrons detected as a function of energy.
-In a 2D image, the intensity of a pixel is proportional to the sum of the spectrum from that pixel.
+In a 2D image, the intensity of a pixel is proportional to the sum of the number of electrons detected on that probe position.
 \cref{fig:SEM_SE_spectrums} show what the spectrum from a single pixel in a SE image would look like.
 The same is true for BSE images, only with a higher energy range.
 Both SE and BSE detectors are counting the number of electrons detected, and the energy of the electrons is not used.
+An electron microscope can be fitted with an electron spectrometer to measure the energy of the electrons, but this is not common as it requires a more complex detector design than counting detectors.
 However, in EDS detectors the signal is recorded in each pixel as a digital histogram of the energy of the detected X-rays, making a spectrum map.
 This allows for the creation of a 2D map of the elemental composition of the sample, as specific elements can be given colors in the image.
 This is a very powerful tool for the analysis of samples, and is covered in detail in \cref{theory:eds}.
@@ -713,10 +759,10 @@ EDS spectra can also be recorded as a 1D spectrum from a point on the sample.
 \end{figure}
 
 
-\subsection{Briefly on TEM}
+\subsection{Note on transmission electron microscopy}
 \label{theory:sem:tem}
 
-There are many similarities between the above described SEM setup and the typically bigger TEM.
+There are many similarities between the above described SEM setup and TEM in scanning mode.
 In this work, the focus is on SEM EDS, which on multiple occasions is compared to TEM EDS.
 Thus, this section will briefly introduce the TEM setup based on Williams and Carter \cite{williams_carter_tem_2009}, with a focus on the relevant differences to SEM EDS.
 In TEM the electron optics is similar to SEM, and the use of EDS in TEM is usually done in scanning mode.
@@ -734,10 +780,19 @@ TEM image formation is not discussed further in this work.
 \input{tables/table_sem_setup.tex}
 
 
+\clearpage
 
 
+\brynjar{TODO}
 
 
+\brynjar{TODO: KOMMENTARER FRA TON ER RETTET FREM TIL HER}
+
+
+\brynjar{TODO}
+
+
+\clearpage 
 
 
 
@@ -761,7 +816,7 @@ TEM image formation is not discussed further in this work.
 \clearpage
 
 
-\section{The EDS system}
+\section{Energy dispersive X-ray spectroscopy (EDS)}
 \label{theory:eds}
 
 
@@ -1166,7 +1221,7 @@ Carbon contamination can be revealed by a low voltage SEM image, where the carbo
 \clearpage
 
 
-\subsection{Artifacts - additional information in the spectrum}
+\subsection{Spectral artifacts}
 \label{theory:eds:artifacts}
 
 
@@ -1328,6 +1383,7 @@ This illustrates one of the challenges with digital solutions implemented by the
 \section{EDS performance parameters}
 \label{theory:eds_performance}
 
+% TON: wants this to be "EDS characteristic parameters" or something like that
 
 
 % For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are set-up, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
@@ -1357,8 +1413,10 @@ Before the test characteristics are described, an overview is given and a summar
 % The complete test routine has several characteristics. Here only the most essential to this work are discussed, and an overview is found in Tab. 2.3.
 
 
-\subsection{Overview of the performance parameters}
+\subsection{Overview}
 \label{theory:eds_performance:overview}
+
+\brynjar{Rethink order. Ton: "For me the logic order would be, Overview, Scale and offset, energy resolution, deviations positions, Fiori, DH as this order you will do it, importance and reading plot left to right."}
 
 % 35
 %   Duane-Hunt limit 
@@ -2140,11 +2198,14 @@ overlap situation."
 
 
 
-\section{Quantitativt analysis in EDS}
+\section{Quantitative EDS analysis}
 \label{theory:quantitative_analysis}
 
 
 \brynjar{Finish this section later.}
+
+\subsection{Principle}
+
 
 
 % the intensity of different elements
@@ -2184,3 +2245,14 @@ Consequently, one would expect the most improvement using
 a phi-rho-z method in light element analysis. However, in the
 absence of light elements, it is unlikely that the accuracy of
 most EDS analyses is limited by the matrix correction."
+
+
+\subsection{Phi-rho-z correction}
+
+
+
+\subsection{Alternative quantification}
+
+
+
+
