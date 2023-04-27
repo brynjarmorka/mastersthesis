@@ -641,7 +641,7 @@ Hence, the specimen geometry can be important.
 % As the samples in TEMs are around 100 nm, the interaction volume in TEM samples is very small, resulting in less signals generated, as a larger portion of the beam passes through the sample without generating signals.
 % Ton skriver om setningen over: Maybe more clear to delete this here, first describe SEM and later TEM (+ refering back)
 A more accurate escape depth and interaction volume can be achieved by using a Monte Carlo simulation, which is a computer simulation of the interaction of the beam with the sample \cite[Ch. 4.3.4]{goldstein_scanning_2018}.
-\cref{fig:montecarlo_BSE} shows an example of Monte Carlo simulations in a bulk samples for different materials. 
+\cref{fig:montecarlo_BSE} shows an example of Monte Carlo simulations in a bulk samples for different materials.
 Note that SE yield and interaction volume depends on Z the beam energy.
 
 
@@ -721,8 +721,8 @@ For example, secondary electrons can be generated near the surface by BSE, and a
 The SE with topological contrast (from the targeted area) are called SE$_1$.
 The SE$_2$ signal carries the same information as the BSE signal, since the amount of SE$_2$ is proportional to the amount of BSE.
 An SE signal generated from a BSE hitting something in the chamber is called a SE$_3$ signal, and SE signal from pre-specimen sources like the final aperture is called SE$_4$.
-The final SE image can be a combination of all the SE classes. 
-The SE detector can be optimized, for example with  in-lens configuration, to only detect SE$_1$ and thereby give a better spatial resolution. 
+The final SE image can be a combination of all the SE classes.
+The SE detector can be optimized, for example with  in-lens configuration, to only detect SE$_1$ and thereby give a better spatial resolution.
 Other examples of signal absorption is the generated X-ray strays due to fluorescence, which is covered in \cref{theory:eds:artifacts}.
 
 
@@ -792,7 +792,7 @@ TEM image formation is not discussed further in this work.
 \brynjar{TODO}
 
 
-\clearpage 
+\clearpage
 
 
 
@@ -2004,7 +2004,7 @@ As the background portion will vary with specimen and detectors, no specific val
 % formula
 \begin{equation}
     \label{eq:theory:eds_performance:background_portion}
-    \frac{\text{Background counts}}{\text{Total counts}} \times 100\%
+    \frac{\textnormal{Background counts}}{\textnormal{Total counts}} \times 100\%
 \end{equation}
 
 
@@ -2188,10 +2188,25 @@ overlap situation."
 
 
 
+% Issue with matrix correction: 
 
-
-
-
+% Matrix correction, ASTM 1508:
+% 10.2.1 "If the unknown and standard were
+% identical, each of these factors would equal one. There are
+% many such “ZAF” computer programs available,[...].
+% The differences in the results each produces are usually
+% much less than the precision of the analysis."
+% 10.2.2 "10.2.2 There are also many computer programs using the“
+% phi-rho-z” method.  These approach the problem of matrix
+% correction using more fundamental physics and sometimes
+% combine the effects of Z and A into one, but they too require a
+% set of fundamental parameters optimized to each program.
+% Many phi-rho-z programs claim greater accuracy because they
+% account for absorption better than the older ZAF programs.
+% Consequently, one would expect the most improvement using
+% a phi-rho-z method in light element analysis. However, in the
+% absence of light elements, it is unlikely that the accuracy of
+% most EDS analyses is limited by the matrix correction."
 
 
 
@@ -2202,56 +2217,200 @@ overlap situation."
 \label{theory:quantitative_analysis}
 
 
-\brynjar{Finish this section later.}
+
+\brynjar{TODO: Fjerne det om phi-rho-z, fordi jeg bruker PROZA96 (som er en videreføring av phi-rho-z, eller?)}
+
+
+% Limitations done in this work
+This work aims to improve the analysis for SEM EDS data, and this section will focus on the quantitative analysis.
+As a master thesis, the scope of this work is limited, and the main focus on the quantitative analysis is to implement matrix corrections in a Jupyter notebook which could be developed further into for example an addition to the HyperSpy package.
+As stated in the ASTM 1508 standard, there are multiple different programs available for matrix corrections with some differences, but the accuracy of the EDS analysis is probably not limited by the accuracy of the matrix correction \cite{astm_e1508_eds_quantification}.
+The methods selected for the matrix corrections are the absorption correction through the ZAF-method and the PAP algorithm, where the PROZA96 algorithm is more physically correct \cite{bastin_proza96_1998}.
+The atomic number correction (Z) in ZAF is excluded, as the correction have two effects with tend to go in opposite directions and cancel each other out \cite[p. 300]{goldstein_scanning_2018}.
+These two effects are the backscattering factor (R) and the stopping power (S).
+Both R and S is implemented in the PROZA96 algorithm through the PAP model \cite{pap_1991}.
+The fluorescence correction (F) is excluded, because it is stated in Goldstein that this correction is usually the least important one \cite[p. 307]{goldstein_scanning_2018}.
+The low importance of the F correction is illustrated in figure 6 in P. Burdets publication on 3D SEM EDS \cite{burdet_2014_3dsem}.
+This section will start with an introduction to the principle of quantitative EDS analysis, before the different corrections are presented.
+
+
 
 \subsection{Principle}
+\label{theory:quantitative_analysis:principle}
 
+The principle of quantitative EDS analysis was introduced by Castaing in 1951 \cite{castaing_1951}, where he showed that quantitative data could be obtained by comparing the X-ray intensity from element A in an unknown sample to the same intensity in a sample with a known concentration of element A.
+The known sample is referred to as the standard, and was frequently selected to be pure elements for convenience.
+Using the same instrumental conditions on the known and the unknown, Castaing showed that the \emph{generated intensity} ratio can be related through the \emph{mass concentration} ratio of the two samples, as shown in:
 
+% C_unknown / C_standard = I_unknown / I_standard
 
-% the intensity of different elements
-As the intensity of the X-rays is proportional to the number of atoms of the given element, the intensities can be compared to find the relative abundance of the different elements.
-In the ideal case, the concentration of the different elements are the same as the relative intensity of the X-rays in their corresponding characteristic X-ray lines.
-
-% C_a / C_b = I_a / I_b
 \begin{equation}
-    \label{eq:theory:xray_formation:simple_intensity_ratio}
-    \frac{C_a}{C_b} = \frac{I_a}{I_b}
+    \label{eq:theory:quantitative_analysis:castaing_generated}
+    \frac{C_\textnormal{unknown}}{C_\textnormal{standard}} = \frac{I_{0\textnormal{, unknown}}}{I_{0\textnormal{, standard}}}
 \end{equation}
 
-However, the intensity is affected by multiple factors mentioned above, so the intensity ratio needs a correction factor.
-Multiple of the factors fall out, as they are present in both the numerator and denominator.
-The factors that are left are the ones which are dependent on the atomic number.
+Where the $C$ is the mass concentrations and the $I_0$ is the generated intensity\footnote{It is common to note the unknown as $i$ and the standard as $(i)$, but the more explicit notation is used in this work for clarity.}.
+However, the generated intensity is not the same as the measured intensity, thus Castaing introduced a correction factor applied to the measured intensity ratio:
+
+% C_unknown / C_standard = k * I_unknown / I_standard
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:castaing_measured}
+    \frac{C_\textnormal{unknown}}{C_\textnormal{standard}} = K \frac{I_\textnormal{unknown}}{I_\textnormal{standard}}
+\end{equation}
+
+Where $I$ is the measured intensity and $K$ is a correction factor that depends on the atomic number (Z), the absorption (A), and the fluorescence (F) in the sample \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
+These corrections for bulk specimen is covered below.
+The implementation of satisfactory correction factors is a complicated task, as the X-rays are generated in an interaction volume which depends on the specimen composition and the electron probe conditions.
+Castaing and Deschamps established the theory experimentally in 1955, but the method was restricted by the correction calculation as an iterative process. %  \cite{castaing_1955},
+Later Philbert derived an analytical expression for iterative routines \cite{philbert_1963}.
+Modern matrix corrections are typically divided into two groups: the ZAF-corrections and the $\phi(\rho z)$-corrections.
+% ZAF-corrections treat Z, A, and F independently, and is covered in \cref{theory:quantitative_analysis:zaf}.
+% The $\phi(\rho z)$-corrections treat the Z and A together in a more complex calculation, and is covered in \cref{theory:quantitative_analysis:phi_rho_z}.
+
+
+% The Cliff-Lorimer method, for thin samples
+One way to avoid the iterative process is to use thin samples, where absorption and fluorescence can be neglected, which is typically the case for TEM specimen.
+Cliff and Lorimer showed in 1975 that the intensity from a specimen with two elements can give the composition ratios, without the use of standards.
+The Cliff-Lorimer method have a correction factor which is dependent on the instrument settings and the atomic number effects in the specimen.
+This correction factor in the Cliff-Lorimer method is named the "k-factor".
+The Python package HyperSpy have the Cliff-Lorimer quantification method implemented.
+
+
+\subsubsection*{Side note: The difference between the k-factor and the k-ratio}
+
+The k-factors are a correction factor used in the Cliff-Lorimer quantification method for thin samples.
+The value of the k-factor is dependent on the instrument setup and the acceleration voltage.
+The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the following equation:
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:cliff_lorimer}
+    \frac{C_A}{C_B} = k_{AB} \frac{I_A}{I_B}
+\end{equation}
+
+Where $k_{AB}$ is the k-factor for the two elements $A$ and $B$.
+The k-factor is most accuratly determined experimental, but can be calculated theoretically.
+
+
+The k-ratio method is a quantification method for bulk samples, where the k-ratio is the ratio between the measured intensity of the unknown and the standard.
+The k-ratio method includes the ZAF-correction.
+Element $i$ is quantified through the equation:
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:k_ratio}
+    \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}} = (ZAF)_i \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}} = (ZAF)_i \cdot k_i
+\end{equation}
+
+Wher $(ZAF)_i$ is the ZAF-correction for element $i$ and $k_i$ is the k-ratio for element $i$.
+As with the k-factor, the k-ratio is most accuratly determined experimentally, but can be calculated theoretically.
+The AZtec software from Oxford Instruments can both provide the k-factor and the k-ratio for the elements in an analyzed sample, which are theoretically calculated.
+
+
+
+\subsubsection*{Side note: Two definitions of the ZAF-method}
+
+As explained in chapter 19.10.1 in Goldstein, there are two definitions of the ZAF-correction method, which are inverses of each other.
+The first definition ($ZAF_A$) applies the corrections to the concentration, and the second definition ($ZAF_B$) applies the corrections to the intensity.
+
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:zaf_a}
+    \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}}  = \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}}\cdot ZAF_A
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:zaf_b}
+    \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}} = \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}} \cdot ZAF_B
+\end{equation}
+
+The two definitions are related by the following equation:
+
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:zaf_a_b_relation}
+    ZAF_A = \frac{1}{ZAF_B}
+\end{equation}
+
+In this work, $ZAF_B$ is used.
 
 
 
 
-\subsection{ZAF correction}
-
-
-Matrix correction, ASTM 1508:
-10.2.1 "If the unknown and standard were
-identical, each of these factors would equal one. There are
-many such “ZAF” computer programs available,[...].
-The differences in the results each produces are usually
-much less than the precision of the analysis."
-10.2.2 "10.2.2 There are also many computer programs using the“
-phi-rho-z” method.  These approach the problem of matrix
-correction using more fundamental physics and sometimes
-combine the effects of Z and A into one, but they too require a
-set of fundamental parameters optimized to each program.
-Many phi-rho-z programs claim greater accuracy because they
-account for absorption better than the older ZAF programs.
-Consequently, one would expect the most improvement using
-a phi-rho-z method in light element analysis. However, in the
-absence of light elements, it is unlikely that the accuracy of
-most EDS analyses is limited by the matrix correction."
-
-
-\subsection{Phi-rho-z correction}
 
 
 
-\subsection{Alternative quantification}
+
+
+\subsection{ZAF absorption correction}
+\label{theory:quantitative_analysis:zaf:absorption_correction}
+
+The part of the ZAF corrections tested in this work are the absorption corrections.
+The generated intensity is reduced before detection due to absorption in the specimen.
+The absorption reduce the measured intensity of X-rays from a certain point by:
+
+% I = I_0 * exp(-mu * rho * t)
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:absorption}
+    I = I_0 \cdot e^{-\mu_{\rho} \cdot \rho \cdot t}
+\end{equation}
+
+Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rho}$ is the mass absorption coefficient\footnote{The symbol for mass absorption coefficient is $(\mu/\rho$) in Goldstein, but is written as ($\mu_{\rho}$) in this work, because writing $(\mu/\rho)\cdot \rho$ not ideal.}, $\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
+The unit in the exponential have to cancel out, thus one can use the following units: $I$ and $I_0$ in the same and arbitrary units, $\mu_{\rho}$ in $\textnormal{cm}^2/\textnormal{g}$, $\rho$ in $\textnormal{g}/\textnormal{cm}^3$, and $t$ in $\textnormal{cm}$.
+As the detector is placed at a certain angle, the take-off angle, the path length becomes:
+
+% t = z *csc(TOA)
+\begin{equation}
+    \label{eq:theory:quantitative_analysis:path_length}
+    t = z \cdot \csc(\textnormal{TOA})
+\end{equation}
+
+Where $z$ is the depth of origin of the X-ray, TOA is the take-off angle, and csc is the cosecant function.
+Tilting the specimen will change the path length of the X-ray, and thus the absorption.
+
+
+% calculating I_0 from an average point or for the whole interaction volume
+The most correct use of the absorption correction is to calculate the absorption for each point (or layer) in the interaction volume, which is usually done through $\phi(\rho z)$ curves.
+This calculation is part of the PROZA96 method described below, thus a simpler application of the absorption correction is used for the ZAF correction in this work.
+Instead of applying the absorption correction for each point in the interaction volume, the absorption is calculated for the average point in the interaction volume.
+The average point selected in this work is the maximum path length of an incident electron, divided by two, where the electron range is calculated by HyperSpy which have implemented the Kanaya-Okayama parameterization \cite{kanaya1972,goldstein_scanning_2018}.
+This should be an approximation of the center of the interaction volume.
+\brynjar{To discussion: maybe this approximation is severely wrong. Monte Carlo suimulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results.}
+This simplification is partly justified by the fact that the avaliable measured intensity $I$ is the sum of the intensity from all points in the interaction volume.
+Testing out different methods with varying complexity for calculating the absorption correction is a step towards finding a suitable implementation for HyperSpy.
+If a simpler model proves to be sufficient, it will allow users to understand the correction faster and possibly altering it to the spesific needs,  while also being easier to implement in HyperSpy.
+
+
+
+\subsection{The PROZA96 model}
+\label{theory:quantitative_analysis:proza96}
+
+The PROZA96 model is a more physically based model for matrix corrections, published by Bastin, Dijkstra, and Heijligers in 1996, as an improvement to the the same authors previous model from 1988 \cite{bastin_proza96_1998,bastin_proza_1988}.
+It is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian.
+The $\phi(\rho z)$ curve is the relative generated intensity as a function of mass depth, where mass depth is the product of density ($\rho$) and path length ($z$).
+The unit for the mass depth is $\textnormal{g}/\textnormal{cm}^2$.
+The curve starts above 1, increase to a maximum, and then decrease to 0.
+Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:phi_rho_z_curves}.
+
+
+% figures/phi_rho_z_curves__goldstein.png
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{figures/phi_rho_z_curves__goldstein.png}
+    \caption{
+        Three calculated $\phi(\rho z)$ curves.
+        Al K$\alpha$ in Al and Ti, and Cu K$\alpha$ in Cu, calculated at 15 kV.
+        The curves are calculated with the PROZA model \cite{bastin_proza_1988}
+        Adapted from Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
+    }
+    \label{fig:theory:quantification:phi_rho_z_curves}
+\end{figure}
+
+
+
+
+
+
+
+% \subsection{Alternative quantification}
 
 
 
