@@ -50,8 +50,8 @@ The central elements of the section is summarized in \cref{tab:xray_generation}.
 The formation of characteristic X-rays from an incident electron beam, or a high (>0.5 kV) energy photon, is an inelastic quantum mechanical scattering process.
 The formation can be viewed as a two-step process, where the first step is the ionization of an inner shell in the atom, and the second step is the relaxation of an electron from a higher orbital to the hole left by the ejected electron.
 The energy difference in the relaxation is the energy of the characteristic X-ray.
-\cref{fig:characteristic_xray_formation} shows in a chematic way the formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
-The figure show three possible radiative relaxations, which produce three characteristic X-rays with different energies.
+\cref{fig:characteristic_xray_formation} shows in a schematic way the formation of characteristic X-rays with the atom as in the Bohr model, where ionization and relaxation is divided into two steps.
+The figure shows three possible radiative relaxations, which produce three characteristic X-rays with different energies.
 
 
 %figures/characteristic_xray_formation.png
@@ -339,7 +339,7 @@ The generated intensity of the allowed lines is proportional to the electron dos
 The electron dose is a function of the probe current and the acquisition time.
 The dependency of the number of atoms of the given element is crucial, as this is the basis for the quantitative analysis in EDS.
 The factors mentioned above are discussed further in the section on quantitative analysis in EDS \cref{theory:quantitative_analysis}.
-Calculating the intensity of characteristic X-ray lines from bulk specimen is not trivial, but in Goldstein there is an experimental based equation for this: \cite[Eq. 4.8]{goldstein_scanning_2018}:
+Calculating the intensity of characteristic X-ray lines from bulk specimen is not trivial, but in Goldstein there is an experimentally based equation for this: \cite[Eq. 4.8]{goldstein_scanning_2018}:
 % Goldstein includes an experimentally based equation for the intensity of X-rays from bulk specimen \cite[Eq. 4.8]{goldstein_scanning_2018}:
 
 \begin{equation}
@@ -369,10 +369,10 @@ When thicker samples are analyzed, the absorption and fluorescence effect must b
 Escape probability and depth is also dependent on the absorption edges present.
 When an X-ray photon is absorbed within the specimen, it can ionize an atom and generate a new X-ray with a lower energy, which is the previously mentioned fluorescence effect.
 When thin samples are analyzed, the fluorescence effect can be ignored, but when thicker samples are analyzed, the fluorescence effect can be significant.
-For secondary fluorescence to happen, a characteristic X-ray must be absrobed and it must have higher energy than the critical ionization energy of other lines in the material.
-If the absorbed X-ray have a energy higher than the E$_C$ + 5 keV of the other lines, the fluorescence effect is negligible \cite[p. 306]{goldstein_scanning_2018}.
+For secondary fluorescence to happen, a characteristic X-ray must be absorbed, and it must have higher energy than the critical ionization energy of other lines in the material.
+If the absorbed X-ray have an energy higher than the E$_C$ + 5 keV of the other lines, the fluorescence effect is negligible \cite[p. 306]{goldstein_scanning_2018}.
 The fluorescence effect is also dependent on the path length of the X-rays in the specimen.
-Compensation for the fluorescence effect is discussed in \brynjar{Cref ZAF / PRZ}.
+Compensation for the fluorescence effect is discussed in \cref{theory:quantitative_analysis:principle}.
 
 
 
@@ -390,7 +390,7 @@ Compensation for the fluorescence effect is discussed in \brynjar{Cref ZAF / PRZ
 % The background X-rays are white noise, giving no information about the sample, and is generated in the whole interaction volume.
 
 % intro
-The detectected spectrum contains more than peaks from characteristic X-ray lines as discussed so far.
+The detected spectrum contains more than peaks from characteristic X-ray lines as discussed so far.
 In addition to the characteristic X-rays generated, the electron beam generates background X-rays.
 The background radiation is also called the bremsstrahlung, breaking radiation, and the continuum radiation.
 These X-rays are formed by the deacceleration of the incident beam electrons in the Coulomb fields of the atoms in the specimen, where the electron loose kinetic energy.
@@ -474,13 +474,13 @@ This is visualized in the schematic of the interaction volume in \cref{fig:inter
 \label{theory:eds:fromtheorytoreal}
 
 This last part of the section combines the different parts of the theory to the observed spectrum.
-\cref{fig:eds_theoretical2realSpectrum} shows a schematic of the steps from a theoretical spectrum to a observed spectrum of GaAs.
+\cref{fig:eds_theoretical2realSpectrum} shows a schematic of the steps from a theoretical spectrum to an observed spectrum of GaAs.
 Panel (a) shows a theoretical spectrum with only the characteristic lines.
 Panel (b) shows the lines broadened to Gaussian peaks due to the limited energy resolution (see \cref{theory:xray_formation:energy}) on a background, where the detected background is modelled as a polynomial function of the energy.
 The generated background is described by Kramer's cross-section in \cref{eq:theory:xray_formation:background}, while a modelled background is typically just the best fitting sixth order polynomial when the peaks are removed \cite{hyperspy_1.7.1}.
 Notice how the peaks broaden more with higher energy.
 Peak broadening with energy is discussed more in \cref{theory:eds_performance:energyres} and described with \cref{eq:estimateFWHM}.
-Panel (c) shows a observed spectrum, where the unevenness of the recorded countings is visible.
+Panel (c) shows an observed spectrum, where the unevenness of the recorded counts is visible.
 The observed spectrum is recorded in a SEM with an EDS detector.
 The experimental setup is discussed in \cref{theory:sem} and \cref{theory:eds}.
 The observed spectrum also shows peaks which are artifacts, like a noise peak and a small Si K$\alpha$ peak at 1.74 keV, which is the internal fluorescence peak.
@@ -492,8 +492,8 @@ The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
     \centering
     \includegraphics[width=0.99\linewidth]{figures/eds_theoretical2realSpectrum.pdf}
     \caption{
-        From theory to a observed spectrum.
-        (a) a theoretical spectrum with only the characteristic lines, (b) lines broadened to peaks on a background, and (c) a observed spectrum.
+        From theory to an observed spectrum.
+        (a) a theoretical spectrum with only the characteristic lines, (b) lines broadened to peaks on a background, and (c) an observed spectrum.
         The spectrum is of GaAs, and the peak names are annotated in (a).
         The background in (b) is modelled as a polynomial function of the energy.
         (c) show the noise peak and a small internal fluorescence peak at 1.74 keV (Si K$\alpha$).
@@ -540,10 +540,10 @@ The artifacts in the EDS spectrum are discussed in \cref{theory:eds:artifacts}.
 % intro
 This study involves the use of a controllable nanometer-scale electron beam to generate an X-ray spectrum for analyzing the composition of small volumes, primarily a SEM equipped with an EDS detector.
 In SEM the electron beam has energies in the range 1-30 kV and bulk specimens are usually analyzed.
-In Tem the electron beam has energies in the range 100-300 kV and thin specimens (> 100 nm) are usually analyzed.
+In TEM the electron beam has energies in the range 100-300 kV and thin specimens (> 100 nm) are usually analyzed.
 The differences for EDS analysis will be addressed at the end.
 Electron microscopes are often equipped with an EDS detector to provide analytical capabilities that complement imaging and diffraction analyzes.
-This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection and image contrastin SEM.
+This section provides a brief overview of how the electron beam is created and controlled in the electron microscope, as well as information on electron-matter interaction, imaging detection and image contrast in SEM.
 If not stated otherwise, this section on SEM is based on Goldstein \cite{goldstein_scanning_2018}.
 
 A summary of terms in the section is provided in \cref{tab:sem}.
@@ -554,7 +554,7 @@ A summary of terms in the section is provided in \cref{tab:sem}.
 
 % Creating the electron beam
 A schematic of a SEM is shown in \cref{fig:SEM_setup}. The \textbf{electron gun} is the source of the electron beam, where electrons are emitted with high kinetic energy by a high voltage.
-Currently the field emission guns are standard because they produce a brilliant beam compared to thermoinonic filament, and thereby high signal and good spatial resolution with the possibility of sum nm spot size.
+Currently, the field emission guns are standard because they produce a brilliant beam compared to thermoinonic filament, and thereby high signal and good spatial resolution with the possibility of sum nm spot size.
 The emittance of the electron gun is controlled by the user with the beam current and the accelerating voltage.
 The acceleration voltage, or the beam energy $E_0$, is typically in the range of 1-30 keV.
 The beam current is typically in the range of 0.01-10 nA.
@@ -572,7 +572,7 @@ The beam current is typically in the range of 0.01-10 nA.
 
 
 % Controlling the electron beam with lenses
-The electron beam is shaped and controlled by \textbf{electro magnetic lenses and apertures}.
+The electron beam is shaped and controlled by \textbf{electromagnetic lenses and apertures}.
 A narrower beam is wanted for higher resolution, as both the probe size is smaller and the electrons closer to the center of the beam axis have fewer aberrations \cite{goodhew_2001}.
 The apertures are a physical barrier that limits the beam size.
 A smaller probe with fewer aberrations is better for high resolution details, but the signal is also reduced as there are fewer electrons in the probe.
@@ -762,40 +762,19 @@ EDS spectra can also be recorded as a 1D spectrum from a point on the sample.
 \subsection{Note on transmission electron microscopy}
 \label{theory:sem:tem}
 
-There are many similarities between the above described SEM setup and TEM in scanning mode.
-In this work, the focus is on SEM EDS, which on multiple occasions is compared to TEM EDS.
-Thus, this section will briefly introduce the TEM setup based on Williams and Carter \cite{williams_carter_tem_2009}, with a focus on the relevant differences to SEM EDS.
-In TEM the electron optics is similar to SEM, and the use of EDS in TEM is usually done in scanning mode.
-The TEM instrument contains additional optics after the specimen and before the forward imaging detectors.
-One of the main differences is that the beam energy is much higher in TEM, typically 100-300 kV, compared to 1-30 kV in SEM.
-The other main difference is that the sample is much thinner in TEM, typically 100 nm, compared to bulk samples used in SEM.
-Unlike SEM, imaging detectors in TEM EDS are placed under the specimen both due to the signal in TEM EDS being weaker due to the small interaction volume and limited space around the TEM specimen to place detectors.
-The placement of the detector affect the take-off angle, which is discussed in \cref{theory:eds:hardware}.
-The thinner sample and higher beam energy in TEM EDS can lower the signal as there is less volume where the beam can interact, and this can limit the signal-to-noise ratio (SNR) in TEM EDS.
-However, absorption and fluorescence can be ignored for very thin specimens, simplifying the quantification routines in TEM EDS.
-TEM image formation is not discussed further in this work.
+There are several similarities between the SEM setup described above and TEM in scanning mode.
+Both setups use lenses to form a fine probe that is rastered over the sample using scanning coils.
+However, in the present work, the focus is mostly on SEM EDS, and the TEM setup is only briefly introduced, with a focus on the relevant differences to SEM EDS.
+Firstly, the beam energy in TEM is higher (100-300 kV vs 1-30 in SEM), which can affect the likelihood of X-ray line creation.
+Secondly, to transmit electrons, the specimen in TEM is thin (<100 nm), resulting in higher spatial resolution due to a smaller interaction volume.
+The interaction volume in a bulk SEM specimen is illustrated in \cref{fig:interaction_volume}, but as the thickness of TEM specimen are in the nanometer range, the interaction volume is severely reduced.
+This reduced interaction volume also decreases the likelihood of absorption and fluorescence, simplifying calculations and avoiding corrections.
+However, a thinner specimen produces less signal and can result in a poorer signal-to-noise ratio.
+These two aspects are the key differences, and TEM image formation is not discussed further in this work.
 
 
 
 \input{tables/table_sem_setup.tex}
-
-
-\clearpage
-
-
-\brynjar{TODO}
-
-
-\brynjar{TODO: KOMMENTARER FRA TON ER RETTET FREM TIL HER}
-
-
-\brynjar{TODO}
-
-
-\clearpage
-
-
-
 
 
 
@@ -827,8 +806,8 @@ TEM image formation is not discussed further in this work.
 % Add here geometry sample-detector as it will affect your results (phenomena absorption you have to have in section 1 or 2). 
 
 % Intro
-Energy dispersive X-ray spectroscopy (EDS) is a technique for the analysis of the elemental composition of a sample with high spatial resolution.
-The EDS system is made up of the detector, the electronics, and the software on the computer.
+Energy dispersive X-ray spectroscopy is a technique for the analysis of the elemental composition of a sample with high spatial resolution.
+The EDS system is made up of the detector capturing incoming X-rays, the electronics converting the analogue signal to a digital signal, and the and the software on the computer to analyze the signal through plotting and quantification.
 The output of an EDS analysis is either a spectrum or a spectrum map, where the spectrum is a histogram with the number of X-rays detected as a function of energy.
 Even though the resulting spectrum appears to be acquired simultaneously at all energies, the spectrum is actually acquired one channel at a time.
 This section covers first the hardware and the principles of EDS detectors, then the information in a spectrum, and finally user controlled parameters in the EDS analysis.
@@ -847,11 +826,11 @@ This section is based on Goldstein \cite{goldstein_scanning_2018} and Jenkins \c
 % Om nye SDD er det mye mindre publisert og selve teknologi utvikler seg
 
 % how the detectors detect
-Detecting X-rays is a three-step process illustrated in \cref{fig:detecting_xrays}, usually done with a silicon drift detector (SDD).
-The older Si(Li) have similar working principles, but are generally performing worse than SDD.
+Detecting X-rays is a three-step process illustrated in \cref{fig:detecting_xrays}, nowadays done with a silicon drift detector (SDD).
+The older Si(Li) detectors have similar working principles, but are generally performing worse than SDD, where the Si(Li) detectors have lower counts and smaller solid angle, as well as being less practical due to the need of liquid nitrogen cooling.
 However, parts of the literature is old and based on the Si(Li) detector, and thus both detector types is described below.
 Both detectors are Si based diode-structures, where incoming X-rays ionize Si atoms, creating electron-hole pairs.
-The number of electron-hole pairs proportional to the energy of the incoming X-ray.
+The number of electron-hole pairs proportional to the energy of the incoming X-ray, and hence the X-ray signal can be plotted as function of its energy.
 The electron-hole pairs is driven by an electric field towards the contact points, where they are converted into a voltage signal and amplified by FET transistors.
 Finally, the electronics assigns the voltage signal to a specific energy range, called a channel.
 While the electronics is converting the voltage signal, the detector is shut down by the controlling software.
@@ -869,7 +848,7 @@ Details about the signal is covered in \cref{theory:eds:artifacts}.
     \centering
     \includegraphics[width=0.9\linewidth]{figures/detecting_xrays.png}
     \caption{
-        The figure show the three-step process of detecting X-rays in EDS detectors.
+        The figure shows the three-step process of detecting X-rays in EDS detectors.
     }
     \label{fig:detecting_xrays}
 \end{figure}
@@ -888,13 +867,13 @@ When operating the detector, X-rays enter through the p-type end into the intrin
 The number of electron-hole pairs created is proportional to the energy of the X-ray, since one pair requires 3.8 eV of energy.
 A reverse bias over the detector makes the charge carriers drift towards the detector contact, where they are measured by the electronics after being amplified.
 Since electron-hole pairs can be thermally excited, the detector is cooled to liquid nitrogen temperature to prevent this.
-The liquid nitrogen cooling also prevents the lithium from diffusing and reduce the electronic noise from the amplifiers in the electronics.
+The liquid nitrogen cooling also prevents the lithium from diffusing under the field within the detector and reduce the electronic noise from the amplifiers in the electronics.
 
 % The SDDs
 The SDDs are also silicon crystals, but with a much thinner active layer and generally a different design.
 A schematic of an SDD is shown in \cref{fig:eds_sdd}.
 Incoming electrons pass through the collimator, which is an aperture that limits the angle which the X-rays can enter the detector.
-The collimator prevents detection of X-rays from other parts of the sample and the chamber.
+The collimator limits detection of X-rays from other parts of the sample and the chamber.
 The detector window is a barrier that maintains vacuum in the detector, usually made of beryllium or being polymer based.
 Be windows strongly absorbs low energy X-rays, allowing only X-rays above Na to pass through, while polymer windows are transparent down to 100 eV, but are less robust.
 Some detectors, especially in TEM, are windowless.
@@ -925,7 +904,7 @@ The spectrum is then sent to the computer, where the user can analyze the spectr
 % SDD vs Si(Li) detectors
 There are some key differences between the Si(Li) and SDD detectors. %, making the SDDs in general both better and more user friendly.
 The cooling needed in the more modern silicon drift detectors (SDD) is not as strong as for the Si(Li) detectors. %, which is one of the differences between the detector types.
-The SDDs need no more than a Peltier cooling, which is easy to operate and maintain.
+The SDDs need no more than a Peltier cooling (ca. -20 to -30\textdegree C), which is easy to operate and maintain.
 The anode in the SDDs is just a small centerpiece, while in the Si(Li) detectors the anode covers the whole detector.
 As the anode is smaller, the capacitance is lower and the voltage noise is reduced.
 In SDDs the area of the active layer can be made bigger with a constant anode size, which keeps the capacitance constant. \cite{notaros_electromagnetics_2010}.
@@ -934,7 +913,7 @@ A bigger active area allows more counts per second, as it is increasing the soli
 The lower voltage noise in SDDs allow both a cleaner signal and a shorter process time, because the pulse processor does not need to do signal averaging.
 The shorter process time allow significantly higher count rates and high speed mapping.
 High speed mapping is a key feature in SEM EDS, which is not available or less accurate in other X-ray analysis methods.
-One of the drawbacks of the SDDs compared to the Si(Li) detectors, is the detector efficiency ($\epsilon$), illustrated in \cref{fig:detector_efficiency}.
+One of the drawbacks of the SDDs compared to the Si(Li) detectors, is the detector efficiency ($\varepsilon$), illustrated in \cref{fig:detector_efficiency}.
 The lower efficiency of the SDDs is due to the thinner active layer, which allows high energy X-rays to pass through without generating electron-hole pairs.
 % This effects begins around 6-9 keV, and the effect increase with higher energies.
 % with origin in the thinner active layer, it that the SDDs allows more of the X-rays to pass through the active layer without generating electron-hole pairs, which lowers the detector efficiency.
@@ -946,9 +925,10 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
     \centering
     \includegraphics[width=0.8\linewidth]{figures/detector_efficiency_illustration.pdf}
     \caption{
-        Illustration of the detector efficiency, $\epsilon$ of a Si(Li) and an SDD, as a function of the X-ray energy.
+        Illustration of the detector efficiency ($\varepsilon$) of a Si(Li) and an SDD, as a function of the X-ray energy.
         The efficiency of the SDDs decrease at higher energies because the active layer is thin, and thus high energy X-ray photons have a higher probability of passing through without creating an electron-hole pair.
         Figure adapted from \cite[Fig. 4655c]{liao2006practical}
+        \brynjar{Consider an alternative source.}
         % Remake of \brynjar{find one, e.g. https://www.globalsino.com/EM/page4655.html}
     }
     \label{fig:detector_efficiency}
@@ -958,19 +938,21 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
 
 
 % Geometry
-The geometry of the detector affects the analysis, and is illustrated in \cref{fig:eds_geometry}.
+The position of the detector affects the analysis, and the geometry around the detector is illustrated in \cref{fig:eds_geometry}.
 The number of X-rays hitting the active area of the detector is dependent on the solid angle ($\Omega$) and take-off angle (TOA), which covers both tilt of the specimen and the detector.
 The solid angle, $\Omega$, is an expression of the fraction of the sphere with radius from the center of the detector to the sample that the detector is covering.
+\brynjar{TODO Comment from Ton: "In future work propose how to measure this out of the detected signal. I think you cannot do it practically at this stage."}
 In \cref{fig:eds_geometry} the solid angle is marked as a yellow triangle, but in 3D it has a cone shape, measured in steradians.
 The whole hemisphere above the surface of the sample has a solid angle of 2$\pi$ steradians, and the solid angle of the detector is the fraction of this hemisphere that is covered by the detector.
 A bigger detector covers a bigger fraction of the hemisphere, and thus collects more X-rays.
-$\Omega$ is the active area (A) of the detector divided by the square of r, the distance from the sample to the detector.
+$\Omega$ is the active area (A) of the detector divided by the square of r, the distance from the detector to the incident point of the probe on the specimen.
 Moving the detector closer to the sample increases the solid angle, and thus the number of counts.
-When the sample is not tilted, the TOA is equal to the elevation angle of the detector, which is typically between 35 and 40 degrees \cite{dtsaii_1_getting_started}.
-Changing the tilt of the sample changes the TOA, and can increase intensity of the signal.
+When the sample is in horizontal position, the TOA is equal to the elevation angle of the detector, which is typically between 35 and 40 degrees \cite{dtsaii_1_getting_started}.
+Changing the tilt of the sample changes the TOA, and can increase intensity of the signal and reduce the path length in the specimen, and thereby reduce the absorption of the X-rays.
 The azimuthal angle is marked as az in the figure, and is the position of the detector in the xy-plane, measured from the x-axis.
 The azimuthal angle is important in the link between a SEM image and the corresponding EDS spectrum, as the azimuthal angle tells where the apparently X-ray illumination is coming from.
 The working distance (WD) is the distance from the end of the SEM column to the sample, and is marked as WD in the figure.
+The optimal WD is the height where the straight line of sight from the detector to the sample and the incident point of the probe on the sample coincide.
 Both a too low and too high WD will limit the number of counts, and most EDS operating software specify an optimal WD for the detector.
 
 
@@ -995,17 +977,17 @@ Both a too low and too high WD will limit the number of counts, and most EDS ope
 
 
 % Peak broadening due to electronics
-One of the main drawbacks of the EDS is the peak broadening due to the electronics.
-The natural line widths of the X-ray lines treated in this work is around 10 eV, but the peak widths in EDS spectra are around ten times larger.
-The shape of the natural lines are Lorentzians, but the electronics broadens the peaks to Gaussians.
-This effect is due to the electronics, which handles X-ray pulses corresponding to energies between 0.1 and 40 keV.
+One of the main drawbacks of the EDS is the poor energy resolution. %peak broadening due to the electronics.
+The natural line widths of the X-ray lines treated in this work is around 10 eV, but the peak widths in EDS spectra are around ten times larger, as stated in \cref{theory:xray_formation:energy}.
+The shape of the natural lines are Lorentzians, but the inaccuracy of the energy resolution of the electronics combined with counting statistics broadens the peaks to Gaussians.
+The Gaussian broadening is mainly due to the electronics, which handles X-ray pulses corresponding to energies between 0.1 and 40 keV.
 The energy resolution of an EDS detector is usually reported as the FWHM of the Mn K$\alpha$ line, which is in SDDs is typically between 120 and 140 eV.
 A higher FWHM means a lower energy resolution, because the peaks still have the same amount of counts, but are spread out over a larger energy range.
 When peaks are spread more, it is harder to distinguish between them, and thus FWHM is a measure of the energy resolution.
 This effect is illustrated in \cref{fig:theory:energy_resolution}, which is a plot of the Mn K$\alpha$ line with the same total counts and different FWHMs.
 The plot shows both a linear and logarithmic y-axis, to illustrate the difference between the two.
 The FWHMs are marked as dashed lines.
-The acquisition parameters can also affect the energy resolution, mainly due to the process time, discussed more in \cref{theory:eds:user_controlled_parameters}.
+The acquisition parameters can to some degree affect the energy resolution, mainly via the process time, discussed more in \cref{theory:eds:user_controlled_parameters}.
 The process time is a trade-off between the energy resolution and the throughput.
 Energy resolution is also discussed more in \cref{theory:eds_performance:energyres}.
 
@@ -1043,6 +1025,8 @@ With the sigma of a Gaussian curve, the full width at half maximum (FWHM) can be
 % As previously mentioned, 
 The detector broadens the peaks, and as different detectors and detector settings can give different peak widths, the FWHM are used as a measurement of the resolution of the detector.
 
+
+\brynjar{TODO Comment from Ton: "I think here you can also include relation peak width and energy, you have the formula and will use it later to calculate peak width Mn-K from other measured lines."}
 
 
 \input{tables/table_eds_hardware.tex}
@@ -1095,7 +1079,7 @@ The ratio of the beam energy to the critical ionization energy is the \textbf{ov
 \end{equation}
 
 The overvoltage is different for all the lines in the spectrum, as it is dependent on the critical ionization energy of each line.
-When the overvoltage for a specimen is discussed, it is refering to the overvoltage for the line of interest with highest critical ionization energy.
+When the overvoltage for a specimen is discussed, it is referring to the overvoltage for the line of interest with the highest critical ionization energy.
 
 
 % overvoltage and ionization cross-section
@@ -1116,7 +1100,7 @@ As the overvoltage increase from 1, there is an increase in both the ionization 
 When the overvoltage is higher, the electrons can scatter multiple times within the specimen before they ionize the highest excitation, which makes the probability of that ionization higher.
 ISO 22309 about quantitative analysis in SEM advise an overvoltage of 1.8 \cite{iso_emsa_22029}, and ASTM E1508 on the same topic advise an overvoltage of at least 1.5 \cite{astm_e1508_eds_quantification}.
 In Goldstein the advice is to keep the overvoltage above 1.5 \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
-A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with E$_0$.
+A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with E$_0$. % ton: fine section
 
 
 % figres/overvoltage2ionizationcrosssection.pdf
@@ -1141,18 +1125,21 @@ A higher overvoltage will produce more X-rays, but also decrease the spatial res
 % beam current
 The \textbf{beam current} (I$_0$) is the current of the electron beam, and is measured in nA or pA.
 A higher current will produce more X-rays.
-Multiple papers and textbooks like Goldstein advise the measurement of the current hitting the specimen, but this has not been possible in the SEMs used in this work.
+Multiple papers and textbooks like Goldstein advise the measurement of the current hitting the specimen.
+This would allow more possibilities for specimen analysis and set-up characterization, for example computing absolute concentrations and calculating the solid angle of the detector.
+The beam current is estimated by software, but the current hitting the specimen needs to be measured and this requires addition equipment in the form of a Faraday cup and a good ammeter.
+These extra equipment were not available in the present study, but could be a good addition to future work.
 The beam current in this work is thus the current set on the SEM and not the current hitting the specimen.
 When the current hitting the specimen is discussed, it is referred to as the \textbf{probe current}.
 Increasing the beam current do increase the probe current, but some electrons are lost in the SEM column, and the probe current is thus lower than the beam current.
 The user can control the beam current directly, but not the probe current.
-Some specimen are sensitive to beam damage, and on such specimen the beam current should be low.
-Controlling the beam current is done to achieve suitable counts per second, depending on needs for the specimen and analysis.
+Some samples are sensitive to beam damage, and on such specimen the beam current should be low.
+Controlling the beam current is done to achieve suitable counts per second, depending on what the specimen can cope with without damage and the targeted accuracy of the EDS analysis.
 
 
 % count rate, ICR and OCR. mention coincidence peaks
-The \textbf{count rate} is the number of counts per second (cps), and is affected by multiple factors like the beam energy, beam current, the solid angle and the processing capabilities of the electronics.
-A good spectrum needs many counts in total, especially if the specimen contain minor or trace elements.
+The \textbf{count rate} is the number of counts per second (cps), and is affected by multiple factors like the beam energy (probability of X-ray creation), beam current (proportional to creation), the solid angle (detector geometry) and the processing capabilities of the electronics.
+A good spectrum needs many counts in total, especially if minor elements in specimens are to be detected and even more when these need to be quantified.
 % \brynjar{Is minor and trace elements defined earlier?} % TODO
 The number of X-rays per second which produce electron-hole pairs in the active layer of the detector is called the \textbf{input count rate} (ICR).
 The number of counts being outputted from the electronics to the memory of the computer is called the \textbf{output count rate} (OCR).
@@ -1186,8 +1173,9 @@ Different sources advise slightly different thresholds for the dead time to prev
 According to the ASTM 1508 the highest throughput is achieved with a dead time around 40\% \cite{astm_e1508_eds_quantification}.
 However, the standard also state that coincidence peak events are beginning to become a problem at dead times above 40\%, and advise dead times between 20\% and 30\% to get good spectra.
 Another source, a paper from 2015 by D. Newbury and N. Ritchie on high accuracy quantification with SDDs, advise a dead time below 15\%, preferably below 10\% \cite{newbury_deadtime_2014}.
-In Goldstein, it is stated that the Si(Li) detectors handles coincidence events better than SDDs, and that 30\% dead time was "close to optimal for all vendors and most samples" for Si(Li) detectors \cite[p. 466]{goldstein_scanning_2018}.
-Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable coincidence rate.
+In Goldstein, it is stated that the Si(Li) detectors handles coincidence events (see \cref{theory:eds:artifacts}) better than SDDs, and that 30\% dead time was "close to optimal for all vendors and most samples" for Si(Li) detectors \cite[p. 466]{goldstein_scanning_2018}.
+Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable low coincidence rate.
+With different advice on maximum DT, the best procedure is probably to follow the last advice mentioned from Goldstein.
 % This requires the user to make a pre-analysis of the spectrum to determine the coincidence rate, and then adjust the dead time accordingly.
 This requires the user to make a pre-analysis of the coincidence rate.
 
@@ -1195,7 +1183,7 @@ This requires the user to make a pre-analysis of the coincidence rate.
 % process time
 % Goldstein p 312:
 % A short time constant enables more photons to be processed per unit of real (clock) time, but the trade-off of faster processing is poorer accuracy in assigning the photon energy.
-The dead time is influenced by the \textbf{process time}, which is the time the electronics have to process the signal from the detector.
+The DT is influenced by the \textbf{process time}, which is the time the electronics have to process the signal from the detector.
 A longer process time makes the energy resolution better, as the electronics have more time to assess the photon energy.
 However, a longer process time also reduce the count rate, as the detector is shut down for a longer time.
 Thus, the process time is a trade-off between throughput and energy resolution.
@@ -1231,7 +1219,7 @@ As the characteristic X-rays and the background have been covered above, this se
 These include coincidence peaks, the noise/zero peak, strays/spurious X-rays, the Si escape peak, and internal Si fluorescence peak.
 The artifacts can be used to characterize the performance of the detector and the selected settings for the acquisition.
 In general, the artifacts are unwanted, as they reduce the signal in the actual peaks and clutter the analysis.
-Thus, awareness of the possible artifacts is important for a thurough analysis of the spectrum.
+Thus, awareness of the possible artifacts is important for a thorough analysis of the spectrum.
 The artifacts are illustrated in \cref{fig:eds_artifacts}, and summarized in \cref{tab:eds_artifacts}.
 
 
@@ -1270,13 +1258,14 @@ Another artifact which give similar issues as coincidence peaks is \textbf{stray
 Strays are X-ray signals which originate from outside the targeted area, and are thus not part of the spectrum of interest.
 The strays can be generated from either a deflected electron or from an X-ray through fluorescence.
 Deflected electrons are from the beam, or BSE electrons, which both have a high energy.
-\brynjar{TODO: Skrive om fluorescence ett eller annet sted.}
 The fluorescence X-ray are generated by characteristic X-rays or background X-rays, which typically have lower energy than the deflected electrons.
 This difference in energy can be used to determine the origin of the strays, which is discussed in \cref{theory:eds_performance:peakratio}, based on the work by Egerton and Cheng \cite{egerton_nio_characterization_1994}.
 The spatial regions where a stray X-ray can originate is: (a) inside the specimen, but outside the targeted area, (b) from the chamber, (c) from an eventual specimen holder, and (d) from the detector.
-To limit the strays, the collimator on the detector is a physical barrier which only allows X-rays from a certain angle to reach the detector.
-This requires the detector to be aligned correctly, which could be tested with a tilt series.
-\ton{Do you want an illustration here of a, b, c, d?}
+To limit the strays, the collimator in front of the detector is a physical barrier which only allows X-rays from a certain angle to reach the detector.
+This requires the detector to be aligned correctly, which could be tested with a tilt series, where the stray signal should be independent of the tilt angle.
+The stray signal is made by a combination of the detector and the specimen, thus it is not possible to measure the stray signal in a blank specimen (of vacuum) and subtract that signal from a measurement.
+Stray signals need to be handled from case to case, as different specimen give different stray signals on the same detector.
+% \ton{Do you want an illustration here of a, b, c, d?} % Answer: No
 
 
 Strays originating from the (d) the detector results in both the \textbf{internal fluorescence} peak and \textbf{silicon escape peaks}.
@@ -1310,7 +1299,7 @@ Most spectrums have a \textbf{noise peak} around 0 keV, which is present due to 
 The noise peak is also called the zero peak.
 All detectors have this type of noise, but some vendor software remove the noise peak automatically.
 The AZtec software does not remove the noise peak, and it is therefore important to be aware of the noise peak.
-During model fitting, the noise peak should be removed to avoid a bad background fit in the lower energy region.
+For example, during model fitting, the noise peak should be removed to avoid a bad background fit in the lower energy region.
 The simple solution is to inspect where the noise peak ends, and cut of the spectrum at that energy.
 As the noise peak is located sufficiently close to zero, no information is lost by cutting off the spectrum at the noise peak.
 
@@ -1322,7 +1311,7 @@ In Goldstein at page 274, it is shown that an escape peak was present using the 
 The AZtec software have a built-in method to remove coincidence peaks, called "Pulse Pile Up Correction" \cite{aztec_manual}.
 The AZtec user manual state that this method works best for single pixels or areas with the same composition, and that it might produce bad results when scanning over a larger heterogeneous area \cite[p. 99]{aztec_manual}.
 Aside from this brief description, a user does not get any information on how the method works.
-This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can enhance the spectrum, but also produce bad results. %can produce bad results.
+This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can enhance the spectrum, but also produce bad results due to incorrect handling of artifacts. %can produce bad results.
 
 
 % figures/artifacts.pdf
@@ -1331,6 +1320,9 @@ This illustrates one of the challenges with digital solutions implemented by the
     \includegraphics[width=0.95\linewidth]{figures/eds_artifacts.pdf}
     \caption{
         Some of the possible artifacts in EDS spectra.
+        Ton: "Is noise peak that high? Should it be on 0 eV as stated in text?"
+        Brynjar: "Her er det noe rart med x-aksen, og kan gjøre noise peak lavere."
+        \brynjar{TODO: redo this figure.}
     }
     \label{fig:eds_artifacts}
 \end{figure}
@@ -1388,23 +1380,26 @@ This illustrates one of the challenges with digital solutions implemented by the
 
 % For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are set-up, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
 
-The aim of this work is to improve EDS bulk quantification, and one way to do that is to improve the performance of the EDS setup.
+The aim of this work is to improve EDS bulk quantification, and one way to do that is to improve the performance of the EDS setup, which is the upper row in \cref{fig:intro:parameters}.
 Identifying potential issues with the EDS setup can be done through certain performance parameters.
 A performance check can reveal errors in the setup and acquisition parameters, and it can make the input parameters for the quantification more accurate.
 Vendors of EDS detectors like Oxford Instruments provide a guide for how to calibrate their detectors, but these guides are limited to calibration of energy resolution and scale \cite{aztec_manual}.
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
-In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{define AEM earlier?}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
-Routines for a performance check seems to vary significantly between different laboratories, and the industry has not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
+In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{TODO: define AEM earlier?}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
+Routines for a performance check seems to vary significantly between different laboratories, and the industry and standard authorities have not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
 
 
 % not new paragraph?
 An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
 % \brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
 Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
-Literature on performance parameters for SEM EDS setups are less common, but some papers are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
-Goldstein also include details on a range of parameters and possible SEM EDS issues.
+Literature on performance parameters for SEM EDS setups are less common, but some papers \cite{software_dtsaii,dtsaii_1_getting_started,dtsaii_2_manipulating_spectra} are available and the software DTSA-II includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
+Goldstein also include details on a range of parameters, such as linearity and stability of the detector, along with possible SEM EDS issues, such as beam-sensitive specimen and specimen with irregular topography \cite{goldstein_scanning_2018}.
 The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
 One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a well performing detector.
+\brynjar{TODO: Get these ranges/value numbers into results and the discussion, and link back here.}
+Out of range values could indicate a suboptimal set-up or affect calculating composition.
+Identification of set-up parameters with optimization and correction should lead to better EDS analysis.
 The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDDs.
 In this section, each of the test characteristics is described with what it is, how it is measured, and what values are acceptable.
 Before the test characteristics are described, an overview is given and a summary table is given at the end of the section in \cref{tab:eds_performance_parameters}.
@@ -1462,8 +1457,8 @@ At the end of the section, \cref{tab:eds_performance_parameters} contains a summ
 \cref{fig:theory:eds_performance:overview:duanehunt} shows the Duane-Hunt limit, which is the minimum beam energy required to produce a signal.
 \cref{fig:theory:eds_performance:overview:fiori_snr} shows the different signal-to-noise ratios, which is quantified by the Fiori peak-to-background ratio.
 The same illustration shows different background portions.
-\cref{fig:theory:eds_performance:overview:peak_deviations} shows the deviations in peak positions, which is a affected by the energy scale and offset, and which part of the spectrum is used for calibration.
-\cref{fig:theory:eds_performance:overview:strays} shows the effect of stray radiation, which is can be quantified by calculating peak ratios.
+\cref{fig:theory:eds_performance:overview:peak_deviations} shows the deviations in peak positions, which is an affected by the energy scale and offset, and which part of the spectrum is used for calibration.
+\cref{fig:theory:eds_performance:overview:strays} shows the effect of stray radiation, which is can be quantified by calculating peak ratios between a stray and a non-stray peak.
 Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 
 % figures/pp_duane-hunt.pdf
@@ -1472,8 +1467,8 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
     \centering
     \includegraphics[width=0.6\linewidth]{figures/pp_duane-hunt.pdf}
     \caption{
-        illustration of a spectrum where the Duane-Hunt limit is different due to charging.
-        The charging sampe (red) has a lower effective beam energy than expected (10 keV).
+        Illustration of a spectrum where the Duane-Hunt limit is different due to charging.
+        The charging sample (red) has a lower effective beam energy than expected (10 keV).
         The sample with good conductivity (blue) has the expected beam energy (10 keV).
     }
     \label{fig:theory:eds_performance:overview:duanehunt}
@@ -1490,6 +1485,8 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
         Panel (a) has a high SNR.
         Panel (b) has a lower SNR due to a higher background intensity.
         Panel (c) has a lower low SNR due to a lower peak intensity.
+        Even though this illustrative background is linear, that is not always the case.
+        \brynjar{Is background fitting covered somewhere?}
     }
     \label{fig:theory:eds_performance:overview:fiori_snr}
 \end{figure}
@@ -1514,6 +1511,8 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
     \caption{
         Illustration of strays.
         The expected spectrum (blue) has additional peaks (green) due to stray radiation.
+        The example is a GaAs sample with strays of Mo L$\alpha$, Cu K$\alpha$, Cu K$\beta$, and Mo K$\alpha$.
+        \brynjar{Add Mo Kb? And Cu La?}
     }
     \label{fig:theory:eds_performance:overview:strays}
 \end{figure}
@@ -1523,13 +1522,13 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 
 % what materials to use for the tests
 Recording the necessary metrics for the performance parameters requires a sample with some specific properties.
-The sample should be homogenous, and have a known composition, where the elements present have lines at both low and high energies.
+The test sample should be homogenous with a known composition, and the elements present should have lines at both low and high energies.
 The lines should not be high enough to cause overvoltage issues, as was noted with Mo K$\alpha$ in \cite{project_report}.
 Even at 30 kV, the Mo K$\alpha$ line at 17.47 keV had very low intensity, making the analysis done with this peak less reliable.
-The peaks in the spectrum should not overlap too much, as this will make the fitting of the peaks less accurate.
+The peaks in the spectrum should overlap less than the expected energy resolution and preferably be well separated, as this will make the fitting of the peaks less accurate.
 For repeatability, the sample should not be reactive.
 Additionally, the sample should preferably both be easy to acquire and not expensive.
-When vendors, like Ted Pella who provides the NiO test sample for TEM, are used, the sample is not available immediately, and the delivery time can be long.
+When vendors, like Ted Pella who provides the NiO test sample for TEM, are used, the sample might not be available immediately, and the delivery time can be long, as experienced during this work and in the project report \cite{project_report}.
 
 % Low and high lines. Not a overvoltage issue in SEM. Also viable for low energy? Clear peaks, not severe overlap issues.
 % Easy to find. Not expensive. Not restricted by delivery from a vendor. Not reactive.
@@ -1575,9 +1574,10 @@ Different specimen will have different deviation, due to varying conductivity.
 Specimen with low conductivity will get problems with charging, which will lowers the effective beam energy.
 Thus, a deviation between the nominal and effective beam energy of several kilo-electronvolts is a sign of charging \cite{dtsaii_2_manipulating_spectra}.
 Charging of specimen are covered in detail in a paper by Postek and Vladár \cite{postek_charging_2015}.
-Another explanation of a large deviation is that the voltage indicated by the SEM is wrong.
+Another explanation of a large deviation is that the voltage indicated by the SEM is imprecise.
 In both cases, a quantitative analysis will yield poor results \cite{iso_emsa_22029}.
-Thus, the Duane-Hunt limit test the acceleration voltage and the conductivity of the specimen.
+Thus, the Duane-Hunt limit relates the acceleration voltage and the conductivity of the specimen.
+\brynjar{TODO: discussion, "Is it a useful test for you, for given HT and good conducting specimen? Comment this in discussion?" No, it is not very useful, but nice for slicing.}
 
 % \brynjar{ISO 22309 Quantitative: " 5.6 For standardless analysis, check the measured spectrum using the Duane-Hunt rule.
 % NOTE - Deviations of the high-energy end of the bremsstrahlung background from the indicated high voltage means
@@ -1606,9 +1606,10 @@ Thus, the Duane-Hunt limit test the acceleration voltage and the conductivity of
 % What, Mn Ka
 The energy resolution of an EDS system is the ability to distinguish two lines at different energies, and is measured by the FWHM of the Mn K$\alpha$ peak.
 The convention of using the Mn K$\alpha$ peak as the reference for the energy resolution is because of its position at 5.8987 keV, which gives an indication for both the lower and higher energies used in EDS.
-The first SDD detectors had an energy resolution between 160 and 200 eV, while modern detectors can achieve energy resolution around 120-140 eV, which allow closer peaks to be separated \cite{keith_energy_res_2013,goldstein_scanning_2018}. % \brynjar{Thompson refers to Goldstein\dots}.
+% The sentence below is repeated too much:
+% The first SDD detectors had an energy resolution between 160 and 200 eV, while modern detectors can achieve energy resolution around 120-140 eV, which allow closer peaks to be separated \cite{keith_energy_res_2013,goldstein_scanning_2018}. % \brynjar{Thompson refers to Goldstein\dots}.
 All EDS detectors have a stated energy resolution in its specifications, however the actual resolution of a given spectrum varies some with the acquisition settings for the same detector.
-Thompson show that with the dead time kept constant, a higher input count rate gives worse resolution, with the example of 121 eV resolution with <5000 cps, and 140-150 eV resolution with >100,000 cps \cite{keith_energy_res_2013}.
+Thompson shows that with the dead time kept constant, a higher input count rate gives worse resolution, with the example of 121 eV resolution with <5000 cps, and 140-150 eV resolution with >100,000 cps \cite{keith_energy_res_2013}.
 Thompson claims that EDS specifications are based on acquisition designs with low input counts.
 The process time setting is also affecting the energy resolution.
 A longer process time gives the electronics more time to process and assign the energy of the incoming count, and thus gives better resolution.
@@ -1634,7 +1635,9 @@ The remainder of this section will focus on the Mn K$\alpha$ peak.
 Three different approaches to measure the energy resolution are described below.
 The first is to directly measure the Mn K$\alpha$ peak in a specimen with Mn.
 The second is using the Ni K$\alpha$ peak and multiply it by a factor of 0.926, which is suggested by Ted Pella, Inc. \cite{ted_pella_nio_tem_2019}.
-The third is to use any peak in the spectrum, and calculate what the energy resolution would be if there was a Mn K$\alpha$ peak in the spectrum.
+The third is to use any peak in the spectrum, and calculate what the energy resolution would be if there was a Mn K$\alpha$ peak in the spectrum, using \cref{eq:estimateFWHM}.
+The second approach is a special case of the third, where the Ni K$\alpha$ peak is used as the reference peak, but with a much simplified equation which is only valid in certain FWHM ranges.
+\brynjar{Test litt denne 0.926 faktoren med formelen til metode 3. Eventuelt skriv om forrige setning.}
 The third approach is the one which is used in the code developed in this work.
 
 
@@ -1645,12 +1648,12 @@ This is the advised method in the ISO 15632 on EDS performance parameters \cite{
 The argument for doing this is that the energy resolution is not a function of the microscope, thus measuring the energy resolution off the microscope negates all possible influences from the microscope.
 The ISO standard recognize that this is not easily done by users, and thus suggesting polished Mn as a substitute.
 % The most straight forward way of finding the energy resolution  is to measure the FWHM of the Mn K$\alpha$ peak in a sample with Mn, preferably with high concentration as that provides a well defined peak.
-The FWHM measurement should be from a numerical fitting of a Gaussian to the peak, because it limits the effect of the background and it uses all the information in the peak instead of just three points (the peak maximum, the left and right half maximum).
+The FWHM measurement should be from a numerical fitting of a Gaussian to the peak, because it limits the effect of the background, and it uses all the information in the peak instead of just three points (the peak maximum, the left and right half maximum).
 
 
 % Ni Ka * 0.926
 Another approach, which can be used when a sample with Ni is available, is to measure the FWHM of Ni K$\alpha$ and multiply the value with 0.926 \cite{bennett_egerton_1995}.
-This approach is based on a study in 1995 where five TEM laboratories were given a standard NiO test specimen with a series of EDS test measurements to be done, where one of the tests were focused on the energy resolution.
+This approach is based on a study in 1995 \cite{bennett_egerton_1995} where five TEM laboratories were given a standard NiO test specimen with a series of EDS test measurements to be done, where one of the tests were focused on the energy resolution.
 The test used the Ni K$\alpha$ and O K$\alpha$ peaks, where the FWHM of these two lines were measured, and a linear correlation between photon energy and the square of the energy resolution was assumed.
 Then the FWHM of Mn K$\alpha$ was determined by interpolation, and the factor 0.926 was reported as a sufficiently good conversion from Ni K$\alpha$ to Mn K$\alpha$ for the five TEM laboratories.
 This approach is the recommended method provided by Ted Pella Inc., who manufactures standardized NiO test specimens for TEM \cite{egerton_nio_characterization_1994,ted_pella_nio_tem_2019}.
@@ -1663,7 +1666,7 @@ The method has two default arguments: \verb|calibrate='resolution'| and \verb|xr
 The estimation of the FWHM of Mn K$\alpha$ is done in two steps.
 The first step is to fit the width of all the lines in the spectrum, which is needed to get a correct reference peak width, i.e. an account for the peak broadening of the detector.
 % \ton{This I read from the HS code, line 50 in: \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
-The second step utilizes an equation by Fiori and Newbury from a conference paper in 1978, and while this original paper is hard to find, the equation is included in Goldstein \cite[Ch. 16.1.1]{goldstein_scanning_2018} with a reference to the original paper.
+The second step utilizes an equation by Fiori and Newbury from a conference paper in 1978, and while this original paper is hard to get hold of (neither the NTNU library or paper depositories could provide it), the equation is included in Goldstein \cite[Ch. 16.1.1]{goldstein_scanning_2018} with a reference to the original paper\footnote{One of the two authors of the original 1978 publication is D. Newbury, who is also the second author of the Goldstein textbook \cite{goldstein_scanning_2018}.}
 The equation use one known line in the spectrum to estimate what the FWHM would be at an arbitrary energy:
 % \brynjar{original: Fiori, C. E., and Newbury, D. E. (1978). In SEM/1978/I, SEM, Inc., AFM O'Hare, Illinois, p. 401.}
 
@@ -1679,6 +1682,10 @@ As of HyperSpy v1.7.3, the reference line in \cref{eq:estimateFWHM} is the first
 The fact that the reference line is only the first line in the list, is not documented clearly in the HyperSpy documentation, and can yield unexpected results when the first line is not a well-defined peak.
 The method works well when the reference line is a well-defined peak.
 \brynjar{Should probably give a definition of "well-defined" \dots}
+Setting the energy resolution of a spectrum could be done as the average of several distinct peaks, it could be the lowest estimate, the average of the three lowest, or another selection.
+For comparative purposes, the same selection should be used, and it should be clear which selection was used.
+This is a focus in this work.
+\brynjar{Add average, best, and average of three best, and evt some more to the results.}
 % TODO \brynjar{Discuss: when taking a series of spectra with different Vacc, the first line (eg AsKa in GaAs or AlKa in SU9000) is poorly defined for 10 kV and 5 kV respectively, resulting in weirdly poor Mn Ka estimate.}
 
 
@@ -1691,9 +1698,10 @@ The method works well when the reference line is a well-defined peak.
 As the energy resolution is a function of the count rate and the process time, it is probable that EDS vendors report the energy resolution with a low count rate and a long process time.
 To clarify such possibilities, the ISO standard state that the ICR should be < 1000 cps when the best energy resolution is reported \cite{iso_qc_15632}.
 Further, the standard states that detectors with possibilities for high count rates should also specify the energy resolution at a high count rate, e.g. 1E6 cps.
-This is, to the knowledge of the author, not commonly done by EDS detector vendors.
-\ton{OK to use the previous sentence?}
+This is, to the knowledge of the author, not commonly done by SEM and TEM EDS detector vendors.
 % TODO: Add smt about this in discussion
+
+% \ton{OK to use the previous sentence?} Answer: " Ithink it is not practically happen. However, there might be industrial special EDS systems that operate over large count ranges I guess. The comment, you concluding comment is fine, keep as it is."
 
 
 % Acceptable values
@@ -1705,7 +1713,7 @@ If the user cannot achieve the energy resolution in the specification with optim
 In Goldstein, it is stated that most specimen would benefit of a small loss in energy resolution to get higher throughput \cite[16.3.2]{goldstein_scanning_2018}.
 The trade-off between energy resolution and throughput allows a small loss in resolution for a high gain in throughput.
 However, the user must be aware of the elements in the specimen, as overlapping peaks become more difficult to resolve with a lower energy resolution.
-Thus, the user should adjust the trade-off according to the specimen used.
+Thus, the user should adjust the trade-off according to the specimen used and the aim of the analysis.
 
 % e.g. deviations when using the HS method implicate that the reference line is not a well-defined peak, which can be caused by ...
 % As explained, the theoretical limit of the FWHM of Mn K$\alpha$ is XXX \brynjar{explain above!}.
@@ -1741,12 +1749,13 @@ Calibration of the energy axis is done by: (1) fitting the background and Gaussi
 The calibration can be done by hand, or by using the HyperSpy function \verb|calibrate_energy_axis|.
 The HyperSpy function needs the argument \verb|calibrate| to be either \verb|'scale'| or \verb|'offset'|, which specifies if the scale or the offset should be calibrated.
 The function also takes the argument \verb|xray_lines|, which is used to specify the peaks that should be used for the calibration.
+In the project report, the author made a function from scratch to calibrate the energy axis, which was used for a lab exercise in the course TFY4255 \cite{project_report}.
 
 
 % Why
 Calculating the scale and offset is done to verify that the system is operating correctly.
 The scale and offset should be close to the values that are set by the user for the acquisition.
-If there is a noticable deviation, the user should probably contact the EDS detector vendor for support.
+If there is a noticeable deviation, the user should probably contact the SEM Eds responsible for technical support.
 If the user finds deviations between different specimen or different acquisitions settings, the \dots
 
 
@@ -1765,6 +1774,8 @@ How \dots
 
 
 Acceptable values \dots
+
+% Ton: "Unsure how extensive this will be when calibrated correctly and the limited resolution. Fitting error? Have as final comment in previous section?" Will be short
 
 
 % % What
@@ -1816,8 +1827,8 @@ As a counterweight to the possible unwanted effects of a high count rate, the IS
 % \brynjar{From ISO 15632 on performance parameters: "Some detector systems are capable of very high count rates, but at high count rates other specifications like energy resolution may alter and artefacts may appear in the spectrum. All specifications should therefore be accompanied by a statement of the count rate at which they are measured and it should not be assumed that the specification will be the same at other count rates."}
 Having a metric for the ratio between the signal in peaks and in the background is therefore important both for establishing what makes a good detector, and also if an acquired spectrum have high quality.
 The peak-to-background ratio in a certain detector will vary with the specimen studied and the detector settings, and can thus be used as a parameter to assess the quality of a spectrum.
-The Fiori P/B was originally made for TEM and STEM, but arguments for why and how it is relevant for SEM are presented below.
-The original definition of the Fiori P/B is from a publication by Fiori, Swyt, and Ellis in 1982 \cite{fiori_peak_background_1982} in \emph{Microbeam Analysis 1982}, which is available at the NTNU library, where the definition is:
+The Fiori P/B was originally made for TEM and STEM, i.e. thin specimen with low background, but arguments for why and how it is relevant for SEM are presented below.
+The original definition of the Fiori P/B is from a publication by Fiori, Swyt, and Ellis in 1982 \cite{fiori_peak_background_1982} in \emph{Microbeam Analysis 1982}, where the definition is set as:
 
 \begin{equation}
     \label{eq:fiori_pb}
@@ -1834,13 +1845,13 @@ The original definition of the Fiori P/B is from a publication by Fiori, Swyt, a
 The Fiori P/B is illustrated in \cref{fig:fiori_pb}.
 A paper from Zemyan and Williams in 1994 \cite{zemyan_standard_performance_1994} includes the definition and a brief discussion of why the Fiori P/B metric is superior to other P/B metrics.
 A more detailed discussion on the different P/B metrics are published by Williams in \emph{Microbeam Analysis} in 1986 \cite{williams_standard_definitions_1986}.
-The main advantages are the simplicity, robustness, and relevance to the generated characteristic X-ray.
+The main advantages are the simplicity, robustness, and relevance to the generated characteristic X-rays in general.
 The metric can be used to assess artifacts in an acquired spectrum by either comparing the metric to a reference spectrum from the same detector, or by comparing to theoretical predictions.
 The robustness of the Fiori P/B comes from how the metric can be used on different detectors to compare the quality of the spectra they yield.
 The metric is unaffected by different energy resolutions, as all the counts in the peak are included in the numerator, thus different peak broadening does not affect the metric.
 This is also true for change in peak broadening due to different detector settings, like increasing the count rate.
 The relevance to the characteristic X-ray comes from having the denominator as a fixed 10 eV window, or approximated only one channel, which puts the metric in the same order of magnitude as if the natural line width of the peak had been used.
-All these arguments were made for TEM, but they are equally true for SEM, and thus the metric is relevant for SEM.
+All these arguments were made for TEM, but they are equally true for SEM, and thus the metric is relevant for SEM EDS.
 
 
 
@@ -1854,7 +1865,7 @@ All these arguments were made for TEM, but they are equally true for SEM, and th
         P is all the counts in the actual peak, i.e. the part with the horizontal lines that does not including the background.
         B is the counts in a 10 eV window at the peak center.
         Figure adapted from \cite{zemyan_standard_performance_1994}.
-        \brynjar{TODO: remake this figure?}}
+        \brynjar{TODO: remake this figure. Uniform layout.}}
     \label{fig:fiori_pb}
 \end{figure}
 
@@ -1907,21 +1918,22 @@ In EDAX Insight a 300 eV window is used for each background area far from the pe
 For calculation of P, the Zemyan and Williams paper from 1994 use a 700 eV window \cite{zemyan_standard_performance_1994}, and the Ted Pella info-sheet on their NiO standard sample uses a 600 eV window \cite{ted_pella_nio_tem_2019}.
 This is probably a result of different materials, i.e. Cr and Ni, having different peak widths, but it is not ideal for comparison.
 The inconsistency of the actual calculation of the Fiori P/B is a problem for the metric.
-This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B.
+This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B, to easily compare reported or claimed values from different set-ups.
 This would make the metric truer to the original definition, and make it more robust as the users subjective opinions does not affect the calculation, and results from different materials might be more comparable.
 This option is explored in this work.
+% TODO: In discussion debate this choice to alternatives.
 
 
 
 
 
 % Acceptable range
-There are some papers suggesting acceptable thresholds for the Fiori P/B, but they are for TEM EDS spectra.
+There are some papers \cite{egerton_nio_characterization_1994,egerton_nio_characterization_1994,ted_pella_nio_tem_2019} suggesting acceptable thresholds for the Fiori P/B, but they are for TEM EDS spectra.
 It is stated in Williams and Carter \cite[p. 614]{williams_carter_tem_2009} that in a well constructed AEM the Fiori P/B ratio should increase with increasing beam energy.
 % "In a well-constructed AEM, the P/B ratio will increase with keV." (Williams and Carter, p.614)
-This should probably be true for SEM EDS setups too, and are explored in this work.
+This should probably be true for SEM EDS setups too, and it is explored in this work.
 % TODO: results and discussion on this
-TEM EDS signals can have lower relative background intensity compared to peak intensity than SEM EDS signals \ton{Do I need citation here?}.
+TEM EDS signals can have lower relative background intensity compared to SEM EDS signals, because the specimen is thin for TEM as explained in \cref{theory:sem:tem}.
 This implies that a threshold should be lowered for SEM EDS signals.
 Egerton and Chengs paper from 1994 \cite{egerton_nio_characterization_1994} suggests that a good TEM setup with a good signal have a Fiori P/B above 3000, while a number under 1000 indicates a bad signal.
 Such high numbers might be too high for SEM EDS signals, but it is not clear what the threshold should be.
@@ -1931,7 +1943,7 @@ It might be that the threshold should be related to the specific detector, as de
 Another potential use of the metric is to optimize the acquisition settings for specific specimen.
 Higher numbers indicate a better signal-to-noise ratio, which should allow for better quantification of the specimen.
 This is explored and focused on in this work, rather than trying to find a specific SEM threshold for the Fiori P/B.
-\ton{OK to give a heads-up for the method/results here?}
+
 
 % skrive om de forskjellige som finnes, og hvordan de varierer. Variasjon er ikke bra from sammenlikning
 % visualisere hva jeg gjør
@@ -1947,16 +1959,19 @@ This is explored and focused on in this work, rather than trying to find a speci
 
 
 
-\subsection{Peak ratios - contamination and stray radiation}
+\subsection{Peak ratios - carbon contamination and stray radiation}
 \label{theory:eds_performance:peakratio}
 
 A peak ratio, i.e. the counts in one peak divided by the counts in another peak, can be used to discover different issues with a detector.
+\cref{tab:theory:lineEnergies} show the theoretical ratios inside families, i.e. between $\alpha$ and $\beta$ lines, but not the ratio between K and L.
+Theoretical ratios between K and L can be found in the X-ray Data Booklet \cite{thompson_x-ray_2004}.
 Egerton and Cheng \cite{egerton_nio_characterization_1994} show that a change in the ratio of the Ni K$\alpha$ to the Ni L$\alpha$ peak can be used to discover hydrocarbon contamination and icing of the detector.
 The latter is not an issue with the newer SDDs, as they are not cooled down with liquid nitrogen.
 The Ni K$\alpha$ line is at 7.48 keV, while the Ni L$\alpha$ line is at 0.85 keV, the latter being closer to the C K absorption edge, resulting in a higher sensitivity to hydrocarbon contamination.
 Other peaks could also be used for this purpose, as long as one is close and above the C K$\alpha$ line and the other is far above.
 The Ted Pella Info sheet \cite{ted_pella_nio_tem_2019} contains a formula for calculating the thickness of the contamination layer, but the assumptions used are not valid for SEM EDS signals.
-A good reference numbers have not been found for this metric for SEM EDS.
+A good reference numbers have not been identified for this metric for SEM EDS, and will depend on the chosen test specimen.
+% TODO: you can discus this for the samples you have data on and suggest improvements on this aspect in the discussion chapter
 However, detecting the contamination can be done by comparing a K/L peak ratio over time, where a decrease is an indication of carbon contamination.
 
 
@@ -1991,6 +2006,7 @@ Both X-ray photons from background radiation and other elements can excite the M
 \subsection{Total counts and background portion}
 \label{theory:eds_performance:background_portion}
 
+\brynjar{Comment from Ton: "should this section not be incorporated in the Fiori section or placed directly after it?" Yes, that is a good idea.}
 
 % Total counts, background counts.
 % How to represent the measure better? Ratio, percentage, absolute value, etc.
@@ -2010,7 +2026,10 @@ As the background portion will vary with specimen and detectors, no specific val
 
 The variation in background is affecting the Fiori P/B, as illustrated in \cref{fig:theory:eds_performance:overview:fiori_snr}.
 Having both the Fiori P/B and the background portion as metrics might be redundant.
-The usefulness of using both metrics is explored furhter in this work.
+The usefulness of using both metrics is explored further in this work.
+
+
+
 
 
 
@@ -2032,8 +2051,13 @@ The usefulness of using both metrics is explored furhter in this work.
 \input{tables/table_performance_parameters.tex}
 
 
+% TODO 
+% \ton{Everything above this page is more or less finished now. How would you rate it?}
+% It is good, detailed. The visualizations/figures are very useful for the reader, the summarizing tables not always.
+% Some points are repeated and as long (but keep as it is now!) less interested reader could loose the red line. 
+% Use the theory when discussing your own results and finding, refer to theory and use in the discussion the reference you use here. Debate your choices to use a certain approach/criteria and compare to what if another is used. 
+% Theory is detailed, backup and now you have to integrate it/ use it in the discussion part to have a interlinked report.
 
-\ton{Everything above this page is more or less finished now. How would you rate it?}
 
 
 \ton{The stuff below is unfinished and more in the style of notes/ideas.}
@@ -2117,7 +2141,7 @@ overlap situation."
     beam perpendicular to the specimen surface and collected by the detector at a take-off angle of 35 degrees. The
     specimens to be used, the measurement conditions, the calculation of L/K ratio and its conversion for
     TOA not equal 35 degrees are given in Annex B. \dots These measures are only appropriate for a detector thick enough to absorb at least 95 % of the incident
-    X‑ray energy at 8 keV."}
+    X-ray energy at 8 keV."}
 
 
 
@@ -2218,17 +2242,17 @@ overlap situation."
 
 
 
-\brynjar{TODO: Fjerne det om phi-rho-z, fordi jeg bruker PROZA96 (som er en videreføring av phi-rho-z, eller?)}
+\brynjar{TODO: Fjerne det om phi-rho-z, fordi jeg bruker PAP/XPP, og vurderte å bruke PROZA96}
 
 
 % Limitations done in this work
 This work aims to improve the analysis for SEM EDS data, and this section will focus on the quantitative analysis.
 As a master thesis, the scope of this work is limited, and the main focus on the quantitative analysis is to implement matrix corrections in a Jupyter notebook which could be developed further into for example an addition to the HyperSpy package.
 As stated in the ASTM 1508 standard, there are multiple different programs available for matrix corrections with some differences, but the accuracy of the EDS analysis is probably not limited by the accuracy of the matrix correction \cite{astm_e1508_eds_quantification}.
-The methods selected for the matrix corrections are the absorption correction through the ZAF-method and the PAP algorithm, where the PROZA96 algorithm is more physically correct \cite{bastin_proza96_1998}.
+The methods selected for the matrix corrections are the absorption correction through the ZAF-method and the PAP algorithm, where the PAP algorithm is more physically correct \cite{pap_1991,bastin_proza96_1998}.
 The atomic number correction (Z) in ZAF is excluded, as the correction have two effects with tend to go in opposite directions and cancel each other out \cite[p. 300]{goldstein_scanning_2018}.
 These two effects are the backscattering factor (R) and the stopping power (S).
-Both R and S is implemented in the PROZA96 algorithm through the PAP model \cite{pap_1991}.
+Both R and S is implemented in the PAP model \cite{pap_1991}.
 The fluorescence correction (F) is excluded, because it is stated in Goldstein that this correction is usually the least important one \cite[p. 307]{goldstein_scanning_2018}.
 The low importance of the F correction is illustrated in figure 6 in P. Burdets publication on 3D SEM EDS \cite{burdet_2014_3dsem}.
 This section will start with an introduction to the principle of quantitative EDS analysis, before the different corrections are presented.
@@ -2289,7 +2313,7 @@ The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the follo
 \end{equation}
 
 Where $k_{AB}$ is the k-factor for the two elements $A$ and $B$.
-The k-factor is most accuratly determined experimental, but can be calculated theoretically.
+The k-factor is most accurately determined experimental, but can be calculated theoretically.
 
 
 The k-ratio method is a quantification method for bulk samples, where the k-ratio is the ratio between the measured intensity of the unknown and the standard.
@@ -2301,8 +2325,8 @@ Element $i$ is quantified through the equation:
     \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}} = (ZAF)_i \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}} = (ZAF)_i \cdot k_i
 \end{equation}
 
-Wher $(ZAF)_i$ is the ZAF-correction for element $i$ and $k_i$ is the k-ratio for element $i$.
-As with the k-factor, the k-ratio is most accuratly determined experimentally, but can be calculated theoretically.
+Where $(ZAF)_i$ is the ZAF-correction for element $i$ and $k_i$ is the k-ratio for element $i$.
+As with the k-factor, the k-ratio is most accurately determined experimentally, but can be calculated theoretically.
 The AZtec software from Oxford Instruments can both provide the k-factor and the k-ratio for the elements in an analyzed sample, which are theoretically calculated.
 
 
@@ -2345,7 +2369,7 @@ In this work, $ZAF_B$ is used.
 
 The part of the ZAF corrections tested in this work are the absorption corrections.
 The generated intensity is reduced before detection due to absorption in the specimen.
-The absorption reduce the measured intensity of X-rays from a certain point by:
+The absorption reduces the measured intensity of X-rays from a certain point by:
 
 % I = I_0 * exp(-mu * rho * t)
 \begin{equation}
@@ -2353,7 +2377,7 @@ The absorption reduce the measured intensity of X-rays from a certain point by:
     I = I_0 \cdot e^{-\mu_{\rho} \cdot \rho \cdot t}
 \end{equation}
 
-Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rho}$ is the mass absorption coefficient\footnote{The symbol for mass absorption coefficient is $(\mu/\rho$) in Goldstein, but is written as ($\mu_{\rho}$) in this work, because writing $(\mu/\rho)\cdot \rho$ not ideal.}, $\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
+Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rho}$ is the mass absorption coefficient\footnote{The symbol for mass absorption coefficient is $(\mu/\rho)$ in Goldstein, but is written as ($\mu_{\rho}$) in this work, because writing $(\mu/\rho)\cdot \rho$ not ideal.}, $\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
 The unit in the exponential have to cancel out, thus one can use the following units: $I$ and $I_0$ in the same and arbitrary units, $\mu_{\rho}$ in $\textnormal{cm}^2/\textnormal{g}$, $\rho$ in $\textnormal{g}/\textnormal{cm}^3$, and $t$ in $\textnormal{cm}$.
 As the detector is placed at a certain angle, the take-off angle, the path length becomes:
 
@@ -2369,22 +2393,45 @@ Tilting the specimen will change the path length of the X-ray, and thus the abso
 
 % calculating I_0 from an average point or for the whole interaction volume
 The most correct use of the absorption correction is to calculate the absorption for each point (or layer) in the interaction volume, which is usually done through $\phi(\rho z)$ curves.
-This calculation is part of the PROZA96 method described below, thus a simpler application of the absorption correction is used for the ZAF correction in this work.
+This calculation is part of the PAP method described below, thus a simpler application of the absorption correction is used for the ZAF correction in this work.
 Instead of applying the absorption correction for each point in the interaction volume, the absorption is calculated for the average point in the interaction volume.
 The average point selected in this work is the maximum path length of an incident electron, divided by two, where the electron range is calculated by HyperSpy which have implemented the Kanaya-Okayama parameterization \cite{kanaya1972,goldstein_scanning_2018}.
 This should be an approximation of the center of the interaction volume.
-\brynjar{To discussion: maybe this approximation is severely wrong. Monte Carlo suimulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results.}
-This simplification is partly justified by the fact that the avaliable measured intensity $I$ is the sum of the intensity from all points in the interaction volume.
+\brynjar{To discussion: maybe this approximation is severely wrong. Monte Carlo simulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results.}
+This simplification is partly justified by the fact that the available measured intensity $I$ is the sum of the intensity from all points in the interaction volume.
 Testing out different methods with varying complexity for calculating the absorption correction is a step towards finding a suitable implementation for HyperSpy.
-If a simpler model proves to be sufficient, it will allow users to understand the correction faster and possibly altering it to the spesific needs,  while also being easier to implement in HyperSpy.
+If a simpler model proves to be sufficient, it will allow users to understand the correction faster and possibly altering it to the specific needs,  while also being easier to implement in HyperSpy.
 
 
 
-\subsection{The PROZA96 model}
-\label{theory:quantitative_analysis:proza96}
+\subsection{The PAP model}
+\label{theory:quantitative_analysis:pap}
 
-The PROZA96 model is a more physically based model for matrix corrections, published by Bastin, Dijkstra, and Heijligers in 1996, as an improvement to the the same authors previous model from 1988 \cite{bastin_proza96_1998,bastin_proza_1988}.
-It is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian.
+\brynjar{Unfinished. I use PAP or XPP, not PROZA96.}
+
+
+Pouchou and Pichoir published their PAP model in 1991 for bulk corrections\footnote{"PAP" is short for "Pouchou and Pichoir" \cite{pap_1991}.}.
+The model is a mathematical heavy model which is physically based on X-ray generation and emittance, and the model should be able to correct for a wide range of compositions \cite{pap_1991}.
+In the original publication, a simplified model called XPP is also presented\footnote{"X" in XPP is probably short for e.g. express, but it is not stated in the paper.}.
+Alternative versions of matrix corrections which build on the PAP model is available, such as the PROZA96 model.
+The PROZA96 model is published by Bastin, Dijkstra, and Heijligers in 1996, as an improvement to the same authors previous model from 1988 \cite{bastin_proza96_1998,bastin_proza_1988}.
+It is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian, which is somewhat similar to the PAP model.
+As it is, allegedly, the XPP model which is used in AZtec \cite{} \brynjar{cite}\footnote{\url{https://www.oxinst.com/blogs/how-to-overcome-challenges-in-publishing-eds-results}}, the PROZA96 model is not tested in this work, but could be investigated in future works.
+
+
+\emph{From the paper: "We believe that, rather than treating separately the improvement of corrections for
+    homogeneous specimens and the characterization of specimens of composition variable in
+    depth, it would be more logical and efficient to conceive a general and unique model for the
+    calculation of emergent x rays. For this we have used the usual fundamental physical
+    concepts applied in x-ray microanalysis and we apply to them as accurate a description of
+    the depth distribution, $\phi$(pz) as possible."}
+
+
+The PAP model is based on the following steps:
+
+\brynjar{Insert steps in PAP.}
+
+
 The $\phi(\rho z)$ curve is the relative generated intensity as a function of mass depth, where mass depth is the product of density ($\rho$) and path length ($z$).
 The unit for the mass depth is $\textnormal{g}/\textnormal{cm}^2$.
 The curve starts above 1, increase to a maximum, and then decrease to 0.
@@ -2403,6 +2450,8 @@ Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:p
     }
     \label{fig:theory:quantification:phi_rho_z_curves}
 \end{figure}
+
+
 
 
 

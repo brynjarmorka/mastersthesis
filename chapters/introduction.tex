@@ -111,7 +111,7 @@ Nylund \cite{nylund_evaluation_2017} and Skomedal \cite{skomedal_improving_2022}
 Moreover, the notebooks are less suited for lower voltages and bulk samples commonly used in SEM, as Nylund and Skomedal worked with TEM-specimen.
 Skomedal worked partly with STEM, showing that the notebook is relevant for lower voltages, but the effect of bulk samples is not addressed, which will be addressed in this work.
 Another focus in this work, is to find reference values valid for the modern silicon drift detectors (SDDs).
-Reference values for characteristics like the Fiori P/B \cite{fiori_peak_background_1982} are available in the literature, but these values are are specified for older Si(Li) type of EDS detectors and may not apply to the SDDs \cite{sdd_lechner_2001}.
+Reference values for characteristics like the Fiori P/B \cite{fiori_peak_background_1982} are available in the literature, but these values are specified for older Si(Li) type of EDS detectors and may not apply to the SDDs \cite{sdd_lechner_2001}.
 To fill this gap, a Python notebook for characterization of performance parameters in a SEM EDS setup will be developed and published, including transparent documentation.
 The main focus will be SEM EDS, but the notebook should also be applicable to TEM EDS.
 Following the notebook will be a proposition for a SEM EDS tailored test specimen.
@@ -125,10 +125,10 @@ The overall aim, as stated by the project title, is to improve EDS.
 The first goal is to systematically go through the parameter listed in \cref{fig:intro:parameters}, and characterize the performance of a SEM EDS setup.
 The main focus will be on the experimental characteristics and new data processing routines that become available through open-source packages.
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
-The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer-ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
+The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
 Alternatively, the Phi-Rho-Z quantification method can correct for the bulk effects \brynjar{cite}.
 Neither the ZAF nor Phi-Rho-Z-corrections are implemented in the published version HyperSpy.
-The avaliable quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
+The available quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
 % Other methods like the factorless internal composition determination \cite{nilsen_factorless_2021} \ton{is this correctly phrased?} can also be used for quantification. % TON: leave this out. It is an alternative when there is bench mark element, not often the case. We decided not to push a PR as it is not general enough. It would be interesting if in SEM geometry it could work, but I expect complications.
 The second aim of this work is to explore whether iterative ZAF or Phi-Rho-Z corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
 
