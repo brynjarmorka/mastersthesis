@@ -118,20 +118,46 @@ The energy of the characteristic X-ray is usually measured directly in keV \cite
 
 
 % comment on the E_C, which is slightly higher than the energy of the photon
-As seen in \cref{eq:theory:xray_formation:characteristic:step2:energy}, the energy of the characteristic X-ray is somewhat lower than the critical ionization energy, E$_C$.
-The energy required to ionize an electron, E$_C$, can be referred to as the \textbf{absorption edge}, because the absorption an atom does increase abruptly at the energy of the absorption edge.
-This absorption effect is usually visualized with a plot of the mass absorption coefficient, as a function of energy.
-E$_C$ is slightly higher than the energy of the characteristic X-ray, which prevents for instance a K$\alpha$ X-ray from Fe to ionize the same transition in another Fe atom.
-In other words, because of the absorption edges an element is more transparent to its own characteristic X-rays \cite[Ch. 4.4]{goldstein_scanning_2018}.
+% and mass absorption coefficients
+As seen in \cref{eq:theory:xray_formation:characteristic:step2:energy}, the critical ionization energy E$_C$ is slightly higher than the energy of the characteristic X-ray ($h\nu_{\textnormal{X-ray}}$).
+%energy of the characteristic X-ray is somewhat lower than the critical ionization energy, E$_C$.
+If the incident energy on an atom is excatly the critical ionization energy, the atom might be able to absorb this energy and emit a characteristic X-ray, but the probability of this happening is very low \cite{hollas_modern_2004,goldstein_scanning_2018}.
+When the incident energy is slightly higher than the energy of the X-ray line, the probability of absorption increase abruptly.
+The probability of absorption is defined through the \textbf{mass absorption coefficient}, $\mu_\rho$\footnote{The mass absorption coefficient is defined as $\mu/\rho$ \cite{goldstein_scanning_2018}, but is noted as $\mu_\rho$ in this work because of \cref{eq:theory:quantitative:absorption}}, which is a function of energy.
+The abrupt increase of $\mu_\rho$ slightly above an characteristic X-ray line is called an \textbf{absorption edge} \cite{goldstein_scanning_2018}.
+% The energy required to ionize an electron, E$_C$, can be referred to as the \textbf{absorption edge}, because the absorption an atom does increase abruptly at the energy of the absorption edge.
+% This absorption effect is usually visualized with a plot of the \textbf{mass absorption coefficient} ($\mu_\rho$), as a function of energy.
+The mass absorption coefficient of a mixture of elements, e.g. GaAs, is a combination of the mass absorption coefficients of the elements in the mixture, and can be calculated with HyperSpy\footnote{\url{http://hyperspy.org/hyperspy-doc/current/api/hyperspy.misc.material.html}}.
+HyperSpy contains the mass absorption coefficients of the elements as a function of energy, with data from a NIST database \cite{nist_xraydatabase_hyperspy}.
+\cref{fig:background_absorptionEdgeSi} combines an EDS spectrum with the mass absorption coefficient of Si, and shows how the absorption increases at the absorption edge.
+\cref{fig:mass_absorption_coefficients} shows the mass absorption coefficients for GaAs in panel (a) and GaSb in panel (b), with characteristic X-ray energies marked with vertical lines.
+As $\mu_\rho$ is relatively low at the energy of the characteristic X-ray, the probability of absorption is low.
+For example, a Fe K$\alpha$ X-ray in Fe has a low probability of ionizing the same transition in another Fe atom.
+This makes an element more transparent to its own characteristic X-rays \cite[Ch. 4.4]{goldstein_scanning_2018}.
+% In other words, because of the absorption edges an element is more transparent to its own characteristic X-rays \cite[Ch. 4.4]{goldstein_scanning_2018}.
 After the sharp increase at the absorption edge, the probability of absorption decreases.
 This makes the probability of ionization greatest when the energy is just above the critical ionization energy.
-If the energy is significantly higher than the critical ionization energy, the probability of ionization is lowered \cite[p. 78]{curry_radiology_k_absorption}.
+If the energy is significantly higher than the critical ionization energy, the probability of ionization is lowered \cite[p. 78]{curry_radiology_k_absorption}, because $\mu_\rho$ continues to decrease.
 This implies that using a higher energy for ionization is not necessarily better, which is discussed more in \cref{theory:eds:user_controlled_parameters}.
 
 
 When the outer shell electron is relaxed, a new hole is generated in the outer shell.
 This leads to a cascade of relaxation events, but the energies of these transitions are too low to emit characteristic X-rays.
 These and other non-radiative relaxations will not be discussed further.
+
+
+% figures/mass_absorption_coefficients.pdf
+\begin{figure}[phtb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/mass_absorption_coefficients.pdf}
+    \caption{
+        The mass absorption coefficients ($\mu_\rho$) of (a) GaAs and (b) GaSb, with characteristic X-ray energies marked with vertical lines.
+        Note how much $\mu_\rho$ increases at the absorption edge, which is slightly higher than the energy of the characteristic X-ray.
+        The absorption edge in GaSb around 0.5 keV is the M-lines of Sb, and the additional steps after Sb L$\alpha$ is the L$\beta$ lines.
+        Annotated numbers are for $\mu_\rho$ in units of cm$^2$/g.
+        }
+    \label{fig:mass_absorption_coefficients}
+\end{figure}
 
 
 % mention Auger electrons, because of the fluorescence (quantum) yield
@@ -338,7 +364,7 @@ The ionization cross-section is strongly dependent on the atomic number of the e
 The generated intensity of the allowed lines is proportional to the electron dose from the probe, the number of atoms and the atomic weight of the given element, the fluorescence yield, and the ionization cross-section. %the detector efficiency, and the size of the detector.
 The electron dose is a function of the probe current and the acquisition time.
 The dependency of the number of atoms of the given element is crucial, as this is the basis for the quantitative analysis in EDS.
-The factors mentioned above are discussed further in the section on quantitative analysis in EDS \cref{theory:quantitative_analysis}.
+The factors mentioned above are discussed further in the section on quantitative analysis in EDS \cref{theory:quantitative}.
 Calculating the intensity of characteristic X-ray lines from bulk specimen is not trivial, but in Goldstein there is an experimentally based equation for this: \cite[Eq. 4.8]{goldstein_scanning_2018}:
 % Goldstein includes an experimentally based equation for the intensity of X-rays from bulk specimen \cite[Eq. 4.8]{goldstein_scanning_2018}:
 
@@ -364,7 +390,7 @@ Expressed in terms of the absorption coefficient $\mu$ and the path length $l$, 
 \end{equation}
 
 where $\mu$ is dependent on the material (Z) and the energy of the X-rays.
-When a thin specimen (<30 nm) is analyzed \cite{watanabe_williams_zeta_2006}, the absorption effect can be ignored, the so-called thin film approximation used in Cliff-Lorimer quantification, see \cref{theory:quantitative_analysis}.
+When a thin specimen (<30 nm) is analyzed \cite{watanabe_williams_zeta_2006}, the absorption effect can be ignored, the so-called thin film approximation used in Cliff-Lorimer quantification, see \cref{theory:quantitative}.
 When thicker samples are analyzed, the absorption and fluorescence effect must be taken into account for the quantitative analysis \cite{goldstein_scanning_2018}.
 Escape probability and depth is also dependent on the absorption edges present.
 When an X-ray photon is absorbed within the specimen, it can ionize an atom and generate a new X-ray with a lower energy, which is the previously mentioned fluorescence effect.
@@ -372,7 +398,7 @@ When thin samples are analyzed, the fluorescence effect can be ignored, but when
 For secondary fluorescence to happen, a characteristic X-ray must be absorbed, and it must have higher energy than the critical ionization energy of other lines in the material.
 If the absorbed X-ray have an energy higher than the E$_C$ + 5 keV of the other lines, the fluorescence effect is negligible \cite[p. 306]{goldstein_scanning_2018}.
 The fluorescence effect is also dependent on the path length of the X-rays in the specimen.
-Compensation for the fluorescence effect is discussed in \cref{theory:quantitative_analysis:principle}.
+Compensation for the fluorescence effect is discussed in \cref{theory:quantitative:principle}.
 
 
 
@@ -445,14 +471,15 @@ This correction could be a potential improvement of the model fitting \cite{hype
 % figures/background_absorptionEdge_Si.pdf
 \begin{figure}[pht]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/background_absorptionEdge_Si.pdf}
+    \includegraphics[width=0.95\linewidth]{figures/background_absorptionEdge_Si.pdf}
     \caption{
         The effect of the absorption edge on the background radiation.
         The spectrum in blue is from a Si wafer and the red dashed line is the Si K absorption edge at 1839 eV \cite{absorptionEdges_1967,hyperspy_1.7.1}.
         The background is abruptly reduced just above the absorption edge.
+        The green dotted line is the mass absorption coefficient ($\mu_\rho$) of Si as a function of energy, which increase with a factor of 10 at the absorption edge.
         The spectrum shows the overlapping Si K$\alpha$ and K$\beta$ peaks, the Si sum peak and a small O K$\alpha$ signal.
         Sum peaks are discussed in \cref{theory:eds:artifacts}.
-        The data is from \cite{project_report}.
+        The spectrum data was aquired in the project report work \cite{project_report}.
     }
     \label{fig:background_absorptionEdgeSi}
 \end{figure}
@@ -1080,6 +1107,7 @@ The ratio of the beam energy to the critical ionization energy is the \textbf{ov
 
 The overvoltage is different for all the lines in the spectrum, as it is dependent on the critical ionization energy of each line.
 When the overvoltage for a specimen is discussed, it is referring to the overvoltage for the line of interest with the highest critical ionization energy.
+% Overvoltage is discussed more
 
 
 % overvoltage and ionization cross-section
@@ -1088,7 +1116,8 @@ The ionization cross-section is the probability of an ionization, as described i
 The relation between the overvoltage and the ionization cross-section is shown in \cref{fig:overvoltage2ionizationcrosssection}.
 % Mari adapted her figure from:
 % FIGURE 4.4 - C. B. Carter and D. B. Williams, Transmission electron microscopy: Diffraction, imaging, and spectrometry. Springer, 2009.
-As seen in the figure, the probability of ionization increase sharply until U is around 4-5, and then it decreases.
+As seen in the figure, the probability of ionization increase sharply until U is around 4, and then it decreases.
+An equation for the relation between the ionization cross-section and the overvoltage is given in the PAP model for quantitative EDS analysis, which is discussed in \cref{theory:quantitative:pap:general_principle} with \cref{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection}, and illustrated in \cref{fig:PAP:ionization_cross_section}.
 Having an overvoltage below 1 results in no X-rays generated for the line of interest, which is shown by the line starting at 1.
 With SEM EDS the overvoltage is typically in the area where the ionization cross-section is changing the most, thus the overvoltage is an important parameter.
 In addition to the effect of the ionization cross-section, the overvoltage is important for how deep the electron can penetrate and still ionize the higher energy lines.
@@ -1672,7 +1701,7 @@ The equation use one known line in the spectrum to estimate what the FWHM would 
 
 \begin{equation}
     \label{eq:estimateFWHM}
-    \textnormal{FWHM}(E) =  \sqrt{2.5 * (E - E_\textnormal{ref}) + \textnormal{FWHM}^2_{\textnormal{ref}}}
+    \textnormal{FWHM}(E) =  \sqrt{2.5 \cdot (E - E_\textnormal{ref}) + \textnormal{FWHM}^2_{\textnormal{ref}}}
 \end{equation}
 
 Where $E$ is the energy of the wanted FWHM, i.e. Mn K$\alpha$ for estimating the energy resolution.
@@ -1857,7 +1886,7 @@ All these arguments were made for TEM, but they are equally true for SEM, and th
 
 
 % figures/FioriPB_TODO_remake.png
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figures/FioriPB_TODO_remake.png}
     \caption{
@@ -1885,7 +1914,7 @@ The figure illustrates one of the ways to calculate the P and B: the background 
 
 
 % figures/FioriPB_reality_TODO_remake.png
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figures/FioriPB_reality_TODO_remake.png}
     \caption{
@@ -2238,7 +2267,7 @@ overlap situation."
 
 
 \section{Quantitative EDS analysis}
-\label{theory:quantitative_analysis}
+\label{theory:quantitative}
 
 
 
@@ -2259,8 +2288,11 @@ This section will start with an introduction to the principle of quantitative ED
 
 
 
+
+
+
 \subsection{Principle}
-\label{theory:quantitative_analysis:principle}
+\label{theory:quantitative:principle}
 
 The principle of quantitative EDS analysis was introduced by Castaing in 1951 \cite{castaing_1951}, where he showed that quantitative data could be obtained by comparing the X-ray intensity from element A in an unknown sample to the same intensity in a sample with a known concentration of element A.
 The known sample is referred to as the standard, and was frequently selected to be pure elements for convenience.
@@ -2269,7 +2301,7 @@ Using the same instrumental conditions on the known and the unknown, Castaing sh
 % C_unknown / C_standard = I_unknown / I_standard
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:castaing_generated}
+    \label{eq:theory:quantitative:castaing_generated}
     \frac{C_\textnormal{unknown}}{C_\textnormal{standard}} = \frac{I_{0\textnormal{, unknown}}}{I_{0\textnormal{, standard}}}
 \end{equation}
 
@@ -2279,7 +2311,7 @@ However, the generated intensity is not the same as the measured intensity, thus
 % C_unknown / C_standard = k * I_unknown / I_standard
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:castaing_measured}
+    \label{eq:theory:quantitative:castaing_measured}
     \frac{C_\textnormal{unknown}}{C_\textnormal{standard}} = K \frac{I_\textnormal{unknown}}{I_\textnormal{standard}}
 \end{equation}
 
@@ -2289,8 +2321,9 @@ The implementation of satisfactory correction factors is a complicated task, as 
 Castaing and Deschamps established the theory experimentally in 1955, but the method was restricted by the correction calculation as an iterative process. %  \cite{castaing_1955},
 Later Philbert derived an analytical expression for iterative routines \cite{philbert_1963}.
 Modern matrix corrections are typically divided into two groups: the ZAF-corrections and the $\phi(\rho z)$-corrections.
-% ZAF-corrections treat Z, A, and F independently, and is covered in \cref{theory:quantitative_analysis:zaf}.
-% The $\phi(\rho z)$-corrections treat the Z and A together in a more complex calculation, and is covered in \cref{theory:quantitative_analysis:phi_rho_z}.
+ZAF-corrections treat Z, A, and F independently, and is covered in \cref{theory:quantitative:zaf}.
+The $\phi(\rho z)$-corrections treat the Z and A together in a more complex calculation, and is covered in \cref{theory:quantitative:pap}, as a part of the PAP algorithm\footnote{Algorithm, model, and principle is used interchangeably in this work.}.
+The $\phi(\rho z)$ curve is the depth distribution of radiation from a certain X-ray line as a function of mass depth ($\rho z$), i.e. the curve describes how much of the generated X-rays that is emitted from a certain level in the sample.
 
 
 % The Cliff-Lorimer method, for thin samples
@@ -2301,6 +2334,9 @@ This correction factor in the Cliff-Lorimer method is named the "k-factor".
 The Python package HyperSpy have the Cliff-Lorimer quantification method implemented.
 
 
+
+
+
 \subsubsection*{Side note: The difference between the k-factor and the k-ratio}
 
 The k-factors are a correction factor used in the Cliff-Lorimer quantification method for thin samples.
@@ -2308,7 +2344,7 @@ The value of the k-factor is dependent on the instrument setup and the accelerat
 The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the following equation:
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:cliff_lorimer}
+    \label{eq:theory:quantitative:cliff_lorimer}
     \frac{C_A}{C_B} = k_{AB} \frac{I_A}{I_B}
 \end{equation}
 
@@ -2321,13 +2357,15 @@ The k-ratio method includes the ZAF-correction.
 Element $i$ is quantified through the equation:
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:k_ratio}
+    \label{eq:theory:quantitative:k_ratio}
     \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}} = (ZAF)_i \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}} = (ZAF)_i \cdot k_i
 \end{equation}
 
 Where $(ZAF)_i$ is the ZAF-correction for element $i$ and $k_i$ is the k-ratio for element $i$.
 As with the k-factor, the k-ratio is most accurately determined experimentally, but can be calculated theoretically.
 The AZtec software from Oxford Instruments can both provide the k-factor and the k-ratio for the elements in an analyzed sample, which are theoretically calculated.
+
+
 
 
 
@@ -2338,19 +2376,19 @@ The first definition ($ZAF_A$) applies the corrections to the concentration, and
 
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:zaf_a}
+    \label{eq:theory:quantitative:zaf_a}
     \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}}  = \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}}\cdot ZAF_A
 \end{equation}
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:zaf_b}
+    \label{eq:theory:quantitative:zaf_b}
     \frac{C_\textnormal{i, unknown}}{C_\textnormal{i, standard}} = \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}} \cdot ZAF_B
 \end{equation}
 
 The two definitions are related by the following equation:
 
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:zaf_a_b_relation}
+    \label{eq:theory:quantitative:zaf_a_b_relation}
     ZAF_A = \frac{1}{ZAF_B}
 \end{equation}
 
@@ -2365,7 +2403,7 @@ In this work, $ZAF_B$ is used.
 
 
 \subsection{ZAF absorption correction}
-\label{theory:quantitative_analysis:zaf:absorption_correction}
+\label{theory:quantitative:zaf}
 
 The part of the ZAF corrections tested in this work are the absorption corrections.
 The generated intensity is reduced before detection due to absorption in the specimen.
@@ -2373,17 +2411,19 @@ The absorption reduces the measured intensity of X-rays from a certain point by:
 
 % I = I_0 * exp(-mu * rho * t)
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:absorption}
+    \label{eq:theory:quantitative:absorption}
     I = I_0 \cdot e^{-\mu_{\rho} \cdot \rho \cdot t}
 \end{equation}
 
-Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rho}$ is the mass absorption coefficient\footnote{The symbol for mass absorption coefficient is $(\mu/\rho)$ in Goldstein, but is written as ($\mu_{\rho}$) in this work, because writing $(\mu/\rho)\cdot \rho$ not ideal.}, $\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
+Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rho}$ is the mass absorption coefficient\footnote{Again, mass absorption coefficient is actually defined as $(\mu/\rho)$, but is written as ($\mu_{\rho}$) in this work, because the mass absorption coefficient is treated as a single variable.},
+ %because writing $(\mu/\rho)\cdot \rho$ not ideal.}, 
+$\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
 The unit in the exponential have to cancel out, thus one can use the following units: $I$ and $I_0$ in the same and arbitrary units, $\mu_{\rho}$ in $\textnormal{cm}^2/\textnormal{g}$, $\rho$ in $\textnormal{g}/\textnormal{cm}^3$, and $t$ in $\textnormal{cm}$.
 As the detector is placed at a certain angle, the take-off angle, the path length becomes:
 
 % t = z *csc(TOA)
 \begin{equation}
-    \label{eq:theory:quantitative_analysis:path_length}
+    \label{eq:theory:quantitative:path_length}
     t = z \cdot \csc(\textnormal{TOA})
 \end{equation}
 
@@ -2404,38 +2444,56 @@ If a simpler model proves to be sufficient, it will allow users to understand th
 
 
 
+
+
+
+
+
+
+
+
+
 \subsection{The PAP model}
-\label{theory:quantitative_analysis:pap}
+\label{theory:quantitative:pap}
 
 \brynjar{Unfinished. I use PAP or XPP, not PROZA96.}
 
 
-Pouchou and Pichoir published their PAP model in 1991 for bulk corrections\footnote{"PAP" is short for "Pouchou and Pichoir" \cite{pap_1991}.}.
+Pouchou and Pichoir presented their PAP model for bulk corrections on a conference in 1983 and published a detailed paper about PAP in 1991\footnote{"PAP" is short for "Pouchou and Pichoir" \cite{pap_1991}.}.
 The model is a mathematical heavy model which is physically based on X-ray generation and emittance, and the model should be able to correct for a wide range of compositions \cite{pap_1991}.
 In the original publication, a simplified model called XPP is also presented\footnote{"X" in XPP is probably short for e.g. express, but it is not stated in the paper.}.
-Alternative versions of matrix corrections which build on the PAP model is available, such as the PROZA96 model.
+Alternative methods exist for bulk corrections which produce similar results, but are mathematically different.
+One example of such a model is the PROZA96 model, which is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian.
 The PROZA96 model is published by Bastin, Dijkstra, and Heijligers in 1996, as an improvement to the same authors previous model from 1988 \cite{bastin_proza96_1998,bastin_proza_1988}.
-It is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian, which is somewhat similar to the PAP model.
-As it is, allegedly, the XPP model which is used in AZtec \cite{} \brynjar{cite}\footnote{\url{https://www.oxinst.com/blogs/how-to-overcome-challenges-in-publishing-eds-results}}, the PROZA96 model is not tested in this work, but could be investigated in future works.
+The difference between the models is the calculation of the $\phi(\rho z)$ curves, where the PAP model use a linear combination of two exponential functions to calculate the $\phi(\rho z)$ curve, not a double Gaussian as the PROZA96 model or the Gaussian model from Packwood and Brown \cite{packwood_1981}.
+As it is, allegedly, the XPP model which is used in AZtec \cite{} \brynjar{cite this correctly}\footnote{\url{https://www.oxinst.com/blogs/how-to-overcome-challenges-in-publishing-eds-results}}, it is the XPP and PAP method which is tested in this work.
+Other methods, such as the PROZA96 model, could be tested in future works, using the code developed in this work as a starting point, because there are overlapping parts between the models\footnote{One similarity is the calculation of the area of the $\phi(\rho z)$ curve. 
+The PROZA96 model refer to the PAP model paper for calculation of this area \cite{bastin_proza96_1998}.}
+At the end of the section, \cref{tab:quantitative:PAP:variables} summarize all the variables, with their name, their use, and their units.
+
+% is not tested in this work, but could be investigated in future works.
 
 
-\emph{From the paper: "We believe that, rather than treating separately the improvement of corrections for
+% \emph{}
+
+\begin{quote}
+    Quote from the PAP-paper: 
+    \emph{"We believe that, rather than treating separately the improvement of corrections for
     homogeneous specimens and the characterization of specimens of composition variable in
     depth, it would be more logical and efficient to conceive a general and unique model for the
-    calculation of emergent x rays. For this we have used the usual fundamental physical
+    calculation of emergent x rays. 
+    For this we have used the usual fundamental physical
     concepts applied in x-ray microanalysis and we apply to them as accurate a description of
-    the depth distribution, $\phi$(pz) as possible."}
+    the depth distribution, $\phi(\rho z)$ as possible."}
+\end{quote}
 
 
-The PAP model is based on the following steps:
 
-\brynjar{Insert steps in PAP.}
-
-
-The $\phi(\rho z)$ curve is the relative generated intensity as a function of mass depth, where mass depth is the product of density ($\rho$) and path length ($z$).
+The $\phi(\rho z)$ curve is the relative emitted intensity as a function of mass depth, where mass depth is the product of density ($\rho$) and path length ($z$).
 The unit for the mass depth is $\textnormal{g}/\textnormal{cm}^2$.
 The curve starts above 1, increase to a maximum, and then decrease to 0.
 Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:phi_rho_z_curves}.
+At the end of this section, $\phi(\rho z)$ curves are plotted with the equations from the PAP model.
 
 
 % figures/phi_rho_z_curves__goldstein.png
@@ -2452,6 +2510,7 @@ Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:p
 \end{figure}
 
 
+The following is a consice description of the PAP model, detailed enough to implement the model in a Jupyter Notebook. For further details, see the original paper \cite{pap_1991}.
 
 
 
@@ -2459,7 +2518,462 @@ Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:p
 
 
 
-% \subsection{Alternative quantification}
+
+\subsubsection{General principle of the PAP model}
+\label{theory:quantitative:pap:general_principle}
+
+The number of primary ionizations of line $l$ generated in atoms A by the incident electron is given by:
+
+% n_a = C_a N^0/A Q_l^A(E_0) F
+\begin{equation}
+    \label{eq:theory:quantitative:pap:general_principle:n_a}
+    n_A = C_A \frac{N^0}{A} Q_l^A(E_0) F
+\end{equation}
+
+Where $n_A$ is the number of generated primary ionizations from atoms of element A, $C_A$ is the concentration of element A in mass concentration\footnote{The author have had some frustrating moments because of mixing of wt\% and at\% while working with quantitative EDS.}, $N^0$ is Avogadro's number, $A$ is the atomic weight of element A\footnote{The author of this work assumes $A$ is the atomic weight, but it is not stated explicit in the PAP-paper.}, $Q_l^A(E_0)$ is the ionization cross section of element A at the energy of the incident electron, $E_0$, and $F$ is the integral of $\phi(\rho z)$.
+
+% F = int_0^infty phi(rho z) dz
+\begin{equation}
+    \label{eq:theory:quantitative:pap:general_principle:F}
+    F = \int_0^\infty \phi(\rho z) d\rho z
+\end{equation}
+
+The PAP model is in accordance with the original definitions from Castating.
+The calculations done in the PAP model is divided into two parts: (a) calculate the area F under the $\phi(\rho z)$ curve, and (b) calculate the generated intensity based on a parabolic representation of $\phi(\rho z)$.
+Both calculations are done analytically.
+A summary of the variables in this principle part of the PAP model is given in \cref{tab:quantitative:PAP:variables:principle}.
+
+
+\input{tables/table_pap_variables_principle.tex}
+
+
+
+
+
+
+
+
+
+\subsubsection{PAP/XPP (a) Calculation of area $F$}
+% \label{theory:quantitative:pap:calculation_of_F}
+
+The area F under the $\phi(\rho z)$ curve is proportional to the number of generated primary intensity, and does thus contain the Z dependence.
+F is the product of the deceleration factor ($1/S$) and the backscatter factor ($R$):
+
+% F = 1/S * R
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:F}
+    F = \frac{R}{S} \cdot Q_l^A(E_0)
+\end{equation}
+
+
+Now the PAP-paper is at times somewhat confusing, both because the lack of explaination of some of the symbols, and because of slightly contradicting equations.
+In equation (2) it is stated that $n_A = C_A (N^0/A) Q_l^A(E_0) F$, and in equation (3) it is stated that $n_A = C_A (N^0/A) (R/S)$.
+This implies that $(R/S) = Q_l^A(E_0) F$.
+However, equation (13) states that $F = (R/S) \cdot Q_l^A(E_0)$, which is a contradiction to the previous equations.
+The author of this work assumes that the equation (13) is correct, but both variations for the calculation of $F$ is tested in the Jupyter Notebook.
+
+
+
+
+
+% \subsubsection*{\emph{Deceleration factor,} $1/S$}
+
+\paragraph*{\emph{The deceleration factor $1/S$}} is a measure of the electrons energy loss as a function of energy in the specimen. $1/S$ is an integral over energy from the incident energy ($E_0$) to the energy of the characteristic X-ray ($E_C$), of the product of the ionization cross section ($Q_l^A(E)$) and the energy loss function ($dE/d\rho s$):
+
+% 1/S = int_E_C^E_0 Q_l^A(E)(dE/d rho s) dE
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:S}
+    1/S = \int_{E_0}^{E_C} Q_l^A(E) \frac{dE}{d\rho s} dE
+\end{equation}
+
+The ionization cross section of line $l$ as a function of overvoltage ($U = E_0/E_C$, see \cref{theory:eds:user_controlled_parameters}) is estimated in the PAP model for bulk specimen with the equation:
+
+% Q_l^A(U) propto ln(U)/U^m*E_l^2
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection}
+    Q_l^A(U) \propto \frac{\ln(U)}{U^m} E_C^2
+\end{equation}
+
+Where:
+
+% m = 0.9 for K level
+% m = 0.82 for L levels
+% m = 0.78 for M levels
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection:m}
+    m = \begin{cases}
+        0.9 & \text{for K level} \\
+        0.82 & \text{for L levels} \\
+        0.78 & \text{for M levels}
+    \end{cases}
+\end{equation}
+
+The K level $m$ is taken from the PROZA96 model, which use the same function for ionization cross section, but with an improvement for the K level \cite{bastin_proza96_1998}.
+The equation for $Q$ is "proportional to" and not "equal to", but when dealing with the same instrumental parameters (accelerating voltage, take-off angle, beam current, etc.), the proportionality constant is the same for all elements.
+In other words, for the calculations done in the PAP model, the proportionality constant is not needed, and $Q$ is calculated by the equation above.
+A plot of the ionization cross section as a function of overvoltage using \cref{eq:theory:quantitative:pap:calculation_of_F:Q_l} is shown in \cref{fig:PAP:ionization_cross_section}.
+
+
+% figures/PAP_ionization_cross_section.pdf
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/PAP_ionization_cross_section.pdf}
+    \caption{
+        Ionization cross section, $Q$ as a function of overvoltage Ga L$\alpha$ and As L$\alpha$.
+        The maximum $Q$ is annotated, which is at the same overvoltage, but different energies due to different E$_C$.
+    }
+    \label{fig:PAP:ionization_cross_section}
+\end{figure}
+
+
+
+The average energy loss ($dE/d\rho s$) is not calculated from the law of Bethe, as that equation is not valid for low energies \cite{inokuti_on_bethe_1971,pap_1991}. 
+Instead, the PAP model calculate the average energy loss from the equation:
+
+% dE/d rho s = - (M/J) * (1/f(V))
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s}
+    \frac{dE}{d\rho s} = - \frac{M}{J} \frac{1}{f(V)}
+\end{equation}
+
+Where:
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:M}
+    M = \sum \limits_{i} \frac{C_i Z_i}{A_i}
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:J}
+    J = \exp(\sum \limits_{i} \frac{C_i Z_i}{A_i} \cdot \ln(J_i)/M)
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:Ji}
+    J_i = 10^{-3} \cdot Z_i (10.04 + 8.25 \exp(\frac{-Z_i}{11.22}))
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:one_over_f}
+    f(V) = \sum \limits_{k=1}^{3} D_k \cdot V^{P_k}
+\end{equation}
+
+$M$ is the mean ionization potential of the specimen, and $J$ is the mean ionization potential of the specimen, $J_i$ is the mean ionization potential of element $i$, and $f(V)$ is a function containing the energy dependent terms which makes \cref{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s} equal to Bethe's law for high energies and still being valid for low energies. $V = E/J$, and $D_k$ and $P_k$ are constants, calculated as:
+
+\begin{itemize}
+    \item $D_1 = 6.6 \cdot 10^{-6}$
+    \item $D_2 = 1.12 \cdot 10^{-5}(1.35 - 0.45 J^2)$
+    \item $D_3 = \frac{2.2 \cdot 10^{-6}}{J}$
+    \item $P_1 = 0.78$
+    \item $P_2 = 0.1$
+    \item $P_3 = -(0.5-0.25J)$
+\end{itemize}
+    
+i.e.
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:one_over_f_2}
+    f(V) = 6.6 \cdot 10^{-6}\cdot V^{0.78} + 1.12\cdot 10^{-5}\cdot (1.35 - 0.45 J^2) \cdot V^{0.1} + \frac{2.2 \cdot 10^{-6}}{J} \cdot V^{-(0.5-0.25J)}
+\end{equation}
+
+
+\brynjar{Add a table with the constants and their units?}
+
+
+The analytical solution for $1/S$ through the expression for the ionization cross section and the deceleration of the electrons, where $ T_K = 1 + P_k - m$:
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:dE_d_rho_s:analytical}
+    1/S = \frac{U_0}{V_0 \cdot M} \sum \limits_{k=1}^{3} D_k \cdot (V_0/U_0)^{P_k} \cdot ((T_k)U_0^{T_k} \cdot \ln(U_0)-U_0^{T_k}+1)/T_k^2 
+\end{equation}
+
+
+% Which translates to
+
+% $1/S = \frac{U_O}{V_0 \cdot M} \cdot \\
+% (6.6 \cdot 10^{-6} (V_0/U_0)^{0.78} \cdot ((1+0.78-m)U_0^{1+0.78-m} \cdot \ln(U_0)-U_0^{1+0.78-m}+1)/(1+0.78-m)^2) + \\
+% ((1.12 \cdot 10^{-5}(1.35-0.45J^2)) (V_0/U_0)^{0.1} \cdot ((1+0.1-m)U_0^{1+0.1-m} \cdot \ln(U_0)-U_0^{1+0.1-m}+1)/(1+0.1-m)^2) + \\
+% (2.2 \cdot 10^{-6}/J (V_0/U_0)^{(-0.5 +0.25J)} \cdot ((1+(-0.5 +0.25J)-m)U_0^{1+(-0.5 +0.25J)-m} \cdot \ln(U_0)-U_0^{1+(-0.5 +0.25J)-m}+1)/(1+(-0.5 +0.25J)-m)^2)
+% $
+
+The equation above is written out in the notebook for the PAP model.
+\cref{fig:PAP:energy_loss_electrons_dE_drhos} show the average energy loss of the electrons in GaAs and GaSb, according to the PAP model.
+
+
+% figures/PAP_energy_loss_dE_drhos.pdf
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/PAP_energy_loss_dE_drhos.pdf}
+    \caption{
+        The energy loss of electrons, $dE/d\rho s$,  in GaAs, GaSb, and Cu.
+        Cu is added for reference to figure 4 in the PAP paper \cite{pap_1991}.
+        The x-axis is logarithmic.
+        }
+    \label{fig:PAP:energy_loss_electrons_dE_drhos}
+\end{figure}
+
+
+
+
+
+% \begin{equation}
+%     \label{eq:theory:quantitative:pap:calculation_of_F:}
+    
+% \end{equation}
+
+
+
+
+% \subsubsection*{\emph{The backscattering factor,} $R$}
+
+\paragraph*{\emph{The backscattering loss factor $R$}} is the fraction of the electrons that are backscattered from the specimen, calculated from the equation: 
+% The backscattering loss factor $R$ is calculated from the equation:
+
+% $  $
+\begin{equation}
+    \label{eq:theory:quantitative:pap:calculation_of_F:R}
+    R = 1- \bar{\eta}  \cdot \bar{W} \cdot (1-G(U_0))
+\end{equation}
+
+Where: 
+
+\begin{itemize}
+    \item  $\bar{W} = \bar{E}_r/E_0 = 0.595 + \bar{\eta}/3.7 + \bar{\eta}^{4.55} $
+    \item  $\bar{\eta} = 1.75 \cdot 10^{-3} \cdot \bar{Z}_b + 0.37(1-\exp(-0.015\bar{Z}_b^{1.3})) $
+    \item  $\bar{Z}_b = (\sum C_i \cdot Z_i^{0.5})^2$
+    \item  $G(U_0) = (U_0 - 1 - (1- \frac{1}{U_0^{1+q}})/(1+q)) / ((2+q)\cdot J(U_0))$
+    \item  $J_G(U_0) = 1 + U_0 \cdot (\ln(U_0)-1) $
+    \item  $q = (2 \bar{W} - 1) / (1 - \bar{W}) $
+\end{itemize}
+
+
+$\bar{\eta}$ is the mean backscattering coefficient\footnote{It looks like $\bar{\eta}$ is raised to (-4.55), but that is not the case. The difference between a bar and a minus is small, but crucial.}, $\bar{W}$ is the mean reduced energy of the backscattered electron, $\bar{Z}_b$ is the weighted mean atomic number, and $U_0$ is the overvoltage. 
+$G(U_0)$ is an equation from Coulon and Zeller \cite[Reference 28]{pap_1991}, calculated with $J_G(U_0)$ and $q$.
+The backscattering factor for Z=1 to Z=90 is plottet with different overvoltages in \cref{fig:PAP:backscattering_factor}.
+
+% figures/PAP_backscattering_factor.pdf
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/PAP_backscattering_factor.pdf}
+    \caption{
+        Backscattering factor for Z=1 to Z=90, with different overvoltages.
+        The atomic number is on the x-axis, and the backscattering factor is on the y-axis.
+        The different lines are for different overvoltages.
+        }
+    \label{fig:PAP:backscattering_factor}
+\end{figure}
+
+
+
+
+
+\subsubsection{PAP/XPP (b) Generated intensity through parabolic representation of $\phi(\rho z)$}
+
+The system of equations which lead to the parabolic representation of $\phi(\rho z)$ is given in the original paper \cite{pap_1991}, and is not repeated here.
+The section covers the necessary calculations to find the generated intensity, which is described as the "Simplified model: XPP".
+The structure of the XPP model is similar to the PAP model, and XPP is chosen in this work as it is the model which is used in AZtec \brynjar{cite}.
+Thus, the following equations are from the XPP model.
+
+The emergent intensity of a specimen is given by:
+
+% I_A propto C_A Q_l^A(E_0) F(chi)
+\begin{equation}
+    \label{eq:theory:quantitative:pap:emergent_intensity}
+    I_A \propto C_A \cdot Q_l^A(E_0) \cdot F(\chi)
+\end{equation}
+    
+Where $C_A$ and $Q_l^A(E_0)$ is described earlier, and $F(\chi)$ is the parabolic representation of $\phi(\rho z)$, with $ \chi = \mu_\rho \cdot \csc(TOA)$\footnote{$\chi$ is not explicitly defined in the PAP paper, but is taken from Love and Scott \cite[Eq. (1)]{love_scott_1990}, which is a central reference in the PAP paper.}. $F(\chi)$ is given by:
+
+
+% F(\chi) = \frac{A}{a+ \chi} + \frac{\phi(0) - A}{b + \chi} + \frac{B}{(b + \chi)^2}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:F_of_chi}
+    F(\chi) = \frac{A}{a+ \chi} + \frac{\phi(0) - A}{b + \chi} + \frac{B}{(b + \chi)^2}
+\end{equation}
+
+Where $A$, $B$, $a$ and $b$ are parameters of the parabolic representation of $\phi(\rho z)$, and $\phi(0)$ is the surface ionization\footnote{Appendix 4 about the XPP model also inculde $\varepsilon = (a-b)/b$ and a slightly different formulation of $F(\chi)$, but that is only a refactorization of \cref{eq:theory:quantitative:pap:F_of_chi}.}. The absorption correction factor can then be calculated by:
+
+% f(chi) = F(chi)/F
+\begin{equation}
+    \label{eq:theory:quantitative:pap:absorption_correction}
+    f(\chi) = \frac{F(\chi)}{F}
+\end{equation}
+
+
+
+
+
+
+
+% \subsubsection*{\emph{Surface ionization potential} $\phi(0)$ \emph{and the slope} $P$}
+% \subsubsection*{\emph{Calculating} $\phi(0)$, $\bar{R}$, \emph{and} $P$}
+\paragraph*{\emph{Calculating the surface ionization potential $\phi(0)$, the mean depth of ionization $\bar{R}$, and the initial slope $P$}} is the next step in the XPP model.
+These three parameters are used to calculate $A$, $B$, $a$, and $b$, which is used to get the parabolic representation $F(\chi)$ for $\phi(\rho z)$.
+
+
+The surface ionization potential is the amount of ionization happening at the surface of the specimen, which is the starting point for the $\phi(\rho z)$ curve. The surface ionization potential is given by:
+
+% $\phi(0) = 1 + 3.3 (1-1/U_0^r)* \bar{\eta}^{1.2} $
+\begin{equation}
+    \label{eq:theory:quantitative:pap:phi_0}
+    \phi(0) = 1 + 3.3 (1-1/U_0^{2 - 2.3 \bar{\eta}}) \cdot \bar{\eta}^{1.2}
+\end{equation}
+
+
+The surface ionization potential, $\phi(0)$ is illustrated for Z=1 to Z=90 with differing overvoltages in \cref{fig:pap:phi_0}.
+
+
+% figures/PAP_surface_ionization_potential.pdf
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/PAP_surface_ionization_potential.pdf}
+    \caption{
+        Surface ionization potential for Z=1 to Z=90, with different overvoltages.
+        The atomic number is on the x-axis, and the surface ionization potential is on the y-axis.
+        The different lines are for different overvoltages.
+        }
+    \label{fig:pap:phi_0}
+\end{figure}
+
+The average depth of ionization, $\bar{R}$, is given by:
+
+% $ \bar{R} = F / (1 + [X \cdot \ln(1 + Y \cdot (1 - 1/U_0^{0.42}))]/\ln(1 + Y)) $
+\begin{equation}
+    \label{eq:theory:quantitative:pap:R_bar}
+    \bar{R} = F / (1 + [X \cdot \ln(1 + Y \cdot (1 - 1/U_0^{0.42}))]/\ln(1 + Y))
+\end{equation}
+
+Where $X$ and $Y$ are given by:
+
+\begin{itemize}
+    \item $ X = 1 + 1.3 \ln(\bar{Z}_b) $
+    \item $ Y = 0.2 + \bar{Z}_b/200 $
+\end{itemize}
+
+
+
+It is stated in the XPP computation scheme that "If $ F/\bar{R} < \phi(0) $, impose the condition $ \bar{R} = F/\phi(0) $" \cite[Appendix 4]{pap_1991}.
+\brynjar{Implement this check.}
+
+
+The initial slope $P$ is given by:
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:slope_P}
+    P = g \cdot h^4 \cdot F/\bar{R}^2
+\end{equation}
+
+Where $g$ and $h$ are given by:
+
+\begin{itemize}
+    \item $ g = 0.22 \ln(4 \bar{Z}_b) \cdot [1 - 2 \exp(-\bar{Z}_b \frac{U_0 - 1}{15})] $
+    \item $ h = 1 - 10(1-\frac{1}{1+ U_0/10})/\bar{Z}_b^2 $
+\end{itemize}
+
+
+The slope $P$ have a similar comment as $\bar{R}$, which states that "If necessary, limit the value $ g \cdot h^4 $ to the value $ 0.9 \cdot b\cdot  \bar{R}^2 \cdot [b - 2 \phi(0)/F] $".
+\brynjar{Implement this too.}
+
+
+
+
+
+
+
+
+% \subsubsection*{\emph{Calculating} $A$, $B$, $a$, \emph{and} $b$}
+
+
+\paragraph{\emph{The parameters $A$, $B$, $a$, and $b$}} are used to calculate the parabolic representation $F(\chi)$ for $\phi(\rho z)$.
+They can also be used to calculate $\phi(\rho z)$, which is done further down.
+Additionally, the parameter $\varepsilon$ is used to easen the calculation of $A$ and $B$. 
+The parameters are calculated sequentially, starting with $b$, then $a$, then $\varepsilon$, then $B$, and finally $A$.
+
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:small_b}
+    b = \sqrt{2} \cdot (1 + \sqrt{1 - \bar{R} \cdot \phi(0) / F})/\bar{R}
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:small_a}
+    a = [P + b \cdot (2\phi(0) - b \cdot F)] / [b \cdot F \cdot (2 - b \bar{R}) - \phi(0)]
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:epsilon}
+    \varepsilon = \frac{a-b}{b} 
+\end{equation}
+
+The PAP paper have the following comment on the value of $\varepsilon$: "If necessary, impose on $\varepsilon$ a minimum absolute value (e.g. $10^{-6}$), and then assume $ a = b \cdot(1+\varepsilon) $".
+If the author understands this correctly, the comment is aimed on computational issues in the 90s where values too close to zero would cause numerical issues.
+Thus, this is not implemented in the code, as it is not necessary with modern computers.
+
+
+The parameter $A$ and $B$ are then calculated by:
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:big_B}
+    B = [b^2 \cdot F \cdot (1 + \varepsilon) - P - \phi(0) \cdot b \cdot (2+\varepsilon) ] / \varepsilon
+\end{equation}
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:_big_A}
+    A = [B/b + \phi(0) - b \cdot F] \cdot \frac{1+ \varepsilon}{\varepsilon}
+\end{equation}
+
+
+With $A$, $B$, $a$, $b$ and $\phi(0)$ calculated, the absorption correction $f(\chi$) and the emergent intensity through $F(\chi$) can be calculated with \cref{eq:theory:quantitative:pap:absorption_correction} and \cref{eq:theory:quantitative:pap:F_of_chi} respectively.
+
+
+That covers the necessary theory for the XPP model to be implemented in code.
+
+
+\paragraph{Plotting the depth distribution $\phi(\rho z)$} can be done with the now calculated parameters $A$, $B$, $a$, $b$ and $\phi(0)$.
+It is useful to plot $\phi(\rho z)$ and the other functions in the XPP model to see how the model behaves, and to see if the model is implemented correctly by comparing the plots to the plots in the PAP paper.
+It is the absorption correction factor given in \cref{eq:theory:quantitative:pap:absorption_correction} that is used and tested on the EDS data acquired in this work.
+\cref{fig:pap:phi_of_rhoz} is a plot of $\phi(\rho z)$ for Ga L$\alpha$ in GaAs.
+The curve is calculated with the following equation for $\phi(\rho z)$ is given in the PAP paper:
+
+% $  $
+
+\begin{equation}
+    \label{eq:theory:quantitative:pap:phi_of_rho_z}
+    \phi (\rho z) = A \cdot \exp(- a \cdot (\rho z)) + (B \cdot (\rho z) + \phi(0) - A) \cdot \exp(- b \cdot (\rho z))
+\end{equation}
+
+
+% figures/PAP_phi_of_rhoz.pdf
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/PAP_phi_of_rhoz.pdf}
+    \caption{
+        Plot of $\phi(\rho z)$ for Ga L$\alpha$ in GaAs.
+        The plot show three different beam energies, 15 (blue), red (10), and 5 (green) keV.
+        \brynjar{As of now, the numbers on the y-axis are correct, but the x-axis is off by a factor of 10, I think.}
+        }
+    \label{fig:pap:phi_of_rhoz}
+\end{figure}
+
+
+
+
+
+
+\subsubsection{Additional comment to the PAP/XPP procedure}
+
+Section II.E in the PAP paper is discussing the absorption coefficients for the PAP model, and Appendix 5 lists some values for $\mu_\rho$ associated with the PAP procedure \cite{pap_1991}.
+These numbers are in the same range as the numbers provided by HyperSpy, but there are deviations.
+For example, the line As L$\alpha$ in GaAs bulk is given $\mu_\rho = 7000$ in the PAP paper, and the value $\mu_\rho = 3744$ by Hyperspy.
+Cu L$\alpha$ in pure Cu is given $\mu_\rho = 1755$ in the PAP paper, and $\mu_\rho = 1515$ by HyperSpy.
+Cu L$\beta$ in pure Cu is given $\mu_\rho = 750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta1$.
+These deviations might be a source of error, which would lead to some adjustments of the PAP or XPP equations.
+Such corrections might have been published as an update to the PAP/XPP procedure in a more recent paper, and can have been implemented by Oxford Instruments in their AZtec software to allow for more accurate quantification with updated constants and equations.
+Investigating such possibilities are outside scope of this work, and might be a starting point for future work.
 
 
 
