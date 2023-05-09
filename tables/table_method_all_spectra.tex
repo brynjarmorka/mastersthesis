@@ -1,35 +1,46 @@
 \begin{table}[phtb]
     \begin{center}
         \caption{
-            All the acquired spectra used in the results.
-            Settings not mentioned are kept constant.
+            Experimental settings of acquired and used spectra in this work.
+            % \brynjar{Comment from Ton: Add a column with spectra names, e.g. A, B, C, D.}
+            The spectra are divided into five groups: (A) voltage series GaAs, (B) voltage series GaSb, (C) different PT, (D) different $i_b$ and PT, and (E) maps.
+            Parameters not specified are as in \cref{tab:method:acquisition_settings:voltage}.
         }
-        \renewcommand*{\arraystretch}{1.4}
+        \renewcommand*{\arraystretch}{1.2}
         \label{tab:method:acquisition_settings:all_spectra}
-        \begin{tabular}{llllllp{3.5cm}}
+        \begin{tabular}{lllllllp{3.5cm}}
             \hline
-            \textbf{Sample} & \textbf{E$_0$} & \textbf{I$_\textnormal{beam}$} & \textbf{PT} & \textbf{ICR} & \textbf{DT} & \textbf{Comment}          \\
-                            & [kV]           & [pA]                           &             & [k counts]   & [\%]        &                           \\
+            \textbf{Group}             & \textbf{Sample} & \textbf{$E_0$} & \textbf{$i_b$} & \textbf{PT} & \textbf{ICR} & \textbf{DT} & \textbf{Comment}    \\
+                                       &                 & [kV]           & [pA]           &             & [k counts]   & [\%]        &                     \\
             \hline
-            GaAs            & 5              & 25                             & 6           & 0.88         & 3.1         &                           \\
-            GaAs            & 10             & 25                             & 6           & 1.75         & 6.2         &                           \\
-            GaAs            & 15             & 25                             & 6           & 3.3          & 11.6        &                           \\
-            GaAs            & 30             & 25                             & 6           & 8            & 24.6        &                           \\
-            GaAs            & 30             & 50                             & 6           & 16.4         & 43.7        &                           \\
-            GaSb            & 5              & 50                             & 6           & 1.08         & 3.8         &                           \\
-            GaSb            & 10             & 50                             & 6           & 2.3          & 8.9         &                           \\
-            GaSb            & 15             & 50                             & 6           & 5.7          & 18.2        &                           \\
-            GaSb            & 30             & 50                             & 6           & 17           & 43.6        &                           \\
-            GaSb            & 30             & 50                             & 4           & 17           & 12.9        &                           \\
-            GaSb            & 30             & 50                             & 2           & 17           & 6.9         &                           \\
-            GaSb            & 30             & 50                             & 1           & 17           & 4.3         &                           \\
-            GaSb            & 30             & 400                            & 1           & 160          & 27.5        &                           \\
-            GaSb            & 15             & 200                            & 6           & 22           & 52.7        & Stopped at 61 s live time \\
-            GaSb            & 15             & 400                            & 6           & 42           & 77.2        & Stopped at 59 s live time \\
-            GaSb            & 15             & 400                            & 3           & 50           & 25          & Scratched area            \\
-            GaSb            & 30             & 25                             & 6           & 6.5          & 20          & Scratched area            \\
-            GaSb            & 15             & 400                            & 3           & 43           & 22          & Map 1                     \\
-            GaSb            & 15             & 400                            & 3           & 43           & 22          & Map 2, with one scratch   \\
+            \emph{GaAs $E_0$ series}   &                 &                &                &             &              &             &                     \\
+            A                          & GaAs            & 5              & 25             & 6           & 0.88         & 3           &                     \\
+            A                          & GaAs            & 10             & 25             & 6           & 1.75         & 6           &                     \\
+            A                          & GaAs            & 15             & 25             & 6           & 3.3          & 12          &                     \\
+            A                          & GaAs            & 30             & 25             & 6           & 8            & 25          &                     \\
+            A                          & GaAs            & 30             & 50             & 6           & 16.4         & 44          & Additional spectrum \\
+            \hline
+            \emph{GaSb $E_0$ series  } &                 &                &                &             &              &             &                     \\
+            B                          & GaSb            & 5              & 50             & 6           & 1.08         & 4           &                     \\
+            B                          & GaSb            & 10             & 50             & 6           & 2.3          & 9           &                     \\
+            B                          & GaSb            & 15             & 50             & 6           & 5.7          & 18          &                     \\
+            B                          & GaSb            & 30             & 50             & 6           & 17           & 44          &                     \\
+            \hline
+            \emph{PT change}           &                 &                &                &             &              &             &                     \\
+            C                          & GaSb            & 30             & 50             & 4           & 17           & 13          &                     \\
+            C                          & GaSb            & 30             & 50             & 2           & 17           & 7           &                     \\
+            C                          & GaSb            & 30             & 50             & 1           & 17           & 4           &                     \\
+            \hline
+            \emph{$i_b$ and PT change} &                 &                &                &             &              &             &                     \\
+            D                          & GaSb            & 30             & 400            & 1           & 160          & 28          & Very high counts    \\
+            D                          & GaSb            & 15             & 200            & 6           & 22           & 53          & 61 s live time      \\
+            D                          & GaSb            & 15             & 400            & 6           & 42           & 77          & 59 s live time      \\
+            %             & GaSb            & 15             & 400             & 3           & 50           & 25          & Scratched area      \\
+            %             & GaSb            & 30             & 25              & 6           & 6.5          & 20          & Scratched area      \\
+            \hline
+            \emph{Maps}                &                 &                &                &             &              &             &                     \\
+            E                          & GaSb            & 15             & 400            & 3           & 43           & 22          & Map 1               \\
+            E                          & GaSb            & 15             & 400            & 3           & 43           & 22          & Map 2               \\
             \hline
         \end{tabular}
     \end{center}

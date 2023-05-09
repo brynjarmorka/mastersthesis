@@ -11,11 +11,10 @@
 
 % intro to results
 This chapter presents the results of the thesis.
-The results are divided into four parts: qualitative analysis, characterization of the setup, optimization of the acquisition parameters, and data treatment.
-SE images of the analyzed areas are included the \hyperref[appendix:SE_images]{Appendix B}.
-
-
-\brynjar{Legge til kommentar om SE at jeg har valgt homogene områder, i tillegg til å ta noen spektra fra scratched område.}
+The results are divided into four parts: qualitative analysis of the spectra, characterization of the setup, optimization of the acquisition parameters, and data treatment.
+As seen in the SE images presented in \cref{method:SE_images}, the areas chosen for the analysis are homogeneous and relatively clean.
+Scratched areas on the GaSb specimen are shown in \cref{fig:SE_images:GaSb} panel (b), where some spectra were acquired, but not included in the results of this thesis.
+% TODO discuss: the scratched areas behaved as expected, yielding poorer results than the homogeneous areas. ISO etc.
 
 
 
@@ -23,12 +22,9 @@ SE images of the analyzed areas are included the \hyperref[appendix:SE_images]{A
 \section{Qualitative analysis}
 \label{results:qualitative_analysis}
 
-The qualitative analysis present general plots of the spectra, where the lines and the artifacts are identified.
-Selected spectra are plotted in \cref{fig:results:overviewGaSb_withArtifacts,fig:results:GaSb_voltages,fig:results:GaAs_voltages}.
-The y-axis have a logarithmic scale, and the x-axis have a linear scale.
-The y-axis is the intensity of the signal, i.e. the number of counts in each channel.
-The x-axis is the energy of the signal.
-\cref{fig:results:overviewGaSb_withArtifacts} have annotated relevant information in the spectra.
+Here, an overview of the spectra is presented, where some characteristics and artifacts are identified, before addressing the setup parameters in \cref{results:setup}, acquisition parameters in \cref{results:acquisition_parameters}, and quantification results in \cref{results:data_treatment}.
+General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArtifacts,fig:results:GaSb_voltages,fig:results:GaAs_voltages}.
+
 
 
 % figures/results/spectrum_overview.pdf
@@ -37,56 +33,63 @@ The x-axis is the energy of the signal.
     \includegraphics[width=0.99\linewidth]{figures/results/spectrum_overviews.pdf}
     \caption{
         Overview of the GaSb spectra.
-        The blue line in panel (a) have lower resolution and more artifacts than the red line.
-        The red line is plotted in panel (b) over a shorter energy range.
-        Panel (c) show the red line on an even shorter energy range, with the GaAs spectrum in light blue for reference.
+        The blue line in panel (a) have lower resolution and more artifacts than the light blue line.
+        The light blue line is plotted in panel (b) over a shorter energy range, and with peaks annotated.
+        Panel (c) show the light blue line on an even shorter energy range, with the GaAs spectrum in red for reference.
+        All three spectra are acquired with 30 kV.
     }
     \label{fig:results:overviewGaSb_withArtifacts}
-\end{figure}
-
-
-% figures/results/GaSb_voltages.pdf
-\begin{figure}[hbtp]
-    \centering
-    \includegraphics[width=0.90\linewidth]{figures/results/GaSb_voltages.pdf}
-    \caption{
-        The GaSb voltage series.
-        Equal beam current and process time are used for all spectra.
-    }
-    \label{fig:results:GaSb_voltages}
 \end{figure}
 
 
 % figures/results/GaAs_voltages.pdf
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.90\linewidth]{figures/results/GaAs_voltages.pdf}
+    \includegraphics[width=0.85\linewidth]{figures/results/GaAs_voltages.pdf}
     \caption{
-        The GaAs voltage series.
-        Equal beam current and process time are used for all spectra.
+        Group (A), the GaAs voltage series.
+        The figure gives an overview of the spectra, and show the effect of overvoltage.
+        All four spectra have $i_b$ = 25 pA and PT 6.
     }
     \label{fig:results:GaAs_voltages}
 \end{figure}
 
 
+% figures/results/GaSb_voltages.pdf
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{figures/results/GaSb_voltages.pdf}
+    \caption{
+        Group (B), the GaSb voltage series.
+        The figure serves the same purpose as \cref{fig:results:GaAs_voltages}, but for GaSb.
+        % Additionally, an increased amound of coincidence counts compared to the GaAs spectra is visible in the tailing backgrounds, especially at 15 kV.
+        The tailing background is the vertical lines above $E_0$.
+        All four spectra have $i_b$ = 50 pA and PT 6.
+    }
+    \label{fig:results:GaSb_voltages}
+\end{figure}
 
-\subsection*{Lines}
-\label{results:qualitative_analysis:lines}
+
+
+
+
+% \subsection*{Lines}
+% \label{results:qualitative_analysis:lines}
 
 All the lines given in \cref{tab:theory:lineEnergies} for Ga, As, and Sb have been identified in the spectra.
 All spectra also had a peak at C K$\alpha$.
-The GaSb spectra included a O K$\alpha$ peak.
-As annotated in \cref{fig:results:overviewGaSb_withArtifacts}, the GaSb spectra also included two Sb M-peaks: $\eta$ and $\gamma$.
+% TODO Ton: discus this C_Ka artifact, origin, in discussions
+% TODO Ton: No other common peaks like Fe, or Si from set-up?
+The GaSb spectra included a well defined O K$\alpha$ peak, while the GaAs spectra had barely any signal from the O K$\alpha$ line.
+% TODO discuss: the O Ka peak might also be a Sb M-line, but I have not found the energy of the Sb M-lines.
+As annotated in \cref{fig:results:overviewGaSb_withArtifacts}, the GaSb spectra also included two Sb M-signals: $\eta$ and $\gamma$, where $\eta$ is a clearly defined peak, while $\gamma$ is a slight increase in intensity.
 These two M-peaks are not listed in the HyperSpy database, but were found through AZtec \cite{aztec_manual} and other literature \cite{liao2006practical}.
+% TODO discuss: M lines are present in the absorption plot of GaSb
 
 
 
-
-% the missing M-lines in HS, which were identified with AZtec.
-
-
-\subsection*{Artifacts}
-\label{results:qualitative_analysis:artifacts}
+% \subsection*{Artifacts}
+% \label{results:qualitative_analysis:artifacts}
 
 Artifacts are present in all spectra, in varying degrees.
 The artifacts identified are listed and described in \cref{tab:results:artifacts}.
@@ -96,7 +99,7 @@ The artifacts present in the spectra are the background, the noise peak, the car
 % The effect of a strong absorption edge which reduce the background intensity above its energy is most prominent in the GaAs spectra.
 % Here it is the absorption edge in the L-peaks which reduce the background intensity abruptly above the L-peaks.
 % Coincidence peaks are only present in some spectra, and are most prominent in the spectra with very high count rates.
-% The spectra with beam energy 5, 10, and 15 keV also show coincidence events above E$_0$, e.g. visible in panel (a) in \cref{fig:results:GaSb_voltages}.
+% The spectra with beam energy 5, 10, and 15 keV also show coincidence events above $E_0$, e.g. visible in panel (a) in \cref{fig:results:GaSb_voltages}.
 
 
 \input{tables/results/table_results_artifacts.tex}
@@ -256,7 +259,7 @@ Additionally, the FWHM of the Mn K$\alpha$ is estimated for each process time.
 The table shows the variations on the GaSb specimen with process time (PT) 1, 2, 4, and 6.
 The last row shows the FWHM in the GaAs specimen at PT 6 for reference.
 All spectra in the table were acquired at 30 kV.
-The "*" indicate I$_\textnormal{beam}$ = 400 pA, all other values for I$_\textnormal{beam}$ is 50 pA.
+The "*" indicate $i_b$ = 400 pA, all other values for $i_b$ is 50 pA.
 
 
 \input{tables/results/table_PTvsFWHMs.tex}
@@ -268,7 +271,7 @@ The "*" indicate I$_\textnormal{beam}$ = 400 pA, all other values for I$_\textno
 
 % 4
 \section{Quantitative analysis}
-\label{results:data_treatment}
+\label{results:quantitative}
 
 
 \brynjar{Coming soon. I do observations of AZtec, try out HyperSpy, and make new code which are a step in the right direction (e.g. XPP in a notebook, which is concrete and quantitative.)}

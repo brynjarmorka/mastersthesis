@@ -1,43 +1,54 @@
-\begin{table}[hbtp]
+\begin{table}[phtb]
     \begin{center}
         \caption{
-            The voltage series measured on GaAs and GaSb.
-            Settings not mentioned are kept constant.
+            The first measurement series for EDS data acquisition, which tested different $E_0$ on GaAs and GaSb.
+            All spectra were recorded with 0-20 keV energy range and 2048 channels at working distance 10 mm (optimal for the detector), and the at TOA 35\textdegree.
+            %
         }
-        \renewcommand*{\arraystretch}{1.4}
+        \renewcommand*{\arraystretch}{1.2}
         \label{tab:method:acquisition_settings:voltage}
-        \begin{tabular}{p{4cm}cp{8cm}}
+        \begin{tabular}{p{2cm}p{3cm}p{8.6cm}}
             \hline
-            \textbf{Setting}             & \textbf{Vary} & \textbf{Purpose}                                                                                  \\
+            \textbf{Setting}    & \textbf{Values}      & \textbf{Comment}                                                                                                                                                                                                                                               \\
             \hline
-            Beam energy                  & Yes           & Study the effect of the acceleration voltage. 30, 15, 10, 5 kV.                                   \\
-            Beam current                 & No            & Kept constant for each specimen to compare the spectra. Set so that DT was around 30\% for 30 kV. \\
-            Process time                 & No            & Set to 6 (max) to influence the analysis as little as possible.                                   \\
-            Data type (PointID vs map)   & No            & Only PointID.                                                                                     \\
-            Area (polished vs scratched) & No            & Polished.                                                                                         \\
+            Beam energy         & 30, 15, 10, and 5 kV & To study the effect of different $E_0$.                                                                                                                                                                                                                        \\
+            % Beam current        & 25 pA (GaAs), 50 pA (GaSb) & Set to get sufficient amount of counts and maximum DT around 30\% at 30 kV. Then kept constant when $E_0$ was decreased in the voltage series. Different beam current for the specimen was chosen to see the effects on Ga. \\
+            Beam current        & 25 pA or 50 pA       & 25 pA for GaAs and 50 pA for GaSb. Set to get sufficient amount of counts and maximum DT around 30\% at 30 kV. Then kept constant when $E_0$ was decreased in the voltage series. Different beam current for the specimen was chosen to see the effects on Ga. \\
+            Process time        & 6 (maximum)          & Set to the highest to influence the acquisition as little as possible, i.e. giving the highest energy resolution.                                                                                                                                              \\
+            DT GaAs             & 25\%, 12\%, 6\%, 3\% & DT is not a setting, but a result of other settings. The low DT at the lower $E_0$ was due to fewer counts.                                                                                                                                                    \\
+            DT GaSb             & 44\%, 18\%, 9\%, 4\% &                                                                                                                                                                                                                                                                \\
+            Data type           & PointID              & The voltage series was only done with PointID, while mapping was tested in the measurement series summarized in \cref{tab:method:acquisition_settings:other}.                                                                                                  \\
+            Live time           & 120 s                & To get sufficient amount of counts.                                                                                                                                                                                                                            \\
+            Additional spectrum & GaAs, 30 kV, 50 pA   & An additional spectra on GaAs with the same settings at the 30 kV spectrum of GaSb. Taken to directly compare the 30 kV spectra.                                                                                                                               \\
+
             \hline
         \end{tabular}
     \end{center}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%					
-\begin{table}[hbtp]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[phtb]
     \begin{center}
         \caption{
-            The measurements on GaSb with varying parameters.
-            Settings not mentioned are kept constant.
+            The second measurement series, which tested a broader variation of acquisition parameters.
+            These measurements was only done on the GaSb specimen.
+            Data type, live time, energy range, channels, WD, and TOA as in \cref{tab:method:acquisition_settings:voltage}.
         }
-        \renewcommand*{\arraystretch}{1.4}
+        \renewcommand*{\arraystretch}{1.2}
         \label{tab:method:acquisition_settings:other}
-        \begin{tabular}{p{4cm}cp{8cm}}
+        \begin{tabular}{p{2cm}p{3cm}p{8.6cm}}
             \hline
-            \textbf{Setting}             & \textbf{Vary} & \textbf{Purpose}                                                         \\
+            \textbf{Setting} & \textbf{Values}     & \textbf{Comment}                                                                               \\
             \hline
-            Beam energy                  & Yes           & Further inspect 30 vs 15 kV, because of the Sb K-peaks just below 30 kV. \\
-            Beam current                 & Yes           & Study different ICR and dead times.                                      \\
-            Process time                 & Yes           & Study the effect of different PT, e.g. on coincidence events.            \\
-            Data type (PointID vs map)   & Yes           & Compare PointID to map.                                                  \\
-            Area (polished vs scratched) & Yes           & Study the difference between a scratched and polished area.              \\
-            \hline                                                                                                                  \\
+            Beam energy      & 15 and 30 kV        & Further inspect the effect of the Sb K-peaks just below 30 kV.                                 \\
+            Beam current     & 50, 200, and 400 pA & To study ICR and DTs, with values given in \cref{tab:method:acquisition_settings:all_spectra}. \\
+            Process time     & 1, 2, 4, and 6      & To study the effect of PT, e.g. on energy resolution and coincidence events.                   \\
+            Data type        & PointID and Map     & Compare results from a point and a map, with eventual denoising in the map.                    \\
+            %  &                     &                                                                                                       \\
+            %  &                     &                                                                                                       \\
+            %  &                     &                                                                                                       \\
+            \hline
         \end{tabular}
     \end{center}
 \end{table}
