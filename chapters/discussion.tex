@@ -71,3 +71,92 @@ paper at \url{https://www.cambridge.org/core/services/aop-cambridge-core/content
 % By default, the HyperSpy calibration uses all alpha lines.
 % It is possible to specify certain lines to calibrate on, but this yeilded the same or worse results as using all alpha lines.
 % \brynjar{The stuff above is more discussion, at least the last sentence.}
+
+
+
+
+
+
+% \subsection{The requirements for a standard material}
+% \label{theory:eds_performance:standard_material}
+% smt about the standard materials available \dots
+% what we want in the spectrum \dots
+% candidates \dots
+
+
+
+
+
+
+
+% \subsection{Other tests - not used in this work}
+% \label{theory:eds_performance:other}
+
+% \brynjar{TODO from Ton: "if not used, do not include them. But consider to use them in discussion leading to concrete future work (last chapter)"}
+
+% Other test are described in the literature, but they were not used in this work.
+% Some of them is mentioned here, either because they are interesting but not possible, because they are not relevant enough, or because they could be relevant in future works.
+
+% \subsubsection*{Linearity and stability}
+% In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests for an EDS detector are linearity and stability.
+% This is stated in the section about what to look for when buying a detector.
+% The reason for not including these two test in the work is mainly their dependence on a way to measure the probe current, which e.g. can be done with a Faraday cup.
+% Such tests could be used in the future and are therefore briefly described here.
+% Linearity of the detector is that the number of X-rays measured is proportional to the number of X-rays generated.
+% Stability is that the detector resolution and the peak positions does not change significantly with different probe currents.
+% Both tests require multiple spectra of the same sample with different probe currents.
+% The ISO 22309 standard on quantification of EDS spectra \cite{iso_quantification_22309} also mentions these two tests.
+
+% % \brynjar{ISO 22309: "Whatever type of detector is being used, the count rate capabilities of the system should be checked by
+% %     comparing a spectrum obtained at a count rate below 2 000 counts/s with a spectrum obtained at the highest
+% %     count rate to be used, to look for peak shift and pile-up distortion that might affect relative peak heights. A
+% %     minimum of two checks on beam stability, using a Faraday cup, or a known reference specimen, should be
+% %     made prior to and following the analysis."}
+
+% % TODO : kan jeg gjøre de med beam current???
+
+
+
+% \subsubsection*{Peak shape}
+
+% Deviations of peak shapes can be used to identify problems with the detector or the qualitative analysis.
+% Peak shapes are used in Egerton and Chengs work to identify incomplete charge collection, but this is a lesser concern in modern SDDs.
+% Peak shapes deviating from a Gaussian shape, which is not due to detector issues, are probably due to misidentification where a minor peak is not correctly identified.
+% The overlapping peak has the counts from both peaks, and the shape will be skewed.
+% Assessing the peak shape with numbers is not straightforward, but the FWHM/FWTM can be used to compare the peak shape of different spectra.
+% This requires the peaks to be standing alone, without any overlap.
+% As this is not always the case, and that the metric is not too useful, it is not used in this work.
+% However, an analyst should be aware of the peak shape, as it can be useful if a skewed peak is found and lacking a clear explanation.
+
+% Overlapping peaks, ASTM 1508:
+% "9.2.5 Next look for peak overlaps. If (1) a peak is displaced
+% relative to its marker, (2) relative intensities are wrong, or (3)
+% there is a distortion in the peak shape, then there is an
+% overlapping element. All three conditions will be present in an
+% overlap situation."
+
+
+% \subsubsection*{Shadowing}
+% \brynjar{From ISO 15632: "In many cases the specific geometry of the EDS detector at a particular SEM/EPMA chamber can result in a reduction of the net active sensor area as expected after subtraction of shadowing area caused by the window grid. For example, a falsely mounted collimator, electron trap or shadowing by other parts in the SEM chamber can reduce additionally the illumination of the detector with X-rays. A practical procedure how to determine experimentally the effective area of an EDS detector and under which conditions are described in Reference [5]."}
+% % [5] Procop M., Hodoroaba V.-D., Terborg R., Berger D., Determination of the Effective
+% % Detector Area of an Energy-Dispersive X-Ray Spectrometer at the Scanning Electron
+% % Microscope Using Experimental and Theoretical X-Ray Emission Yields, Microsc. Microanal.,
+% % 22 (2016), pp. 1360-1368
+% % Shadowing
+
+
+
+% \subsubsection*{Energy dependence of instrumental detection efficiency - K/L ratio}
+% \brynjar{ISO 15632: "The minimum specification for the energy dependence of the instrumental detection efficiency shall be
+%     the intensity ratio of a low energy line and a high energy line in the characteristic X-ray spectrum of a
+%     given material. This ratio shall be given as the net peak area of the L series lines divided by the net peak
+%     area of K$\alpha$ series lines in the spectrum of a pure nickel or copper specimen, excited by a 20 keV electron
+%     beam perpendicular to the specimen surface and collected by the detector at a take-off angle of 35 degrees. The
+%     specimens to be used, the measurement conditions, the calculation of L/K ratio and its conversion for
+%     TOA not equal 35 degrees are given in Annex B. \dots These measures are only appropriate for a detector thick enough to absorb at least 95 % of the incident
+%     X-ray energy at 8 keV."}
+
+
+% \subsubsection*{Optimal WD}
+% \url{https://www.cstl.nist.gov/div837/837.02/epq/dtsa2/FaultsFoiblesEDS.pdf}
+% % \brynjar{En geometrigreie. Er det forskjellig for ulike materialer? Passer under acquisition params}

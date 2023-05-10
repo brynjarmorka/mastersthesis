@@ -1,33 +1,33 @@
-\begin{table}[htbp]
+\begin{table}[phtb]
     \begin{center}
         \caption{
-            The energy resolutions [eV] in the different spectra.
-            The table is sorted by process time, then ICR.
-            All energy resolutions are calculated with \cref{eq:estimateFWHM}.
+            The energy resolutions in eV in the different spectra.
+            The table is sorted by increasing energy resolution.
+            All energy resolutions are calculated with \cref{eq:estimateFWHM} through HyperSpy.
         }
         % \renewcommand*{\arraystretch}{1.4}
         \label{tab:results:energy_resolutions}
-        \begin{tabular}{p{1.5cm}ccrrr}
+        \begin{tabular}{p{1.5cm}lllll}
             \hline
-            \textbf{} & \textbf{Energy resolution} & \textbf{PT} & \textbf{ICR} & \textbf{$E_0$} & \textbf{$i_b$} \\
+            \textbf{Specimen} & \textbf{PT} & \textbf{$E_0$} & \textbf{$i_b$} & \textbf{ICR}      & \textbf{Energy resolution} \\
+            \emph{}           & \emph{}     & \emph{[kV]}    & \emph{[pA]}    & \emph{[k counts]} & \emph{[eV]}                \\
             \hline
-                      & 158                        & 1           & 17000        & 30             & 50             \\
-                      & 158                        & 1           & 160000       & 30             & 400            \\
-                      & 143                        & 2           & 17000        & 30             & 50             \\
-                      & 132                        & 4           & 17000        & 30             & 50             \\
-                      & 128                        & 6           & 1080         & 5              & 50             \\
-            GaSb      & 127                        & 6           & 2300         & 10             & 50             \\
-                      & 125                        & 6           & 5700         & 15             & 50             \\
-                      & 127                        & 6           & 17000        & 30             & 50             \\
-                      & 127                        & 6           & 17000        & 30             & 50             \\
-                      & 124                        & 6           & 22000        & 15             & 200            \\
-                      & 125                        & 6           & 42000        & 15             & 400            \\
+                              & 6           & 15             & 200            & 22                & 124                        \\
+                              & 6           & 15             & 50             & 5.7               & 125                        \\
+                              & 6           & 15             & 400            & 42                & 125                        \\
+                              & 6           & 30             & 50             & 17                & 127                        \\
+                              & 6           & 10             & 50             & 2.3               & 127                        \\
+            GaSb              & 6           & 5              & 50             & 1.1               & 128                        \\
+                              & 4           & 30             & 50             & 17                & 132                        \\
+                              & 2           & 30             & 50             & 17                & 143                        \\
+                              & 1           & 30             & 400            & 160               & 158                        \\
+                              & 1           & 30             & 50             & 17                & 158                        \\
             \hline
-                      & 127                        & 6           & 880          & 5              & 25             \\
-                      & 127                        & 6           & 1750         & 10             & 25             \\
-            GaAs      & 129                        & 6           & 3300         & 15             & 25             \\
-                      & 128                        & 6           & 8000         & 30             & 25             \\
-                      & 129                        & 6           & 16400        & 30             & 50             \\
+                              & 6           & 5              & 25             & 0.9               & 127                        \\
+                              & 6           & 10             & 25             & 1.8               & 127                        \\
+            GaAs              & 6           & 30             & 25             & 8.0               & 128                        \\
+                              & 6           & 30             & 50             & 16.4              & 129                        \\
+                              & 6           & 15             & 25             & 3.3               & 129                        \\
             \hline
         \end{tabular}
     \end{center}
