@@ -433,25 +433,24 @@ The Ga L$\alpha$ peak in the GaSb spectra does not follow this trend, but this r
 \label{results:quantitative}
 
 
-\brynjar{Coming soon. I do observations of AZtec, try out HyperSpy, and make new code which are a step in the right direction (e.g. XPP in a notebook, which is concrete and quantitative.)}
+\brynjar{Intro?}
 
 
 \subsection{Initial quantification}
 \label{results:initial_quantification}
 
 % initial quantification (AZtec and i/i_sum)
-Initial quantification was done with the AZtec software.
-Then quantification was done without any corrections, where the area in P1 (peak one) is divided by the sum of area in P1 and P2.
-P1 and P2 was chosen as the two most similar peaks, i.e. two L$\alpha$ or two K$\alpha$ when possible.
-These results from selected spectra are shown in \cref{tab:results:initial_quantification}.
-As the table shows, some of the results are close to 50\%.
-AZtec is mostly at 50$\pm$ 2\%, while the composition from the area without corrections is more spread out.
-The uncorrected results from the GaSb spectra with $E_0$ = 30 kV are at 50$\pm$ 2\%.
-The 15 kV results from GaSb have a deviation of $\pm$ 10\%.
-The low energy results from GaAs have a high deviation, probably due to issues with overvoltage.
-The GaAs results are deviating more, implying a need for corrections.
-
-
+Initial quantification was done with the AZtec software and with the uncorrected area ratio method.
+The area ratio method gives relative compositions, and it is described in \cref{theory:quantitative:principle}, with \cref{eq:theory:quantitative:area_ratio}.
+AZtec too gives relative compositions, based on the elements confirmed to be present in the spectrum.
+The initial quantification results are shown in \cref{tab:results:initial_quantification}, and plotted in \cref{fig:results:initial_quantification}.
+\ton{I decided to round the percentages to integers. OK?}
+As the table and figure show, some of the results are close to 50\%.
+In 13 of the 15 spectra, AZtec gives a result at 50$\pm2$\%, and 2 of the results are at 50$\pm4$\%.
+The 5 area ratios from GaSb spectra with $E_0$ = 30 kV are at at 50$\pm2$\%.
+The three 15 kV results from GaSb have a deviation of $\pm$ 10\%, which show the need for some correction.
+The remaining results from the area ratio method produces results with higher deviations, strongly implying the need for corrections.
+% The low energy results from GaAs have a high deviation, probably due to issues with overvoltage.
 
 % TODO discuss: AZtec is pretty good, but misses at eg 5kV GaSb
 % TODO discuss: the uncorrected results are good for some spectra, but others are bad. Overvoltage might be the main reason.
@@ -459,6 +458,66 @@ The GaAs results are deviating more, implying a need for corrections.
 % TODO discuss: bulk corrections is needed
 
 \input{tables/results/table_initial_quantification.tex}
+
+% figures/results/initial_quantification.pdf
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.99\linewidth]{figures/results/initial_quantification.pdf}
+    \caption{
+        Initial quantification results in at\%.
+        The X markers are the quantification from AZtec.
+        The circle markers are the quantification from the area ratio, without corrections.
+        The group, specimen, $E_0$, $i_b$, and PT are shown on the x-axis.
+        The spectra without noted PT are taken with PT 6.
+        The same data is tabulated in \cref{tab:results:initial_quantification}.
+    }
+    \label{fig:results:initial_quantification}
+\end{figure}
+
+\ton{Are the next three paragraphs too much discussion?}
+
+% comment on the severely poor results from GaAs at 5 kV
+The GaSb spectrum at 5 kV is poorly quantified, both by AZtec and by the area ratio.
+AZtec is quantifying the 5 kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
+Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high.
+AZtec overestimates the absorption of the Sb M$\eta$ peak, and the result is a 60:40 composition.
+The Sb M$\eta$ peak is not available in HyperSpy, so the area ratio is done with the Sb L$\alpha$ peak.
+The overvoltage on Sb L$\alpha$ in the the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
+% TODO discussion: quantification on low kV of Sb and similar elements with L-peaks between 3 and 4 keV is hard. Have to do something very clever, but what?
+
+
+% What corrections are needed for the area ratio?
+\cref{tab:results:initial_quantification} and \cref{fig:results:initial_quantification} show that the need for corrections are varying with both specimen and acquisition parameters.
+% GaAs
+Different $i_b$ are not affecting the correction needs much, but the $E_0$ is.
+All the GaAs spectra need corrections which increase the weight of As.
+AZtec have applied corrections to the GaAs spectra, where the results are pushing As too high at 5 kV and 10 kV, and not high enough at 30 kV.
+The 15 kV GaAs corrections done by AZtec on GaAs is good, resulting at 50.6:49.4.
+% TODO discuss: the need to increase the weight of As is due to absoprtion of As X-rays is Ga.
+% GaSb
+The corrections needed in the GaSb spectra are not as clear as for GaAs.
+The 30 kV GaSb spectra appears to require little corrections, and have good results with the area ratio.
+The 15 kV and 10 kV spectra of GaSb need corrections to increase the weight of Sb.
+The GaSb 15 kV and 10 kV spectra are quantified with Ga L$\alpha$ and Sb L$\alpha$.
+% The intensity in the Sb L$\alpha$ peak in the 15 kV and 10 kV spectrum are too low, compared to the Ga L$\alpha$ peak.
+AZtec have corrected the 15 kV compositions well, and semi-well for the 10 kV composition.
+% TODO discuss: the need to increase the weight of Sb. The absorption should be stronger of Ga La, so this is not the reason. Probably a Z effect. Also overvoltage. Maybe omega.
+Correction factors are presented in \cref{results:matrix_corrections}.
+
+\brynjar{Move to disussion:
+    "
+    Since the absorption should be stronger of the Ga L$\alpha$ peak than the Sb L$\alpha$ peak, the absorption should not be the reason for the low Sb content.
+    The low Sb content in the 15 kV and 10 kV spectra can be due to the overvoltage differences.
+    Ga L$\alpha$ has overvoltage $U = 15/1.1 = 13.6$, and Sb L$\alpha$ has $U = 15/3.6 = 4.2$ at 15 kV.
+    From the estimated ionization cross-section as a function of overvoltage, seen in \cref{fig:PAP:ionization_cross_section}, the maximum $Q(U)$ is at $U = 3.4$.
+    Thus, the overvoltage at 15 kV should not be the reason for the low Sb content.
+    % TODO discuss: the reason for the low Sb content at 15 kV is not the overvoltage, but something else.
+    The different intensities are thus probably an effect of different Z. This should be treated somewhat by the PAP method.
+    "}
+
+
+
+
 
 
 \subsubsection*{Quantification of SEM data, pretended to be TEM data}
@@ -496,6 +555,23 @@ The 30 kV spectra were quantified at a 55-60:45-40 ratio, and the absorption cor
 
 \subsubsection{ZAF absorption corrections}
 \label{results:matrix_corrections:ZAF}
+
+The ZAF absorption corrections were done with \cref{eq:theory:quantitative:absorption}. %, and the results are presented in \cref{tab:results:ZAF_corrections_factors} and \cref{tab:results:ZAF_corrections_compositions}.
+The calculated maximum electron range $t$ is presented in \cref{tab:results:ZAF_corrections_range_t}.
+The parameters are line, elements, $\mu_\rho$, $\rho$, $E_0$, assumed atomic fraction, TOA, and maximum electron range $t$.
+To calculate the absorption correction factors, $t$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
+The calculated absorption correction factors are presented in \cref{tab:results:ZAF_corrections_factors}.
+The corrected compositions are presented in \cref{tab:results:ZAF_corrections_compositions}.
+
+\ton{Can I drop the GaSb absorption corrections? They only make the results worse.}
+
+\ton{TODO: the densities are not the same as stated on Wikipedia.}
+
+
+\input{tables/results/table_ZAF_A_range_t.tex}
+\input{tables/results/table_ZAF_A_factors.tex}
+\input{tables/results/table_ZAF_A_compositions.tex}
+
 
 
 

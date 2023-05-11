@@ -2228,6 +2228,39 @@ These absorption corrections are based on path length and found composition \cit
 \ton{Based on your comment, should I add: "The TEM EDS routines in AZtec are hidden, but the software probably use the Cliff-Lorimer method, and might have some implementation of TEM absorption correction."?}
 
 
+\ton{These two eq and three paragraphs are new. I call it the "area ratio method".}
+
+% The area ratio of two similar peaks
+When relative quantification is sufficient, the area ratio of two similar peaks can be used \cite{goldstein_scanning_2018}.
+When using measured standards, the absolute concentrations can be obtained.
+Using the absolute concentrations can reveal errors in the analysis, as the summed concentrations should be close to 100\% \cite{goldstein_scanning_2018}.
+However, using relative concentrations requires less work, and is probably the most common method for EDS analysis \brynjar{[citation needed]}.
+Similar peaks are peaks which emit similar amounts of X-rays, for example having X-ray energy not too far apart, having similar fluorescence yield (\cref{fig:theory:fluorescence_yield}), and having similar absorption (\cref{fig:mass_absorption_coefficients}).
+If the emitted amount of X-rays are similar, the relative composition can be calculated with:
+
+% C_A = I_A / (I_A + I_B)
+\begin{equation}
+    \label{eq:theory:quantitative:area_ratio}
+    C_A = \frac{I_A}{I_A + I_B}
+\end{equation}
+
+Where $C_A$ is the concentration of element $A$, and $I_A$ and $I_B$ is the measured intensity in a peak from element $A$ and $B$ respectively.
+The concentration from such calculations are in weight percent (wt\%).
+If the lines used emit different amounts of X-rays, a sensitivity factor can be applied to the measured intensity ratio.
+The sensitivity factor can take into account the atomic number, the absorption, and the fluorescence in the sample.
+Depending on the specimen and acquisition parameters, it might be sufficient to use a sensitivity factor that only focus on a specific parameter.
+For example, if the Z of the elements are close, the sensitivity factor can be based on the absorption, if absorption is the dominating factor.
+The equation then becomes:
+
+\begin{equation}
+    \label{eq:theory:quantitative:area_ratio_corrected}
+    C_A = \frac{k_A \cdot I_A}{k_A \cdot I_A + k_B \cdot I_B}
+\end{equation}
+
+Where $k_A$ and $k_B$ is the sensitivity factors for element $A$ and $B$ respectively.
+This method is referred to as the "area ratio method" in this work, without and with corrections.
+
+
 
 
 % \subsubsection*{Side note: Two definitions of the ZAF-method}
