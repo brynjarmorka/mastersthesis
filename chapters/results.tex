@@ -237,7 +237,7 @@ The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is ve
 \label{results:acquisition_parameters}
 
 The performance metrics of the acquisition are: the Duane-Hunt limit, the Fiori peak-to-background ratio, and portion of counts in peaks vs background.
-Additionally, results from selected user parameters are presented, such as the process time, beam energy, and beam current.
+Additionally, results from the user parameters process time, beam energy, and beam current are presented.
 The energy resolution is affected by both the detector and the acquisition setup, and the relevant results are presented in \cref{results:setup:energy_resolution}.
 
 
@@ -291,7 +291,7 @@ Additionally, the FWHM of the Mn K$\alpha$ is estimated for each process time.
 The table shows the variations on the GaSb specimen with PT 1, 2, 4, and 6.
 The last row shows the FWHM in the GaAs specimen at PT 6 for reference.
 All spectra in the table were acquired at 30 kV and 50 pA.
-In the GaSb spectra, the PT 1 has DT 4\%, PT 2 has DT 7\%, PT 4 has DT 13\%, and PT 6 has DT 44\%. 
+In the GaSb spectra, the PT 1 has DT 4\%, PT 2 has DT 7\%, PT 4 has DT 13\%, and PT 6 has DT 44\%.
 The GaAs spectrum with PT 6 has DT 44\%.
 
 % TODO discuss: based on the numbers, PT 4 should be good enough for most applications. High resolution, and much faster than PT 6. DT44 is really high, and not nice for mapping.
@@ -301,10 +301,132 @@ The GaAs spectrum with PT 6 has DT 44\%.
 \input{tables/results/table_PTvsFWHMs.tex}
 
 
+\subsection{Beam energy and beam current}
+\label{results:beam_energy_and_beam_current}
 
 
+% comment on (A) and (B)
+The energy and the amount of electrons in the probe is important for the emerging X-ray spectrum.
+Using a low overvoltage is both problematic for the qualitative and quantitative analysis.
+The green line in \cref{fig:results:GaAs_voltages} is the 10 kV spectrum for GaAs, which has no visible signal from the Ga K$\alpha$ peak, where the overvoltage is around 1.1.
+The overvoltage is also an issue for the Sb L-lines in the 5 kV spectrum in \cref{fig:results:GaSb_voltages}.
+The Sb L-peaks are present, but weak, and the L$l$ peak is not visible.
+This issue with the weak Sb-L peaks makes the quantification of Sb difficult at low voltages, as seen further down in \cref{results:initial_quantification}.
+The GaAs specimen is quantified much more accurately at 5 kV, beacuse the Ga L$\alpha$ and As L$\alpha$ peaks have similar overvoltages.
+In the voltage series, which are group (A) and (B) in \cref{method:acquisition_settings}, the amount of counts in the lower voltages are quite low.
+The low amount of counts is due to keeping the beam current constant at 50 and 25 pA.
+Using a higher beam current on the lower energies would have made normalization more necessary, which is adding a layer of subjective decisions as the spectra must be normalized to something.
+% TODO discuss: this might not have been the best choice. For future work one can try to get the same ICR for all voltages, and see if the results are better and still comparable, without normalization.
+Even though the 30 kV spectra in GaAs and GaSb have more counts and are smoother than the other spectra, they both have more artifacts.
+% TODO discuss: the amount of artifacts have to be adjusted for the specimen and the goal of the analysis.
+Around 1 keV, the 30 kV and 15 kV spectra are quite similar.
+% TODO discuss: at 1 keV, the ionization cross section when using 15 or 30 kV is more or less the same.
+
+\brynjar{TODO: write something about ICR?}
+
+% (C) (D) and (E)
+As the 30 and 15 kV spectra gave better results for GaSb, they were chosen for group (C), (D), and (E).
+In (C) different process times were tested, and these results are presented in \cref{results:process_time}.
+In (D) different beam currents were tested, while also changing the PT and $E_0$.
+In (E) the data type maps were acquired.
+% (D)
+The combination of high $i_b$ and high PT in two of the spectra in (D) made the DT very high.
+Despite the high DT, the amount of artifacts in the 200 pA and 400 pA spectra were similar to the 50 pA spectra.
+However, with DT at 53\% and 77\%, the acquisition time was very long.
+% TODO discuss: DT is not a good measure of the artifacts, at least not when using high PT which allows the electronics to count accurately. However, high i_b and PT is bad for mapping.
+On the quantification presented in \cref{results:initial_quantification}, the beam energy appears to be more important than the beam current.
+% TODO discuss: this might be a result of the lines used (Ga L or Ga K).
+\brynjar{TODO: the maps have not been alalysed properly yet.}
+
+
+
+
+
+
+
+
+\subsection{Duane-Hunt limit}
+\label{results:duane_hunt}
+
+The Duane-Hunt limits, or the effective beam energies, are presented in \cref{tab:results:duane_hunt}.
+The table shows the Duane-Hunt limit for the 5, 10, and 15 kV spectra.
+As the energy range recorded in the spectra were 0-20 keV, the Duane-Hunt limit of the 30 kV spectra were not possible to calculate.
+All the calculated Duane-Hunt limits are within 0.2 keV of the nominal beam energy, i.e. the specified beam energy in the SEM software.
+The average deviation is 0.06 keV, with a standard deviation of 0.04 keV.
+This shows that the beam energy is quite stable.
+% TODO discuss: the usefulness of calculating the DH limit.
+
+\input{{tables/results/table_duane_hunt.tex}}
+
+
+
+
+\subsection{Fiori P/B ratio}
+\label{results:fiori}
+
+The Fiori numbers are presented in \cref{tab:results:fiori}, with the Fiori P/B ratio in the five rightmost columns.
+% # for Ga La, Ga Ka, As La, Sb La, Sb Lb
+The ratios are for the Ga L$\alpha$, Ga K$\alpha$, As L$\alpha$, Sb L$\alpha$, and Sb L$\beta$.
+The Fiori P/B ratios have a spread between just below 100 to right under 800.
+The overall highest ratio is for the Ga K$\alpha$ peak for the 30 kV and 25 pA GaAs spectrum, with a ratio of 770.
+% TODO discuss: repeat why the numbers are so high. That is dividing by one single bg channel, which makes the ratio unaffected by energy resolution.
+The equal settings in the GaSb spectrum have a ratio of 408 for the Ga K$\alpha$ peak.
+For the Ga K$\alpha$ peaks, the GaAs spectrum have almost twice as high Fiori P/B ratios as the GaSb spectrum.
+The Ga L$\alpha$ peak is present in all the spectra, and it can be used for comparison.
+However, the background counts around the Ga L$\alpha$ peak is around 2-5 times higher in the GaSb spectra than in the GaAs spectra, which is reflected in the different Fiori ratios for the Ga L$\alpha$ peak.
+% TODO discuss: the mu_rho of GaAs is much higher than GaSb above 1 keV because of the double absorption edge. This gives a much higher Fiori ratio for GaAs than GaSb, as the background is lower. But the Ga_La peak ing GaAs is also higher. The specimen dependness is high.
+The peak height between GaAs and GaSb differs some, but it is probably the background levels which make the biggest impact on the Fiori P/B ratios.
+For the Ga L$\alpha$ peak, the Fiori P/B ratios is up to 6 times higher for GaAs than GaSb.
+This shows clearly that the Fiori P/B ratio is specimen dependent, even when using the same peak and setting.
+
+
+% what affects the Fiori numbers
+The data acquired gives indications of what affects the Fiori numbers.
+The two 30 kV GaAs spectra at 25 pA and 50 pA have the highest Fiori numbers.
+Even though the 50 pA spectrum has more than twice the amount of maximum counts in the Ga L$\alpha$ peak compared to the 25 pA spectrum, their Fiori numbers are quite similar.
+Both these 30 kV spectra have PT 6, but the 50 pA spectrum has a higher DT at 44\%, while the 25 pA spectrum has a DT of 25\%.
+% TODO discuss: the very similar Fiori numbers imply that the spectra are equally good. Put this into context with the quantification results and the DT, as this increase acquisition time. Implies that there is a threshold where more counts does not give better results, and maybe the Fiori ratio is a good measure of this.
+% TODO discuss: high Fiori does not mean good quantification. GaSb are closer to 50\% by AZtec (and me?), but the GaAs Fiori numbers are in general higher.
+The different PTs tested on GaSb in (C) and (D) does not seem to have a noticeable effect with a trend in either direction.
+An increase in $i_b$ appears to have a decreasing effect on the Fiori numbers, but the effect is small.
+This $i_b$ effect can be seen on the three 15 kV GaSb spectra, with 50 pA, 200 pA, and 400 pA.
+The same effect is visible for the 30 kV GaSb spectra taken with 50 pA and 400 pA at PT 1, with the Ga L$\alpha$ peak as an exception.
+However, the biggest effect and trend appears to come from $E_0$.
+For the GaAs specimen, the Fiori P/B ratio of Ga L$\alpha$ increase with increasing $E_0$.
+The same $E_0$ effect is visible for the Ga K$\alpha$, Sb L$\alpha$, and Sb L$\beta$ peaks in the GaSb spectra.
+The Ga L$\alpha$ peak in the GaSb spectra does not follow this trend, but this ratio is changing much less than the ratios for the three other peaks.
+% TODO discuss: the Fiori P/B is a function of the specimen (maybe most important?), the beam energy (much), the beam current (not much). Additionally, the calculation method is very important. And the detector is also a factor, but different detectors have not been tested in this work.
+
+
+% TODO discuss: what range of values is good for the Fiori number? And say something about GaAs having higher number, but being quantified less accurately.
+
+
+\input{{tables/results/table_fiori.tex}}
+
+
+
+\subsection{Portion of counts in the peaks}
+\label{results:portion_of_counts}
+
+\brynjar{Something about the portion of counts in the peaks vs. in the background.}
 
 \clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % 4.4
 \section{Quantitative analysis}
