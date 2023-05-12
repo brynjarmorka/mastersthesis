@@ -2293,6 +2293,7 @@ Relevant for this work is $ZAF_B$.
 
 
 \subsubsection*{Side note: The difference between the k-factor and the k-ratio}
+\label{sec:theory:quantitative:k_factor_vs_k_ratio}
 
 \brynjar{TODO, from Ton: "Yes, but not here. Introduce ratio from formulas above or from Goldstein and than compare the two as a halfway summary."}
 
@@ -2385,8 +2386,8 @@ This calculation is part of the PAP method described in \cref{theory:quantitativ
 For the ZAF method used in this work, the absorption correction is calculated for an average point in the interaction volume.
 The average point selected is the maximum path length of an incident electron, divided by two, three or four.
 \brynjar{Results: Add r/2, r/3, r/4 to the results.}
-The electron range is calculated by HyperSpy which have implemented the Kanaya-Okayama parameterization \cite{kanaya1972}.
-The Kanaya-Okayama parameterization is given in Goldstein as \cite[Eq. 14.1 and 22.5]{goldstein_scanning_2018}:
+The electron range is calculated with the Kanaya-Okayama parameterization \cite{kanaya1972}, which is available in HyperSpy \cite{hyperspy_1.7.1}.
+The Kanaya-Okayama parameterization is given in Goldstein as \cite[22.5]{goldstein_scanning_2018}:
 
 \begin{equation}
     \label{eq:theory:quantitative:kanaya_okayama}
@@ -2394,8 +2395,10 @@ The Kanaya-Okayama parameterization is given in Goldstein as \cite[Eq. 14.1 and 
 \end{equation}
 
 Where $A$ is the atomic weight in g/mol, $Z$ is the atomic number, $\rho$ is the density in g/cm$^3$, $E_0$ is the incident electron energy in keV, and $E_C$ is the critical ionization energy in keV.
+The equation is made for pure elements, but in this work the average $A$, $Z$ and, $\rho$ of the elements in the sample is used.
+In Goldstein, Eq. 14.1 gives the $R_{K-O}$ in a specimen without the correction for $E_C$.
 The range $R_{K-O}$ calculated the equation use the critical ionization energy as a threshold, because electrons with energy lower than this is not of interest.
-Using for example $R_{K-O}/2$ as the average point for the generated intensity is an approximation which can give a reasonable result,, at least it should be in the correct order of magnitude.
+Using for example $R_{K-O}/2$ as the average point for the generated intensity is an approximation which can give a reasonable result, at least it should be in the correct order of magnitude.
 \brynjar{To discussion and results: maybe this approximation is severely wrong. Monte Carlo simulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results. Also, the phi-rho-z curves show that there is a skew towards z=0, at Rc.}
 This simplification is partly justified by the fact that the available measured intensity $I$ is the sum of the intensity from all points in the interaction volume.
 Testing out different methods with varying complexity for calculating the absorption correction is a step towards finding a suitable implementation for HyperSpy.

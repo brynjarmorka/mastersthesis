@@ -444,6 +444,7 @@ Initial quantification was done with the AZtec software and with the uncorrected
 The area ratio method gives relative compositions, and it is described in \cref{theory:quantitative:principle}, with \cref{eq:theory:quantitative:area_ratio}.
 AZtec too gives relative compositions, based on the elements confirmed to be present in the spectrum.
 The initial quantification results are shown in \cref{tab:results:initial_quantification}, and plotted in \cref{fig:results:initial_quantification}.
+Statistical numbers for the results are shown in \cref{tab:results:initial_quantification_stats}.
 \ton{I decided to round the percentages to integers. OK?}
 As the table and figure show, some of the results are close to 50\%.
 In 13 of the 15 spectra, AZtec gives a result at 50$\pm2$\%, and 2 of the results are at 50$\pm4$\%.
@@ -457,7 +458,9 @@ The remaining results from the area ratio method produces results with higher de
 % TODO discuss: also comparing Ga Ka with Sb La, which should have different omega (ref to image in theory)
 % TODO discuss: bulk corrections is needed
 
-\input{tables/results/table_initial_quantification.tex}
+\input{tables/results/table_quantification_initial.tex}
+\input{tables/results/table_quantification_initial_stats.tex}
+
 
 % figures/results/initial_quantification.pdf
 \begin{figure}[htbp]
@@ -474,14 +477,14 @@ The remaining results from the area ratio method produces results with higher de
     \label{fig:results:initial_quantification}
 \end{figure}
 
-\ton{Are the next three paragraphs too much discussion?}
+\ton{Are the next three paragraphs too much discussion? I would say no, but I am not sure.}
 
 % comment on the severely poor results from GaAs at 5 kV
 The GaSb spectrum at 5 kV is poorly quantified, both by AZtec and by the area ratio.
-AZtec is quantifying the 5 kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
-Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high.
-AZtec overestimates the absorption of the Sb M$\eta$ peak, and the result is a 60:40 composition.
-The Sb M$\eta$ peak is not available in HyperSpy, so the area ratio is done with the Sb L$\alpha$ peak.
+Both methods use the Ga L$\alpha$ and Sb L$\alpha$ peaks, and the Sb L$\alpha$ peak is at 3.6 keV, which is quite close to $E_0$.
+The overvoltage on Sb L$\alpha$ in the the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
+As seen in the table, the area of the Ga L$\alpha$ peak is 19 times larger than the area of the Sb L$\alpha$ peak, thus the area ratio mehtod gives a 97:3 composition.
+AZtec is doing some corrections for this, but overestimates the weight for Sb, and ends on a 39:61 composition.
 The overvoltage on Sb L$\alpha$ in the the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
 % TODO discussion: quantification on low kV of Sb and similar elements with L-peaks between 3 and 4 keV is hard. Have to do something very clever, but what?
 
@@ -520,30 +523,68 @@ Correction factors are presented in \cref{results:matrix_corrections}.
 
 
 
-\subsubsection*{Quantification of SEM data, pretended to be TEM data}
-
-% Quantification while treating the specimen as a TEM specimen.
-Quantification of the spectra was also done pretending that the specimen was a TEM specimen, both in AZtec and HyperSpy.
-This is done in AZtec with the "TEM setting", which gives composition and calculated k-factors.
-The calculated k-factors were taken and used with the Cliff-Lorimer method in HyperSpy, which gives composition.
-In HyperSpy, the quantification was done with and without the TEM absorption corrections.
-For the absorption corrections, four different thicknesses were used: 100nm, 1000 nm, 10000 nm, and 100000 nm.
-As the results were poor, they are only commented on briefly in the text below.
-
-% AZtec TEM setting
-The AZtec TEM setting results on the SEM specimen yielded poor results.
-The 5 kV GaAs spectrum and the 30 kV GaSb spectra was quantified at a 45:55 ratio.
-The remaining spectra were quantified around a 70:30 ratio.
+% \subsection{Quantification of SEM EDS data based on the Cliff-Lorimer method} % Tons suggested title
+\subsection{Quantification of SEM EDS data as if it was TEM EDS data}
+\label{sec:results:quantification_cliff_lorimer}
 
 
-% HyperSpy Cliff-Lorimer
-The Cliff-Lorimer TEM quantification method in HyperSpy yielded poor results too.
-Adding absorption corrections through the Cliff-Lorimer method did not improve the results.
-The implemented absorption correction is a part of the Cliff-Lorimer method, and thus made for TEM specimens.
-The low voltage spectra were quantified at a 70:30 ratio or worse.
-% todo discuss: probably due to TEM being high HT.
-The 30 kV spectra were quantified at a 55-60:45-40 ratio, and the absorption corrections improved the results somewhat with t = 1000 nm for GaSb and t = 10000 nm for GaAs.
-% todo discuss: the absorption corrections in the CL method, as used briefly in this work, does not give a general improvement.
+Quantitative analysis of the SEM EDS bulk spectra was also done under the presumption that the specimen was a TEM specimen, i.e. under the thin film approximation.
+The thin film approximation assumes no absorption of the created X-rays in the specimen, and is a part of the Cliff-Lorimer (CL) method covered in \cref{sec:theory:quantitative:k_factor_vs_k_ratio}.
+The presumption that the specimen is a TEM specimen was both applied in AZtec with the "TEM setting", and in HyperSpy with the CL method.
+The TEM EDS quantification in AZtec is probably also done with the CL method, but it is not stated in the documentation.
+TEM EDS quantification of SEM EDS data can readily be done, even though it is formally incorrect.
+
+% the table
+The results from the TEM EDS quantification routines are tabulated in \hyperref[appendix:tables]{Appendix C} in \cref{tab:results:TEM_quantification}, and statistical numbers from that table is presented in \cref{tab:results:TEM_quantification_stats}.
+% TODO: check the appendix reference
+% In \hyperref[appendix:tables]{Appendix C} (\cref{appendix:tables}), \cref{tab:appendix:mock_table}, the results are tabulated for all the spectra.
+The calculated k-factors, which are extracted from AZtec and needed for the CL method in HyperSpy, are included in \cref{tab:results:TEM_quantification}.
+The CL method in HyperSpy was done with and without the TEM absorption corrections, which is a part of the implemented CL quantification function.
+The "CL*" column is without absorption corrections, and the "CL" column is with the TEM absorption corrections, where the $t$ is the set specimen thickness.
+Six $t$ values were used: 50 nm, 100 nm, 200 nm, 400 nm, 1000 nm, and 10000 nm.
+
+
+% comment on the severely poor results from GaAs at 5 kV
+The GaSb spectrum at 5 kV is poorly quantified by AZtec.
+AZtec is quantifying the 5 kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
+Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high.
+AZtec does not correct for this absoprtion (enough at least) in TEM mode, and the resulting composition is 91:9.
+The Sb M$\eta$ peak is not available in HyperSpy, and no k-factor is given for the Sb L$\alpha$ line at 5 kV.
+Thus, it is not possible to quantify the 5 kV GaSb spectrum with HyperSpy.
+% When using TEM mode, AZtec selects the Sb M$\eta$ line at 5 kV, and as this line is not included in HyperSpy, the 5 kV GaSb spectra were not quantified in HyperSpy.
+% TODO discuss: not possible to quantify with HyperSpy at 5 kV, as the Sb M$\eta$ line is missing and thus there are no k-factor for Sb La.
+% TODO discuss: HyperSpy will not give k-factors, even though some people ask for it (Gitter). This is becaues that would give a high uncertainty, as the k-factors are partly dependent on the detector.
+% TODO discuss from Ton: "In discussion can debate of other more correct k-factors would lead to substantial better quantification or that own k-factors can be extracted from the data you have and if that helps, even seen the wrong preassumption"
+
+
+% comment on the table values
+The TEM EDS quantification results of the SEM EDS data are in general deviating from the reference value of 50:50.
+The statistical numbers for \cref{tab:results:TEM_quantification} in \cref{tab:results:TEM_quantification_stats} are calculated without the 5 kV GaSb spectra, as the 5 kV spectra were not quantified in HyperSpy.
+The "TEM setting" AZtec results are deviating much more from 50:50 compared to the AZtec results using the "SEM setting", presented in \cref{results:initial_quantification}.
+% TODO discuss: this celarly show that AZtec is doing different quant with SEM and TEM, but the difference is not in the documentation. We know they do XPP from the blog post, and that could have been stated in the manual.
+AZtec have bigger average deviations from the reference value than HyperSpy, for all quantification methods, except when $t$ = 10000 nm. 
+The average AZtec deviation is 10$\pm$6\% from the reference value, where the uncertainty is the standard deviation of the deviations from 50:50.
+The CL deviations start below AZtec at the uncorrected quantification, and then the average decreases as $t$ go from 50 nm to 200 nm, and then the average deviations increase again.
+The three best CL quantifications are with $t$ = 100 nm (7$\pm$2 \%), $t$ = 200 nm (5$\pm$3 \%), and $t$ = 400 nm (6$\pm$4 \%).
+The number of deviations above 10\% and below 5\% are also presented in \cref{tab:results:TEM_quantification_stats}, where 14 is the total number of spectra.
+CL with $t$ = 100 nm have zero deviations above 10\%, but only one below 5\%.
+CL with $t$ = 200 nm have one deviation above 10\%, and five below 5\%.
+CL with $t$ = 400 nm have one deviation above 10\%, and four below 5\%.
+% TODO discuss: the numbers above 10 and below 5 is nice, because the average is not the whole story. I would say t = 200 nm is the best, because it has a low average deviation, and good numbers for >10 and <5. The 200 nm also perform most similar on the GaAs and GaSb, which is important.
+% TODO discuss: HyperSpy is actually better than AZtec, on TEM setting. Also, it is a special case, other specimen might have very different results.
+
+\ton{Now the statistical number table here, and the results table in the appendix. Is that good? The result table is so huge that it is not easy to read.}
+
+\input{tables/results/table_quantification_TEM_stats.tex}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -557,26 +598,34 @@ The 30 kV spectra were quantified at a 55-60:45-40 ratio, and the absorption cor
 \label{results:matrix_corrections:ZAF}
 
 The ZAF absorption corrections were done with \cref{eq:theory:quantitative:absorption}. %, and the results are presented in \cref{tab:results:ZAF_corrections_factors} and \cref{tab:results:ZAF_corrections_compositions}.
-The calculated maximum electron range $t$ is presented in \cref{tab:results:ZAF_corrections_range_t}.
-The parameters are line, elements, $\mu_\rho$, $\rho$, $E_0$, assumed atomic fraction, TOA, and maximum electron range $t$.
-To calculate the absorption correction factors, $t$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
+The calculated maximum electron range $r$ is presented in \cref{tab:results:ZAF_corrections_range_r}.
+% The parameters are line, elements, $\mu_\rho$, $\rho$, $E_0$, assumed atomic fraction, TOA, and maximum electron range $t$.
+To calculate the absorption correction factors, $r$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
 The calculated absorption correction factors are presented in \cref{tab:results:ZAF_corrections_factors}.
 The corrected compositions are presented in \cref{tab:results:ZAF_corrections_compositions}.
 
-\ton{Can I drop the GaSb absorption corrections? They only make the results worse.}
+\ton{Should I drop the GaSb absorption corrections? They only make the results worse.}
+
+\ton{Should I also have average etc. here? For GaSb the results are bad (does not need the absorption correction), but for GaAs the results are improved.}
 
 \ton{TODO: the densities are not the same as stated on Wikipedia.}
 
 
-\input{tables/results/table_ZAF_A_range_t.tex}
+\input{tables/results/table_ZAF_A_range_r.tex}
 \input{tables/results/table_ZAF_A_factors.tex}
 \input{tables/results/table_ZAF_A_compositions.tex}
+
+% TODO discuss: my model is not reality. I had a bug for the range r, and when i fixed in the GaAs quantification was actually deviating more.
 
 
 
 
 \subsubsection{XPP/PAP corrections}
 \label{results:matrix_corrections:XPP}
+
+The correction factors calculated with XPP are presented in \cref{tab:results:XPP_corrections_factors}.
+These correction factors were calculated with the XPP/PAP notebook, which is in \hyperref[appendix:xpp]{Appendix B}.
+
 
 
 
