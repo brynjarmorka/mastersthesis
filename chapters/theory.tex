@@ -2222,7 +2222,7 @@ Cliff and Lorimer \cite{CL1975} showed in 1975 that the intensity from a specime
 The Cliff-Lorimer method have a sensitivity factor which is dependent on the instrument settings and the atomic number effects in the specimen.
 This sensitivity factor in the Cliff-Lorimer method is named the "k-factor".
 The Python package HyperSpy have the Cliff-Lorimer quantification method implemented.
-Additionally, HyperSpy have implementations of the Zeta method \cite{watanabe_williams_zeta_2006} and the cross-section quantification approach \cite{MacArthur}.
+Additionally, HyperSpy have implementations of the Zeta method \cite{watanabe_williams_zeta_2006} and the cross-section quantification approach \cite{MacArthur_crosssection_2016}.
 Absorption corrections for TEM specimen is also implemented as a optional part of the quantification routines in HyperSpy for TEM specimen.
 These absorption corrections are based on path length and found composition \cite{williams_carter_tem_2009}.
 \ton{Based on your comment, should I add: "The TEM EDS routines in AZtec are hidden, but the software probably use the Cliff-Lorimer method, and might have some implementation of TEM absorption correction."?}
@@ -2432,7 +2432,8 @@ As it is, allegedly, the XPP model which is used in AZtec \cite{} \brynjar{cite 
 Other methods, such as the PROZA96 model, could be tested in future works, using the code developed in this work as a starting point, because there are overlapping parts between the models.
 Both the PAP and the PROZA96 model use the area of the $\phi(\rho z)$ curve for parameterization, where the PROZA96 model refers to the PAP paper for the calculation of this area \cite{bastin_proza96_1998}.
 \brynjar{TODO discussion: advice future work to test the PROZA96 model, using my code as a starting point.}
-At the end of the section, \cref{tab:quantitative:PAP:variables} summarize all the variables, with their name, their use, and their units.
+At the end of the section, \verb|\cref{tab:quantitative:PAP:variables}| summarize all the variables, with their name, their use, and their units.
+\brynjar{TODO: Fix the table.}
 
 
 
@@ -2569,6 +2570,8 @@ F is the product of the deceleration factor ($1/S$) and the backscatter factor (
     \label{eq:theory:quantitative:pap:calculation_of_F:F}
     F = \frac{R}{S} \cdot Q(U)
 \end{equation}
+
+\brynjar{TODO: F is R/S / Q}
 
 
 Now the PAP-paper is at times somewhat confusing, both because the lack of explaination of some of the symbols, and because of slightly contradicting equations.
@@ -2925,7 +2928,7 @@ The parameter $A$ and $B$ are then calculated by:
 \end{equation}
 
 \begin{equation}
-    \label{eq:theory:quantitative:pap:_big_A}
+    \label{eq:theory:quantitative:pap:big_A}
     A = [B/b + \phi(0) - b \cdot F] \cdot \frac{1+ \varepsilon}{\varepsilon}
 \end{equation}
 

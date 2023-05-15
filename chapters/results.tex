@@ -22,7 +22,7 @@ Scratched areas on the GaSb specimen are shown in \cref{fig:SE_images:GaSb} pane
 \section{Qualitative analysis}
 \label{results:qualitative_analysis}
 
-Here, an overview of the spectra is presented, where some characteristics and artifacts are identified, before addressing the setup parameters in \cref{results:setup}, acquisition parameters in \cref{results:acquisition_parameters}, and quantification results in \cref{results:data_treatment}.
+Here, an overview of the spectra is presented, where some characteristics and artifacts are identified, before addressing the setup parameters in \cref{results:setup}, acquisition parameters in \cref{results:acquisition_parameters}, and quantification results in \cref{results:quantitative}.
 General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArtifacts,fig:results:GaSb_voltages,fig:results:GaAs_voltages}.
 
 
@@ -603,6 +603,7 @@ The calculated maximum electron range $r$ is presented in \cref{tab:results:ZAF_
 To calculate the absorption correction factors, $r$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
 The calculated absorption correction factors are presented in \cref{tab:results:ZAF_corrections_factors}.
 The corrected compositions are presented in \cref{tab:results:ZAF_corrections_compositions}.
+Statistical numbers for the compositions are given in \cref{tab:results:ZAF_corrections_compositions_stats}.
 
 \ton{Should I drop the GaSb absorption corrections? They only make the results worse.}
 
@@ -614,6 +615,8 @@ The corrected compositions are presented in \cref{tab:results:ZAF_corrections_co
 \input{tables/results/table_ZAF_A_range_r.tex}
 \input{tables/results/table_ZAF_A_factors.tex}
 \input{tables/results/table_ZAF_A_compositions.tex}
+\input{tables/results/table_ZAF_A_compositions_stats.tex}
+
 
 % TODO discuss: my model is not reality. I had a bug for the range r, and when i fixed in the GaAs quantification was actually deviating more.
 
@@ -623,8 +626,44 @@ The corrected compositions are presented in \cref{tab:results:ZAF_corrections_co
 \subsubsection{XPP/PAP corrections}
 \label{results:matrix_corrections:XPP}
 
-The correction factors calculated with XPP are presented in \cref{tab:results:XPP_corrections_factors}.
-These correction factors were calculated with the XPP/PAP notebook, which is in \hyperref[appendix:xpp]{Appendix B}.
+% The correction factors calculated with XPP are presented in \cref{tab:results:XPP_corrections_factors}.
+% These correction factors were calculated with the XPP/PAP notebook, which is in \hyperref[appendix:xpp]{Appendix B}.
+
+
+The XPP/PAP corrections were done in two ways, where the measured intensity of a peak $I_A$ is divided by the calculated generated intensity of the peak $F$ or by the calculated XPP absorption correction factor $f(\chi)$.
+Both ways are presented in \cref{tab:results:XPP_compositions}, where the uncorrected compositions are included for comparison.
+All compositions are in atomic percent, and are calculated with the relative peak area method.
+Statistical numbers for the XPP corrections are given in \cref{tab:results:XPP_compositions_stats}.
+$F$ and $f(\chi)$ are calculated with the XPP/PAP notebook, and are dependent on $E_0$, $E_C$ of the line, and the elements with their weight fraction of the elements.
+The elements and their weight fractions are used to calculate the density $\rho$, the mean atomic mass $M$, the mean ionization potential $J$, the mean atomic number $\bar{Z}$, the backscattering coefficient $R$, and $\mu_\rho$ of the line at $E_0$.
+The weight fractions used in the calculations are set to the equivalent of a 50:50 atomic percent composition, as this should give the best possible correction factors.
+A finished product for XPP bulk correctiosh should have iterative calculations of the weight fractions, but these results are aiming to demonstrate the possible usefulness of XPP corrections, thus the best available input parameters are used.
+
+% TODO discuss: add Fig 19.14 p.305 from Goldstein with F and F(chi) to illustrate why the chosen corrections were used.
+% TODO discuss: the XPP corrections make the results slightly better, but it is far from a finished results. Probably both a problem with the interpretation and the implementation of the XPP bulk corrections in the notebook. This can be investigated further, and the advice is to start with ...
+
+
+\input{tables/results/table_XPP_compositions.tex}
+\input{tables/results/table_XPP_compositions_stats.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
