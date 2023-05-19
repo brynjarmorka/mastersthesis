@@ -126,22 +126,23 @@ The first goal is to systematically go through the parameter listed in \cref{fig
 The main focus will be on the experimental characteristics and new data processing routines that become available through open-source packages.
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
 The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
-Alternatively, the Phi-Rho-Z quantification method can correct for the bulk effects \brynjar{cite}.
-Neither the ZAF nor Phi-Rho-Z-corrections are implemented in the published version HyperSpy.
+Alternatively, the $\phi (\rho z)$ quantification method can correct for the bulk effects \cite{goldstein_scanning_2018,pap_1991}.
+Neither the ZAF nor $\phi (\rho z)$ corrections are implemented in the published version HyperSpy.
 The available quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
 % Other methods like the factorless internal composition determination \cite{nilsen_factorless_2021} \ton{is this correctly phrased?} can also be used for quantification. % TON: leave this out. It is an alternative when there is bench mark element, not often the case. We decided not to push a PR as it is not general enough. It would be interesting if in SEM geometry it could work, but I expect complications.
-The second aim of this work is to explore whether iterative ZAF or Phi-Rho-Z corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
+The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z)$ corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
 
 
+%TODO: add something about PAP/XPP
 
 
 Last paragraph will be a guide how the report is build up, as in the project report. Added later.
 
 
-\brynjar{Comment from Ton:}
-HyperSpy have tables with constants for absorption. This is relevant for absorption corrections, also that there is a structure in the package that can do corrections, relevant for ZAF.
-Related, see \url{https://www.sciencedirect.com/science/article/pii/S0304399123000360?via%3Dihub}.
-Simulations of these processes in HS (here only STEM, thin specimens). It should be possible to extend it to SEM, but this is likely a concrete suggestion for future work.
+% \brynjar{Comment from Ton:}
+% HyperSpy have tables with constants for absorption. This is relevant for absorption corrections, also that there is a structure in the package that can do corrections, relevant for ZAF.
+% Related, see \url{https://www.sciencedirect.com/science/article/pii/S0304399123000360?via%3Dihub}.
+% Simulations of these processes in HS (here only STEM, thin specimens). It should be possible to extend it to SEM, but this is likely a concrete suggestion for future work.
 
 
 
