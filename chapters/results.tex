@@ -76,11 +76,11 @@ General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArt
 % \subsection*{Lines}
 % \label{results:qualitative_analysis:lines}
 
-All the lines given in \cref{tab:theory:lineEnergies} for Ga, As, and Sb have been identified in the spectra.
+The lines given in \cref{tab:theory:lineEnergies} for Ga, As, and Sb have been identified in the spectra.
 All spectra also had a peak at C K$\alpha$.
 % TODO Ton: discus this C_Ka artifact, origin, in discussions
 % TODO Ton: No other common peaks like Fe, or Si from set-up?
-The GaSb spectra included a well defined O K$\alpha$ peak, while the GaAs spectra had barely any signal from the O K$\alpha$ line.
+The GaSb spectra included a well-defined O K$\alpha$ peak, while the GaAs spectra had barely any signal from the O K$\alpha$ line.
 % TODO discuss: the O Ka peak might also be a Sb M-line, but I have not found the energy of the Sb M-lines.
 As annotated in \cref{fig:results:overviewGaSb_withArtifacts}, the GaSb spectra also included two Sb M-signals: $\eta$ and $\gamma$, where $\eta$ is a clearly defined peak, while $\gamma$ is a slight increase in intensity.
 These two M-peaks are not listed in the HyperSpy database, but were found through AZtec \cite{aztec_manual} and other literature \cite{liao2006practical}.
@@ -191,9 +191,9 @@ The standard deviation of the offset is 0.004 keV.
 
 The results from the peak ratios are listed in \cref{tab:results:peak_ratios}.
 The peak ratios are useful to alert carbon contamination over time, and to identify and quantify stray radiation with certain sample geometry.
-As the results are neither a series over time or taken with the required sample geometry, the results in the table are a demonstration of the metric without any further interpretation.
+As the results are neither a series over time nor taken with the required sample geometry, the results in the table are a demonstration of the metric without any further interpretation.
 Peak ratios are also used for quantification, but needs bulk corrections.
-The table show that some of the peak ratios vary greatly with the acquisition parameters, e.g. the ratio between Ga L$\alpha$ and Sb L$\alpha$.
+The table show that some peak ratios vary greatly with the acquisition parameters, e.g. the ratio between Ga L$\alpha$ and Sb L$\alpha$.
 
 
 \input{tables/results/table_peak_ratios.tex}
@@ -253,15 +253,15 @@ The figure have three panels, (a) for low, (b) for medium, and (c) for high ener
 The effect of the lowered energy resolution is most prominent for the low energy X-rays.
 The difference between the observable center of the peaks and the theoretical line energies in panel (a) is due to the poorer calibration at sub 1 keV energies.
 In panel (a), the Sb M$\eta$ and O K$\alpha$ are merged together with PT 1, but are separated with PT 6.
-The ability to seperate peaks is the definition of energy resolution, thus panel (a) is a good illustration of different energy resolutions.
-The Ga L$l$ and Ga L$\alpha$ peaks are seperated with PT 6, but are merged together with PT 1.
-With PT 4 (not shown), the Ga L$l$ and Ga L$\alpha$ peaks still seperated, but with PT 2 (not shown) they are merged together.
-% TODO discuss: visible seperable and seperable with gaussian modelling is different. Visible seperable is important for qualitative analysis. And the quantitative is probably better with more seperated peaks, but overlapping can be dealt with quire well.
+The ability to separate peaks is the definition of energy resolution, thus panel (a) is a good illustration of different energy resolutions.
+The Ga L$l$ and Ga L$\alpha$ peaks are separated with PT 6, but are merged together with PT 1.
+With PT 4 (not shown), the Ga L$l$ and Ga L$\alpha$ peaks still separated, but with PT 2 (not shown) they are merged together.
+% TODO discuss: visible separable and separable with gaussian modelling is different. Visible separable is important for qualitative analysis. And the quantitative is probably better with more separated peaks, but overlapping can be dealt with quire well.
 \cref{tab:results:energy_resolutions} show that the energy resolution with PT 1 is 158 eV, and with PT6 it is 127 eV.
 In panel (b) with the medium energies, the contrast of the peaks are lowered, i.e. the difference between the top of the peaks and the valley between the peaks are lowered.
 The effect of the lowered energy resolution is not as prominent panel (c) for high energy X-rays.
 
-% TODO discuss: for high energies the peaks are also well seperated.
+% TODO discuss: for high energies the peaks are also well separated.
 
 
 % figures eds_energyResolutions_process_time.pdf
@@ -312,7 +312,7 @@ The green line in \cref{fig:results:GaAs_voltages} is the 10 kV spectrum for GaA
 The overvoltage is also an issue for the Sb L-lines in the 5 kV spectrum in \cref{fig:results:GaSb_voltages}.
 The Sb L-peaks are present, but weak, and the L$l$ peak is not visible.
 This issue with the weak Sb-L peaks makes the quantification of Sb difficult at low voltages, as seen further down in \cref{results:initial_quantification}.
-The GaAs specimen is quantified much more accurately at 5 kV, beacuse the Ga L$\alpha$ and As L$\alpha$ peaks have similar overvoltages.
+The GaAs specimen is quantified much more accurately at 5 kV, because the Ga L$\alpha$ and As L$\alpha$ peaks have similar overvoltages.
 In the voltage series, which are group (A) and (B) in \cref{method:acquisition_settings}, the amount of counts in the lower voltages are quite low.
 The low amount of counts is due to keeping the beam current constant at 50 and 25 pA.
 Using a higher beam current on the lower energies would have made normalization more necessary, which is adding a layer of subjective decisions as the spectra must be normalized to something.
@@ -336,7 +336,7 @@ However, with DT at 53\% and 77\%, the acquisition time was very long.
 % TODO discuss: DT is not a good measure of the artifacts, at least not when using high PT which allows the electronics to count accurately. However, high i_b and PT is bad for mapping.
 On the quantification presented in \cref{results:initial_quantification}, the beam energy appears to be more important than the beam current.
 % TODO discuss: this might be a result of the lines used (Ga L or Ga K).
-\brynjar{TODO: the maps have not been alalysed properly yet.}
+\brynjar{TODO: the maps have not been analyzed properly yet.}
 
 
 
@@ -444,13 +444,13 @@ Initial quantification was done with the AZtec software and with the uncorrected
 The area ratio method gives relative compositions, and it is described in \cref{theory:quantitative:principle}, with \cref{eq:theory:quantitative:area_ratio}.
 AZtec too gives relative compositions, based on the elements confirmed to be present in the spectrum.
 The initial quantification results are shown in \cref{tab:results:initial_quantification}, and plotted in \cref{fig:results:initial_quantification}.
-Statistical numbers for the results are shown in \cref{tab:results:initial_quantification_stats}.
+Statistical numbers for the results are shown in \cref{tab:results:stats_initial_quantification}.
 \ton{I decided to round the percentages to integers. OK?}
-As the table and figure show, some of the results are close to 50\%.
+As the table and figure show, some results are close to 50\%.
 In 13 of the 15 spectra, AZtec gives a result at 50$\pm2$\%, and 2 of the results are at 50$\pm4$\%.
-The 5 area ratios from GaSb spectra with $E_0$ = 30 kV are at at 50$\pm2$\%.
+The 5 area ratios from GaSb spectra with $E_0$ = 30 kV are at 50$\pm2$\%.
 The three 15 kV results from GaSb have a deviation of $\pm$ 10\%, which show the need for some correction.
-The remaining results from the area ratio method produces results with higher deviations, strongly implying the need for corrections.
+The remaining results from the area ratio method produce results with higher deviations, strongly implying the need for corrections.
 % The low energy results from GaAs have a high deviation, probably due to issues with overvoltage.
 
 % TODO discuss: AZtec is pretty good, but misses at eg 5kV GaSb
@@ -482,10 +482,10 @@ The remaining results from the area ratio method produces results with higher de
 % comment on the severely poor results from GaAs at 5 kV
 The GaSb spectrum at 5 kV is poorly quantified, both by AZtec and by the area ratio.
 Both methods use the Ga L$\alpha$ and Sb L$\alpha$ peaks, and the Sb L$\alpha$ peak is at 3.6 keV, which is quite close to $E_0$.
-The overvoltage on Sb L$\alpha$ in the the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
-As seen in the table, the area of the Ga L$\alpha$ peak is 19 times larger than the area of the Sb L$\alpha$ peak, thus the area ratio mehtod gives a 97:3 composition.
+The overvoltage on Sb L$\alpha$ in the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
+As seen in the table, the area of the Ga L$\alpha$ peak is 19 times larger than the area of the Sb L$\alpha$ peak, thus the area ratio method gives a 97:3 composition.
 AZtec is doing some corrections for this, but overestimates the weight for Sb, and ends on a 39:61 composition.
-The overvoltage on Sb L$\alpha$ in the the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
+The overvoltage on Sb L$\alpha$ in the 5 kV spectrum is below 1.4, while the overvoltage on the Ga L$\alpha$ is above 4.5, which results in a severely underestimated Sb content with the area ratio.
 % TODO discussion: quantification on low kV of Sb and similar elements with L-peaks between 3 and 4 keV is hard. Have to do something very clever, but what?
 
 
@@ -507,16 +507,13 @@ AZtec have corrected the 15 kV compositions well, and semi-well for the 10 kV co
 % TODO discuss: the need to increase the weight of Sb. The absorption should be stronger of Ga La, so this is not the reason. Probably a Z effect. Also overvoltage. Maybe omega.
 Correction factors are presented in \cref{results:matrix_corrections}.
 
-\brynjar{Move to disussion:
-    "
-    Since the absorption should be stronger of the Ga L$\alpha$ peak than the Sb L$\alpha$ peak, the absorption should not be the reason for the low Sb content.
+\brynjar{Move to discussion:"Since the absorption should be stronger of the Ga L$\alpha$ peak than the Sb L$\alpha$ peak, the absorption should not be the reason for the low Sb content.
     The low Sb content in the 15 kV and 10 kV spectra can be due to the overvoltage differences.
     Ga L$\alpha$ has overvoltage $U = 15/1.1 = 13.6$, and Sb L$\alpha$ has $U = 15/3.6 = 4.2$ at 15 kV.
     From the estimated ionization cross-section as a function of overvoltage, seen in \cref{fig:PAP:ionization_cross_section}, the maximum $Q(U)$ is at $U = 3.4$.
     Thus, the overvoltage at 15 kV should not be the reason for the low Sb content.
     % TODO discuss: the reason for the low Sb content at 15 kV is not the overvoltage, but something else.
-    The different intensities are thus probably an effect of different Z. This should be treated somewhat by the PAP method.
-    "}
+    The different intensities are thus probably an effect of different Z. This should be treated somewhat by the PAP method."}
 
 
 
@@ -548,7 +545,7 @@ Six $t$ values were used: 50 nm, 100 nm, 200 nm, 400 nm, 1000 nm, and 10000 nm.
 The GaSb spectrum at 5 kV is poorly quantified by AZtec.
 AZtec is quantifying the 5 kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
 Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high.
-AZtec does not correct for this absoprtion (enough at least) in TEM mode, and the resulting composition is 91:9.
+AZtec does not correct for this absorption (enough at least) in TEM mode, and the resulting composition is 91:9.
 The Sb M$\eta$ peak is not available in HyperSpy, and no k-factor is given for the Sb L$\alpha$ line at 5 kV.
 Thus, it is not possible to quantify the 5 kV GaSb spectrum with HyperSpy.
 % When using TEM mode, AZtec selects the Sb M$\eta$ line at 5 kV, and as this line is not included in HyperSpy, the 5 kV GaSb spectra were not quantified in HyperSpy.
@@ -573,7 +570,7 @@ CL with $t$ = 400 nm have one deviation above 10\%, and four below 5\%.
 % TODO discuss: the numbers above 10 and below 5 is nice, because the average is not the whole story. I would say t = 200 nm is the best, because it has a low average deviation, and good numbers for >10 and <5. The 200 nm also perform most similar on the GaAs and GaSb, which is important.
 % TODO discuss: HyperSpy is actually better than AZtec, on TEM setting. Also, it is a special case, other specimen might have very different results.
 
-\ton{Now the statistical number table here, and the results table in the appendix. Is that good? The result table is so huge that it is not easy to read.}
+\ton{Now the statistical number table is placed here, and the result table in the appendix. Is that good? The result table is so huge that it is not easy to read.}
 
 \input{tables/results/table_quantification_TEM_stats.tex}
 
@@ -637,7 +634,7 @@ Statistical numbers for the XPP corrections are given in \cref{tab:results:XPP_c
 $F$ and $f(\chi)$ are calculated with the XPP/PAP notebook, and are dependent on $E_0$, $E_C$ of the line, and the elements with their weight fraction of the elements.
 The elements and their weight fractions are used to calculate the density $\rho$, the mean atomic mass $M$, the mean ionization potential $J$, the mean atomic number $\bar{Z}$, the backscattering coefficient $R$, and $\mu_\rho$ of the line at $E_0$.
 The weight fractions used in the calculations are set to the equivalent of a 50:50 atomic percent composition, as this should give the best possible correction factors.
-A finished product for XPP bulk correctiosh should have iterative calculations of the weight fractions, but these results are aiming to demonstrate the possible usefulness of XPP corrections, thus the best available input parameters are used.
+A finished product for XPP bulk corrections should have iterative calculations of the weight fractions, but these results are aiming to demonstrate the possible usefulness of XPP corrections, thus the best available input parameters are used.
 
 % TODO discuss: add Fig 19.14 p.305 from Goldstein with F and F(chi) to illustrate why the chosen corrections were used.
 % TODO discuss: the XPP corrections make the results slightly better, but it is far from a finished results. Probably both a problem with the interpretation and the implementation of the XPP bulk corrections in the notebook. This can be investigated further, and the advice is to start with ...

@@ -88,3 +88,17 @@ NiO-thinfilm
 Nylund
 Swyt-Thomas
 msa
+at%
+wt%
+Peltier
+thermoinonic
+AEMs
+csc
+eq
+Packwood
+Reimer
+Castaing
+ionizations
+Coulon
+Zeller
+Backscattering
