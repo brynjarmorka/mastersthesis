@@ -977,7 +977,7 @@ $\Omega$ is the active area (A) of the detector divided by the square of r, the 
 Moving the detector closer to the sample increases the solid angle, and thus the number of counts.
 When the sample is in horizontal position, the TOA is equal to the elevation angle of the detector, which is typically between 35 and 40 degrees \cite{dtsaii_1_getting_started}.
 Changing the tilt of the sample changes the TOA, and can increase intensity of the signal and reduce the path length in the specimen, and thereby reduce the absorption of the X-rays.
-The azimuthal angle is marked as az in the figure, and is the position of the detector in the xy-plane, measured from the x-axis.
+The azimuthal angle is marked as $az$ in the figure, and is the position of the detector in the xy-plane, measured from the x-axis.
 The azimuthal angle is important in the link between a SEM image and the corresponding EDS spectrum, as the azimuthal angle tells where the apparently X-ray illumination is coming from.
 The working distance (WD) is the distance from the end of the SEM column to the sample, and is marked as WD in the figure.
 The optimal WD is the height where the straight line of sight from the detector to the sample and the incident point of the probe on the sample coincide.
@@ -1156,7 +1156,7 @@ A higher overvoltage will produce more X-rays, but also decrease the spatial res
 The \textbf{beam current} ($i_b$) is the current of the electron beam, and is measured in nA or pA.
 A higher current will produce more X-rays.
 Multiple papers and textbooks like Goldstein advise the measurement of the current hitting the specimen.
-This would allow more possibilities for specimen analysis and set-up characterization, for example computing absolute concentrations and calculating the solid angle of the detector.
+This would allow more possibilities for specimen analysis and setup characterization, for example computing absolute concentrations and calculating the solid angle of the detector.
 The beam current is estimated by software, but the current hitting the specimen needs to be measured and this requires addition equipment in the form of a Faraday cup and a good ammeter.
 These extra equipment were not available in the present study, but could be a good addition to future work.
 The beam current in this work is thus the current set on the SEM and not the current hitting the specimen.
@@ -1407,7 +1407,7 @@ This illustrates one of the challenges with digital solutions implemented by the
 % TON: wants this to be "EDS characteristic parameters" or something like that
 
 
-% For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are set-up, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
+% For detection characteristics you list , the details and references are OK, but again guide the reader, certainly as the list is long and details are specific. Per item define clearly what it is, give first the definition before discussing it. I am considering if a schematic spectrum can help where you point to aspects that matter help. Motivate and introduce schematically , in a sub section called, overview/Schematic representation, before going into details. Some are setup, some are geometry, some are electronic hardware related. At end or in experimental chapter and again in discussion, can summarize all in a table with references to literature and the section where quantities are introduces. This is core of your work, has an added value for reader (not common knowledge)and therefore can be longer. 
 
 The aim of this work is to improve EDS bulk quantification, and one way to do that is to improve the performance of the EDS setup, which is the upper row in \cref{fig:intro:parameters}.
 Identifying potential issues with the EDS setup can be done through certain performance parameters.
@@ -1427,8 +1427,8 @@ Goldstein also include details on a range of parameters, such as linearity and s
 The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
 One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a well performing detector.
 \brynjar{TODO: Get these ranges/value numbers into results and the discussion, and link back here.}
-Out of range values could indicate a suboptimal set-up or affect calculating composition.
-Identification of set-up parameters with optimization and correction should lead to better EDS analysis.
+Out of range values could indicate a suboptimal setup or affect calculating composition.
+Identification of setup parameters with optimization and correction should lead to better EDS analysis.
 The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDDs.
 In this section, each of the test characteristics is described with what it is, how it is measured, and what values are acceptable.
 Before the test characteristics are described, an overview is given and a summary table is given at the end of the section in \cref{tab:eds_performance_parameters}.
@@ -1604,7 +1604,7 @@ Specimen with low conductivity will get problems with charging, which will lower
 Thus, a deviation between the nominal and effective beam energy of several kilo-electronvolts is a sign of charging \cite{dtsaii_2_manipulating_spectra}.
 Charging of specimen are covered in detail in a paper by Postek and Vladár \cite{postek_charging_2015}.
 Another explanation of a large deviation is that the voltage indicated by the SEM is imprecise.
-In both cases, a quantitative analysis will yield poor results \cite{iso_emsa_22029}.
+In both cases, a quantitative analysis will yield poor results \cite{iso_quantification_22309}.
 Thus, the Duane-Hunt limit relates the acceleration voltage and the conductivity of the specimen.
 \brynjar{TODO: discussion, "Is it a useful test for you, for given HT and good conducting specimen? Comment this in discussion?" No, it is not very useful, but nice for slicing.}
 
@@ -1950,7 +1950,7 @@ In EDAX Insight a 300 eV window is used for each background area far from the pe
 For calculation of P, the Zemyan and Williams paper from 1994 use a 700 eV window \cite{zemyan_standard_performance_1994}, and the Ted Pella info-sheet on their NiO standard sample uses a 600 eV window \cite{ted_pella_nio_tem_2019}.
 This is probably a result of different materials, i.e. Cr and Ni, having different peak widths, but it is not ideal for comparison.
 The inconsistency of the actual calculation of the Fiori P/B is a problem for the metric.
-This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B, to easily compare reported or claimed values from different set-ups.
+This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B, to easily compare reported or claimed values from different setups.
 The metric might be more comparable on different setups if the calculations are done truer to the original definition, which also would make the metric more robust as the users subjective opinions does not affect the calculation.
 %and make it more robust as the users subjective opinions does not affect the calculation, and results from different materials might be more comparable.
 Calculating the Fiori P/B through model fitting is explored in this work.
@@ -2292,7 +2292,7 @@ Relevant for this work is $ZAF_B$.
 
 The \textbf{k-factors} are a sensitivity factor used in the Cliff-Lorimer quantification method for thin samples \cite{CL1975,williams_carter_tem_2009}.
 The value of the k-factor is dependent on the instrument setup and the acceleration voltage.
-\brynjar{From Ton: "could give the formula for the k-factor, Williams and Carter give it for example, and then discus that it has a set-up part (detector size, efficiency) and a physics side (cross-section for processes)"}.
+\brynjar{From Ton: "could give the formula for the k-factor, Williams and Carter give it for example, and then discus that it has a setup part (detector size, efficiency) and a physics side (cross-section for processes)"}.
 The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the following equation:
 
 \begin{equation}

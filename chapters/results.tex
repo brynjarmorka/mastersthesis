@@ -14,7 +14,7 @@ This chapter presents the results of the thesis.
 The results are divided into four parts: qualitative analysis of the spectra, characterization of the setup, optimization of the acquisition parameters, and data treatment.
 As seen in the SE images presented in \cref{method:SE_images}, the areas chosen for the analysis are homogeneous and relatively clean.
 Scratched areas on the GaSb specimen are shown in \cref{fig:SE_images:GaSb} panel (b), where some spectra were acquired, but not included in the results of this thesis.
-% TODO discuss: the scratched areas behaved as expected, yielding poorer results than the homogeneous areas. ISO etc.
+% DONE discuss: the scratched areas behaved as expected, yielding poorer results than the homogeneous areas. ISO etc.
 
 
 
@@ -78,13 +78,13 @@ General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArt
 
 The lines given in \cref{tab:theory:lineEnergies} for Ga, As, and Sb have been identified in the spectra.
 All spectra also had a peak at C K$\alpha$.
-% TODO Ton: discus this C_Ka artifact, origin, in discussions
-% TODO Ton: No other common peaks like Fe, or Si from set-up?
+% DONE Ton: discus this C_Ka artifact, origin, in discussions
+% DONE Ton: No other common peaks like Fe, or Si from setup?
 The GaSb spectra included a well-defined O K$\alpha$ peak, while the GaAs spectra had barely any signal from the O K$\alpha$ line.
-% TODO discuss: the O Ka peak might also be a Sb M-line, but I have not found the energy of the Sb M-lines.
+% DONE discuss: the O Ka peak might also be a Sb M-line, but I have not found the energy of the Sb M-lines.
 As annotated in \cref{fig:results:overviewGaSb_withArtifacts}, the GaSb spectra also included two Sb M-signals: $\eta$ and $\gamma$, where $\eta$ is a clearly defined peak, while $\gamma$ is a slight increase in intensity.
 These two M-peaks are not listed in the HyperSpy database, but were found through AZtec \cite{aztec_manual} and other literature \cite{liao2006practical}.
-% TODO discuss: M lines are present in the absorption plot of GaSb
+% DONE discuss: M lines are present in the absorption plot of GaSb
 
 
 
@@ -142,19 +142,19 @@ The table lists the theoretical energy of the line, the change in position after
 \input{tables/results/table_lines_info.tex}
 
 
-\subsection*{Energy resolution of the detector}
+\subsection{Energy resolution of the detector}
 \label{results:setup:energy_resolution}
 
 The energy resolution, as the estimated FWHM of the Mn K$\alpha$ peak, is both a function of the detector and certain acquisition parameters.
-In the GaSb spectra the best energy resolution was 124 eV, obtained with PT 6, ICR = 22k cps, $E_0$ = 15 kV, and $i_b$ = 200 pA.
-In the GaAs spectra the best energy resolution was 127 eV, obtained with PT 6, ICR = 880 cps, $E_0$ = 5 kV, and $i_b$ = 25 pA.
-% TODO discuss: no obvious relation between the two best energy resolutions. But, it depends on the peaks in the spectrum.
-% The best energy resolution obtained was: 124 eV for the GaSb spectra with PT 6, and 127 eV for the GaAs spectra.
 The energy resolution should not be a function of the specimen, but as it is calculated with \cref{eq:estimateFWHM}, the outputted number depends somewhat on the peaks in the spectrum.
 This is shown in \cref{tab:results:lines_info_30kV_50pA}, where the highest and lowest estimated energy resolution is 123 eV and 135 in the GaAs spectrum, and 121 eV and 133 eV in the GaSb spectrum.
-% TODO discuss: Different peaks are used in GaSb and GaAs, thus we get different number with equal acquisition parameters.
-% TODO discuss: Ga Kb gives the lowest, which might be a result of the overlap with As Ka.
-The energy resolutions for all spectra are listed in \cref{tab:results:energy_resolutions}, with the relevant acquisition parameters.
+The energy resolutions, calculated through HyperSpy, are listed for all spectra in \cref{tab:results:energy_resolutions}, with the relevant acquisition parameters.
+In the GaSb spectra the best energy resolution was 124 eV, obtained with PT 6, ICR = 22k cps, $E_0$ = 15 kV, and $i_b$ = 200 pA.
+In the GaAs spectra the best energy resolution was 127 eV, obtained with PT 6, ICR = 880 cps, $E_0$ = 5 kV, and $i_b$ = 25 pA.
+% DONE discuss: no obvious relation between the two best energy resolutions. But, it depends on the peaks in the spectrum.
+% The best energy resolution obtained was: 124 eV for the GaSb spectra with PT 6, and 127 eV for the GaAs spectra.
+% DONE discuss: Different peaks are used in GaSb and GaAs, thus we get different number with equal acquisition parameters.
+% DONE discuss: Ga Kb gives the lowest, which might be a result of the overlap with As Ka.
 These numbers for the energy resolution is calculated with HyperSpy, which have an issue explained in \cref{theory:eds_performance:energyres}.
 As \cref{tab:results:energy_resolutions} shows, the energy resolution is affected by the two acquisition parameters: (i) process time and (ii) input count rate.
 The ICR change with $E_0$ and $i_b$.
@@ -162,14 +162,14 @@ Specifying a single energy resolution for the detector should be accompanied by 
 Preferably, the value should also be an average with an uncertainty, calculated by several measurements with equal acquisition parameters.
 This is not done here, but the values in \cref{tab:results:energy_resolutions} show that PT 6 give the best energy resolution at about 127 $\pm$ 2 eV.
 When \cref{tab:results:lines_info_30kV_50pA} with the variations based on the peak of reference is taken into account, the energy resolution is more like 127 $\pm$ 6 eV.
-% TODO discuss: The energy resolution is more like +- 6 eV, when we take into account the variations when using different peaks.
+% DONE discuss: The energy resolution is more like +- 6 eV, when we take into account the variations when using different peaks.
 
 
 
 \input{tables/results/table_energy_res_GaSb_GaAs.tex}
 
 
-\subsection*{Energy scale and offset}
+\subsection{Energy scale and offset, and peak position deviations}
 \label{results:setup:scale_offset}
 
 The energy scale and offset are the parameters which are used to calibrate the spectra.
@@ -179,14 +179,24 @@ The calculated scale of the detector is equal to the instrument setting at 10 eV
 The zero offset was calculated to be -0.205 keV, which is a deviation of half a channel from the instrument setting of -0.2 keV.
 The standard deviation of the offset is 0.004 keV.
 
-% TODO discuss: Comment that the std of the offset is one order of magnitude closer to the avg compared to the std vs avg of the scale.
-% TODO discuss: why GaSb is slightly better std, might be because of the lines but also the higher i_b which gives more counts.
+% DONE discuss: Comment that the std of the offset is one order of magnitude closer to the avg compared to the std vs avg of the scale.
+% DONE discuss: why GaSb is slightly better std, might be because of the lines but also the higher i_b which gives more counts.
+
+
+% \subsection{Deviations in peak positions}
+% \label{results:setup:peak_positions}
+
+No significant deviations in peak positions were observed.
+The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is very low compared to the energy of the lines which are > 1 keV.
+
+% DONE discuss: The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is very low. Either very good spectra with a well calibrated detector, or something fishy with the HyperSpy calibration of the peaks.
+
 
 \input{tables/results/table_scale_offset.tex}
 
 
 
-\subsection*{Peak ratios}
+\subsection{Peak ratios}
 \label{results:setup:peak_ratios}
 
 The results from the peak ratios are listed in \cref{tab:results:peak_ratios}.
@@ -207,12 +217,6 @@ The table show that some peak ratios vary greatly with the acquisition parameter
     compare to the theoretical (quantum mechanics) ratio? And why?"}
 
 
-
-\subsection*{Deviations in peak positions}
-\label{results:setup:peak_positions}
-
-No significant deviations in peak positions were observed.
-The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is very low compared to the energy of the lines which are > 1 keV.
 
 
 
@@ -271,14 +275,14 @@ The effect of the lowered energy resolution is not as prominent panel (c) for hi
     \caption{
         Different energy resolutions on the same specimen, because of different process times.
         The maximum (red) and minimum (blue) PT on the instrument is used.
-        $E_0$ = 30 kV, $I_b$ = 50 pA for both spectra.
+        $E_0$ = 30 kV, $i_b$ = 50 pA for both spectra.
         The PT 1 and PT 4 spectra are not shown, but are in between the PT 2 and PT 6 spectra.
         Panel (a) is the spectrum at low energy, where the effect most influential.
         With PT 1 the Sb M$\eta$ and O K$\alpha$ peak are merged, and the Ga L$l$ and Ga L$\alpha$ peaks are merged.
         Panel (b) is the spectrum at medium energy, where the effect less influential, but the peak contrast is lowered.
         Panel (c) is the spectrum at high energy, where the effect is almost negligible.
         All three panels span 1.13 keV and have the same range of counts.
-        The vertical lines are the theoretical line energies.
+        The vertical dashed lines are the theoretical line energies.
     }
     \label{fig:results:energy_resolutions_process_time}
 \end{figure}
@@ -316,11 +320,11 @@ The GaAs specimen is quantified much more accurately at 5 kV, because the Ga L$\
 In the voltage series, which are group (A) and (B) in \cref{method:acquisition_settings}, the amount of counts in the lower voltages are quite low.
 The low amount of counts is due to keeping the beam current constant at 50 and 25 pA.
 Using a higher beam current on the lower energies would have made normalization more necessary, which is adding a layer of subjective decisions as the spectra must be normalized to something.
-% TODO discuss: this might not have been the best choice. For future work one can try to get the same ICR for all voltages, and see if the results are better and still comparable, without normalization.
+% DONE discuss: this might not have been the best choice. For future work one can try to get the same ICR for all voltages, and see if the results are better and still comparable, without normalization.
 Even though the 30 kV spectra in GaAs and GaSb have more counts and are smoother than the other spectra, they both have more artifacts.
-% TODO discuss: the amount of artifacts have to be adjusted for the specimen and the goal of the analysis.
+% DONE discuss: the amount of artifacts have to be adjusted for the specimen and the goal of the analysis.
 Around 1 keV, the 30 kV and 15 kV spectra are quite similar.
-% TODO discuss: at 1 keV, the ionization cross section when using 15 or 30 kV is more or less the same.
+% DONE discuss: at 1 keV, the ionization cross section when using 15 or 30 kV is more or less the same.
 
 \brynjar{TODO: write something about ICR?}
 
@@ -405,10 +409,10 @@ The Ga L$\alpha$ peak in the GaSb spectra does not follow this trend, but this r
 
 
 
-\subsection{Portion of counts in the peaks}
-\label{results:portion_of_counts}
+% \subsection{Portion of counts in the peaks}
+% \label{results:portion_of_counts}
 
-\brynjar{Something about the portion of counts in the peaks vs. in the background.}
+% \brynjar{Something about the portion of counts in the peaks vs. in the background.}
 
 \clearpage
 
