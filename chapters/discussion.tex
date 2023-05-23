@@ -3,15 +3,19 @@
 \label{ch:discussion}
 
 The discussion chapter connects the results from the previous chapter to the theory, with focus on the aims of this work.
-\brynjar{Brief summary of the aims.}
-The overall aim of this work is to improve the performance of SEM EDS, which is done in three parts:
-(1) to investigate how well the setup is performing, (2) to investigate how well the acquisition parameters are chosen, and (3) to investigate bulk corrections for the quantification with open-source code.
-The focus of this work for part (1) and (2) have been to find possible test metrics, describe them thoroughly in the theory chapter, and implement the metrics in code.
-The metrics had to be tested on real data, which the reported results, but the main focus has been on the metrics themselves and not the acquisition of the data.
-The focus for the data treatment in part (3) has been to implement SEM EDS bulk corrections in open-source code, as this is not available in the community at the time of writing.
+% Brief summary of the aims
+The overall aim of this work is to improve the performance of SEM EDS, which is done in two parts:
+(1) to investigate performance parameters for the SEM EDS setup and the acquisition parameters, (2) to investigate bulk corrections for the quantification with open-source code.
+The focus of this work for part (1) has been to find possible test metrics, describe them thoroughly in the theory chapter, and implement the metrics in code.
+The main focus has been on the metrics themselves and not the acquisition of the data.
+The focus for the data treatment in part (2) has been to implement SEM EDS bulk corrections in open-source python code, as this is not available in the community at the time of writing.
 Different approaches to the bulk corrections have been tested and are discussed in this chapter.
-This chapter is built up as the results chapter, i.e. first discussing the qualitative analysis and the overview of the data, then the setup performance metrics, then the acquisition parameters, and finally the bulk corrections.
+This chapter is built up as the results chapter, i.e. first an initial qualitative analysis of the data, then the performance parameters, and finally the bulk corrections.
+% TODO: Ton wants a "combination" section, but that will just be a part of the bulk corrections, i think.
+% first discussing the qualitative analysis and the overview of the data, then the setup performance metrics, then the acquisition parameters, and finally the bulk corrections.
 At the end of the chapter, an additional section is added to discuss a possible test specimen, a critique of the SEM EDS standards, the flatness of specimen surfaces, and other possible metrics that were not done in this work.
+
+% TODO add: new Julia matrix corrections stuff at https://pages.nist.gov/NeXLSpectrum.jl/methods/#Matrix-Correction
 
 
 
@@ -31,12 +35,12 @@ At the end of the chapter, an additional section is added to discuss a possible 
 The overview spectra of GaAs and GaSb in \cref{fig:results:overviewGaSb_withArtifacts} and the voltage series in \cref{fig:results:GaAs_voltages,fig:results:GaSb_voltages} show that the acquired data is of varying quality.
 The spectrum quality is affected by the beam energy and the amount of counts, which is revealed by looking at group A and B, being the voltage series of GaAs and GaSb.
 The 30 kV and 15 kV spectra are in general of good quality with high counts, not too much noise, and clear peaks.
-The spectra with the highest amount of counts have lower relative variations in the counts, seen as a more even plot of the blue 400 pA PT 1 spectrum compared to the 50 pA PT 1 spectrum in panel (a) of \cref{fig:results:overviewGaSb_withArtifacts}.
+The spectra with high amount of counts have lower relative variations in the counts, seen as a more even plot of the blue 400 pA PT 1 spectrum compared to the 50 pA PT 1 spectrum in panel (a) of \cref{fig:results:overviewGaSb_withArtifacts}.
 However, the amount of artifacts also increases with the amount of counts, exemplified by the previously mentioned spectra.
 The 10 kV and 5 kV spectra have lower counts, as the beam current which was kept constant in the voltage series.
 The lower counts were expected, and as seen in the voltage series figures, the 10 kV and 5 kV plots are visually of poorer quality.
 With visually poorer quality, such as more noise and less clear peaks, the metrics and the quantification were expected to be worse.
-In general the 5 kV and 10 kV spectra performed worse than the 15 kV and 30 kV spectra, which is discussed more in \cref{discussion:acquisition_parameters}.
+In general the 5 kV and 10 kV spectra performed worse than the 15 kV and 30 kV spectra, which is discussed more in \cref{discussion:performance}.
 As the 15 kV and 30 kV spectra performed better, these voltages were chosen for group C and D, where the goal was to investigate the effect of the beam current, beam energy, and process time.
 These spectra all are assumed to have enough counts to be reasonably assessed with the metrics.
 
@@ -114,7 +118,7 @@ Slicing the spectrum correctly prevents extrapolation like this, and will even g
 % The HyperSpy model fitting takes in the spectra, where the beam energy is available in the metadata, but the model fitting is done on the whole range of the spectra.
 % This is probably an effect of the HyperSpy package being made for TEM EDS data, where it is uncommon to record spectra with a range higher than the beam energy.
 % However, the opposite is true for SEM EDS data, and a user of model fitting in HyperSpy on SEM EDS data should be aware of this.
-Using the Duane-Hunt limit, discussed in \cref{discussion:acquisition_parameters:duane_hunt_limit} as the upper limit, can be useful if the specimen is charging, as the effective beam energy then is lower than the set beam energy.
+Using the Duane-Hunt limit, discussed in \cref{discussion:duane_hunt} as the upper limit, can be useful if the specimen is charging, as the effective beam energy then is lower than the set beam energy.
 
 
 % figures/discussion/model_slicing_fit.pdf
@@ -218,20 +222,21 @@ Another solution is to add the Sb M-lines to the HyperSpy database, which would 
 
 
 
-\section{Setup metrics}
-\label{discussion:setup}
+\section{EDS performance parameters}
+\label{discussion:performance}
 
 % Same sentence now as results:
-The setup metrics measured in this work are energy resolution, the energy scale and offset, peak ratios, and deviations in peak positions.
+The metrics measured to evaluate the performance of the detector and the acquisition parameters are the energy resolution, the scale, the offset, the peak deviations in calibrated positions, the peak ratios, the Duane-Hunt limit and the Fiori peak-to-background ratio.
+Additionally, observations for PT, $E_0$, and $i_b$ are discussed.
 
 
 
-\subsection{Energy resolution of the detector}
-\label{discussion:setup:energy_resolution}
+\subsection{Energy resolution}
+\label{discussion:energy_resolution}
 
 
 % the first table with energy resolution in a spectrum
-\cref{results:setup} begins with a table showing an issue with the calculated energy resolution, which is that in a single spectrum, different reference peaks give different energy resolutions.
+\cref{results:performance} begins with a table showing an issue with the calculated energy resolution, which is that in a single spectrum, different reference peaks give different energy resolutions.
 The energy resolutions are calculated from the FWHM of different peaks, using \cref{eq:estimateFWHM} by Fiori and Newbury.
 Calculated energy resolutions for GaAs and GaSb taken at 30 kV with 50 pA is tabulated in \cref{tab:results:lines_info_30kV_50pA}.
 The calculated energy resolutions for GaAs varies from 123 eV to 135 eV, and for GaSb from 121 eV to 133 eV,  when using different peaks as the reference peak.
@@ -287,7 +292,7 @@ The second way of specifying the energy resolution would be: the energy resoluti
 
 
 \subsection{Energy scale and offset, and peak position deviations}
-\label{discussion:setup:scale_offset}
+\label{discussion:scale_offset}
 
 The calibration of the spectra was done with HyperSpy, and the results for the energy scale, the offset and the deviations in the peak positions are close to the expected values.
 The scale and offset is presented in \cref{tab:results:scale_offset}, and the deviations in \cref{tab:results:lines_info_30kV_50pA} are representative for the peak deviations.
@@ -301,7 +306,7 @@ With a scale of 10 eV, a peak deviation of $\pm$ 2 eV is good, and any better is
 
 
 \subsection{Peak ratios}
-\label{discussion:setup:peak_ratios}
+\label{discussion:peak_ratios}
 
 The idea of measuring peak ratios was to get a number for the possible carbon contamination, as it is done in the work of Egerton \cite{egerton_nio_characterization_1994}.
 As there is some carbon present in both the GaAs and GaSb spectra, the peak ratios could give a number for the carbon contamination, and the change over time.
@@ -312,11 +317,21 @@ The peak ratios in \cref{tab:results:peak_ratios} are not an example of a time s
 GaSb have around three times higher ratio for Ga K$\alpha$ and Ga L$\alpha$ than GaAs.
 The higher ratio either indicates more Ga K$\alpha$ or less Ga L$\alpha$.
 The GaAs spectra have much intensity from the As L$\alpha$ peak, which can be absorbed by the Ga L$\alpha$ peak, and thus giving the Ga L$\alpha$ peak a higher relative intensity in the GaAs spectra.
-As explained in \cref{theory:xray_formation:characteristic}, the absorption probability is highest right above the absorption edge, and thus the As L$\alpha$ X-rays are absorbed easier than the Sb L$\alpha$ X-rays.
+As explained in \cref{theory:xray_formation:characteristic}, the absorption probability is the highest right above the absorption edge, and thus the As L$\alpha$ X-rays are absorbed easier than the Sb L$\alpha$ X-rays.
 This is an indication of absorption, which will be discussed more in \cref{discussion:bulk_corrections}.
 
 
 
+% detecting artifacts as Egerton: not possible with the easy geometry of a flat wafer
+One of the more interesting results which are achievable with measuring peak ratios is to get a number for the source of artifacts.
+This is explained in the work of Egerton \cite{egerton_nio_characterization_1994}, where the ratio between a targeted element and a grid element outside the targeted area is investigated.
+The grid element must contain a high and low energy line, and the element in the targeted area must contain a line in between the two lines in the grid element.
+In the work of Egerton, which is the routine following the TED Pella NiO test specimen, the element in the targeted area is Ni and the grid element is Mo.
+The idea is that a high amount of Mo K signal indicate that there are electrons from the beam which are deflected and hit the grid directly.
+If there are higher amounts of Mo L signal, the source of artifacts is more likely to be from secondary fluorescence from Ni K X-rays.
+Skomedal \cite{skomedal_improving_2022} investigated the use of a NiO specimen in STEM EDS, but such investigations are not done in this work as it requires specific specimen geometry.
+The use of flat wafers as test specimen make this test for source of artifacts impossible.
+Test specimen are discussed more in \cref{discussion:other:test_specimen}.
 
 
 
@@ -324,18 +339,10 @@ This is an indication of absorption, which will be discussed more in \cref{discu
 
 
 
-
-\section{Acquisition parameters}
-\label{discussion:acquisition_parameters}
-
-% The performance metrics of the acquisition are: the Duane-Hunt limit, the Fiori peak-to-background ratio, and portion of counts in peaks vs background.
-% Additionally, results from the user parameters process time, beam energy, and beam current are presented.
-
-The performance metrics for the acquisition parameters are the Duane-Hunt limit and the Fiori peak-to-background ratio, which is presented with observations for PT, $E_0$, and $i_b$.
 
 
 \subsection{Process time}
-\label{discussion:acquisition_parameters:process_time}
+\label{discussion:process_time}
 
 The best PT for a specimen is dependent on the aim of the analysis, as a high PT gives a better spectrum, but takes longer time.
 Better spectrum means higher energy resolution and fewer artifacts.
@@ -375,7 +382,7 @@ The high increase in DT and acquisition time is in many applications not worth t
 
 
 \subsection{Beam energy and beam current}
-\label{discussion:acquisition_parameters:beam_energy_current}
+\label{discussion:beam_energy_current}
 
 Setting the beam energy and beam current is important for the throughput and the spatial resolution of eventual EDS maps.
 The combination of beam energy and beam current is setting the amount of X-rays generated, and thus the amount of counts recorded.
@@ -410,26 +417,145 @@ Other parameters like the count rate and PT should be used to adjust the amount 
 
 
 \subsection{Duane-Hunt limit}
-\label{discussion:acquisition_parameters:duane_hunt_limit}
+\label{discussion:duane_hunt}
+
+The calculated Duane-Hunt limits are close to the expected values, i.e. the set beam energy on the SEM.
+The specimen was not expected to have charging issues, and thus the Duane-Hunt limit may look little useful in the context of this work.
+A more comprehensive testing, and data from different setups, would be needed to see if the Duane-Hunt limit is useful in general.
+Calculating the metric is fast and does not need much interpretation, and thus it can be used as a quick check to see if the specimen is charging or not.
+In addition, the Duane-Hunt limit was used as the upper limit for the energy range when making the models of the spectra, and thus it was useful in that context.
+
+% knowing you setup is working correctly
+The apparent usefulness of this metric suffers from the same problem as the calculation of the scale and the offset: a well calibrated setup give little deviation from the expected values.
+The mentioned metrics does not verify that the whole setup is working correctly, but rather that the parameters they test are not an issue.
+If the right parameters are selected, the user can be confident that the setup is working correctly and when the setup is not working correctly, the metrics can be used to find the issue.
+The usefulness is more apparent when there are issues with the setup or the set parameters, and having them as a part of a test routine can be useful.
+Conversely, having too many parameters can make a test routine overwhelming, and then less useful.
+A solution for this is to have a test routine that gives some standard output, and checks additional parameters in the background which are alerted if they are outside the expected values.
+Defining the expected value range for the Duane-Hunt limit needs more testing, but a starting point is $\pm$ 0.5-1 keV from the set beam energy.
+This is much higher than the deviation seen in this work, but the test specimen was not expected to have charging issues.
 
 
-(Low deviations, little to discuss)
-
-
-\subsection{Fiori peak-to-background ratio}
-\label{discussion:acquisition_parameters:fiori_peak_to_background_ratio}
-
-(Much to discuss here. Usefulness, implications for quality, the calculation for the value of comparison.)
-
-
-(A function of: the detector, the specimen, the line selected, the acquisition parameters, and the calculation method.)
 
 
 
+\subsection{Fiori P/B ratio}
+\label{discussion:fiori_peak_to_background_ratio}
+% (Much to discuss here. Usefulness, implications for quality, the calculation for the value of comparison.)
+% (A function of: the detector, the specimen, the line selected, the acquisition parameters, and the calculation method.)
+
+The Fiori P/B ratio is a selling point for EDS manufacturers, at least for TEM EDS, where the metric is an indication of how much signal the detector can get in the peak of interest compared to the background.
+The background acquired in an EDS spectrum is noise which is unwanted, while the useful signal is the counts in the peak of interest.
+The numbers for TEM EDS are usually very high, for example above 3000 as the previously mentioned TEM EDS round-robin paper suggests as good values \cite{bennett_egerton_1995,ted_pella_nio_tem_2019}.
+The extremely high numbers are due to the fact that all the counts in a peak is divided by the background counts in just a single channel under the center of the peak.
+This is illustrated in \cref{fig:fiori_pb}.
+The reasons for using just one channel for the background is explained in \cref{theory:eds_performance:fiori}, where the one of the reasons is that the metric is not dependent on the energy resolution.
+This is seen in the results, where the 30 kV and 50 pA spectra at PT 1 and PT 6 have similar P/B ratios, even though the energy resolution is much better at PT 6 (158 eV vs. 127 eV).
+The goal of testing the Fiori P/B ratio is to figure out if the metric can be useful for SEM EDS, either as a metric for the setup or as a metric for the quality of the spectrum through the acquisition parameters.
+
+
+% moved from results
+% what affects the Fiori numbers
+The data acquired gives indications of what affects the Fiori numbers.
+The two 30 kV GaAs spectra at 25 pA and 50 pA have the highest Fiori numbers.
+The number of counts is around twice as high in the 50 pA spectrum compared to the 25 pA spectrum, but the Fiori numbers are similar.
+% Even though the 50 pA spectrum has more than twice the amount of maximum counts in the Ga L$\alpha$ peak compared to the 25 pA spectrum, their Fiori numbers are quite similar.
+Both these 30 kV spectra have PT 6, but the 50 pA spectrum has a higher DT at 44\%, while the 25 pA spectrum has a DT of 25\%.
+This indicates that the spectra are equally good, but the acquisition time is much higher for the 50 pA spectrum.
+If this is the case, the Fiori ratio might be a metric which can be used to determine when a spectrum have enough counts.
+When acquiring EDS data, there is a threshold where more counts does not give better results, either for qualitative or quantitative analysis.
+% Done discuss: the very similar Fiori numbers imply that the spectra are equally good. Put this into context with the quantification results and the DT, as this increase acquisition time. Implies that there is a threshold where more counts does not give better results, and maybe the Fiori ratio is a good measure of this.
+
+
+In general, the Fiori numbers from the GaAs spectra are higher than from the GaSb spectra.
+For the Ga K$\alpha$ peak, which have the highest Fiori numbers, the scores from GaAs spectra are around twice as high as the GaSb spectra.
+For the Ga L$\alpha$ peak, the difference is even bigger, with the GaAs spectra having around five times higher Fiori numbers than the GaSb spectra.
+This show that the metric is specimen dependent.
+It also shows that the metric is not necessarily a good indication for how well the quantification will be, as the GaAs spectra have bigger deviations from the expected values than the GaSb spectra.
+% DONE discuss: high Fiori does not mean good quantification. GaSb are closer to 50\% by AZtec (and me?), but the GaAs Fiori numbers are in general higher.
+
+
+% Specimen dependent in three short paragraphs
+
+% As La vs Ga La
+In the GaAs spectra, the Fiori numbers for Ga L$\alpha$ are higher than for As L$\alpha$, being 586 and 236 respectively.
+This can be explained by the higher absorption of As L$\alpha$ X-rays in the material. 
+Looking at \cref{fig:mass_absorption_coefficients}, the $\mu_\rho$ for Ga L$\alpha$ in GaAs is 1387 cm$^2$/g, while the $\mu_\rho$ for As L$\alpha$ in GaAs is 3744 cm$^2$/g.
+In other words, parts of the As L$\alpha$ X-rays are absorbed and can excite Ga L$\alpha$ X-rays, making the As peak smaller and the Ga peak bigger.
+
+
+% Ga La in GaSb
+In the GaSb spectra, the Fiori number for Ga L$\alpha$ is just below 90, which is much lower than in the GaAs spectra.
+The absorption in the GaSb specimen is much higher, with a $\mu_\rho$ of 3981 cm$^2$/g for Ga L$\alpha$.
+The area of the Ga L$\alpha$ peak is thus much lower than in the GaAs spectra, and the Fiori number is lower.
+At the Ga L and K peaks, the absorption is stronger in GaSb than in GaAs, and the Fiori numbers are lower.
+
+
+% Getting the highest Fiori numbers
+% DONE discuss: a manufacturer can use a specimen with low absorption to get high Fiori numbers. For example use pure elements, which are relative transparent to its own X-ray lines.
+As explained in \cref{theory:xray_formation:characteristic} and stated in Goldstein \cite[Ch. 4.4]{goldstein_scanning_2018}, an element is relatively transparent to its own characteristic X-rays, and thus higher Fiori numbers would be expected for pure specimens.
+Pure specimen does not absorb as much of the background just below the line, but above the absorption edge the background intensity should be reduced.
+Achieving high Fiori numbers are of interest for manufacturers as a selling point, but EDS analysis of pure specimens are not usually of high scientific interest.
+
+
+
+% the parameters which affect the Fiori numbers
+
+Aside from the specimen, the acquisition parameters also affect the Fiori numbers.
+The different PTs tested on GaSb in (C) and (D) does not seem to have a noticeable effect with a trend in either direction, i.e. the energy resolution does not affect the Fiori numbers.
+An increase in $i_b$ appears to have a decreasing effect on the Fiori numbers, but the effect is small.
+This $i_b$ effect can be seen on the three 15 kV GaSb spectra, with 50 pA, 200 pA, and 400 pA.
+The same effect is visible for the 30 kV GaSb spectra taken with 50 pA and 400 pA at PT 1, with the Ga L$\alpha$ peak as an exception.
+However, the biggest effect and trend appears to come from $E_0$.
+For the GaAs specimen, the Fiori P/B ratio of Ga L$\alpha$ increase with increasing $E_0$.
+The same $E_0$ effect is visible for the Ga K$\alpha$, Sb L$\alpha$, and Sb L$\beta$ peaks in the GaSb spectra.
+The Ga L$\alpha$ peak in the GaSb spectra does not follow this trend, but this ratio is changing much less than the ratios for the three other peaks.
+
+
+% The energy dependence
+The dependence on the beam energy can partly be explained by the overvoltage (U).
+The overvoltage change the ionization cross-section (Q), which can be viewed as the probability of an atom being ionized by an incoming electron.
+Q(U) is plotted in \cref{fig:PAP:ionization_cross_section} for Ga L$\alpha$ and Ga K$\alpha$.
+The plot shows the general ionization trend, which is also plotted in an adapted figure from Williams and Carter in \cref{fig:overvoltage2ionizationcrosssection} \cite{williams_carter_tem_2009}.
+The trend is an increase with a maximum between U=2 and U=5, and then a decrease.
+From \cref{fig:PAP:ionization_cross_section}, the maximum Q is achieved at 3.7 kV for Ga L$\alpha$ and 4.3 kV for As L$\alpha$.
+As Q decrease above the maximum, the probability of exciting X-rays decrease, and from this statement alone it would be expected that the 5 kV spectra have the highest Fiori numbers, and then the number should decrease with increasing $E_0$.
+However, the opposite is observed in the data.
+The reason for this is that the electron beam travel deeper into the specimen with increasing $E_0$, both illustrated in the interaction volume in \cref{fig:interaction_volume} and given in numbers with the Kanaya-Okayama parameterization of the electron range in \cref{tab:results:ZAF_corrections_range_r}.
+At higher $E_0$, the probability of ionization at each level is lower, but the number of levels is higher.
+This explanation is not complete, as it does not explain why thin TEM specimen can achieve Fiori numbers above 3000 or 4000.
+When thin specimen are probed with high $E_0$, the probability of multiple scattering events are negligible, and thus the background level is reduced compared to thicker specimen \cite{liao2006practical}.
+
+
+% DONE discuss: the Fiori P/B is a function of the specimen (maybe most important?), the beam energy (much), the beam current (not much). Additionally, the calculation method is very important. And the detector is also a factor, but different detectors have not been tested in this work.
+To summarize what affects the Fiori P/B ratio, the specimen is the most important factor, followed by the beam energy.
+Additionally, as explained and discussed in the theory about the Fiori P/B ratio in \cref{theory:eds_performance:fiori}, the calculation method is very important.
+Different calculation methods, such as using background windows close or far from the peak, can give different results.
+The window integration method appears to be the most used method, but using model fitting of the peak and the background will give results which are closer to the original definition.
+The use of model fitting will also reduce the user bias, which can make Fiori numbers from different detectors more comparable.
+However, if two different detectors have measured a Fiori number for the same peak in two different specimens, the numbers are not comparable.
+Thus, to get comparable numbers between detectors, the same specimen, calculation method, and acquisition parameters should be used, at least the same $E_0$.
+
+
+
+% DONE discuss: what range of values is good for the Fiori number? And say something about GaAs having higher number, but being quantified less accurately.
+To finalize the discussion of the Fiori numbers, it is important to discuss if the metric is useful for SEM EDS.
+The Fiori P/B ratio is a robust metric for calculating the signal-to-background ratio, but it is highly dependent on the specimen and $E_0$.
+Based on the highly varying Fiori numbers between GaAs and GaSb, the metric does not seem very useful as a general metric for how well the detector performs, because the specimen appears to be an important factor.
+This is also an argument for why a specific range of values is not useful, unless a standard specimen is used.
+However, one interesting use of the metric is to determine the difference between two spectra acquired with different beam current, or different process time.
+Regarding the process time, the Fiori numbers could be used to evaluate if the model fitting can separate two overlapping peaks, because the background should be the same, but if the fitting does not separate the peaks, the Fiori number will change.
+This could be explored further in future work.
+Regarding the beam current, it was observed that spectra with increased beam current, and thus increased dead time and acquisition time, had similar Fiori numbers.
+This is an implication that the data quality is similar, and thus that a threshold for the beam current could be found where the data quality will not improve with increased beam current.
+For mapping applications, this could reduce the acquisition time to allow faster or more detailed acquisition.
 
 
 
 
+
+\subsection{Summarization of the performance parameters}
+\label{discussion:summarization_of_the_performance_parameters}
 
 
 
@@ -438,7 +564,25 @@ Other parameters like the count rate and PT should be used to adjust the amount 
 \section{Bulk corrections}
 \label{discussion:bulk_corrections}
 
+% Issue with matrix correction: 
 
+% Matrix correction, ASTM 1508:
+% 10.2.1 "If the unknown and standard were
+% identical, each of these factors would equal one. There are
+% many such “ZAF” computer programs available,[...].
+% The differences in the results each produces are usually
+% much less than the precision of the analysis."
+% 10.2.2 "10.2.2 There are also many computer programs using the“
+% phi-rho-z” method.  These approach the problem of matrix
+% correction using more fundamental physics and sometimes
+% combine the effects of Z and A into one, but they too require a
+% set of fundamental parameters optimized to each program.
+% Many phi-rho-z programs claim greater accuracy because they
+% account for absorption better than the older ZAF programs.
+% Consequently, one would expect the most improvement using
+% a phi-rho-z method in light element analysis. However, in the
+% absence of light elements, it is unlikely that the accuracy of
+% most EDS analyses is limited by the matrix correction."
 
 \dots
 

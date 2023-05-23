@@ -1458,13 +1458,12 @@ Before the test characteristics are described, an overview is given and a summar
 
 
 
-The performance parameters presented below are divided into two categories: detector and acquisition parameters.
-The detector parameters are related to the detector itself, while the acquisition parameters are related to the acquisition setup.
-These performance parameters do not include the data treatment step, illustrated in \cref{fig:intro:parameters}, as it is a characterization of the detector and acquisition setup.
-The parameters of the detector are: energy resolution, the energy scale and offset, peak ratios, and deviations in peak positions.
-The parameters of the acquisition are: the Duane-Hunt limit, the Fiori peak-to-background ratio, and portion of counts in peaks vs background.
+The performance parameters presented below are both directed towards the performance of the setup and the selected acquisition parameters.
+% The detector parameters are related to the detector itself, while the acquisition parameters are related to the acquisition setup.
+These performance parameters are part of the two first panels in \cref{fig:intro:parameters}.
+The parameters measured, or the metrics, are the energy resolution, the energy scale and offset, peak ratios, deviations in peak positions, the Duane-Hunt limit, and the Fiori peak-to-background ratio.
 The energy resolution is affected by both the detector and the acquisition setup.
-At the end there is a section on other test, which are of interest but have not been included in this work.
+% At the end there is a section on other test, which are of interest but have not been included in this work.
 
 
 % questions that the pp can answer
@@ -1485,7 +1484,7 @@ At the end of the section, \cref{tab:eds_performance_parameters} contains a summ
 \cref{fig:theory:eds_performance:overview:duanehunt,fig:theory:eds_performance:overview:fiori_snr,fig:theory:eds_performance:overview:peak_deviations,fig:theory:eds_performance:overview:strays} are schematic illustrations of the performance parameters.
 \cref{fig:theory:eds_performance:overview:duanehunt} shows the Duane-Hunt limit, which is the minimum beam energy required to produce a signal.
 \cref{fig:theory:eds_performance:overview:fiori_snr} shows the different signal-to-noise ratios, which is quantified by the Fiori peak-to-background ratio.
-The same illustration shows different background portions.
+% The same illustration shows different background portions.
 \cref{fig:theory:eds_performance:overview:peak_deviations} shows the deviations in peak positions, which is an affected by the energy scale and offset, and which part of the spectrum is used for calibration.
 \cref{fig:theory:eds_performance:overview:strays} shows the effect of stray radiation, which is can be quantified by calculating peak ratios between a stray and a non-stray peak.
 Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
@@ -1979,12 +1978,6 @@ This is explored and focused on in this work, rather than trying to find a speci
 
 
 % skrive om de forskjellige som finnes, og hvordan de varierer. Variasjon er ikke bra from sammenlikning
-% visualisere hva jeg gjør
-
-
-% fra møte 5:
-% varierer med %-composition
-% ulik definisjon gjør at verdiene ikke kan sammenliknes. 
 
 % EDAX: https://www.edax.com/-/media/ametekedax/files/news_events/insight_newsletter/edax-insight-vol-16-no3.pdf?la=en&revision=d212987b-0524-4056-939e-858c59d06446
 % TED PELLA: file:///C:/Users/Brynjar/Documents/Masteroppgave/potensielle%20kilder/Ted%20Pella%20NiOx%20description.pdf
@@ -2036,45 +2029,31 @@ Both X-ray photons from background radiation and other elements can excite the M
 % Could be used to see overlapping peaks, or for misidentification of peaks.
 
 
-\subsection{Total counts and background portion}
-\label{theory:eds_performance:background_portion}
+% \subsection{Total counts and background portion}
+% \label{theory:eds_performance:background_portion}
 
-\brynjar{Comment from Ton: "should this section not be incorporated in the Fiori section or placed directly after it?" Yes, that is a good idea.}
+% \brynjar{Comment from Ton: "should this section not be incorporated in the Fiori section or placed directly after it?" Yes, that is a good idea.}
 
-% Total counts, background counts.
-% How to represent the measure better? Ratio, percentage, absolute value, etc.
-% Fiori P/B is a measure already covered.
+% % Total counts, background counts.
+% % How to represent the measure better? Ratio, percentage, absolute value, etc.
+% % Fiori P/B is a measure already covered.
 
-As EDS vendors tend to be eager to report high count rates, it might prove useful to look at the total counts in a spectrum.
-The background portion is simply the percentage of the total counts that are from the background.
-This is a metric that can be used to optimize the acquisition settings for a specific specimen, for example to find optimal beam energy and current.
-As the background portion will vary with specimen and detectors, no specific value can be given for a good background portion.
+% As EDS vendors tend to be eager to report high count rates, it might prove useful to look at the total counts in a spectrum.
+% The background portion is simply the percentage of the total counts that are from the background.
+% This is a metric that can be used to optimize the acquisition settings for a specific specimen, for example to find optimal beam energy and current.
+% As the background portion will vary with specimen and detectors, no specific value can be given for a good background portion.
 
-% formula
-\begin{equation}
-    \label{eq:theory:eds_performance:background_portion}
-    \frac{\textnormal{Background counts}}{\textnormal{Total counts}} \times 100\%
-\end{equation}
-
-
-The variation in background is affecting the Fiori P/B, as illustrated in \cref{fig:theory:eds_performance:overview:fiori_snr}.
-Having both the Fiori P/B and the background portion as metrics might be redundant.
-The usefulness of using both metrics is explored further in this work.
+% % formula
+% \begin{equation}
+%     \label{eq:theory:eds_performance:background_portion}
+%     \frac{\textnormal{Background counts}}{\textnormal{Total counts}} \times 100\%
+% \end{equation}
 
 
+% The variation in background is affecting the Fiori P/B, as illustrated in \cref{fig:theory:eds_performance:overview:fiori_snr}.
+% Having both the Fiori P/B and the background portion as metrics might be redundant.
+% The usefulness of using both metrics is explored further in this work.
 
-
-% One example of the usefulness of the background portion is when the specimen is absorbing most of the signal, as was the case in one of the spectrum in the authors previous work \cite{project_report}.
-% This is shown in \cref{fig:theory:eds_performance:background_portion:poor_Cu_tape}.
-% Here the two spectra is shown from a Cu-tape, where the sticky tape part was not removed.
-% The 10 kV spectra had almost no counts compared to the 30 kV spectra, except for the C K$\alpha$ peak.
-% Even the background was very low in the 10 kV spectra.
-% This gives a very high Fiori P/B metric for the C K$\alpha$ peak in the 10 kV spectra, even though the spectrum is of poor quality.
-% The low background signal is due to the absorption of the X-rays by the sticky tape part, assumed to be carbon.
-% Lower acceleration voltage give shallower escape depts, e.g. in C the escape depth for Cu K$\alpha$ 414 nm at 10 kV and 7620 nm at 30 kV \cite{hyperspy_1.7.1}.
-% Other X-ray photons follow the same logic, e.g. less signal being emitted from C when using lower acceleration voltage.
-% The 10 kV spectrum have an extraordinarily low background portion, which should raise a red flag for the quality of the spectrum.
-% \brynjar{Give numbers here?}
 
 
 
@@ -2115,40 +2094,6 @@ The usefulness of using both metrics is explored further in this work.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Issue with matrix correction: 
-
-% Matrix correction, ASTM 1508:
-% 10.2.1 "If the unknown and standard were
-% identical, each of these factors would equal one. There are
-% many such “ZAF” computer programs available,[...].
-% The differences in the results each produces are usually
-% much less than the precision of the analysis."
-% 10.2.2 "10.2.2 There are also many computer programs using the“
-% phi-rho-z” method.  These approach the problem of matrix
-% correction using more fundamental physics and sometimes
-% combine the effects of Z and A into one, but they too require a
-% set of fundamental parameters optimized to each program.
-% Many phi-rho-z programs claim greater accuracy because they
-% account for absorption better than the older ZAF programs.
-% Consequently, one would expect the most improvement using
-% a phi-rho-z method in light element analysis. However, in the
-% absence of light elements, it is unlikely that the accuracy of
-% most EDS analyses is limited by the matrix correction."
 
 
 
@@ -2734,7 +2679,7 @@ The equation above is written out in the notebook for the PAP model.
 
 % \subsubsection*{\emph{The backscattering factor,} $R$}
 
-\paragraph*{\emph{The backscattering loss factor $R$}} is the fraction of the electrons that are backscattered from the specimen, calculated from the equation:
+\paragraph*{\emph{The backscattering loss factor $R$}} is the fraction of the electrons that can generate X-rays, i.e. are not backscattered, calculated from the equation:
 % The backscattering loss factor $R$ is calculated from the equation:
 
 % $  $
@@ -2755,9 +2700,12 @@ Where:
 \end{itemize}
 
 
-$\bar{\eta}$ is the mean backscattering coefficient\footnote{It looks like $\bar{\eta}$ is raised to (-4.55), but that is not the case. The difference between a bar and a minus is small, but crucial.}, $\bar{W}$ is the mean reduced energy of the backscattered electron, $\bar{Z}_b$ is the weighted mean atomic number, and $U_0$ is the overvoltage.
+$\bar{\eta}$ is the mean backscattering coefficient, 
+% \footnote{It looks like $\bar{\eta}$ is raised to (-4.55), but that is not the case. The difference between a bar and a minus is small, but crucial.}
+$\bar{W}$ is the mean reduced energy of the backscattered electron, $\bar{Z}_b$ is the weighted mean atomic number, and $U_0$ is the overvoltage.
 $G(U_0)$ is an equation from Coulon and Zeller \cite[Reference 28]{pap_1991}, calculated with $J_G(U_0)$ and $q$.
 The backscattering factor for Z=1 to Z=90 is plotted with different overvoltages in \cref{fig:PAP:backscattering_factor}.
+At higher Z the backscattering loss factor is lower, because a fewer portion of the electrons can generate X-rays.
 
 % figures/PAP_backscattering_factor.pdf
 
