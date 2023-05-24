@@ -1,18 +1,18 @@
 % Use chapters in the appendix
 % Appendix A: Performance parameters, notebook
 % Appendix B: HyperSpy quantification, notebook
-% Appendix C: Additional tables, tables
+% Appendix C: Additional tables, for quantification results
 
 
 
 
-\section{Performance parameters}
+\chapter{Performance parameters}
 \label{appendix:performance}
 
 Insert description.
 
 
-\section{XPP / PAP bulk corrections}
+\chapter{XPP / PAP bulk corrections}
 \label{appendix:xpp}
 
 The following notebook \dots
@@ -20,19 +20,28 @@ The following notebook \dots
 
 
 
-\section{Additional tables}
+\chapter{Quantification result tables}
 \label{appendix:tables}
 
-\brynjar{Insert comment or description.}
+This appendix contains the following tables:
+
+\begin{itemize}
+    \item \cref{tab:results:TEM_quantification} - Quantification of SEM EDS data with the thin film assumption.
+    \item \cref{tab:results:ZAF_corrections_factors} - The absorption correction factors for the ZAF model.
+    \item \cref{tab:results:ZAF_corrections_compositions} - Quantification of SEM EDS data with the ZAF sbsorption correction.
+    \item \cref{tab:results:XPP_compositions} - Quantification of SEM EDS data with the corrections form the XPP model.    
+\end{itemize}
+
+The table with initial quantification, i.e. from AZtec and the intensity ratio method, is given in \cref{tab:results:initial_quantification}.
 
 
 \input{tables/results/table_quantification_TEM.tex}
+\input{tables/results/table_ZAF_A_factors.tex}
+\input{tables/results/table_ZAF_A_compositions.tex}
+\input{tables/results/table_XPP_compositions.tex}
 
-% TODO: the initial table is also in results now. use only one.
-\input{tables/results/table_quantification_initial.tex}
 
-
-\section{HyperSpy quantification?}
+\chapter{HyperSpy quantification?}
 \label{appendix:HSquant}
 
 The following notebook \dots

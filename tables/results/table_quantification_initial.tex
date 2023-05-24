@@ -1,49 +1,53 @@
+\newgeometry{top=2cm} % change the margins to fit the table.
+
 \begin{table}[phtb]
     \begin{center}
         \caption{
             Initial quantification in selected spectra.
-            Compositions from AZtec and the area ratio method.
+            Compositions from AZtec and the intensity ratio method.
+            Each spectrum corresponds to two lines, one for each element.
+            The table is summarized in \cref{tab:results:initial_quantification_stats}.
         }
         %\renewcommand*{\arraystretch}{1.4}
         \label{tab:results:initial_quantification}
         \begin{tabular}{rrrrrrrr}
             \hline
-            \textbf{ Group} & \textbf{Line used} & \textbf{$E_0$} & \textbf{$i_b$} & \textbf{PT} & \textbf{Area}     & \textbf{AZtec comp.} & \textbf{Area ratio comp.} \\
-            \emph{}         & \emph{}            & \emph{[kV]}    & \emph{[pA]}    & \emph{}     & \emph{[k counts]} & \emph{at\%}          & \emph{at\%}               \\
+            \textbf{ Group} & \textbf{Line} & \textbf{$E_0$} & \textbf{$i_b$} & \textbf{PT} & \textbf{Intensity} & \textbf{AZtec comp.} & \textbf{Intensity ratio comp.} \\
+            \emph{}         & \emph{}       & \emph{[kV]}    & \emph{[pA]}    & \emph{}     & \emph{[k counts]}  & \emph{at\%}          & \emph{at\%}                    \\
             \hline
-            A               & As L$\alpha$       & 5              & 25             & 6           & 13                & 53                   & 43                        \\
-            A               & Ga L$\alpha$       & 5              & 25             & 6           & 16                & 47                   & 57                        \\
-            A               & As L$\alpha$       & 10             & 25             & 6           & 37                & 52                   & 40                        \\
-            A               & Ga L$\alpha$       & 10             & 25             & 6           & 51                & 48                   & 60                        \\
-            A               & As L$\alpha$       & 15             & 25             & 6           & 62                & 51                   & 36                        \\
-            A               & Ga L$\alpha$       & 15             & 25             & 6           & 103               & 49                   & 64                        \\
-            A               & As K$\alpha$       & 30             & 25             & 6           & 84                & 48                   & 36                        \\
-            A               & Ga K$\alpha$       & 30             & 25             & 6           & 141               & 52                   & 64                        \\
-            A               & As K$\alpha$       & 30             & 50             & 6           & 180               & 48                   & 36                        \\
-            A               & Ga K$\alpha$       & 30             & 50             & 6           & 303               & 52                   & 64                        \\
+            A               & As L$\alpha$  & 5              & 25             & 6           & 13                 & 53                   & 43                             \\
+            A               & Ga L$\alpha$  & 5              & 25             & 6           & 16                 & 47                   & 57                             \\
+            A               & As L$\alpha$  & 10             & 25             & 6           & 37                 & 52                   & 40                             \\
+            A               & Ga L$\alpha$  & 10             & 25             & 6           & 51                 & 48                   & 60                             \\
+            A               & As L$\alpha$  & 15             & 25             & 6           & 62                 & 51                   & 36                             \\
+            A               & Ga L$\alpha$  & 15             & 25             & 6           & 103                & 49                   & 64                             \\
+            A               & As K$\alpha$  & 30             & 25             & 6           & 84                 & 48                   & 36                             \\
+            A               & Ga K$\alpha$  & 30             & 25             & 6           & 141                & 52                   & 64                             \\
+            A               & As K$\alpha$  & 30             & 50             & 6           & 180                & 48                   & 36                             \\
+            A               & Ga K$\alpha$  & 30             & 50             & 6           & 303                & 52                   & 64                             \\
             \hline
-            B               & Ga L$\alpha$       & 5              & 50             & 6           & 19                & 39                   & 97                        \\
-            B               & Sb L$\alpha$       & 5              & 50             & 6           & 1                 & 61                   & 3                         \\
-            B               & Ga L$\alpha$       & 10             & 50             & 6           & 46                & 47                   & 75                        \\
-            B               & Sb L$\alpha$       & 10             & 50             & 6           & 27                & 53                   & 25                        \\
-            B               & Ga L$\alpha$       & 15             & 50             & 6           & 74                & 49                   & 58                        \\
-            B               & Sb L$\alpha$       & 15             & 50             & 6           & 94                & 51                   & 42                        \\
-            B               & Ga K$\alpha$       & 30             & 50             & 6           & 191               & 50                   & 48                        \\
-            B               & Sb L$\alpha$       & 30             & 50             & 6           & 359               & 50                   & 52                        \\
+            B               & Ga L$\alpha$  & 5              & 50             & 6           & 19                 & 39                   & 97                             \\
+            B               & Sb L$\alpha$  & 5              & 50             & 6           & 1                  & 61                   & 3                              \\
+            B               & Ga L$\alpha$  & 10             & 50             & 6           & 46                 & 47                   & 75                             \\
+            B               & Sb L$\alpha$  & 10             & 50             & 6           & 27                 & 53                   & 25                             \\
+            B               & Ga L$\alpha$  & 15             & 50             & 6           & 74                 & 49                   & 58                             \\
+            B               & Sb L$\alpha$  & 15             & 50             & 6           & 94                 & 51                   & 42                             \\
+            B               & Ga K$\alpha$  & 30             & 50             & 6           & 191                & 50                   & 48                             \\
+            B               & Sb L$\alpha$  & 30             & 50             & 6           & 359                & 50                   & 52                             \\
             \hline
-            C               & Ga K$\alpha$       & 30             & 50             & 4           & 189               & 50                   & 48                        \\
-            C               & Sb L$\alpha$       & 30             & 50             & 4           & 350               & 50                   & 52                        \\
-            C               & Ga K$\alpha$       & 30             & 50             & 2           & 184               & 50                   & 49                        \\
-            C               & Sb L$\alpha$       & 30             & 50             & 2           & 330               & 50                   & 51                        \\
-            C               & Ga K$\alpha$       & 30             & 50             & 1           & 178               & 50                   & 51                        \\
-            C               & Sb L$\alpha$       & 30             & 50             & 1           & 304               & 50                   & 49                        \\
+            C               & Ga K$\alpha$  & 30             & 50             & 4           & 189                & 50                   & 48                             \\
+            C               & Sb L$\alpha$  & 30             & 50             & 4           & 350                & 50                   & 52                             \\
+            C               & Ga K$\alpha$  & 30             & 50             & 2           & 184                & 50                   & 49                             \\
+            C               & Sb L$\alpha$  & 30             & 50             & 2           & 330                & 50                   & 51                             \\
+            C               & Ga K$\alpha$  & 30             & 50             & 1           & 178                & 50                   & 51                             \\
+            C               & Sb L$\alpha$  & 30             & 50             & 1           & 304                & 50                   & 49                             \\
             \hline
-            D               & Ga K$\alpha$       & 30             & 400            & 1           & 1724              & 50                   & 50                        \\
-            D               & Sb L$\alpha$       & 30             & 400            & 1           & 2996              & 50                   & 50                        \\
-            D               & Ga L$\alpha$       & 15             & 200            & 6           & 155               & 49                   & 57                        \\
-            D               & Sb L$\alpha$       & 15             & 200            & 6           & 200               & 51                   & 43                        \\
-            D               & Ga L$\alpha$       & 15             & 400            & 6           & 284               & 49                   & 57                        \\
-            D               & Sb L$\alpha$       & 15             & 400            & 6           & 367               & 51                   & 43                        \\
+            D               & Ga L$\alpha$  & 15             & 200            & 6           & 155                & 49                   & 57                             \\
+            D               & Sb L$\alpha$  & 15             & 200            & 6           & 200                & 51                   & 43                             \\
+            D               & Ga L$\alpha$  & 15             & 400            & 6           & 284                & 49                   & 57                             \\
+            D               & Sb L$\alpha$  & 15             & 400            & 6           & 367                & 51                   & 43                             \\
+            D               & Ga K$\alpha$  & 30             & 400            & 1           & 1724               & 50                   & 50                             \\
+            D               & Sb L$\alpha$  & 30             & 400            & 1           & 2996               & 50                   & 50                             \\
             %
             %E&Map&&&&&&\\
             %E&Map&&&&&&\\
@@ -52,6 +56,4 @@
         \end{tabular}
     \end{center}
 \end{table}
-
-
-
+\restoregeometry % put the margins back to normal

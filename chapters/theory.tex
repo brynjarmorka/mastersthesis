@@ -1,31 +1,12 @@
 \chapter{Theory}
 \label{ch:theory}
 
-% trash?
-% \brynjar{ISO 22309: "The area of a peak, in counts divided by the preset live time,
-%     gives the intensity of X-rays striking the active area of the detector. On the assumption that the same incident electron
-%     beam current and same recording live time are used, the peak area in counts is an appropriate measure to compare X-ray
-%     intensities for quantitative analysis, and therefore the terms “peak intensity” and “peak area” are used in this International
-%     Standard."}
-
-
-% % on the specimen surface:
-% \brynjar{ASTM E1508: The surface must be flat and polished to get good results. "Note that these
-%     requirements for surface preparation preclude the quantitative
-%     analysis of casual samples, such as unpolished surfaces like
-%     fracture surfaces and particles. Although data can be generated
-%     on these casual surfaces, the results would be of significantly
-%     lower precision with unpredictable variations."}
-
-
-
 % intro to the section
-% partly from project
 Energy dispersive X-ray spectroscopy (EDS) is a technique for analyzing the elemental composition of a sample with a spatial resolution, widely used in scanning electron microscopy (SEM) and transmission electron microscopy (TEM) \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
 The technique is based on excitation of core shell electrons, which are bound to the atom with different strengths in different elements, and an electron relaxation which results in an emitted photon with very specific energy.
 EDS can be used to determine both the qualitative and quantitative composition of a sample.
-This theory chapter will cover the generation of X-rays, the SEM system, the EDS detector, data processing of spectra, and performance metrics for EDS.
-\brynjar{Sentence about quantification, ZAF and $\phi (\rho z)$ will be added.}
+This theory chapter will cover the generation of X-rays, the SEM system, the EDS detector, data processing of spectra, performance metrics for EDS, and quantification routines without and with correction models.
+% TODO: move the sentence below to the preface chapter
 It should be noted that a similar chapter was included in the author's previous TFY4520 project report \cite{project_report}, but the chapter has been updated and expanded in this master's thesis.
 
 
@@ -78,7 +59,6 @@ For an ionization to happen, $E_0$ must be higher than $E_C$.
 The ionization is given in \cref{eq:theory:xray_formation:characteristic:step1}, and the energy balance is given in \cref{eq:theory:xray_formation:characteristic:step1:energy_balance}.
 An X-ray photon with energy higher than the binding energy of the core orbital can also do the ionization.
 If a characteristic X-ray photon is doing the ionization, the process is named the fluorescence effect and the resulting photon is called a secondary X-ray.
-% The fluorescence effect is covered in \brynjar{cref to section}.
 
 % step 1, ionize the atom
 \begin{equation}
@@ -274,8 +254,6 @@ Lines which are closely related are given a subscript number, where 1 is the mos
 As the energy resolution of EDS is limited, a single peak in a spectrum can consist of multiple transitions which are closely related, e.g. K$\alpha_1$ and K$\alpha_2$ making the K$\alpha$ line.
 Resolving K$\alpha_1$ and K$\alpha_2$ in EDS is usually first possible for elements heavier than tin with $ Z = 50$ \cite[Ch. 8.2.2.3]{hollas_modern_2004}. %, where the $\Delta E = 227.3$ eV.
 Heavier element have both more possible lines and more resolved lines, as the orbitals have higher energy differences.
-% \brynjar{TODO? Legge til kommentar om intensity, som er inkludert i Siegbahn med ikke i international. Som gir Siegbahn en praktisk fordel.}
-% dropping the stuff about spin-orbit coulpling
 
 
 % total naming with example
@@ -321,7 +299,7 @@ The Python package HyperSpy includes an elemental database with the energy of ch
 The different sources are focused on certain areas, like how the NIST database 128 includes experimental data, while the HyperSpy database is less comprehensive but faster to use.
 An analyst should be aware of the limitations of the used source, like how the HyperSpy database does not include the M-lines for Sb.
 % Trusting a source blindly can lead 
-The limited energy resolution of EDS combined with overlapping peaks can lead to mislabeling in the qualitative analysis, which is discussed in \brynjar{Ref to discussion on this}.
+The limited energy resolution of EDS combined with overlapping peaks can lead to mislabeling in the qualitative analysis, which is discussed in \cref{discussion:process_time}.
 The reason for the missing M-lines in the HyperSpy database is probably a down prioritization due to the low intensity of these M-lines, which is discussed in the next section.
 
 
@@ -429,7 +407,6 @@ Through pre-modelling of the background based on the sample geometry and composi
 To do accurate qualitative analysis, the background radiation must be subtracted from the total spectrum.
 This can be done in multiple ways, like pre-modelling, linear interpolation, background filtering, and background modelling \cite{liao2006practical}
 In this thesis, background modelling is used, where the background is modelled as a polynomial function of the energy.
-Modelling of the background is discussed in \brynjar{Ref to right section}.
 
 
 % the energy, 1/E
@@ -722,9 +699,6 @@ Formation of \textbf{characteristic X-rays} are covered in detail in \cref{theor
 In short, formation of characteristic follow the same principle as Auger electrons, but the energy difference between the outer and inner orbital is used to emit X-rays instead of electrons.
 Typical escape depths for X-ray signals are around 4000 nm \cite{hollas_modern_2004}, but the variations are large.
 The escape depth depends on the energy of the photon and the density of the sample.
-% \brynjar{Mention Li escape depth in range of tens of nm? Keith Thompson: Is Energy Resolution Still an Important Specification in EDS?} % Ton: nei
-% The lower energy X-rays from Li (Z=3) have a shallow escape depth of only 
-% the absorption in the sample makes the escape depth of light elements shallow. Eg. Li have an escape depth of only a few tens of nm (Keith Thompson, Is Energy Resolution Still an Important Specification in EDS?)
 Lastly, the \textbf{background X-rays} are formed by the deacceleration of the incident beam electrons because of the Coulomb fields of the atoms in the specimen, and this deacceleration of charged particles emits photons \cite{notaros_electromagnetics_2010}.
 The background X-rays are white noise, giving no information about the sample, and is generated in the whole interaction volume.
 
@@ -890,7 +864,6 @@ The generation of detectable electron-hole pairs happens in the thick intrinsic 
 The thinner n- and p-type regions are referred to as dead layers, because the electron-hole pairs generated there are not collected.
 The layer where detectable electron-hole pairs are generated is called the active layer.
 The thickness of the detector is typically 2-5 $\mu$m, which allows for a high detection efficiency at higher energies, since few X-rays are able to pass through the intrinsic layer without generating electron-hole pairs.
-% \brynjar{Si dip is also there, because of the Si in the detector.} % Ignore?
 When operating the detector, X-rays enter through the p-type end into the intrinsic region, where they have a high probability of being absorbed and thus ionizing a Si atom, which creates electron-hole pairs.
 The number of electron-hole pairs created is proportional to the energy of the X-ray, since one pair requires 3.8 eV of energy.
 A reverse bias over the detector makes the charge carriers drift towards the detector contact, where they are measured by the electronics after being amplified.
@@ -957,7 +930,6 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
         The efficiency of the SDDs decrease at higher energies because the active layer is thin, and thus high energy X-ray photons have a higher probability of passing through without creating an electron-hole pair.
         Figure adapted from \cite{liao2006practical}. %\cite[Fig. 4655c]{liao2006practical}
         \brynjar{Consider an alternative source.}
-        % Remake of \brynjar{find one, e.g. https://www.globalsino.com/EM/page4655.html}
     }
     \label{fig:detector_efficiency}
 \end{figure}
@@ -969,7 +941,6 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
 The position of the detector affects the analysis, and the geometry around the detector is illustrated in \cref{fig:eds_geometry}.
 The number of X-rays hitting the active area of the detector is dependent on the solid angle ($\Omega$) and take-off angle (TOA), which covers both tilt of the specimen and the detector.
 The solid angle, $\Omega$, is an expression of the fraction of the sphere with radius from the center of the detector to the sample that the detector is covering.
-\brynjar{TODO Comment from Ton: "In future work propose how to measure this out of the detected signal. I think you cannot do it practically at this stage."}
 In \cref{fig:eds_geometry} the solid angle is marked as a yellow triangle, but in 3D it has a cone shape, measured in steradians.
 The whole hemisphere above the surface of the sample has a solid angle of 2$\pi$ steradians, and the solid angle of the detector is the fraction of this hemisphere that is covered by the detector.
 A bigger detector covers a bigger fraction of the hemisphere, and thus collects more X-rays.
@@ -1052,9 +1023,7 @@ The model fitting in this thesis is done using the HyperSpy package \cite{hypers
 With the sigma of a Gaussian curve, the full width at half maximum (FWHM) can be calculated as FWHM $= 2\sqrt{2\ln(2)}\sigma$.
 % As previously mentioned, 
 The detector broadens the peaks, and as different detectors and detector settings can give different peak widths, the FWHM are used as a measurement of the resolution of the detector.
-
-
-\brynjar{TODO Comment from Ton: "I think here you can also include relation peak width and energy, you have the formula and will use it later to calculate peak width Mn-K from other measured lines."}
+The relation between peak width and peak energy is described more in \cref{theory:eds_performance:energyres}, e.g. with \cref{eq:estimateFWHM}.
 
 
 \input{tables/table_eds_hardware.tex}
@@ -1170,7 +1139,6 @@ Controlling the beam current is done to achieve suitable counts per second, depe
 % count rate, ICR and OCR. mention coincidence peaks
 The \textbf{count rate} is the number of counts per second (cps), and is affected by multiple factors like the beam energy (probability of X-ray creation), beam current (proportional to creation), the solid angle (detector geometry) and the processing capabilities of the electronics.
 A good spectrum needs many counts in total, especially if minor elements in specimens are to be detected and even more when these need to be quantified.
-% \brynjar{Is minor and trace elements defined earlier?} % TODO
 The number of X-rays per second which produce electron-hole pairs in the active layer of the detector is called the \textbf{input count rate} (ICR).
 The number of counts being outputted from the electronics to the memory of the computer is called the \textbf{output count rate} (OCR).
 The OCR is limited by the processing capabilities of the electronics, as the electronics needs a certain amount of time to convert the voltage signal into a count.
@@ -1414,19 +1382,18 @@ Identifying potential issues with the EDS setup can be done through certain perf
 A performance check can reveal errors in the setup and acquisition parameters, and it can make the input parameters for the quantification more accurate.
 Vendors of EDS detectors like Oxford Instruments provide a guide for how to calibrate their detectors, but these guides are limited to calibration of energy resolution and scale \cite{aztec_manual}.
 As both Thompson in \cite{keith_energy_res_2013} and Goldstein in \cite{goldstein_scanning_2018} writes, the state of an EDS setup is characterized by more than its energy resolution and scale.
-In 1986 Williams criticized the lack of standardized performance criteria for EDS in AEMs \brynjar{TODO: define AEM earlier?}, and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
+In 1986 Williams criticized the lack of standardized performance criteria for EDS in analytical electron microscopes (AEM), and suggested three standardized metrics \cite{williams_standard_definitions_1986}, but these metrics were not widely adopted.
 Routines for a performance check seems to vary significantly between different laboratories, and the industry and standard authorities have not yet agreed on a standard set of metrics, aside from the energy resolution, measured by the FWHM the Mn K$\alpha$ line.
 
 
 % not new paragraph?
 An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
-% \brynjar{This standard was discovered late february 2023. However, a Jupyter notebook is stil relevant to show how to do the calculations, and this thesis explain the relevance of the metrics.}
 Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO test standards.
 Literature on performance parameters for SEM EDS setups are less common, but some papers \cite{software_dtsaii,dtsaii_1_getting_started,dtsaii_2_manipulating_spectra} are available and the software DTSA-II includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
 Goldstein also include details on a range of parameters, such as linearity and stability of the detector, along with possible SEM EDS issues, such as beam-sensitive specimen and specimen with irregular topography \cite{goldstein_scanning_2018}.
 The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
 One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a well performing detector.
-\brynjar{TODO: Get these ranges/value numbers into results and the discussion, and link back here.}
+% \brynjar{TODO: Get these ranges/value numbers into results and the discussion, and link back here.}
 Out of range values could indicate a suboptimal setup or affect calculating composition.
 Identification of setup parameters with optimization and correction should lead to better EDS analysis.
 The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDDs.
@@ -1476,8 +1443,6 @@ Can the spectrum reveal contamination?
 Is the spectrum affected by stray radiation?
 The performance parameters described in this section can be used to answer these questions.
 At the end of the section, \cref{tab:eds_performance_parameters} contains a summary of each parameter, and what it can reveal.
-% \brynjar{Maybe add some schematics for this intro section.}
-
 
 
 % a schematic of the performance parameters
@@ -1514,7 +1479,6 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
         Panel (b) has a lower SNR due to a higher background intensity.
         Panel (c) has a lower low SNR due to a lower peak intensity.
         Even though this illustrative background is linear, that is not always the case.
-        \brynjar{Is background fitting covered somewhere?}
     }
     \label{fig:theory:eds_performance:overview:fiori_snr}
 \end{figure}
@@ -1605,22 +1569,8 @@ Charging of specimen are covered in detail in a paper by Postek and Vladár \cit
 Another explanation of a large deviation is that the voltage indicated by the SEM is imprecise.
 In both cases, a quantitative analysis will yield poor results \cite{iso_quantification_22309}.
 Thus, the Duane-Hunt limit relates the acceleration voltage and the conductivity of the specimen.
-\brynjar{TODO: discussion, "Is it a useful test for you, for given HT and good conducting specimen? Comment this in discussion?" No, it is not very useful, but nice for slicing.}
 
-% \brynjar{ISO 22309 Quantitative: " 5.6 For standardless analysis, check the measured spectrum using the Duane-Hunt rule.
-% NOTE - Deviations of the high-energy end of the bremsstrahlung background from the indicated high voltage means
-% either charging of the specimen or a wrong high voltage indicated by the SEM. No quantitative analysis can be done in
-% these cases."}
 
-% \brynjar{ASTM 1508: Vacc is not always the same as effective beam energy.
-%     "The actual accelerating voltage of the electron beam does not
-%     always correspond with the voltage selected on the instrument.
-%     It can be determined by expanding the vertical scale of the EDS
-%     spectrum and observing the energy above which continuum X
-%     rays do not occur."
-%     From Ritchies PP: The Duane-Hunt is useful not so much to test the EDS detector as to ensure
-%     the accelerating voltage is correct and to demonstrate that there is a
-%     conductive path from the stage to ground.}
 
 
 
@@ -1636,16 +1586,12 @@ The energy resolution of an EDS system is the ability to distinguish two lines a
 Two partly overlapping peaks have high contrast if the peak maximums and the valley between the peaks are well separated.
 The contrast increase with the energy resolution, as the peaks are more separated.
 The convention of using the Mn K$\alpha$ peak as the reference for the energy resolution is because of its position at 5.8987 keV, which gives an indication for both the lower and higher energies used in EDS.
-% The sentence below is repeated too much:
-% The first SDD detectors had an energy resolution between 160 and 200 eV, while modern detectors can achieve energy resolution around 120-140 eV, which allow closer peaks to be separated \cite{keith_energy_res_2013,goldstein_scanning_2018}. % \brynjar{Thompson refers to Goldstein\dots}.
 All EDS detectors have a stated energy resolution in its specifications, however the actual resolution of a given spectrum varies some with the acquisition settings for the same detector.
 Thompson shows that with the dead time kept constant, a higher input count rate gives worse resolution, with the example of 121 eV resolution with <5000 cps, and 140-150 eV resolution with >100,000 cps \cite{keith_energy_res_2013}.
 Thompson claims that EDS specifications are based on acquisition designs with low input counts.
 The process time setting is also affecting the energy resolution.
 A longer process time gives the electronics more time to process and assign the energy of the incoming count, and thus gives better resolution.
 However, a long process time gives lower count rates and longer acquisition times.
-% Dette under må være en glipp
-% Changes in dead time are also affecting the energy resolution, where shorter dead time give degraded resolution, because a lower dead time gives the computer shorter time to process the incoming signal and sets the channel value less accurate of each count \brynjar{Ref?}.
 
 
 % Other FWHMs
@@ -1667,12 +1613,10 @@ The first is to directly measure the Mn K$\alpha$ peak in a specimen with Mn.
 The second is using the Ni K$\alpha$ peak and multiply it by a factor of 0.926, which is suggested by Ted Pella, Inc. \cite{ted_pella_nio_tem_2019}.
 The third is to use any peak in the spectrum, and calculate what the energy resolution would be if there was a Mn K$\alpha$ peak in the spectrum, using \cref{eq:estimateFWHM}.
 The second approach is a special case of the third, where the Ni K$\alpha$ peak is used as the reference peak, but with a much simplified equation which is only valid in certain FWHM ranges.
-\brynjar{TODO discussion: input NiO energy in the equation on try to get the 0.926 factor.}
 The third approach is the one which is used in the code developed in this work.
 
 
 % Direct measurement
-% \brynjar{Implement check for Mn K$\alpha$ peak in the code?}
 The industry standard for the energy resolution is to measure the FWHM of the Mn K$\alpha$ peak generated by an Fe$^{55}$ source, when the detector is off the microscope.
 This is the advised method in the ISO 15632 on EDS performance parameters \cite{iso_qc_15632}.
 The argument for doing this is that the energy resolution is not a function of the microscope, thus measuring the energy resolution off the microscope negates all possible influences from the microscope.
@@ -1698,7 +1642,6 @@ The first step is to fit the width of all the lines in the spectrum, which is ne
 % \ton{This I read from the HS code, line 50 in: \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
 The second step utilizes an equation by Fiori and Newbury from a conference paper in 1978, and while this original paper is hard to get hold of (neither the NTNU library nor paper depositories could provide it), the equation is included in Goldstein \cite[Ch. 16.1.1]{goldstein_scanning_2018} with a reference to the original paper\footnote{One of the two authors of the original 1978 publication is D. Newbury, who is also the second author of the Goldstein textbook \cite{goldstein_scanning_2018}.}
 The equation use one known line in the spectrum to estimate what the FWHM would be at an arbitrary energy:
-% \brynjar{original: Fiori, C. E., and Newbury, D. E. (1978). In SEM/1978/I, SEM, Inc., AFM O'Hare, Illinois, p. 401.}
 
 \begin{equation}
     \label{eq:estimateFWHM}
@@ -1710,19 +1653,10 @@ $E_\textnormal{ref}$ is the energy of a reference line in the spectrum, and $\te
 Both the energies and FWHMs are in eV.
 When using the HyperSpy method \verb|calibrate_energy_axis|, the user should be aware of the argument \verb|xray_lines|, which can either be a list of strings with line names or \verb|'all_alpha'|, the latter being the default value for the argument.
 As of HyperSpy v1.7.3, the reference line in \cref{eq:estimateFWHM} is the first line in \verb|xray_lines|, which becomes the alphabetically first line when using \verb|'all_alpha'|.
-The fact that the reference line is only the first line in the list, is not documented clearly in the HyperSpy documentation, and can yield unexpected results when the first line is not a well-defined peak.
-The method works well when the reference line is a well-defined peak.
-\brynjar{Should probably give a definition of "well-defined" \dots}
+The fact that the reference line is only the first line in the list, is not documented clearly in the HyperSpy documentation, and can yield unexpected results when the first line is affected by much noise or severe peak overlap.
 Setting the energy resolution of a spectrum could be done as the average of several distinct peaks, it could be the lowest estimate, the average of the three lowest, or another selection.
 For comparative purposes, the same selection should be used, and it should be clear which selection was used.
 This is a focus in this work.
-\brynjar{TODO: Add average, best, and average of three best, or some more to the results.}
-% TODO \brynjar{Discuss: when taking a series of spectra with different Vacc, the first line (eg AsKa in GaAs or AlKa in SU9000) is poorly defined for 10 kV and 5 kV respectively, resulting in weirdly poor Mn Ka estimate.}
-
-
-
-% TODO: bruke average istedenfor én peak? forskjellige peaks gir forskjellige tall
-% Er det best om det er user defined peak?
 
 
 % what the vendors say
@@ -1746,16 +1680,7 @@ The trade-off between energy resolution and throughput allows a small loss in re
 However, the user must be aware of the elements in the specimen, as overlapping peaks become more difficult to resolve with a lower energy resolution.
 Thus, the user should adjust the trade-off according to the specimen used and the aim of the analysis.
 
-% e.g. deviations when using the HS method implicate that the reference line is not a well-defined peak, which can be caused by ...
-% As explained, the theoretical limit of the FWHM of Mn K$\alpha$ is XXX \brynjar{explain above!}.
-% The HyperSpy method will raise an ValueError if the estimated energy resolution is below 110 eV \brynjar{line 450, \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}}.
-
-% The ISO standard
-% \brynjar{ISO 15632: "The
-%     resolution value shall be accompanied by a statement of count rate for which the specification is valid.
-%     For most detector systems the best energy resolution is attained at an ICR < 1 000 counts/s and the
-%     best energy resolution shall be specified. Where detector systems offer higher count rate capability, e.g.
-%     SDD EDS, the energy resolution shall also be specified at high ICR, e.g. 50 000 counts/s, 500 000 counts/s."}
+% The HyperSpy method will raise an ValueError if the estimated energy resolution is below 110 eV, line 450, \url{https://github.com/hyperspy/hyperspy/blob/842d6d9713d866960a033d4006200a43841079fe/hyperspy/models/edsmodel.py}.
 
 
 
@@ -1764,7 +1689,8 @@ Thus, the user should adjust the trade-off according to the specimen used and th
 
 
 
-\subsection{Scale and offset}
+
+\subsection{Scale, offset, and peak position deviation}
 \label{theory:eds_performance:scaleoffset}
 
 % scale and offset in one subsection?
@@ -1773,9 +1699,10 @@ Thus, the user should adjust the trade-off according to the specimen used and th
 % What is the scale and offset.
 % Typical values for the scale.
 
-The scale and offset are the parameters used to set the energy axis.
+The scale and offset are the parameters used to set the energy axis, and the deviation of peak position is a measure of the accuracy of the energy axis.
 The scale is the energy width of one channel, and the offset is the energy of the first channel in the spectrum.
 Another name for the scale is the gain or the dispersion.
+The peak position is calculated as the deviation from the peak center to the theoretical line energy.
 Calibration of the energy axis is done by: (1) fitting the background and Gaussian curves to the peaks in the spectrum, (2) calculate the theoretical energy difference between two or more peaks, and (3) use the difference between the theoretical and the measured energy difference to calibrate the energy axis.
 The calibration can be done by hand, or by using the HyperSpy function \verb|calibrate_energy_axis|.
 The HyperSpy function needs the argument \verb|calibrate| to be either \verb|'scale'| or \verb|'offset'|, which specifies if the scale or the offset should be calibrated.
@@ -1786,61 +1713,19 @@ In the project report, the author made a function from scratch to calibrate the 
 % Why
 Calculating the scale and offset is done to verify that the system is operating correctly.
 The scale and offset should be close to the values that are set by the user for the acquisition.
-If there is a noticeable deviation, the user should probably contact the SEM Eds responsible for technical support.
-If the user finds deviations between different specimen or different acquisitions settings, the \dots
+The peak position deviation is calculated to verify that the energy axis is calibrated correctly.
+If there is a noticeable deviation, the user should probably contact the SEM EDS responsible for technical support.
+% If the user finds deviations between different specimen or different acquisitions settings, the \dots
 
-
-
-
-
-
-\subsection{Deviations in peak positions}
-\label{theory:eds_performance:peakpositions}
-
-
-What \dots
-
-
-How \dots
-
-
-Acceptable values \dots
 
 % Ton: "Unsure how extensive this will be when calibrated correctly and the limited resolution. Fitting error? Have as final comment in previous section?" Will be short
 
 
-% % What
-% What is the peak position.
-% Also mention the peak width?
-% Why does it deviate from the theoretical value.
-% Figure of Mo K$\alpha$ peak which is not centered?
-% Why bigger changes at higher energies.
 
-% % How
-% Manual: add gaussians at the expected position and fit.
-% HS: adds gaussians at the expected position and fit with the centre as free parameter.
-
-% % Acceptable values
-% Deviations can be higher at higher energies, but should be \dots
-% Large deviations implicate \dots
-
-
-% one section on the calculated value for each line of interest?
-% Line           True E [keV]   Calib. E [keV] Area [counts]  Max (fit)      Sigma [keV]    FWHM [eV]      Fiori P_10/B
 
 \subsection{Fiori peak-to-background ratio}
 \label{theory:eds_performance:fiori}
 
-% % The ISO standard
-% \brynjar{The ISO standard is pretty bad here, as it seems to be aimed at manufactures of SEM EDS, and not users.
-%     It goes: "The peak-to-background ratio shall be derived at the point of manufacture of the spectrometer from
-%     an acquired spectrum of an 55Fe source as a characteristic spectrometer parameter. The ratio shall be
-%     given by the peak height of the manganese K$\alpha$ line divided by the background. The background shall be
-%     calculated as the mean number of counts per channel within the energy range from 0.9 keV to 1.1 keV.
-%     Sufficient counts shall be recorded in the spectrum to make the measure statistically significant (as
-%     per A.4) and the electronic threshold(s) shall be set up so that any energy cut-off occurs well below the
-%     specified range. \dots Beside other factors, the peak-to-background ratio depends on spectrometer resolution. Therefore,
-%     the ratio is only relevant for the comparison of spectrometers with similar resolution performance."}
 
 
 % What
@@ -1855,7 +1740,6 @@ However, having a high count rate does not necessarily mean that the spectrum yi
 
 % not new paragraph?
 As a counterweight to the possible unwanted effects of a high count rate, the ISO 15632 standard state that all specifications should be marked with the used count rate \cite{iso_qc_15632}.
-% \brynjar{From ISO 15632 on performance parameters: "Some detector systems are capable of very high count rates, but at high count rates other specifications like energy resolution may alter and artefacts may appear in the spectrum. All specifications should therefore be accompanied by a statement of the count rate at which they are measured and it should not be assumed that the specification will be the same at other count rates."}
 Having a metric for the ratio between the signal in peaks and in the background is therefore important both for establishing what makes a good detector, and also if an acquired spectrum have high quality.
 The peak-to-background ratio in a certain detector will vary with the specimen studied and the detector settings, and can thus be used as a parameter to assess the quality of a spectrum.
 The Fiori P/B was originally made for TEM and STEM, i.e. thin specimen with low background, but arguments for why and how it is relevant for SEM are presented below.
@@ -1977,8 +1861,6 @@ Higher numbers indicate a better signal-to-noise ratio, which should allow for b
 This is explored and focused on in this work, rather than trying to find a specific SEM threshold for the Fiori P/B.
 
 
-% skrive om de forskjellige som finnes, og hvordan de varierer. Variasjon er ikke bra from sammenlikning
-
 % EDAX: https://www.edax.com/-/media/ametekedax/files/news_events/insight_newsletter/edax-insight-vol-16-no3.pdf?la=en&revision=d212987b-0524-4056-939e-858c59d06446
 % TED PELLA: file:///C:/Users/Brynjar/Documents/Masteroppgave/potensielle%20kilder/Ted%20Pella%20NiOx%20description.pdf
 
@@ -2032,7 +1914,7 @@ Both X-ray photons from background radiation and other elements can excite the M
 % \subsection{Total counts and background portion}
 % \label{theory:eds_performance:background_portion}
 
-% \brynjar{Comment from Ton: "should this section not be incorporated in the Fiori section or placed directly after it?" Yes, that is a good idea.}
+% {Comment from Ton: "should this section not be incorporated in the Fiori section or placed directly after it?" Yes, that is a good idea.}
 
 % % Total counts, background counts.
 % % How to represent the measure better? Ratio, percentage, absolute value, etc.
@@ -2108,10 +1990,9 @@ This work aims to improve the analysis for SEM EDS data, and this section will f
 % As a master thesis, the scope of this work is limited, and 
 The hypothesis is that for bulk specimens matrix corrections have to be incorporated in the quantifications routines.
 The focus within the quantitative analysis has thus been to implement matrix corrections in a Jupyter notebook which could be developed further, for example as an addition to the HyperSpy package.
-As stated in the ASTM 1508 standard \cite{astm_e1508_eds_quantification}, there are multiple different programs available for matrix corrections with some differences, but the accuracy of the EDS analysis is probably not limited by the accuracy of the matrix correction \cite{astm_e1508_eds_quantification}.
-The two matrix correction methods explored and tested in this work are (1) absorption correction through ZAF corrections, and (2) the XPP version of the PAP algorithm \cite{pap_1991}.
-These two methods are introduced below.
-This section will start with an introduction to the principle of quantitative EDS analysis, before the two correction methods are presented.
+As stated in the ASTM 1508 standard \cite{astm_e1508_eds_quantification}, there are multiple different approaches for matrix corrections with some differences, but the accuracy of the EDS analysis is probably not limited by the accuracy of the matrix correction \cite{astm_e1508_eds_quantification}.
+The two matrix correction methods explored and tested in this work are (1) absorption correction through ZAF corrections, and (2) the XPP version of the PAP model \cite{pap_1991}.
+This section will start with an introduction to the principle of quantitative EDS analysis, before the two correction methods are presented in detail.
 
 
 
@@ -2147,9 +2028,10 @@ Where $I$ is the measured intensity and $K$ is a sensitivity factor that depends
 The implementation of satisfactory sensitivity factors is a complicated task, as the X-rays are generated in an interaction volume which depends on the specimen composition and the electron probe conditions.
 Castaing and Deschamps established the theory experimentally in 1955, but the method was restricted by the sensitivity calculation as an iterative process. %  \cite{castaing_1955},
 Later Philbert derived an analytical expression for iterative routines \cite{philbert_1963}.
-Now there are two main groups for the matrix corrections: the ZAF-corrections and the $\phi(\rho z)$-corrections.
+There are two main groups for the matrix corrections: the ZAF-corrections and the $\phi(\rho z)$-corrections.
 ZAF-corrections treat Z, A, and F independently, and is covered in \cref{theory:quantitative:zaf}.
-The $\phi(\rho z)$-corrections treat the Z and A together in a more complex calculation, and is covered in \cref{theory:quantitative:pap}, as a part of the PAP algorithm\footnote{Algorithm, model, and principle is used interchangeably in this work.}.
+The $\phi(\rho z)$-corrections treat the Z and A together in a more complex calculation, and is covered in \cref{theory:quantitative:pap}, as a part of the PAP model.
+% \footnote{In the literature, "model" and "algorithm" is used interchangeably. The word model is used in this work.}.
 The $\phi(\rho z)$ curve is the depth distribution of radiation from a certain X-ray line as a function of mass depth ($\rho z$), i.e. the curve describes how much of the generated X-rays that is emitted from a certain level in the sample.
 
 
@@ -2157,22 +2039,24 @@ The $\phi(\rho z)$ curve is the depth distribution of radiation from a certain X
 One way to avoid the corrections and thus also avoid the iterative process is to use thin samples.
 In thin samples the absorption and fluorescence can be neglected, which is typically the case for TEM specimen.
 Cliff and Lorimer \cite{CL1975} showed in 1975 that the intensity from a specimen with two elements can give the composition ratios, without the use of standards.
-The Cliff-Lorimer method have a sensitivity factor which is dependent on the instrument settings and the atomic number effects in the specimen.
-This sensitivity factor in the Cliff-Lorimer method is named the "k-factor".
+The commercial software AZtec \cite{aztec_manual} use the Cliff-Lorimer quantification method when the "TEM EDS" setting is used \cite{oxford_blog_CL}.
+The Cliff-Lorimer method have a sensitivity factor, named the "k-factor", which is dependent on the instrument settings and the atomic number effects in the specimen.
 The Python package HyperSpy have the Cliff-Lorimer quantification method implemented.
-Additionally, HyperSpy have implementations of the Zeta method \cite{watanabe_williams_zeta_2006} and the cross-section quantification approach \cite{MacArthur_crosssection_2016}.
+Additionally, HyperSpy have implementations of the Zeta method \cite{watanabe_williams_zeta_2006} and the cross-section quantification approach \cite{MacArthur_crosssection_2016}, which are element based, not ratio based as Cliff-Lorimer. 
+Here, only the CLiff-Lorimer approach will be reviewed.
 Absorption corrections for TEM specimen is also implemented as an optional part of the quantification routines in HyperSpy for TEM specimen.
-These absorption corrections are based on path length and found composition \cite{williams_carter_tem_2009}.
-\ton{Based on your comment, should I add: "The TEM EDS routines in AZtec are hidden, but the software probably use the Cliff-Lorimer method, and might have some implementation of TEM absorption correction."?}
+These absorption corrections are based on path length of the characteristic X-ray in the specimen and estimated composition \cite{williams_carter_tem_2009}.
+
+% \ton{TODO: Based on your comment, should I add: "The TEM EDS routines in AZtec are hidden, but the software probably use the Cliff-Lorimer method, and might have some implementation of TEM absorption correction."?}
 
 
-\ton{These two eq and three paragraphs are new. I call it the "area ratio method".}
+% TODO: \ton{These two eq and three paragraphs are new. I call it the "intensity ratio method".}
 
-% The area ratio of two similar peaks
-When relative quantification is sufficient, the area ratio of two similar peaks can be used \cite{goldstein_scanning_2018}.
-When using measured standards, the absolute concentrations can be obtained.
-Using the absolute concentrations can reveal errors in the analysis, as the summed concentrations should be close to 100\% \cite{goldstein_scanning_2018}.
-However, using relative concentrations requires less work, and is probably the most common method for EDS analysis \brynjar{[citation needed]}.
+% The intensity ratio of two similar peaks
+Relative quantification can be found with the intensity ratio of two similar peaks \cite{goldstein_scanning_2018}.
+If absolute concentrations are needed, the user should measure standards with known concentrations on the setup used for the unknown sample.
+Using the absolute concentrations can reveal errors in the analysis, as the sum of the concentrations should be close to 100\% \cite{goldstein_scanning_2018}.
+However, using relative concentrations requires less work, and is probably the most common method for EDS analysis \cite{goldstein_scanning_2018}.
 Similar peaks are peaks which emit similar amounts of X-rays, for example having X-ray energy not too far apart, having similar fluorescence yield (\cref{fig:theory:fluorescence_yield}), and having similar absorption (\cref{fig:mass_absorption_coefficients}).
 If the emitted amount of X-rays is similar, the relative composition can be calculated with:
 
@@ -2183,7 +2067,7 @@ If the emitted amount of X-rays is similar, the relative composition can be calc
 \end{equation}
 
 Where $C_A$ is the concentration of element $A$, and $I_A$ and $I_B$ is the measured intensity in a peak from element $A$ and $B$ respectively.
-The concentration from such calculations are in weight percent (wt\%).
+The concentration from such calculations are in weight percent (wt.\%).
 If the lines used emit different amounts of X-rays, a sensitivity factor can be applied to the measured intensity ratio.
 The sensitivity factor can take into account the atomic number, the absorption, and the fluorescence in the sample.
 Depending on the specimen and acquisition parameters, it might be sufficient to use a sensitivity factor that only focus on a specific parameter.
@@ -2196,14 +2080,14 @@ The equation then becomes:
 \end{equation}
 
 Where $k_A$ and $k_B$ is the sensitivity factors for element $A$ and $B$ respectively.
-This method is referred to as the "area ratio method" in this work, without and with corrections.
+This method is referred to as the "intensity ratio method" in this work, without and with corrections.
 
 
 
 
 % \subsubsection*{Side note: Two definitions of the ZAF-method}
 
-As explained in chapter 19.10.1 in Goldstein, there are two definitions of the ZAF-correction method, which are inverses of each other.
+As explained in chapter 19.10.1 in Goldstein \cite[Ch. 19.10.1]{goldstein_scanning_2018}, there are two definitions of the ZAF-correction method, which are inverses of each other.
 The first definition ($ZAF_A$) applies the corrections to the concentration, and the second definition ($ZAF_B$) applies the corrections to the intensity.
 
 
@@ -2233,11 +2117,11 @@ Relevant for this work is $ZAF_B$.
 \subsubsection*{Side note: The difference between the k-factor and the k-ratio}
 \label{sec:theory:quantitative:k_factor_vs_k_ratio}
 
-\brynjar{TODO, from Ton: "Yes, but not here. Introduce ratio from formulas above or from Goldstein and then compare the two as a halfway summary."}
+% \brynjar{TODO, but no. From Ton: "Yes, but not here. Introduce ratio from formulas above or from Goldstein and then compare the two as a halfway summary."}
 
 The \textbf{k-factors} are a sensitivity factor used in the Cliff-Lorimer quantification method for thin samples \cite{CL1975,williams_carter_tem_2009}.
 The value of the k-factor is dependent on the instrument setup and the acceleration voltage.
-\brynjar{From Ton: "could give the formula for the k-factor, Williams and Carter give it for example, and then discus that it has a setup part (detector size, efficiency) and a physics side (cross-section for processes)"}.
+% \brynjar{TODO but no. From Ton: "could give the formula for the k-factor, Williams and Carter give it for example, and then discus that it has a setup part (detector size, efficiency) and a physics side (cross-section for processes)"}.
 The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the following equation:
 
 \begin{equation}
@@ -2247,8 +2131,6 @@ The Cliff-Lorimer method relates atom $A$ to atom $B$ in a sample with the follo
 
 Where $k_{AB}$ is the k-factor for the two elements $A$ and $B$.
 The k-factor is most accurately determined experimental, but can be calculated theoretically.
-The Cliff-Lorimer method use the thin film approximation, where the absorption and fluorescence can be neglected.
-In other words, the k-factors are only used for thin samples.
 
 
 When quantification of bulk samples is needed, the \textbf{k-ratio} method can be used to get an estimate of the composition \cite[Ch. 19.1]{goldstein_scanning_2018}.
@@ -2261,6 +2143,7 @@ The k-ratio of element $i$ is defined as:
     k_i = \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}}
 \end{equation}
 
+% TODO discuss: "This is when having standard. You are not using standards (can be hard). It is OK, but mention how calculated.  Discussion: Not precise k has effect on accuracy of result."
 
 To get the more accurate composition through the k-ratio, the ZAF-corrections can be used.
 The corrections must be applied to both the unknown and the standard, and the composition of the unknown can be found through the equation:
@@ -2287,11 +2170,13 @@ The AZtec software from Oxford Instruments \cite{aztec_manual} can both provide 
 \label{theory:quantitative:zaf}
 
 The part of the ZAF corrections tested in this work are the absorption corrections.
-The atomic number correction (Z) in ZAF is excluded, as it is stated in Goldstein that the correction effects which tend to go in opposite directions and cancel each other out \cite[p. 300]{goldstein_scanning_2018}.
-These two effects are the backscattering factor (R) and the stopping power (S).
+% The in ZAF is excluded, as i
+The atomic number correction (Z) is based on the backscattering factor (R) and the stopping power (S).
+It is stated in Goldstein that the effect of R and S tends to go in opposite directions, and that they cancel each other out \cite[p. 300]{goldstein_scanning_2018}.
 Both R and S is implemented in the PAP model \cite{pap_1991}, which is claimed to be more accurate than the ZAF method \cite{pap_1991,bastin_proza96_1998,goldstein_scanning_2018}
 The fluorescence correction (F) is excluded, because it is stated in Goldstein that this correction is usually the least important one \cite[p. 307]{goldstein_scanning_2018}.
-The low importance of the F correction is illustrated in figure 6 in P. Burdets publication on 3D SEM EDS \cite{burdet_2014_3dsem}.
+The low importance of the F correction is confirmed in later work \cite{burdet_2014_3dsem}.
+%illustrated in figure 6 in P. Burdets publication on 3D SEM EDS \cite{burdet_2014_3dsem}.
 The generated intensity is reduced before detection due to absorption in the specimen.
 The absorption reduces the measured intensity of X-rays from a certain point by:
 
@@ -2306,7 +2191,7 @@ Where $I$ is the measured intensity, $I_0$ is the generated intensity, $\mu_{\rh
 $\rho$ is the density of the specimen, and $t$ is the path length of the X-ray in the specimen.
 The unit in the exponential have to cancel out, thus one can use the following units: $I$ and $I_0$ in the same and arbitrary units, $\mu_{\rho}$ in $\textnormal{cm}^2/\textnormal{g}$, $\rho$ in $\textnormal{g}/\textnormal{cm}^3$, and $t$ in $\textnormal{cm}$.
 $\mu_{\rho}$ is explained in \cref{theory:xray_formation:characteristic} and plotted in \cref{fig:mass_absorption_coefficients,fig:background_absorptionEdgeSi}. 
-As the detector is placed at a certain angle, the take-off angle, the path length becomes:
+As the detector is placed at a certain angle, the TOA, the path length becomes:
 
 % t = z *csc(TOA)
 \begin{equation}
@@ -2315,15 +2200,14 @@ As the detector is placed at a certain angle, the take-off angle, the path lengt
 \end{equation}
 
 Where $z$ is the depth of origin of the X-ray, TOA is the take-off angle, and csc is the cosecant function.
-Tilting the specimen will change the path length of the X-ray, and thus the absorption.
+Tilting the specimen will change the TOA (see \cref{fig:eds_geometry}), which change the path length of the X-ray, and thus the absorption.
 
 
 % calculating I_0 from an average point or for the whole interaction volume
 The most correct use of the absorption correction is to calculate the absorption for each point (or layer) in the interaction volume, which is usually done through $\phi(\rho z)$ curves.
 This calculation is part of the PAP method described in \cref{theory:quantitative:pap}.
 For the ZAF method used in this work, the absorption correction is calculated for an average point in the interaction volume.
-The average point selected is the maximum path length of an incident electron, divided by two, three or four.
-\brynjar{Results: Add r/2, r/3, r/4 to the results.}
+The average point selected is the maximum path length of an incident electron, divided by two, three or four to test different approximations for the average point.
 The electron range is calculated with the Kanaya-Okayama parameterization \cite{kanaya1972}, which is available in HyperSpy \cite{hyperspy_1.7.1}.
 The Kanaya-Okayama parameterization is given in Goldstein as \cite[22.5]{goldstein_scanning_2018}:
 
@@ -2337,7 +2221,6 @@ The equation is made for pure elements, but in this work the average $A$, $Z$ an
 In Goldstein, Eq. 14.1 gives the $R_{K-O}$ in a specimen without the correction for $E_C$.
 The range $R_{K-O}$ calculated the equation use the critical ionization energy as a threshold, because electrons with energy lower than this is not of interest.
 Using for example $R_{K-O}/2$ as the average point for the generated intensity is an approximation which can give a reasonable result, at least it should be in the correct order of magnitude.
-\brynjar{To discussion and results: maybe this approximation is severely wrong. Monte Carlo simulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results. Also, the phi-rho-z curves show that there is a skew towards z=0, at Rc.}
 This simplification is partly justified by the fact that the available measured intensity $I$ is the sum of the intensity from all points in the interaction volume.
 Testing out different methods with varying complexity for calculating the absorption correction is a step towards finding a suitable implementation for HyperSpy.
 If a simpler model proves to be sufficient, it will allow users to understand the correction faster and possibly altering it to the specific needs, while also being easier to implement and maintain in HyperSpy.
@@ -2356,9 +2239,6 @@ If a simpler model proves to be sufficient, it will allow users to understand th
 \subsection{The PAP model}
 \label{theory:quantitative:pap}
 
-% \brynjar{Unfinished. I use PAP or XPP, not PROZA96.}
-
-
 Pouchou and Pichoir presented their PAP model for bulk corrections on a conference in 1983 and published a detailed paper about PAP in 1991\footnote{"PAP" is short for "Pouchou and Pichoir" \cite{pap_1991}.}.
 The model is a mathematical heavy model which is physically based on X-ray generation and emittance, and the model should be able to correct for a wide range of compositions \cite{pap_1991}.
 In the 1991 publication, a simplified model called XPP is also presented\footnote{"X" in XPP is probably short for e.g. express, but it is not stated in the paper.}.
@@ -2366,10 +2246,8 @@ Alternative methods exist for bulk corrections which produce similar results, bu
 One example of such a model is the PROZA96 model, which is an iterative model which calculate the $\phi(\rho z)$ curve as a double Gaussian.
 The PROZA96 model is published by Bastin, Dijkstra, and Heijligers in 1996, as an improvement to the same authors previous model from 1988 \cite{bastin_proza96_1998,bastin_proza_1988}.
 The difference between the models is the calculation of the $\phi(\rho z)$ curves, where the PAP model use a linear combination of two exponential functions to calculate the $\phi(\rho z)$ curve, not a double Gaussian as the PROZA96 model or the Gaussian model from Packwood and Brown \cite{packwood_1981}.
-As it is, allegedly, the XPP model which is used in AZtec \footnote{\url{https://www.oxinst.com/blogs/how-to-overcome-challenges-in-publishing-eds-results}}\brynjar{cite this blogpost correctly}, it is the XPP model which is tested in this work. % TODO
-Other methods, such as the PROZA96 model, could be tested in future works, using the code developed in this work as a starting point, because there are overlapping parts between the models.
-Both the PAP and the PROZA96 model use the area of the $\phi(\rho z)$ curve for parameterization, where the PROZA96 model refers to the PAP paper for the calculation of this area \cite{bastin_proza96_1998}.
-\brynjar{TODO discussion: advice future work to test the PROZA96 model, using my code as a starting point.}
+According to an Oxford Instruments blog post \cite{oxford_blog_XPP}, it is the XPP model which is used for SEM EDS bulk corrections in AZtec\footnote{The user manual \cite{aztec_manual} does not mention how the bulk corrections are calculated.}.
+Both the PAP and the PROZA96 model use the area under the $\phi(\rho z)$ curve for parameterization, where the PROZA96 model refers to the PAP paper for the calculation of this area \cite{bastin_proza96_1998}.
 At the end of the section, \verb|\cref{tab:quantitative:PAP:variables}| summarize all the variables, with their name, their use, and their units.
 \brynjar{TODO: Fix the table.}
 
@@ -2390,10 +2268,10 @@ At the end of the section, \verb|\cref{tab:quantitative:PAP:variables}| summariz
 
 
 The PAP model is a mathematical model which is based on the physics of X-ray generation and emittance.
-It is a model which calculates the emergent X-rays based on the depth distribution of the generated X-rays, $\phi(\rho z)$, and the absorption of the generated X-rays at different depths.
+It is a model which calculates the emergent X-rays based on the depth distribution of the generated X-rays, $\phi(\rho z)$, and the absorption in the matrix of the generated X-rays at different depths on the path to the detector.
 The model gives correction for homogeneous specimens, and the paper describe how it can be applied to specimen with composition varying in depth, specimen with surface coating, and lighter elements \cite{pap_1991}.
 The version which is discussed here is the model for homogeneous specimen.
-\brynjar{TODO discussion: say something about specimen geometry, as was commented on the presentation.}
+
 
 
 The $\phi(\rho z)$ curve gives the depth distribution of the generated X-rays in a bulk specimen relative to a thin specimen.
@@ -2403,7 +2281,7 @@ The intensity from each layer is divided by the intensity from a similar, but th
 As the bulk specimen have many backscattered electrons, which also generate X-rays, the $\phi(\rho z)$ curve has a distinct and general shape:
 The curve starts above 1, increase to a maximum, and then decrease to 0.
 Three $\phi(\rho z)$ curves are illustrated in \cref{fig:theory:quantification:phi_rho_z_curves}.
-At the end of this section, $\phi(\rho z)$ curves are plotted with the equations from the PAP model.
+The PAP model allows calculation of the $\phi(\rho z)$ curves.
 
 
 
@@ -2417,13 +2295,14 @@ At the end of this section, $\phi(\rho z)$ curves are plotted with the equations
         Al K$\alpha$ in Al and Ti, and Cu K$\alpha$ in Cu, calculated at 15 kV.
         The curves are calculated with the PROZA model \cite{bastin_proza_1988}
         Adapted from Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
-        % \brynjar{Is it supposed to be "Al Ka in Cu", not "Cu Ka in Cu", because of increased rho? Al Ka and Cu Ka have very different $E_C$.}
     }
     \label{fig:theory:quantification:phi_rho_z_curves}
 \end{figure}
 
 
-The following is a concise description of the PAP model, detailed enough to implement the model in a Jupyter Notebook. For further details, see the original paper \cite{pap_1991}, the fourth edition of Goldstein for a brief description \cite{goldstein_scanning_2018}, the second edition of Goldstein for a more detailed description \cite{goldstein_2ed_1992}, or \dots \brynjar{find more references, e.g. Reimer}.
+The following is a concise description of the PAP model. 
+% , detailed enough to implement the model in a Jupyter Notebook. 
+For further details, see the original paper \cite{pap_1991}, the fourth edition of Goldstein for a brief description \cite{goldstein_scanning_2018}, the second edition of Goldstein for a more detailed description \cite{goldstein_2ed_1992}, or \dots \brynjar{TODO find more references, e.g. Reimer}.
 
 
 
@@ -2435,8 +2314,8 @@ The following is a concise description of the PAP model, detailed enough to impl
 \subsubsection{General principle of the PAP model}
 \label{theory:quantitative:pap:general_principle}
 
-The PAP model is in accordance with the original definitions from Castating.
-The calculations done in the PAP model is divided into two parts: (a) find the \emph{generated intensity} by calculating the area $F$ under the $\phi(\rho z)$ curve, and (b) calculate the \emph{emitted intensity} $F(\chi)$ based on a parabolic representation of $\phi(\rho z)$ with an absorption correction.
+The PAP model is in accordance with the original definitions from Castating \cite{castaing_1951}.
+The calculations done in the PAP model is divided into two parts: (i) find the \emph{generated intensity} by calculating the area $F$ under the $\phi(\rho z)$ curve, and (ii) calculate the \emph{emitted intensity} $F(\chi)$ based on a parameterization of $\phi(\rho z)$ with an absorption correction in each $\rho z$ layer.
 Both calculations are done analytically.
 A summary of the variables in this principle part of the PAP model is given in \cref{tab:quantitative:PAP:variables:principle}.
 
@@ -2449,7 +2328,7 @@ A summary of the variables in this principle part of the PAP model is given in \
     n_A = C_A \frac{N^0}{A} Q(U) F
 \end{equation}
 
-Where $n_A$ is the number of generated primary ionizations from atoms of element A, $C_A$ is the concentration of element A in weight percent\footnote{The author have had some frustrating moments because of mixing of wt\% and at\% while working with quantitative EDS.}, $N^0$ is Avogadro's number, $A$ is the atomic weight of element A\footnote{The author of this work assumes $A$ is the atomic weight, but it is not stated explicit in the PAP-paper.}, $Q(U)$ is the ionization cross-section of the line with the given overvoltage ($U$)\footnote{$Q(U)$ is noted as $Q_l^A(E_0)$ in the PAP-paper.}, and $F$ is the integral of $\phi(\rho z)$.
+Where $n_A$ is the number of generated primary ionizations from atoms of element A, $C_A$ is the concentration of element A in weight percent\footnote{Note that in quantitative EDS the calculations are done in wt.\%, but the results can be given in at.\%.}, $N^0$ is Avogadro's number, $A$ is the atomic weight of element A\footnote{It is not stated explicit in the PAP-paper, but based on \cite{love_scott_1990} and a units analysis, $A$ is the atomic weight.}, $Q(U)$ is the ionization cross-section of the line with the given overvoltage ($U$)\footnote{$Q(U)$ is noted as $Q_l^A(E_0)$ in the PAP-paper.}, and $F$ is the integral of $\phi(\rho z)$.
 
 % F = int_0^infty phi(rho z) dz
 \begin{equation}
@@ -2497,7 +2376,7 @@ The relation between the emitted and generated intensity will give the absorptio
 
 
 
-\subsubsection{PAP/XPP (a) Calculation of area $F$}
+\subsubsection{PAP: Calculation of area $F$}
 % \label{theory:quantitative:pap:calculation_of_F}
 
 The area F under the $\phi(\rho z)$ curve is proportional to the number of generated primary intensity, and does thus contain the Z dependence.
@@ -2506,25 +2385,24 @@ F is the product of the deceleration factor ($1/S$) and the backscatter factor (
 % F = 1/S * R
 \begin{equation}
     \label{eq:theory:quantitative:pap:calculation_of_F:F}
-    F = \frac{R}{S} / \cdot Q(U)
+    F = \frac{R}{S}   \frac{1}{Q(U)}
 \end{equation}
 
-% \brynjar{TODO: F is R/S / Q}
-
-
-Now the PAP-paper is at times somewhat confusing, both because the lack of explanation of some symbols, and because of slightly contradicting equations.
+The PAP-paper is at times somewhat confusing, both because the lack of explanation of some symbols, and because of slightly contradicting equations.
 In equation (2) it is stated that $n_A = C_A (N^0/A) Q(U) F$, and in equation (3) it is stated that $n_A = C_A (N^0/A) (R/S)$.
 This implies that $(R/S) = Q(U) F$.
 However, equation (13) states that $F = (R/S) \cdot Q(U)$, which is a contradiction to equation (2) and (3).
-The author of this work assumes that the equation (13) is incorrect, but both variations for the calculation of $F$ is tested in the Jupyter Notebook.
+Based on a units analysis and the fact that the generated intensity should depend on $Q(U)$ as the probability of ionization, it is assumed that $F = (R/S) / Q(U)$ is the correct equation.
+Both formulations will however be tested, to verify this assumption.
 % TODO discuss: why the correction shuld be divided by Q(U), as it can be viewed as a probability.
-
-
+% TODO discuss: not including 1/Q gave very wrong results, and were excluded from the results, but can be tested with the Notebook.
+% TODO: do not mention notebook in theory.
 
 
 % \subsubsection*{\emph{Deceleration factor,} $1/S$}
 
-\paragraph*{\emph{The deceleration factor $1/S$}} is a measure of the energy loss of the electrons as a function of energy in the specimen. $1/S$ is an integral over energy from the incident energy ($E_0$) to the energy of the characteristic X-ray ($E_C$), of the product of the ionization cross-section ($Q(U)$) and the energy loss function ($dE/d\rho s$):
+\paragraph*{\emph{The deceleration factor $1/S$}} is a measure of the electrons energy loss in the specimen, as a function of the energy that the electrons have.
+$1/S$ is an integral over energy from the incident energy ($E_0$) to the energy of the characteristic X-ray ($E_C$), of the product of the ionization cross-section ($Q(U)$) and the energy loss function ($dE/d\rho s$):
 
 % 1/S = int_E_C^E_0 Q_l^A(E)(dE/d rho s) dE
 \begin{equation}
@@ -2555,9 +2433,9 @@ Where:
 \end{equation}
 
 The K level $m$ is taken from the PROZA96 model, which use the same function for ionization cross-section, but with an improvement for the K level \cite{bastin_proza96_1998}.
-The equation for $Q$ is "proportional to" and not "equal to", but when dealing with the same instrumental parameters (accelerating voltage, take-off angle, beam current, etc.), the proportionality constant is the same for all elements.
-In other words, for the calculations done in the PAP model, the proportionality constant is not needed, and $Q$ is calculated by the equation above.
-A plot of the ionization cross-section as a function of overvoltage using \cref{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection} is shown in \cref{fig:PAP:ionization_cross_section}.
+The formulation in \cref{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection} for $Q$ is "proportional to" and not "equal to", but when dealing with the same instrumental parameters (accelerating voltage, take-off angle, beam current, etc.), the proportionality constant is the same for all elements.
+In other words, for the calculations done in the PAP model, the proportionality constant is not needed, and $Q$ can be calculated by \cref{eq:theory:quantitative:pap:calculation_of_F:ionizationcrosssection}.
+A plot of $Q(U)$ with this equation is shown in \cref{fig:PAP:ionization_cross_section}.
 
 
 % figures/PAP_ionization_cross_section.pdf
@@ -2575,7 +2453,8 @@ A plot of the ionization cross-section as a function of overvoltage using \cref{
 
 
 The average energy loss ($dE/d\rho s$) is not calculated from the law of Bethe, as that equation is not valid for low energies \cite{inokuti_on_bethe_1971,pap_1991}.
-Instead, the PAP model calculate the average energy loss from the equation:
+Instead, the PAP model calculate use a formulation for the average energy loss which is equal to the Bethe equation from around 1 keV, but is also empirically corrected for lower energies.
+The average energy loss is calculated as:
 
 % dE/d rho s = - (M/J) * (1/f(V))
 
@@ -2639,7 +2518,7 @@ i.e.
 \end{equation}
 
 
-\brynjar{Add a table with the constants and their units?}
+\brynjar{TODO: Add a table with the constants and their units?}
 
 
 The analytical solution for $1/S$ through the expression for the ionization cross-section and the deceleration of the electrons, where $ T_K = 1 + P_k - m$:
@@ -2658,7 +2537,8 @@ The analytical solution for $1/S$ through the expression for the ionization cros
 % (2.2 \cdot 10^{-6}/J (V_0/U_0)^{(-0.5 +0.25J)} \cdot ((1+(-0.5 +0.25J)-m)U_0^{1+(-0.5 +0.25J)-m} \cdot \ln(U_0)-U_0^{1+(-0.5 +0.25J)-m}+1)/(1+(-0.5 +0.25J)-m)^2)
 % $
 
-The equation above is written out in the notebook for the PAP model.
+% The equation above is written out in the notebook for the PAP model.
+This parametrization can be used in quantification of experimental data.
 \cref{fig:PAP:energy_loss_electrons_dE_drhos} show the energy loss of the electrons in GaAs, GaSb, and Cu, according to the PAP model.
 
 
@@ -2668,8 +2548,8 @@ The equation above is written out in the notebook for the PAP model.
     \includegraphics[width=0.8\linewidth]{figures/PAP_energy_loss_dE_drhos.pdf}
     \caption{
         The energy loss of electrons, $dE/d\rho s$,  in GaAs, GaSb, and Cu.
-        Cu is added for reference to figure 4 in the PAP paper \cite{pap_1991}.
-        The x-axis is logarithmic.
+        Cu is added for comparison to the plot in the PAP paper \cite[Fig. 4]{pap_1991}.
+        Note that the x-axis is logarithmic, i.e. going up to 50 keV.
     }
     \label{fig:PAP:energy_loss_electrons_dE_drhos}
 \end{figure}
@@ -2679,13 +2559,14 @@ The equation above is written out in the notebook for the PAP model.
 
 % \subsubsection*{\emph{The backscattering factor,} $R$}
 
-\paragraph*{\emph{The backscattering loss factor $R$}} is the fraction of the electrons that can generate X-rays, i.e. are not backscattered, calculated from the equation:
-% The backscattering loss factor $R$ is calculated from the equation:
+\paragraph*{\emph{The backscattering loss factor $R$}} is the fraction of the electrons that can generate X-rays, i.e. the electrons that are not backscattered.
+Higher Z material will backscatter more, and thus have a lower $R$.
+The backscattering loss factor is calculated as:
 
 % $  $
 \begin{equation}
     \label{eq:theory:quantitative:pap:calculation_of_F:R}
-    R = 1- \bar{\eta}  \cdot \bar{W} \cdot (1-G(U_0))
+    R = 1 - \bar{\eta}  \cdot \bar{W} \cdot (1-G(U_0))
 \end{equation}
 
 Where:
@@ -2700,12 +2581,11 @@ Where:
 \end{itemize}
 
 
-$\bar{\eta}$ is the mean backscattering coefficient, 
-% \footnote{It looks like $\bar{\eta}$ is raised to (-4.55), but that is not the case. The difference between a bar and a minus is small, but crucial.}
-$\bar{W}$ is the mean reduced energy of the backscattered electron, $\bar{Z}_b$ is the weighted mean atomic number, and $U_0$ is the overvoltage.
+$\bar{\eta}$ is the mean backscattering coefficient, $\bar{W}$ is the mean reduced energy of the backscattered electron, $\bar{Z}_b$ is the weighted mean atomic number, and $U_0$ is the overvoltage.
 $G(U_0)$ is an equation from Coulon and Zeller \cite[Reference 28]{pap_1991}, calculated with $J_G(U_0)$ and $q$.
 The backscattering factor for Z=1 to Z=90 is plotted with different overvoltages in \cref{fig:PAP:backscattering_factor}.
 At higher Z the backscattering loss factor is lower, because a fewer portion of the electrons can generate X-rays.
+% \footnote{It looks like $\bar{\eta}$ is raised to (-4.55), but that is not the case. The difference between a bar and a minus is small, but crucial.}
 
 % figures/PAP_backscattering_factor.pdf
 
@@ -2724,12 +2604,13 @@ At higher Z the backscattering loss factor is lower, because a fewer portion of 
 
 
 
-\subsubsection{PAP/XPP (b) Emergent intensity through parabolic representation of $\phi(\rho z)$}
+\subsubsection{PAP: Emergent intensity $F(\chi)$}
 
-The system of equations which lead to the parabolic representation of $\phi(\rho z)$ is given in the original paper \cite{pap_1991}, and is not repeated here.
+$F(\chi)$ is the emergent intensity from the specimen, where a parameterization of $\phi(\rho z)$ is used, with added absorption correction.
+The system of equations which lead to the parameterization of $\phi(\rho z)$ is given in the original paper \cite{pap_1991}.
 The section covers the necessary calculations to find the emitted intensity, which is described as the "Simplified model: XPP".
-The structure of the XPP model is similar to the PAP model, and XPP is chosen in this work as it is the model which is used in AZtec \brynjar{cite}.
-Thus, the following equations are from the XPP model.
+The structure of the XPP model is similar to the PAP model, and XPP is chosen in this work as it is the model which is used in AZtec \cite{oxford_blog_XPP}.
+Thus, the following equations are for the XPP model.
 
 
 The emergent intensity of a specimen is given by \cref{eq:theory:quantitative:pap:general_principle:I_A} and the definition of $F(\chi)$ is given by \cref{eq:theory:quantitative:pap:general_principle:f_of_chi}. The analytical solution of $F(\chi)$ is given by:
@@ -2742,7 +2623,8 @@ The emergent intensity of a specimen is given by \cref{eq:theory:quantitative:pa
     F(\chi) = \frac{A}{a+ \chi} + \frac{\phi(0) - A}{b + \chi} + \frac{B}{(b + \chi)^2}
 \end{equation}
 
-Where $A$, $B$, $a$ and $b$ are parameters of the parabolic representation of $\phi(\rho z)$, and $\phi(0)$ is the surface ionization. The absorption correction factor can then be calculated by:
+Where $A$, $B$, $a$ and $b$ are the parameterization of $\phi(\rho z)$, and $\phi(0)$ is the surface ionization. 
+The absorption correction factor can then be calculated by the emergent intensity divided by the generated intensity, as:
 
 % f(chi) = F(chi)/F
 \begin{equation}
@@ -2759,7 +2641,7 @@ Where $A$, $B$, $a$ and $b$ are parameters of the parabolic representation of $\
 % \subsubsection*{\emph{Surface ionization potential} $\phi(0)$ \emph{and the slope} $P$}
 % \subsubsection*{\emph{Calculating} $\phi(0)$, $\bar{R}$, \emph{and} $P$}
 \paragraph*{\emph{Calculating the surface ionization potential $\phi(0)$, the mean depth of ionization $\bar{R}$, and the initial slope $P$}} is the next step in the XPP model.
-These three parameters are used to calculate $A$, $B$, $a$, and $b$, which is used to get the parabolic representation $F(\chi)$ for $\phi(\rho z)$.
+These three parameters are used to calculate $A$, $B$, $a$, and $b$, which is used to get the parameterization $F(\chi)$ for $\phi(\rho z)$.
 
 
 The surface ionization potential is the amount of ionization happening at the surface of the specimen, which is the starting point for the $\phi(\rho z)$ curve. The surface ionization potential is given by:
@@ -2802,9 +2684,8 @@ Where $X$ and $Y$ are given by:
 \end{itemize}
 
 
-
-It is stated in the XPP computation scheme that "If $ F/\bar{R} < \phi(0) $, impose the condition $ \bar{R} = F/\phi(0) $" \cite[Appendix 4]{pap_1991}.
-\brynjar{Implement this check.}
+% TODO: add back the sentence below?
+% It is stated in the XPP computation scheme that "If $ F/\bar{R} < \phi(0) $, impose the condition $ \bar{R} = F/\phi(0) $" \cite[Appendix 4]{pap_1991}.
 
 
 The initial slope $P$ is given by:
@@ -2821,9 +2702,9 @@ Where $g$ and $h$ are given by:
     \item $ h = 1 - 10(1-\frac{1}{1+ U_0/10})/\bar{Z}_b^2 $
 \end{itemize}
 
-
-The slope $P$ have a similar comment as $\bar{R}$, which states that "If necessary, limit the value $ g \cdot h^4 $ to the value $ 0.9 \cdot b\cdot  \bar{R}^2 \cdot [b - 2 \phi(0)/F] $".
-\brynjar{Implement this too.}
+% TODO: add back the sentence below?
+% ", but can be ignore to date when rewritten for current generation of ...."
+% The slope $P$ have a similar comment as $\bar{R}$, which states that "If necessary, limit the value $ g \cdot h^4 $ to the value $ 0.9 \cdot b\cdot  \bar{R}^2 \cdot [b - 2 \phi(0)/F] $".
 
 
 
@@ -2835,7 +2716,7 @@ The slope $P$ have a similar comment as $\bar{R}$, which states that "If necessa
 % \subsubsection*{\emph{Calculating} $A$, $B$, $a$, \emph{and} $b$}
 
 
-\paragraph{\emph{The parameters $A$, $B$, $a$, and $b$}} are used to calculate the parabolic representation $F(\chi)$ for $\phi(\rho z)$.
+\paragraph{\emph{The parameters $A$, $B$, $a$, and $b$}} are used to calculate the parameterization $F(\chi)$ for $\phi(\rho z)$.
 They can also be used to calculate $\phi(\rho z)$, which is done further down.
 Additionally, the parameter $\varepsilon$ is used in the calculation of $A$ and $B$.
 The parameters are calculated sequentially, starting with $b$, then $a$, then $\varepsilon$, then $B$, and finally $A$.
@@ -2856,9 +2737,10 @@ The parameters are calculated sequentially, starting with $b$, then $a$, then $\
     \varepsilon = \frac{a-b}{b}
 \end{equation}
 
-The PAP paper have the following comment on the value of $\varepsilon$: "If necessary, impose on $\varepsilon$ a minimum absolute value (e.g. $10^{-6}$), and then assume $ a = b \cdot(1+\varepsilon) $".
-If the author understands this correctly, the comment is aimed at computational issues in the 90s where values too close to zero would cause numerical issues.
-Thus, this is not implemented in the code, as it is not necessary with modern computers.
+% TODO: add back the sentence below?
+% The PAP paper have the following comment on the value of $\varepsilon$: "If necessary, impose on $\varepsilon$ a minimum absolute value (e.g. $10^{-6}$), and then assume $ a = b \cdot(1+\varepsilon) $".
+% The comment is aimed at computational issues in the 90s where values too close to zero would cause numerical issues.
+% ", but can be ignore to date when rewritten for current generation of ...."
 
 
 The parameter $A$ and $B$ are then calculated by:
@@ -2876,51 +2758,20 @@ The parameter $A$ and $B$ are then calculated by:
 
 With $A$, $B$, $a$, $b$ and $\phi(0)$ calculated, the absorption correction $f(\chi)$ and the emergent intensity through $F(\chi)$ can be calculated with \cref{eq:theory:quantitative:pap:absorption_correction} and \cref{eq:theory:quantitative:pap:F_of_chi} respectively.
 
-
-That covers the necessary theory for the XPP model to be implemented in code.
-
-
-\paragraph{Plotting the depth distribution $\phi(\rho z)$} can be done with the now calculated parameters $A$, $B$, $a$, $b$ and $\phi(0)$.
-It is useful to plot $\phi(\rho z)$ and the other functions in the XPP model to see how the model behaves, and to see if the model is implemented correctly by comparing the plots to the plots in the PAP paper.
-It is the absorption correction factor given in \cref{eq:theory:quantitative:pap:absorption_correction} that is used and tested on the EDS data acquired in this work.
-\cref{fig:pap:phi_of_rhoz} is a plot of $\phi(\rho z)$ for Ga L$\alpha$ in GaAs.
-The curve is calculated with the following equation for $\phi(\rho z)$ is given in the PAP paper:
-
-% $  $
+Plotting the $\phi(\rho z)$ curves can be done with the now calculated parameters $A$, $B$, $a$, $b$ and $\phi(0)$, as:
 
 \begin{equation}
     \label{eq:theory:quantitative:pap:phi_of_rho_z}
     \phi (\rho z) = A \cdot \exp(- a \cdot (\rho z)) + (B \cdot (\rho z) + \phi(0) - A) \cdot \exp(- b \cdot (\rho z))
 \end{equation}
 
+% TODO consider having a plot here, instead of in discussion.
 
-% figures/PAP_phi_of_rhoz.pdf
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/PAP_phi_of_rhoz.pdf}
-    \caption{
-        Plot of $\phi(\rho z)$ for Ga L$\alpha$ in GaAs.
-        The plot shows three different beam energies, 15 (blue), red (10), and 5 (green) keV.
-        \brynjar{As of now, the numbers on the y-axis are correct, but the x-axis is off by a factor of 10, I think.}
-    }
-    \label{fig:pap:phi_of_rhoz}
-\end{figure}
+This should cover the necessary theory for the XPP model to be implemented in code developed in this project.
 
 
 
 
-
-
-\subsubsection{Additional comment to the PAP/XPP procedure}
-
-Section II.E in the PAP paper is discussing the absorption coefficients for the PAP model, and Appendix 5 lists some values for $\mu_\rho$ associated with the PAP procedure \cite{pap_1991}.
-These numbers are in the same range as the numbers provided by HyperSpy, but there are deviations.
-For example, the line As L$\alpha$ in GaAs bulk is given $\mu_\rho = 7000$ in the PAP paper, and the value $\mu_\rho = 3744$ by HyperSpy.
-Cu L$\alpha$ in pure Cu is given $\mu_\rho = 1755$ in the PAP paper, and $\mu_\rho = 1515$ by HyperSpy.
-Cu L$\beta$ in pure Cu is given $\mu_\rho = 750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta1$.
-These deviations might be a source of error, which would lead to some adjustments of the PAP or XPP equations.
-Such corrections might have been published as an update to the PAP/XPP procedure in a more recent paper, and can have been implemented by Oxford Instruments in their AZtec software to allow for more accurate quantification with updated constants and equations.
-Investigating such possibilities are outside scope of this work, and might be a starting point for future work.
 
 
 
