@@ -431,7 +431,7 @@ Other parameters like the count rate and PT should be used to adjust the amount 
 The calculated Duane-Hunt limits are close to the expected values, i.e. the set beam energy on the SEM.
 According to the ISO 22309 standard \cite{iso_quantification_22309}, it is required for quantification that the specimen is not charging and that the indicated beam energy is correct.
 The specimen was not expected to have charging issues, and thus the Duane-Hunt limit may look little useful in the context of this work.
-However, the metric is also a demonstration of the sucsessful conductive path between the specimen, to the stage, and to ground.
+However, the metric is also a demonstration of the successful conductive path between the specimen, to the stage, and to ground.
 Calculating the metric is fast and does not need much interpretation, and thus it can be used as a quick check to see if issues with the conductive path are present.
 In addition, the Duane-Hunt limit was used as the upper limit for the energy range when making the models of the spectra, and thus it was useful in that context.
 
@@ -578,7 +578,7 @@ The summarization of the performance parameters in \cref{tab:results:performance
 % the detector
 Based on the calculated metrics, the detector performs well.
 The energy resolution achieved at 127 $\pm$6 eV is the same as the manufacturer specification.
-As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the Xmax-N detector is 127 eV\cite{oxford_xmax_80}, with typical values og 125 eV, and this fits well with the variations observed when using different peaks as the reference peak.
+As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the XMAX-N detector is 127 eV\cite{oxford_xmax_80}, with typical values of 125 eV, and this fits well with the variations observed when using different peaks as the reference peak.
 The energy axis through the scale and offset is calibrated well, as their deviations from the set values are small, and the deviations for the calibrated peak positions are very low.
 In addition to the scale and offset, the Duane-Hunt limit further indicates that there are no issues between the communication between the detector, the software and the SEM.
 The peak ratios gave indications of absorption.
@@ -590,10 +590,10 @@ Using the Fiori P/B ratio to compare different detectors requires the same speci
 
 % the acquisition parameters
 The acquisition parameters are important for acquisition of good spectra.
-Some of the spectra acquired had too few counts, which were reflected in low Fiori numbers and high peak ratios.
+Some spectra acquired had too few counts, which were reflected in low Fiori numbers and high peak ratios.
 The energy resolution was not affected by few counts, showing that it was high background and much noise that disturbed the poorer quality spectra, as similar energy resolution indicate that the detection worked equally well.
 The spectra with too few counts were due to low beam current.
-However, the Fiori numbers and the quantification indicate that some of the spectra had more counts than necessary.
+However, the Fiori numbers and the quantification indicate that some spectra had more counts than necessary.
 Optimization of $i_b$ is important for EDS analysis, because reduced acquisition time will reduce the risk of beam damage and allow faster acquisition.
 Faster acquisition allows more mapping, detailed mapping, and less time spent on expensive instruments.
 Some spectra show issues with beam energy through overvoltage, but also through low counts, as  $E_0$ and $i_b$ together with specimen properties determine the number of X-rays generated in the specimen.
@@ -604,6 +604,11 @@ The energy resolution difference between PT 4 and PT 6 was low, but the acquisit
 
 
 \clearpage
+
+
+
+
+
 
 
 
@@ -656,6 +661,9 @@ The energy resolution difference between PT 4 and PT 6 was low, but the acquisit
 % Documentation is not extensive, but think has matrix corrected composition analysis. (Furture work)"
 
 
+% TODO: comment on the goal of getting 50:50, as two errors can cancel each other out
+
+
 \subsection{Initial quantification}
 \label{discussion:bulk_corrections:initial_quantification}
 
@@ -674,6 +682,39 @@ The overvoltage on Sb L$\alpha$ in the 5 kV spectrum is below 1.4, while the ove
 
 
 % TODO ton, on the summary table: "How did you wanted to discus and draw conclusions from these numbers? Errors and ranges, as absorption and constants, are case dependent."
+
+
+% TODO: rewirte, taken from results:
+% What corrections are needed for the intensity ratio?
+\cref{tab:results:initial_quantification} and \cref{fig:results:initial_quantification} show that the need for corrections are varying with both specimen and acquisition parameters.
+% GaAs
+Different $i_b$ are not affecting the correction needs much, but the $E_0$ is.
+All the GaAs spectra need corrections which increase the weight of As.
+AZtec have applied corrections to the GaAs spectra, where the results are pushing As too high at 5 kV and 10 kV, and not high enough at 30 kV.
+The 15 kV GaAs corrections done by AZtec on GaAs is good, resulting at 50.6:49.4.
+% TODO discuss: the need to increase the weight of As is due to absorption of As X-rays is Ga.
+% GaSb
+The trend in the GaSb spectra are not as clear as for GaAs.
+The 30 kV GaSb spectra appears to require little corrections, and have good results with the intensity ratio.
+The 15 kV and 10 kV spectra of GaSb need corrections to increase the weight of Sb.
+The GaSb 15 kV and 10 kV spectra are quantified with Ga L$\alpha$ and Sb L$\alpha$.
+% The intensity in the Sb L$\alpha$ peak in the 15 kV and 10 kV spectrum are too low, compared to the Ga L$\alpha$ peak.
+AZtec have corrected the 15 kV and 10 kV compositions well.
+% TODO discuss: 15 kV are slightly better than 10 kV.
+% TODO discuss: the need to increase the weight of Sb. The absorption should be stronger of Ga La, so this is not the reason. Probably a Z effect. Also overvoltage. Maybe omega.
+
+
+% TODO: rewirte, taken from results:
+Since the absorption should be stronger of the Ga L$\alpha$ peak than the Sb L$\alpha$ peak, the absorption should not be the reason for the low Sb content.
+The low Sb content in the 15 kV and 10 kV spectra can be due to the overvoltage differences.
+Ga L$\alpha$ has overvoltage $U = 15/1.1 = 13.6$, and Sb L$\alpha$ has $U = 15/3.6 = 4.2$ at 15 kV.
+From the estimated ionization cross-section as a function of overvoltage, seen in \cref{fig:PAP:ionization_cross_section}, the maximum $Q(U)$ is at $U = 3.4$.
+Thus, the overvoltage at 15 kV should not be the reason for the low Sb content.
+% TODO discuss: the reason for the low Sb content at 15 kV is not the overvoltage, but something else.
+The different intensities are thus probably an effect of different Z. This should be treated somewhat by the PAP method.
+
+
+
 
 
 \subsection{Quantification of SEM EDS data with the thin film assumption}
