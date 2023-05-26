@@ -489,20 +489,17 @@ The remaining results are also in need of closer inspections, as the results fro
 
 % \subsection{Quantification of SEM EDS data based on the Cliff-Lorimer method} % Tons suggested title
 \subsection{Quantification of SEM EDS data with the thin film approximation}
-\label{sec:results:quantification_cliff_lorimer}
+\label{results:quantification_cliff_lorimer}
 
 
 Quantitative analysis of the SEM EDS bulk spectra was also done under the presumption that the specimen was a TEM specimen, i.e. under the thin film approximation.
 The thin film approximation assumes no absorption of the created X-rays in the specimen, and is a part of the Cliff-Lorimer (CL) method covered in \cref{sec:theory:quantitative:k_factor_vs_k_ratio}.
 The presumption that the specimen is a TEM specimen was both applied in AZtec with the "TEM setting", and in HyperSpy with the CL method.
-% The TEM EDS quantification in AZtec is probably also done with the CL method, but it is not stated in the documentation.
-% TODO discussion: comment that the manual does not say how the TEM quantification is done, but a blogpost says it is CL method. In addition, the setting give the k-factors, which are a part of the CL method.
 TEM EDS quantification of SEM EDS data can readily be done, even though it is formally incorrect.
 
 % the table
 The results from the TEM EDS quantification routines are tabulated in \hyperref[appendix:tables]{Appendix C} in \cref{tab:results:TEM_quantification}, and average numbers from that table is presented in \cref{tab:results:TEM_quantification_stats}.
 % TODO: check the appendix reference
-% In \hyperref[appendix:tables]{Appendix C} (\cref{appendix:tables}), \cref{tab:appendix:mock_table}, the results are tabulated for all the spectra.
 The calculated k-factors, which are extracted from AZtec and needed for the CL method in HyperSpy, are included in \cref{tab:results:TEM_quantification}.
 The CL method in HyperSpy was done with and without the TEM absorption corrections, which is a part of the implemented CL quantification function.
 The "CL*" column is without absorption corrections, and the other "CL" columns are with the TEM absorption corrections, where the $t$ is the set specimen thickness.
@@ -518,9 +515,9 @@ Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high, and
 The Sb M$\eta$ peak is not available in HyperSpy, and no k-factor is given for the Sb L$\alpha$ line in this spectrum.
 Thus, it is not possible to quantify the 5 kV GaSb spectrum with HyperSpy.
 % When using TEM mode, AZtec selects the Sb M$\eta$ line at 5 kV, and as this line is not included in HyperSpy, the 5 kV GaSb spectra were not quantified in HyperSpy.
-% TODO discuss: not possible to quantify with HyperSpy at 5 kV, as the Sb M$\eta$ line is missing and thus there are no k-factor for Sb La.
-% TODO discuss: HyperSpy will not give k-factors, even though some people ask for it (Gitter). This is becaues that would give a high uncertainty, as the k-factors are partly dependent on the detector.
-% TODO discuss from Ton: "In discussion can debate of other more correct k-factors would lead to substantial better quantification or that own k-factors can be extracted from the data you have and if that helps, even seen the wrong preassumption"
+% DONE discuss: not possible to quantify with HyperSpy at 5 kV, as the Sb M$\eta$ line is missing and thus there are no k-factor for Sb La.
+% DONE discuss: HyperSpy will not give k-factors, even though some people ask for it (Gitter). This is becaues that would give a high uncertainty, as the k-factors are partly dependent on the detector.
+% DONE discuss from Ton: "In discussion can debate of other more correct k-factors would lead to substantial better quantification or that own k-factors can be extracted from the data you have and if that helps, even seen the wrong preassumption"
 
 
 % comment on the table values
@@ -554,15 +551,10 @@ The deviations are increased further when $t$ is set to 10000 nm.
 \clearpage
 
 
-\subsection{Matrix corrections}
-\label{results:matrix_corrections}
+\subsection{ZAF absorption corrections}
+\label{results:ZAF}
 
-
-
-\subsubsection{ZAF absorption corrections}
-\label{results:matrix_corrections:ZAF}
-
-The ZAF absorption corrections were done with \cref{eq:theory:quantitative:absorption}. %, and the results are presented in \cref{tab:results:ZAF_corrections_factors} and \cref{tab:results:ZAF_corrections_compositions}.
+The ZAF absorption corrections were done with \cref{eq:theory:quantitative:absorption}. 
 The calculated maximum electron range $r$ is presented in \cref{tab:results:ZAF_corrections_range_r}.
 To calculate the absorption correction factors, $r$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
 The calculated ZAF absorption correction factors are given in \cref{tab:results:ZAF_corrections_factors}, which are applied to get compositions in \cref{tab:results:ZAF_corrections_compositions}, which are presented with average numbers in \cref{tab:results:ZAF_corrections_compositions_stats}.
@@ -571,34 +563,23 @@ The calculated ZAF absorption correction factors are given in \cref{tab:results:
 % comment on the table values
 The ZAF absorption corrections improve the GaAs quantification, but deviations from 50 at\% in the GaSb quantification is increased.
 For GaAs, the best result is achieved when the maximum electron range is divided by 4, i.e. the absorption correction is applied to an average point close to the surface.
-% TODO? illustrate the different r values? Also, r is different for kV values.
+% DONE? illustrate the different r values? Also, r is different for kV values.
 When $r$ is divided by four, the average deviation is improved from 12 at\% to 7 at\%, compared to the uncorrected intensity ratio method.
 With $r/4$, the number of spectra with $> 10$ at\% deviation is reduced from 4 to 2, and the number of spectra with $< 5$ at\% deviation is increased from 0 to 3.
 For GaSb, the average deviation decrease when $r$ is divided by a higher number, but the deviations are $> 20$ at\% anyway, which is quite poor.
-% TODO discuss: ZAF A implies that GaAs needs abs. corr, but that GaSb have issue with something else. Z is close for Ga and As, while far apart for Ga Sb. Thus, Z effects might not be negligble as stated in Goldstein.
-% TODO discuss: the ZAF A corrections are not good enough, at lest with the average point method tested in this work.
-% TODO discuss: mu_rho is taken from HS, and slight deviations can give large impacts, as mu_rho is in the exponent. ref to eq. in theory. 
-% TODO discuss: my model is not reality. I had a bug for the range r, and when i fixed in the GaAs quantification was actually deviating more.
+% DONE discuss: ZAF A implies that GaAs needs abs. corr, but that GaSb have issue with something else. Z is close for Ga and As, while far apart for Ga Sb. Thus, Z effects might not be negligble as stated in Goldstein.
 
-
-% \input{tables/results/table_ZAF_A_range_r.tex} % Is now in appendix
-% \input{tables/results/table_ZAF_A_factors.tex} % Is now in appendix
-% \input{tables/results/table_ZAF_A_compositions.tex} % Is now in appendix
 \input{tables/results/table_ZAF_A_compositions_stats.tex}
 
 
 
 
 
-\subsubsection{XPP corrections}
-\label{results:matrix_corrections:XPP}
-
-% The correction factors calculated with XPP are presented in \cref{tab:results:XPP_corrections_factors}.
-% These correction factors were calculated with the XPP notebook, which is in \hyperref[appendix:xpp]{Appendix B}.
-
+\subsection{XPP corrections}
+\label{results:XPP}
 
 The XPP corrections were done in two ways, where the measured intensity of a peak $I_A$ is divided by the calculated generated intensity of the peak $F$, or by the calculated XPP absorption correction factor $f(\chi)$.
-% TODO disucss: divide by F is a Z correction, and divide by f(chi) is both Z and A correction.
+% DONE disucss: divide by F is a Z correction, and divide by f(chi) is both Z and A correction.
 Both ways are presented in \cref{tab:results:XPP_compositions}, where the uncorrected compositions are included for comparison.
 % All compositions are in atomic percent, and are calculated with the relative peak area method.
 Average numbers for the XPP corrections are given in \cref{tab:results:XPP_compositions_stats}.
@@ -611,7 +592,7 @@ A finished product for XPP bulk corrections should have iterative calculations o
 The corrections with $f(\chi)$, i.e. the absorption correction, improves the GaAs quantification.
 Similar to the ZAF absorption corrections, the GaSb quantification is not improved when corrected with $f(\chi)$.
 The absorption correction with XPP reduce the average deviation in GaAs from 12 at\% to 5 at\%, which is better than the ZAF absorption correction.
-% TODO discuss: again, the GaSb is made much worse. Doing abs. corr if not needed seems to make the results bad, at lest with the avaliable input parameters used in this work.
+% DONE discuss: again, the GaSb is made much worse. Doing abs. corr if not needed seems to make the results bad, at lest with the avaliable input parameters used in this work.
 % TODO discuss: XPP better than ZAF.
 
 When GaSb is corrected with $F$, the average is unchanged. 
@@ -620,14 +601,9 @@ The quantification of the 15 kV and 10 kV GaSb spectra are improved with the $F$
 The XPP corrections are dependent on the beam energy, making the effect at 30 kV different from the effect at 15 kV and 10 kV.
 In the 30 kV spectra, the Ga line is given a weight which increase its composition relative to the Sb line, while the opposite is done in the 15 kV and 10 kV spectra.
 
-% TODO discuss: add Fig 19.14 p.305 from Goldstein with F and F(chi) to illustrate why the chosen corrections were used.
-% TODO discuss: the right XPP corrections make the results better, but it may be that different kV and specimen (Z) should have different corrections applied. i.e. when Z is far apart, do Z corrections, but not if the lines chosen are x and y. cherry picking results?
-% TODO discuss. but it is far from a finished results. Probably both a problem with the interpretation and the implementation of the XPP bulk corrections in the notebook. This can be investigated further, and the advice is to start with ...
+% DONE discuss: add Fig 19.14 p.305 from Goldstein with F and F(chi) to illustrate why the chosen corrections were used.
+% DONE discuss: the right XPP corrections make the results better, but it may be that different kV and specimen (Z) should have different corrections applied. i.e. when Z is far apart, do Z corrections, but not if the lines chosen are x and y. cherry picking results?
 
-
-
-% TODO discuss: føles ikke perfekt, men er et steg i riktig retning. Sub tings kan jeg plotte, men det er mange likninger som kan være litt feil. Små feil i koden eller i parameters som rho eller mu kan gi store utslag.
-% TODO discuss: selge at jeg har skrevet teori og implementeri i kode, selge det.
 
 
 % \input{tables/results/table_XPP_compositions.tex} % Is now in the appendix
@@ -637,26 +613,26 @@ In the 30 kV spectra, the Ga line is given a weight which increase its compositi
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Summary of the quantification results}
+\label{results:quantification_summary}
+
+\brynjar{TODO? write short summary of the quantification results? Only a few lines to fill the page.}
 % TODO discuss from Ton: "You have such table for initial, ZAF (different conditions) and PAP. Put all in one Table to see what approach looks most promising? What conclusion/advice based on all these numbers is emerging? There are several sub-conclusions and the conclsuion could be that one is totally wrong (and cannot be corrected) and other is going towards correct direction, but needs refinement or a loop??????????"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Old
-% \input{tables/results/table_model-lines.tex}
-% \input{tables/results/table_energy-res-calibration-GaAs.tex}
-% \subsection{Energy resolution}
-% \label{results:resolution}
