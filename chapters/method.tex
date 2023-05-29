@@ -1,20 +1,11 @@
 \chapter{Method}
 \label{ch:method}
 
-\ton{I am not sure what more to write in methods, but it does not feel finished. Any tips?}
-
 This chapter describes the method used in this project.
 The method is divided into four parts: the materials studied, the instruments used, the acquisition settings in the measurement series, and the data treatment.
-The data treatment is described in detail with the documentation and code in the Jupyter notebooks \verb|\cref{Appendix A}|.
+The data treatment is described further with the code in the Jupyter notebooks, which is documented with comments and docstrings.
 The notebooks and the data are available at GitHub, \verb|\cref or cite or footnote or hyperref|.
-
-% from masteravtalen:
-% •	Characterize detector and beam parameters and use them for better quantification.
-% •	Develop detector characterization and quantification routines for bulk samples in open-source.
-
-
-
-
+% TODO: cite GitHub and appendices
 
 
 
@@ -25,10 +16,8 @@ The notebooks and the data are available at GitHub, \verb|\cref or cite or footn
 
 In this study, two different test materials were studied: GaAs and GaSb wafers pieces.
 Both specimens are compound III-V semiconductors, assumed to be pure ($99.99$\%) and homogeneous, as they are semiconductor application standards.
-% A TEM Cu grid was added to the specimen to measure stray radiation, but this did not work out as planned, and these measurements are not included in this study.
-% ref to appendix:SE_images as Appendix B
-SE images of the analyzed areas are included below in \cref{method:SE_images}.
-% the \hyperref[appendix:SE_images]{Appendix B}.
+SE and BSE imaging was used to locate flat areas for the acquisition of the spectra.
+SE images of the analyzed areas are included below.
 Overview images are shown in \cref{fig:SE_images:Overview_GaAs_GaSb}, and the close up images are shown in \cref{fig:SE_images:GaAs}, and \cref{fig:SE_images:GaSb}. %, and \cref{fig:SE_images:GaSb_map}.
 The analyzed areas are annotated in the images.
 
@@ -42,38 +31,30 @@ Sb has Z=$51$, with L-peaks in the mid-energy range, and K-peaks in the highest 
 See \cref{tab:theory:lineEnergies} for the theoretical line energies.
 Small (ca. $10$x$10$ mm) pieces were taken from $2$" wafers, and glued with Ag-paint to a $300$ \textmu m thick p-doped Si $2$" wafer, which was cut in half and used as a sample holder.
 The Si wafer was attached to an Al FIB stub, which was loaded into the SEM.
+% TODO discuss: No Ag or Al stray signals.
 
-
-
-
-\subsection{SE images}
-\label{method:SE_images}
-
-These are the SE images of the GaAs and GaSb specimen.
-SE and BSE imaging was used to locate flat areas for the acquisition of the spectra.
 
 %figures/SE_images/Overview_GaAs_GaSb.jpg
-\begin{figure}[htbp]
+\begin{figure}[phtb]
     \centering
-    \includegraphics[width=.95\textwidth]{figures/SE_images/Overview_GaAs_GaSb.jpg}
+    \includegraphics[width=.99\textwidth]{figures/SE_images/Overview_GaAs_GaSb.jpg}
     \caption{
         Overview of the GaAs and GaSb specimen.
         The spectra are acquired in the middle of the images.
         Panel (a) is GaAs, and panel (b) is GaSb.
-        The Cu TEM grid is visible at the top and bottom of the images as the large circular object.
         The GaSb wafer have areas which are very scratched, but also areas which are smooth.
     }
     \label{fig:SE_images:Overview_GaAs_GaSb}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[phtb]
     \centering
-    \includegraphics[width=.95\textwidth]{figures/SE_images/GaAs_close.jpg}
+    \includegraphics[width=.99\textwidth]{figures/SE_images/GaAs_close.jpg}
     \caption{
         Close up of the GaAs specimen.
         Annotated in panel (a) are the areas which were analyzed.
         Panel (b) is a zoomed out view of the area in panel (a), after the spectra have been acquired.
-        This image shows both beam damage from the focused probe beam as black dots, and the whole area from the scanning of the probe beam.
+        This image shows both beam damage from the focused probe beam as black dots, and the whole area from the scanning as a darker square.
     }
     \label{fig:SE_images:GaAs}
 \end{figure}
@@ -81,7 +62,7 @@ SE and BSE imaging was used to locate flat areas for the acquisition of the spec
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=.95\textwidth]{figures/SE_images/GaSb_close.jpg}
+    \includegraphics[width=.99\textwidth]{figures/SE_images/GaSb_close.jpg}
     \caption{
         Close up of the GaSb specimen, where the point spectra were acquired.
         Panel (a) is the polished area, and panel (b) is the scratched area.
@@ -105,9 +86,22 @@ SE and BSE imaging was used to locate flat areas for the acquisition of the spec
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Instruments}
 \label{method:instruments}
 
+% TODO methods: specs of EDS detector!
 The acquisition of the spectra was done with an Oxford Instruments Xmax$^N$ $80$ mm$^2$ silicon drift detector for EDS, equipped on a SEM Apreo from FEI.
 \brynjar{TODO from Ton: "Check theory part if all relevant parameters stated there, are listed here." [Relevant parameters of the detector.]}
 The Apreo is a field emission SEM, which in addition to the EDS sensor has a Everhart-Thornley detector, in-lens detectors for SE and BSE, a directional BSE detector, and a navigation camera.
@@ -116,12 +110,13 @@ The maximum accelerating voltage is $30$ kV, and the maximum beam current is $40
 During this work, the acceleration voltage has been in the range $5-30$ kV, and the beam current has been in the range $25-400$ pA.
 The acquisition settings used in this study are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
 The instrument is located at the NTNU NanoLab, a NorFab facility.
-\brynjar{TODO: Cite NorFab?}
+\brynjar{TODO: Cite NorFab.}
 
 \brynjar{TODO: The detector is XMAX-N, not just XMAX.}
 The details about the EDS detector is from \cite{oxford_xmax_80} and the description provided by NanoLab.
 The Oxford Xmax$^N$ SDD has an $80$ mm$^2$ active area, which gives a solid angle of $0.03409$ sr at WD=$10$ mm.
-The detector is from before 2010, with a claimed count rate of $> 500000$ cps and throughout $> 200000$ cps \cite{oxford_xmax_80}.
+The detector is from before 2010, with a claimed count rate of $> 500$k cps and throughout $> 200$k cps \cite{oxford_xmax_80}.
+% TODO methods: I do not think the sentence about 2010 is correct!
 The specifications list an energy resolution of $127$ eV, with typical FWHM(Mn K$\alpha$) of 125 eV.
 The specified resolution is in compliance with the ISO 15632:2002 standard, the older version of \cite{iso_qc_15632}.
 All elements from Be to Pu can be analyzed.
@@ -134,10 +129,11 @@ The detector is operated with the AZtec software, provided by Oxford Instruments
 \section{Acquisition settings in the measurement series}
 \label{method:acquisition_settings}
 
-The settings selected are based on Goldstein \cite{goldstein_scanning_2018} and the parameters which was going to be analyzed.
-The acquisition is divided into five groups, where the two first are acquisition with varying acceleration voltage and constant beam current.
+The settings selected are based on Goldstein \cite{goldstein_scanning_2018} and the goal of analyzing spectra with varying acquisition parameters.
+% TODO discuss: to verify that the metrics actually score low on poor quality spectra, some of the spectra had to have poor quality.
+The acquisition is divided into four groups, where the two first are acquisition with varying acceleration voltage and constant beam current.
 (A) is the voltage series on GaAs, and (B) is the voltage series on GaSb.
-The three last series test other parameters on the GaSb specimen: (C) is with varying PT, (D) is with varying $i_b$ and PT. %, and (E) is data taken with maps.
+The two other series test parameter variation on the GaSb specimen: (C) is with varying PT, (D) is with varying $i_b$, PT, and $E_0$.
 The voltage series is used to study the effect of the acceleration voltage, to figure out if an optimal voltage exists.
 The other acquisition settings tested variations of different settings on the GaSb specimen, to see if any of these settings could improve the quality of the spectra.
 The acquisition settings are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
@@ -147,7 +143,7 @@ Dead time (DT) and input count rate (ICR) is a function of the other settings.
 
 % constant variables
 Some variables were kept constant during all the acquisition.
-The tilt of the specimen was kept at $0$\textdegree, and thus the TOA was $35$\textdegree, because of the detector mounting.
+The tilt of the specimen was kept at $0$\textdegree, and thus the TOA was $35$\textdegree, because of the mounted angle of the detector.
 The live time for each spectrum was $120$ s, except for two of the spectra in the (D) series, which had a high DT.
 The range of the spectra was $0-20$ keV, with a scale of $10$ eV/channel.
 
@@ -176,18 +172,6 @@ The range of the spectra was $0-20$ keV, with a scale of $10$ eV/channel.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Data treatment}
 \label{method:data_treatment}
 
@@ -196,10 +180,10 @@ The data treatment is divided into three parts: acquisition and extraction, perf
 \subsection{Acquisition and extraction - AZtec}
 \label{method:data_treatment:aztec}
 
-Acquisition and extraction is done with AZtec \brynjar{todo find version}, provided by Oxford Instruments NanoAnalysis \cite{aztec_manual}.
+Acquisition and extraction is done with AZtec version 5.0, provided by Oxford Instruments NanoAnalysis \cite{aztec_manual}.
 Steps for acquisition is described in Appendix A of Lundeby \cite{lundeby_improving_2019}.
 The "SEM EDS" setting was selected.
-Point measurements was done with "Point \& ID". 
+Point measurements was done with "Point \& ID".
 %, and map measurements was done with "Map".
 The point spectra was extracted as ".emsa" files.
 % The data from the map spectra was exported as ".emsa", ".raw", ".rpl", and ".txt" files, which was merged to one ".hdf5" file with the script from Lundeby \cite[A.3]{lundeby_improving_2019}.
@@ -223,7 +207,6 @@ All spectra were quantitatively analyzed with the AZtec software to later compar
 The "SEM EDS" quantification in AZtec give the composition and the calculated k-ratios for each element.
 Additionally, quantification with the "TEM EDS" setting in AZtec was tested, where both the composition and calculated k-factors were extracted.
 This "TEM EDS" step was done to verify that AZtec does use matrix corrections, and to get the k-factors for quantification with HyperSpy.
-\brynjar{TODO discussion: the TEM treatment was expected to yield poor results, which it did.}
 
 
 
@@ -239,6 +222,7 @@ All the notebooks run on Python 3.10, with the packages listed in \cref{tab:meth
 All dependencies were installed using the package manager Mamba 1.4.0, with Conda 22.11.1.
 When contributing to HyperSpy, the developer version of HyperSpy was installed using pip 23.0.
 The notebooks are both attached in the appendix of this thesis, and available at the author of this thesis' GitHub \verb|TODO: \cref{} or link|.
+% TODO method: GitHub link
 Two first notebooks is for analysis of a single spectrum with a ".csv" output, and second is one for statistics on a set of outputted ".csv" files.
 
 \input{tables/table_method_packages.tex}
@@ -247,6 +231,7 @@ Two first notebooks is for analysis of a single spectrum with a ".csv" output, a
 
 
 The performance parameter notebook does the following steps:
+% TODO methods and notebook: add these headers to the notebook, and say here that they are headers.
 
 \begin{enumerate}
     \item Import the packages
@@ -261,8 +246,6 @@ The performance parameter notebook does the following steps:
     \item Calibrate the energy and width of the peaks
     \item Calculate Fiori P/B, peak intensities, FWHMs, and peak deviations
     \item Calculate the relevant peak ratios
-          % \item Calculate the relavant FWTM/FWHM 
-    % \item Calculate the total count statistics
     \item Visualization of the results
     \item Make a DataFrame with the results and output it as a ".csv" file
 \end{enumerate}
@@ -294,19 +277,12 @@ Some data is plotted, some are shown in tables.
 
 
 
-
-
-
-
-
-
 \subsection{Quantification - HyperSpy and Jupyter notebooks}
 \label{method:data_treatment:quantification}
 
 
 Intro \dots
 
-\brynjar{TODO: Unfinished. I use PAP or XPP, this section comes when the notebook is more finished.}
+% TODO methods: describe quantification notebook and XPP correction notebook
 
-
-
+\brynjar{TODO: Unfinished. I use XPP, this section comes when the notebook is more finished.}
