@@ -1,0 +1,68 @@
+\newgeometry{top=1.5cm} % change the margins to fit the table.
+\begin{table}[p]
+    \begin{center}
+        \caption{
+            Selected maximum ranges of creation for lines in different specimen, based on the Kanaya-Okayama parameterization.
+            The path length of the X-rays are $r \cdot \csc(TOA)$.
+            The ranges are used to calculate the ZAF absorption correction factors, listed in \cref{tab:results:ZAF_corrections_factors}.
+        }
+        %\renewcommand*{\arraystretch}{1.4}
+        \label{tab:results:ZAF_corrections_range_r}
+        \begin{tabular}{rrrrrr}
+            \hline
+            \textbf{Specimen} & \textbf{Line} & \textbf{$r$ at 30 kV} & \textbf{$r$ at 15 kV} & \textbf{$r$ at 10 kV} & \textbf{$r$ at 5 kV} \\
+            \emph{}           & \emph{}       & \emph{[\textmu m]}    & \emph{[\textmu m]}    & \emph{[\textmu m]}    & \emph{[\textmu m]}   \\
+            \hline
+            GaAs              & Ga L$\alpha$  & 4.13                  & 1.29                  & 0.65                  & 0.19                 \\
+                              & As L$\alpha$  & 4.12                  & 1.28                  & 0.64                  & 0.19                 \\
+                              & Ga K$\alpha$  & 3.56                  & 0.72                  & 0.08                  & -                    \\
+            %&As K$\alpha$&&&&\\
+            \hline
+            GaSb              & Ga L$\alpha$  & 4.02                  & 1.25                  & 0.63                  & 0.19                 \\
+                              & Sb L$\alpha$  & 3.92                  & 1.15                  & 0.53                  & 0.09                 \\
+            %&Ga K$\alpha$&&&&\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+
+\begin{table}[p]
+    \begin{center}
+        \caption{
+            Absorption correction factors ($A$) from the ZAF method used.
+            The absorption correction factors are in the three rightmost columns, indicated by "$A$ r/x", where x is the number that the maximum electron range is divided by.
+            %Some of the $r$ values are tabluated in \cref{tab:results:ZAF_corrections_range_r}.
+            Similar specimen, line, and $E_0$ have the same $A$, thus the 15 kV and 30 kV GaSb $A$-factors are grouped together.
+        }
+        %\renewcommand*{\arraystretch}{1.4}
+        \label{tab:results:ZAF_corrections_factors}
+        \begin{tabular}{rrrrrr}
+            \hline
+            \textbf{Groups} & \textbf{Line} & \textbf{$E_0$} & \textbf{$A$ with r/2} & \textbf{$A$ with r/3} & \textbf{$A$ with r/4} \\
+            \emph{}         & \emph{}       & \emph{[kV]}    & \emph{}               & \emph{}               & \emph{}               \\
+            \hline
+            A               & As L$\alpha$  & 5              & 1.41                  & 1.26                  & 1.19                  \\
+            A               & Ga L$\alpha$  & 5              & 1.14                  & 1.09                  & 1.07                  \\
+            A               & As L$\alpha$  & 10             & 3.27                  & 2.20                  & 1.81                  \\
+            A               & Ga L$\alpha$  & 10             & 1.58                  & 1.35                  & 1.26                  \\
+            A               & As L$\alpha$  & 15             & 10.67                 & 4.85                  & 3.27                  \\
+            A               & Ga L$\alpha$  & 15             & 2.48                  & 1.83                  & 1.57                  \\
+            A               & As K$\alpha$  & 30             & 1.23                  & 1.15                  & 1.11                  \\
+            A               & Ga K$\alpha$  & 30             & 1.08                  & 1.05                  & 1.04                  \\
+            \hline
+            B               & Ga L$\alpha$  & 5              & 1.64                  & 1.39                  & 1.28                  \\
+            B               & Sb L$\alpha$  & 5              & 1.02                  & 1.01                  & 1.01                  \\
+            B               & Ga L$\alpha$  & 10             & 5.24                  & 3.02                  & 2.29                  \\
+            B               & Sb L$\alpha$  & 10             & 1.14                  & 1.09                  & 1.07                  \\
+            B, D            & Ga L$\alpha$  & 15             & 27.19                 & 9.04                  & 5.21                  \\
+            B, D            & Sb L$\alpha$  & 15             & 1.32                  & 1.20                  & 1.15                  \\
+            B, C, D         & Ga K$\alpha$  & 30             & 1.27                  & 1.17                  & 1.13                  \\
+            B, C, D         & Sb L$\alpha$  & 30             & 2.56                  & 1.87                  & 1.60                  \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\restoregeometry % put the margins back to normal
+
