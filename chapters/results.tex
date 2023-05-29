@@ -34,7 +34,7 @@ General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArt
         The blue line in panel (a) have lower resolution and more artifacts than the light blue line.
         The light blue line is plotted in panel (b) over a shorter energy range, and with peaks annotated.
         Panel (c) show the light blue line on an even shorter energy range, with the GaAs spectrum in red for reference.
-        All three spectra are acquired with 30 kV.
+        All three spectra are acquired with $30$ kV.
     }
     \label{fig:results:overviewGaSb_withArtifacts}
 \end{figure}
@@ -46,7 +46,7 @@ General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArt
     \caption{
         Group (A), the GaAs voltage series.
         The figure gives an overview of the spectra, and show the effect of overvoltage.
-        All four spectra have $i_b$ = 25 pA and PT 6.
+        All four spectra have $i_b = 25$ pA and PT $6$.
     }
     \label{fig:results:GaAs_voltages}
 \end{figure}
@@ -60,7 +60,7 @@ General plots of the spectra are given in \cref{fig:results:overviewGaSb_withArt
         The figure serves the same purpose as \cref{fig:results:GaAs_voltages}, but for GaSb.
         % Additionally, an increased amount of coincidence counts compared to the GaAs spectra is visible in the tailing backgrounds, especially at 15 kV.
         The tailing background is the vertical lines above $E_0$.
-        All four spectra have $i_b$ = 50 pA and PT 6.
+        All four spectra have $i_b = 50$ pA and PT $6$.
     }
     \label{fig:results:GaSb_voltages}
 \end{figure}
@@ -130,7 +130,7 @@ The metrics are the energy resolution, the energy scale and offset, the peak rat
 Additionally, results from the user parameters process time, beam energy, and beam current are presented.
 % The parameters of the setup are: energy resolution, the energy scale and offset, peak ratios, and deviations in peak positions.
 To show how the info in a single spectrum varies with the selected line of reference, information from the lines are presented from two selected spectra in \cref{tab:results:lines_info_30kV_50pA}.
-The two selected spectra are both acquired with 30 kV, 50 pA, PT 6, DT 44\%, and ICR = 17k cps for GaSb and ICR = 16.5k cps for GaAs.
+The two selected spectra are both acquired with $30$ kV, $50$ pA, PT $6$, DT $44$\%, and ICR = $17$k cps for GaSb and ICR = $16.5$k cps for GaAs.
 The table lists the theoretical energy of the line, the change in position after calibration, the FWHM of the peak, the area of the peak, the Fiori P/B of the line, and the estimated FWHM of Mn K$\alpha$ using \cref{eq:estimateFWHM}.
 
 
@@ -142,10 +142,10 @@ The table lists the theoretical energy of the line, the change in position after
 
 The energy resolution, as the estimated FWHM of the Mn K$\alpha$ peak, is both a function of the detector and certain acquisition parameters.
 The energy resolution should not be a function of the specimen, but as it is calculated with \cref{eq:estimateFWHM}, the outputted number depends somewhat on the peaks in the spectrum.
-This is shown in \cref{tab:results:lines_info_30kV_50pA}, where the highest and lowest estimated energy resolution is 123 eV and 135 in the GaAs spectrum, and 121 eV and 133 eV in the GaSb spectrum.
+This is shown in \cref{tab:results:lines_info_30kV_50pA}, where the highest and lowest estimated energy resolution is 123 eV and 135 in the GaAs spectrum, and $121$ eV and $133$ eV in the GaSb spectrum.
 The energy resolutions, calculated through HyperSpy, are listed for all spectra in \cref{tab:results:energy_resolutions}, with the relevant acquisition parameters.
-In the GaSb spectra the best energy resolution was 124 eV, obtained with PT 6, ICR = 22k cps, $E_0$ = 15 kV, and $i_b$ = 200 pA.
-In the GaAs spectra the best energy resolution was 127 eV, obtained with PT 6, ICR = 880 cps, $E_0$ = 5 kV, and $i_b$ = 25 pA.
+In the GaSb spectra the best energy resolution was $124$ eV, obtained with PT $6$, ICR = $22$k cps, $E_0 = 15$ kV, and $i_b = 200$ pA.
+In the GaAs spectra the best energy resolution was $127$ eV, obtained with PT $6$, ICR = $880$ cps, $E_0 = 5$ kV, and $i_b = 25$ pA.
 % DONE discuss: no obvious relation between the two best energy resolutions. But, it depends on the peaks in the spectrum.
 % The best energy resolution obtained was: 124 eV for the GaSb spectra with PT 6, and 127 eV for the GaAs spectra.
 % DONE discuss: Different peaks are used in GaSb and GaAs, thus we get different number with equal acquisition parameters.
@@ -155,8 +155,8 @@ As \cref{tab:results:energy_resolutions} shows, the energy resolution is affecte
 The ICR change with $E_0$ and $i_b$.
 Specifying a single energy resolution for the detector should be accompanied by the acquisition parameters used to obtain that energy resolution.
 Preferably, the value should also be an average with an uncertainty, calculated by several measurements with equal acquisition parameters.
-This is not done here, but the values in \cref{tab:results:energy_resolutions} show that PT 6 give the best energy resolution at about 127 $\pm$ 2 eV.
-When \cref{tab:results:lines_info_30kV_50pA} with the variations based on the peak of reference is taken into account, the energy resolution is more like 127 $\pm$ 6 eV.
+This is not done here, but the values in \cref{tab:results:energy_resolutions} show that PT $6$ give the best energy resolution at about $127 \pm 2$ eV.
+When \cref{tab:results:lines_info_30kV_50pA} with the variations based on the peak of reference is taken into account, the energy resolution is more like $127 \pm 6$ eV.
 % DONE discuss: The energy resolution is more like +- 6 eV, when we take into account the variations when using different peaks.
 
 
@@ -168,11 +168,11 @@ When \cref{tab:results:lines_info_30kV_50pA} with the variations based on the pe
 \label{results:scaleoffset}
 
 The energy scale and offset are the parameters which are used to calibrate the spectra.
-Both metrics are quite consistent between the spectra, and the energy scale match with the setting used in the acquisition (10 eV per channel).
+Both metrics are quite consistent between the spectra, and the energy scale match with the setting used in the acquisition ($10$ eV per channel).
 The averaged values and the standard deviations are listed in \cref{tab:results:scale_offset}.
-The calculated scale of the detector is equal to the instrument setting at 10 eV per channel, with very low standard deviation between the spectra at 0.04 eV/channel.
-The zero offset was calculated to be -0.205 keV, which is a deviation of half a channel from the instrument setting of -0.2 keV.
-The standard deviation of the offset is 0.004 keV.
+The calculated scale of the detector is equal to the instrument setting at $10$ eV per channel, with very low standard deviation between the spectra at $0.04$ eV/channel.
+The zero offset was calculated to be $-0.205$ keV, which is a deviation of half a channel from the instrument setting of $-0.2$ keV.
+The standard deviation of the offset is $0.004$ keV.
 
 % DONE discuss: Comment that the std of the offset is one order of magnitude closer to the avg compared to the std vs avg of the scale.
 % DONE discuss: why GaSb is slightly better std, might be because of the lines but also the higher i_b which gives more counts.
@@ -182,7 +182,7 @@ The standard deviation of the offset is 0.004 keV.
 % \label{results:peak_positions}
 
 No significant deviations in peak positions were observed.
-The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is very low compared to the energy of the lines which are > 1 keV.
+The maximum deviation was $2$ eV, and the minimum deviation was -$2$ eV, which is very low compared to the energy of the lines which are > $1$ keV.
 
 % DONE discuss: The maximum deviation was 2 eV, and the minimum deviation was -2 eV, which is very low. Either very good spectra with a well calibrated detector, or something fishy with the HyperSpy calibration of the peaks.
 
@@ -232,16 +232,16 @@ The table show that some peak ratios vary greatly with the acquisition parameter
 One of the acquisition parameters which was tested was the process time.
 The process time is a trade-off between the energy resolution and the throughput.
 This effect is illustrated in \cref{fig:results:energy_resolutions_process_time}, which is a plot of the GaSb spectrum at minimum and maximum process time.
-Both spectra are taken at 30 kV with 50 pA.
+Both spectra are taken at $30$ kV with $50$ pA.
 The figure have three panels, (a) for low, (b) for medium, and (c) for high energy X-rays.
 The effect of the lowered energy resolution is most prominent for the low energy X-rays.
 The difference between the observable center of the peaks and the theoretical line energies in panel (a) is due to the poorer calibration at sub 1 keV energies.
-In panel (a), the Sb M$\eta$ and O K$\alpha$ are merged together with PT 1, but are separated with PT 6.
+In panel (a), the Sb M$\eta$ and O K$\alpha$ are merged together with PT $1$, but are separated with PT $6$.
 The ability to separate peaks is the definition of energy resolution, thus panel (a) is a good illustration of different energy resolutions.
-The Ga L$l$ and Ga L$\alpha$ peaks are separated with PT 6, but are merged together with PT 1.
-With PT 4 (not shown), the Ga L$l$ and Ga L$\alpha$ peaks still separated, but with PT 2 (not shown) they are merged together.
+The Ga L$l$ and Ga L$\alpha$ peaks are separated with PT $6$, but are merged together with PT $1$.
+With PT $4$ (not shown), the Ga L$l$ and Ga L$\alpha$ peaks still separated, but with PT $2$ (not shown) they are merged together.
 % TODO discuss: visible separable and separable with gaussian modelling is different. Visible separable is important for qualitative analysis. And the quantitative is probably better with more separated peaks, but overlapping can be dealt with quire well.
-\cref{tab:results:energy_resolutions} show that the energy resolution with PT 1 is 158 eV, and with PT6 it is 127 eV.
+\cref{tab:results:energy_resolutions} show that the energy resolution with PT $1$ is $158$ eV, and with PT $6$ it is $127$ eV.
 In panel (b) with the medium energies, the contrast of the peaks are lowered, i.e. the difference between the top of the peaks and the valley between the peaks are lowered.
 The effect of the lowered energy resolution is not as prominent panel (c) for high energy X-rays.
 
@@ -255,13 +255,13 @@ The effect of the lowered energy resolution is not as prominent panel (c) for hi
     \caption{
         Different energy resolutions on the same specimen, because of different process times.
         The maximum (red) and minimum (blue) PT on the instrument is used.
-        $E_0$ = 30 kV, $i_b$ = 50 pA for both spectra.
-        The PT 1 and PT 4 spectra are not shown, but are in between the PT 2 and PT 6 spectra.
+        $E_0 = 30$ kV, $i_b = 50$ pA for both spectra.
+        The PT $1$ and PT $4$ spectra are not shown, but are in between the PT $2$ and PT $6$ spectra.
         Panel (a) is the spectrum at low energy, where the effect most influential.
-        With PT 1 the Sb M$\eta$ and O K$\alpha$ peak are merged, and the Ga L$l$ and Ga L$\alpha$ peaks are merged.
+        With PT $1$ the Sb M$\eta$ and O K$\alpha$ peak are merged, and the Ga L$l$ and Ga L$\alpha$ peaks are merged.
         Panel (b) is the spectrum at medium energy, where the effect less influential, but the peak contrast is lowered.
         Panel (c) is the spectrum at high energy, where the effect is almost negligible.
-        All three panels span 1.13 keV and have the same range of counts.
+        All three panels span $1.13$ keV and have the same range of counts.
         The vertical dashed lines are the theoretical line energies.
     }
     \label{fig:results:energy_resolutions_process_time}
@@ -272,11 +272,11 @@ The effect of the process time on the FWHM of the lines is shown in \cref{tab:re
 The table shows the measured FWHM of Ga L$\alpha$, Sb L$\alpha$, and Ga K$\alpha$ for different process times.
 The measurement is done on the Gaussian fit of the peaks.
 Additionally, the FWHM of the Mn K$\alpha$ is estimated for each process time.
-The table shows the variations on the GaSb specimen with PT 1, 2, 4, and 6.
-The last row shows the FWHM in the GaAs specimen at PT 6 for reference.
-All spectra in the table were acquired at 30 kV and 50 pA.
-In the GaSb spectra, the PT 1 has DT 4\%, PT 2 has DT 7\%, PT 4 has DT 13\%, and PT 6 has DT 44\%.
-The GaAs spectrum with PT 6 has DT 44\%.
+The table shows the variations on the GaSb specimen with PT $1$, $2$, $4$, and $6$.
+The last row shows the FWHM in the GaAs specimen at PT $6$ for reference.
+All spectra in the table were acquired at $30$ kV and $50$ pA.
+In the GaSb spectra, the PT $1$ has DT $4$\%, PT $2$ has DT $7$\%, PT $4$ has DT $13$\%, and PT $6$ has DT $44$\%.
+The GaAs spectrum with PT $6$ has DT $44$\%.
 
 % TODO discuss: based on the numbers, PT 4 should be good enough for most applications. High resolution, and much faster than PT 6. DT44 is really high, and not nice for mapping.
 % TODO discuss: specimen with many L-lines
@@ -292,30 +292,30 @@ The GaAs spectrum with PT 6 has DT 44\%.
 % comment on (A) and (B)
 The energy and the amount of electrons in the probe is important for the emerging X-ray spectrum.
 Using a low overvoltage can be problematic.
-The green 10 kV line in \cref{fig:results:GaAs_voltages} has no visible signal from the Ga K$\alpha$ peak, where the overvoltage is around 1.1.
-The overvoltage is also an issue for the Sb L-lines in the 5 kV spectrum in \cref{fig:results:GaSb_voltages}.
+The green $10$ kV line in \cref{fig:results:GaAs_voltages} has no visible signal from the Ga K$\alpha$ peak, where the overvoltage is around $1.1$.
+The overvoltage is also an issue for the Sb L-lines in the $5$ kV spectrum in \cref{fig:results:GaSb_voltages}.
 The Sb L-peaks are present, but weak, and the L$l$ peak is not visible.
 This issue with the weak Sb-L peaks makes the quantification of Sb difficult at low voltages, as seen further down in \cref{results:initial_quantification}.
-The 5 kV GaAs spectrum is quantified more accurately at than the 5 kV GaSb spectrum.
+The $5$ kV GaAs spectrum is quantified more accurately at than the $5$ kV GaSb spectrum.
 % because the Ga L$\alpha$ and As L$\alpha$ peaks have similar overvoltages.
 In the voltage series, which are group (A) and (B) in \cref{method:acquisition_settings}, the amount of counts in the lower voltages are quite low.
-The low amount of counts is due to keeping the beam current constant at 50 and 25 pA.
+The low amount of counts is due to keeping the beam current constant at $50$ and $25$ pA.
 Using a higher beam current on the lower energies would have made normalization more necessary, which is adding a layer of subjective decisions as the spectra must be normalized to something.
 % DONE discuss: this might not have been the best choice. For future work one can try to get the same ICR for all voltages, and see if the results are better and still comparable, without normalization.
-Even though the 30 kV spectra in GaAs and GaSb have more counts and are smoother than the other spectra, they both have more artifacts.
+Even though the $30$ kV spectra in GaAs and GaSb have more counts and are smoother than the other spectra, they both have more artifacts.
 % DONE discuss: the amount of artifacts have to be adjusted for the specimen and the goal of the analysis.
 % REMOVED: Around 1 keV, the 30 kV and 15 kV spectra are quite similar.
 % DONE discuss: at 1 keV, the ionization cross section when using 15 or 30 kV is more or less the same.
 
 % (C) (D) and (E)
-As the 30 and 15 kV spectra gave better results for GaSb, they were chosen for group (C) and (D).
+As the $30$ and $15$ kV spectra gave better results for GaSb, they were chosen for group (C) and (D).
 In (C) different process times were tested, and these results are presented in \cref{results:process_time}.
 In (D) different beam currents were tested, while also changing the PT and $E_0$.
 % In (E) the data type maps were acquired.
 % (D)
 The combination of high $i_b$ and high PT in two of the spectra in (D) made the DT very high.
-Despite the high DT, the amount of artifacts in the 200 pA and 400 pA spectra were similar to the 50 pA spectra.
-However, with DT at 53\% and 77\%, the acquisition time was very long.
+Despite the high DT, the amount of artifacts in the $200$ pA and $400$ pA spectra were similar to the $50$ pA spectra.
+However, with DT at $53$\% and $77$\%, the acquisition time was very long.
 % TODO discuss: DT is not a good measure of the artifacts, at least not when using high PT which allows the electronics to count accurately. However, high i_b and PT is bad for mapping.
 On the quantification presented in \cref{results:initial_quantification}, the beam energy appears to be more important than the beam current.
 % TODO discuss: this might be a result of the lines used (Ga L or Ga K).
@@ -331,10 +331,10 @@ On the quantification presented in \cref{results:initial_quantification}, the be
 \label{results:duane_hunt}
 
 The Duane-Hunt limits, or the effective beam energies, are presented in \cref{tab:results:duane_hunt}.
-The table shows the Duane-Hunt limit for the 5, 10, and 15 kV spectra.
-As the energy range recorded in the spectra were 0-20 keV, the Duane-Hunt limit of the 30 kV spectra were not possible to calculate.
-All the calculated Duane-Hunt limits are within 0.2 keV of the nominal beam energy, i.e. the specified beam energy in the SEM software.
-The average deviation is 0.06 keV, with a standard deviation of 0.04 keV.
+The table shows the Duane-Hunt limit for the $5$, $10$, and $15$ kV spectra.
+As the energy range recorded in the spectra were $0-20$ keV, the Duane-Hunt limit of the $30$ kV spectra were not possible to calculate.
+All the calculated Duane-Hunt limits are within $0.2$ keV of the nominal beam energy, i.e. the specified beam energy in the SEM software.
+The average deviation is $0.06$ keV, with a standard deviation of $0.04$ keV.
 This shows that the beam energy is quite stable.
 % TODO discuss: the usefulness of calculating the DH limit.
 
@@ -348,17 +348,17 @@ This shows that the beam energy is quite stable.
 The Fiori numbers are presented in \cref{tab:results:fiori}, with the Fiori P/B ratio in the five rightmost columns.
 % # for Ga La, Ga Ka, As La, Sb La, Sb Lb
 The ratios are for the Ga L$\alpha$, Ga K$\alpha$, As L$\alpha$, Sb L$\alpha$, and Sb L$\beta$.
-The Fiori P/B ratios have a spread between just below 100 to right under 800.
-The overall highest ratio is for the Ga K$\alpha$ peak for the 30 kV and 25 pA GaAs spectrum, with a ratio of 770.
+The Fiori P/B ratios have a spread between just below $100$ to right under $800$.
+The overall highest ratio is for the Ga K$\alpha$ peak for the $30$ kV and $25$ pA GaAs spectrum, with a ratio of $770$.
 % DONE discuss: repeat why the numbers are so high. That is dividing by one single bg channel, which makes the ratio unaffected by energy resolution.
-The equal settings in the GaSb spectrum have a ratio of 408 for the Ga K$\alpha$ peak.
+The equal settings in the GaSb spectrum have a ratio of $408$ for the Ga K$\alpha$ peak.
 For the Ga K$\alpha$ peaks, the GaAs spectrum have almost twice as high Fiori P/B ratios as the GaSb spectrum.
 The Ga L$\alpha$ peak is present in all the spectra, and it can be used for comparison.
 % The background counts around the Ga L$\alpha$ peak is around 2-5 times higher in the GaSb spectra than in the GaAs spectra, which is reflected in the different Fiori ratios for the Ga L$\alpha$ peak.
 % DONE sort of discuss: the mu_rho of GaAs is much higher than GaSb above 1 keV because of the double absorption edge. This gives a much higher Fiori ratio for GaAs than GaSb, as the background is lower. But the Ga_La peak ing GaAs is also higher. The specimen dependness is high.
 The tabulated data indicate that $E_0$ has the largest impact on the Fiori P/B ratio.
 % REMOVED:  The peak height between GaAs and GaSb differs some, but it is probably the background levels which make the biggest impact on the Fiori P/B ratios.
-For the Ga L$\alpha$ peak, the Fiori P/B ratios is up to 6 times higher for GaAs than GaSb.
+For the Ga L$\alpha$ peak, the Fiori P/B ratios is up to $6$ times higher for GaAs than GaSb.
 This shows clearly that the Fiori P/B ratio is specimen dependent, even when using the same peak and setting.
 
 
@@ -388,11 +388,11 @@ This last section in the performance parameters contains a summarization of the 
 \cref{tab:results:performance_summary} gives the values for the parameters with a comment.
 
 
-The energy resolution of the detector used in this work is 127 $\pm$6 eV at ICR between 1 k and 42 k cps, with the highest PT avaliable.
+The energy resolution of the detector used in this work is $127 \pm6$ eV at ICR between $1$ k and $42$ k cps, with the highest PT avaliable.
 The energy axis of the instrument is calibrated well, with low deviations between the specified scale and offset, and their calibrated values.
 This is strengthened by the low deviation in calibrated peak positions.
 The Duane-Hunt limits are all close to the nominal beam energy.
-The Fiori P/B ratios acquired were at the highest 770 for GaAs and 410 for GaSb.
+The Fiori P/B ratios acquired were at the highest $770$ for GaAs and $410$ for GaSb.
 
 \input{{tables/results/table_performance_summary.tex}}
 
@@ -424,10 +424,10 @@ The Fiori P/B ratios acquired were at the highest 770 for GaAs and 410 for GaSb.
 
 % DONE say that the average, >10%, and <5% are in tables here, while all the compositions are in the appendix.
 This section presents the results from the quantitative analysis, using different correction methods. 
-With 15 spectra analyzed, the tables are large and thus average values from different methods are used to give an overview of the results.
-The results from all 15 spectra in the initial quantification are shown in \cref{results:initial_quantification}.
-For this and the remaining methods, a table with the average values, deviations above 10 at\%, and deviations below 5 at\% are shown.
-The 5 kV GaSb spectrum is excluded from these average tables, as the spectrum had several issues.
+With $15$ spectra analyzed, the tables are large and thus average values from different methods are used to give an overview of the results.
+The results from all $15$ spectra in the initial quantification are shown in \cref{results:initial_quantification}.
+For this and the remaining methods, a table with the average values, deviations above $10$ at\%, and deviations below $5$ at\% are shown.
+The $5$ kV GaSb spectrum is excluded from these average tables, as the spectrum had several issues.
 % TODO discuss: say why the 5 kV GaSb spectrum is excluded from the average tables.
 The full tables with quantification using the thin film assumption, the ZAF absorption correction, and corrections with PAP are given in \hyperref[appendix:tables]{Appendix C}.
 
@@ -440,18 +440,18 @@ Initial quantification was done with the AZtec software and with the uncorrected
 The intensity ratio method is calculated with \cref{eq:theory:quantitative:area_ratio}, and it gives relative compositions as described in \cref{theory:quantitative:principle}.
 AZtec too gives relative compositions, based on the elements confirmed to be present in the spectrum.
 Average values for the initial quantification results are shown in \cref{tab:results:initial_quantification_stats}.
-Results from all the 15 spectra are shown in \cref{tab:results:initial_quantification}, and plotted in \cref{fig:results:initial_quantification}.
+Results from all the $15$ spectra are shown in \cref{tab:results:initial_quantification}, and plotted in \cref{fig:results:initial_quantification}.
 % \ton{I decided to round the percentages to integers. OK?} Ok
-As the table and figure show, some results are close to 50 at\%.
+As the table and figure show, some results are close to $50$ at\%.
 % TODO discuss: "Ton: Statement/observation OK, but in discussion: this is not proof for accuracy, it could be a coincident, have to consider error range. But here keep figure and comment as is"
-The summary table also show that on average GaSb is quantified closer to 50 at\% than GaAs.
+The summary table also show that on average GaSb is quantified closer to $50$ at\% than GaAs.
 % TODO discuss: GaSb have more spectra at 15 and 30, which might be the reason for the better results.
 All AZtec results are with the SEM EDS setting, if not stated otherwise.
-In 12 of the 15 spectra, AZtec gives a result at 50$\pm$2 at\%.
-2 of spectra are quantified at 50$\pm$4 at\%.
-The 5 kV GaSb spectrum is quantified at 39:61, which is the most deviating result from AZtec.
-The 5 intensity ratios from GaSb spectra with $E_0$ = 30 kV are at 50$\pm$2 at\%.
-The three 15 kV results from GaSb have a deviation of $\pm$10 at\%, which show the need for closer inspection.
+In $12$ of the $15$ spectra, AZtec gives a result at $50\pm2$ at\%.
+$2$ of spectra are quantified at $50\pm4$ at\%.
+The $5$ kV GaSb spectrum is quantified at 39:61, which is the most deviating result from AZtec.
+The $5$ intensity ratios from GaSb spectra with $E_0 = 30$ kV are at $50\pm2$ at\%.
+The three $15$ kV results from GaSb have a deviation of $\pm10$ at\%, which show the need for closer inspection.
 % TODO discuss: "Could be wrong k for that voltage, what is not correction for matrix effect"
 The remaining results are also in need of closer inspections, as the results from the uncorrected intensity ratio method give high deviations.
 % The low energy results from GaAs have a high deviation, probably due to issues with overvoltage.
@@ -474,7 +474,7 @@ The remaining results are also in need of closer inspections, as the results fro
         The X markers are the quantification from AZtec.
         The circle markers are the quantification from the intensity ratio, without corrections.
         The group, specimen, $E_0$, $i_b$, and PT are shown on the x-axis.
-        The spectra without noted PT are taken with PT 6.
+        The spectra without noted PT are taken with PT $6$.
         The same data is tabulated in \cref{tab:results:initial_quantification}.
     }
     \label{fig:results:initial_quantification}
@@ -503,17 +503,17 @@ The results from the TEM EDS quantification routines are tabulated in \hyperref[
 The calculated k-factors, which are extracted from AZtec and needed for the CL method in HyperSpy, are included in \cref{tab:results:TEM_quantification}.
 The CL method in HyperSpy was done with and without the TEM absorption corrections, which is a part of the implemented CL quantification function.
 The "CL*" column is without absorption corrections, and the other "CL" columns are with the TEM absorption corrections, where the $t$ is the set specimen thickness.
-Six $t$ values are: 50 nm, 100 nm, 200 nm, 400 nm, 1000 nm, and 10000 nm.
+Six $t$ values are: $50$ nm, $100$ nm, $200$ nm, $400$ nm, $1000$ nm, and $10000$ nm.
 % TODO discuss: compare t with penetration depth, and argument for the very high maximum tested.
 
 
 % comment on the severely poor results from GaAs at 5 kV
-The GaSb spectrum at 5 kV is poorly quantified by AZtec.
-AZtec is quantifying the 5 kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
-Sb M$\eta$ is around 0.4 keV, and at such low energy the absorption is high, and the resulting composition is 91:9.
+The GaSb spectrum at $5$ kV is poorly quantified by AZtec.
+AZtec is quantifying the $5$ kV GaSb spectrum with the Ga L$\alpha$ and Sb M$\eta$ peaks.
+Sb M$\eta$ is around $0.4$ keV, and at such low energy the absorption is high, and the resulting composition is $91:9$.
 % TODO discuss: even thought the detector is with a polymer (?) window for allowing low energy X-rays, the absorption is still high in the specimen (the window let the X-rays pass, but few are coming.)
 The Sb M$\eta$ peak is not available in HyperSpy, and no k-factor is given for the Sb L$\alpha$ line in this spectrum.
-Thus, it is not possible to quantify the 5 kV GaSb spectrum with HyperSpy.
+Thus, it is not possible to quantify the $5$ kV GaSb spectrum with HyperSpy.
 % When using TEM mode, AZtec selects the Sb M$\eta$ line at 5 kV, and as this line is not included in HyperSpy, the 5 kV GaSb spectra were not quantified in HyperSpy.
 % DONE discuss: not possible to quantify with HyperSpy at 5 kV, as the Sb M$\eta$ line is missing and thus there are no k-factor for Sb La.
 % DONE discuss: HyperSpy will not give k-factors, even though some people ask for it (Gitter). This is becaues that would give a high uncertainty, as the k-factors are partly dependent on the detector.
@@ -521,17 +521,17 @@ Thus, it is not possible to quantify the 5 kV GaSb spectrum with HyperSpy.
 
 
 % comment on the table values
-The TEM EDS quantification results of the SEM EDS data are in general deviating from the reference value of 50:50.
+The TEM EDS quantification results of the SEM EDS data are in general deviating from the reference value of $50:50$.
 Opposite to the SEM EDS quantification setting in AZtec, the GaAs spectra are quantified closer to the reference value than the GaSb spectra.
-The "TEM EDS setting" AZtec results are deviating much more from 50:50 compared to the AZtec results using the "SEM EDS setting", presented in \cref{results:initial_quantification}.
+The "TEM EDS setting" AZtec results are deviating much more from $50:50$ compared to the AZtec results using the "SEM EDS setting", presented in \cref{results:initial_quantification}.
 % The average numbers for \cref{tab:results:TEM_quantification} in \cref{tab:results:TEM_quantification_stats} are calculated without the 5 kV GaSb spectra, as the 5 kV spectra were not quantified in HyperSpy.
 % TODO discuss: this celarly show that AZtec is doing different quant with SEM and TEM, but the difference is not in the documentation. We know they do XPP from the blog post, and that could have been stated in the manual.
-The CL quantification without absorption corrections perform similar to AZtec, and the deviations are improved for the CL quantifications with absorption corrections, where $t$ is set to 50, 100, 200, and 400 nm.
+The CL quantification without absorption corrections perform similar to AZtec, and the deviations are improved for the CL quantifications with absorption corrections, where $t$ is set to $50$, $100$, $200$, and $400$ nm.
 % TODO discuss: HyperSpy is actually better than AZtec, on TEM setting. Also, it is a special case, other specimen might have very different results.
-The CL quantification with $t$ is set to 200 nm gives better results than the uncorrected intensity ratio method, but still at an average deviation of 5 at\% from the reference value for GaAs and GaSb.
+The CL quantification with $t$ is set to $200$ nm gives better results than the uncorrected intensity ratio method, but still at an average deviation of $5$ at\% from the reference value for GaAs and GaSb.
 % TODO discuss: why are these t-values good? compare to the range r, and comment that the increasing devaition with high t can be due to ...?
-When $t$ is set to 1000 nm, the average deviations increase from 400 nm, and 4 of the GaSb spectra are quantified at $> 10$ at\% deviation, illustrating some issue with high $t$.
-The deviations are increased further when $t$ is set to 10000 nm.
+When $t$ is set to $1000$ nm, the average deviations increase from $400$ nm, and $4$ of the GaSb spectra are quantified at $> 10$ at\% deviation, illustrating some issue with high $t$.
+The deviations are increased further when $t$ is set to $10000$ nm.
 %TODO discuss: in general, the TEM results are poor, especially true for the AZtec results. The CL with absorption corrections show that absorption corrections can improve the results, but using TEM routines on SEM data is not recommended. Setting the best t is also not trivial.
 % TODO discuss: To conclude, the TEM EDS quantification of SEM EDS data show that the routines are built on similar principles, but that the routines have differences which are important. Too unrelibale!
 
@@ -556,16 +556,16 @@ The deviations are increased further when $t$ is set to 10000 nm.
 
 The ZAF absorption corrections were done with \cref{eq:theory:quantitative:absorption}. 
 The calculated maximum electron range $r$ is presented in \cref{tab:results:ZAF_corrections_range_r}.
-To calculate the absorption correction factors, $r$ is divided by 2, 3, and 4 to get different approximations for the average depth of origin of the X-rays.
+To calculate the absorption correction factors, $r$ is divided by $2$, $3$, and $4$ to get different approximations for the average depth of origin of the X-rays.
 The calculated ZAF absorption correction factors are given in \cref{tab:results:ZAF_corrections_factors}, which are applied to get compositions in \cref{tab:results:ZAF_corrections_compositions}, which are presented with average numbers in \cref{tab:results:ZAF_corrections_compositions_stats}.
 
 
 % comment on the table values
-The ZAF absorption corrections improve the GaAs quantification, but deviations from 50 at\% in the GaSb quantification is increased.
-For GaAs, the best result is achieved when the maximum electron range is divided by 4, i.e. the absorption correction is applied to an average point close to the surface.
+The ZAF absorption corrections improve the GaAs quantification, but deviations from $50$ at\% in the GaSb quantification is increased.
+For GaAs, the best result is achieved when the maximum electron range is divided by $4$, i.e. the absorption correction is applied to an average point close to the surface.
 % DONE? illustrate the different r values? Also, r is different for kV values.
-When $r$ is divided by four, the average deviation is improved from 12 at\% to 7 at\%, compared to the uncorrected intensity ratio method.
-With $r/4$, the number of spectra with $> 10$ at\% deviation is reduced from 4 to 2, and the number of spectra with $< 5$ at\% deviation is increased from 0 to 3.
+When $r$ is divided by four, the average deviation is improved from $12$ at\% to $7$ at\%, compared to the uncorrected intensity ratio method.
+With $r/4$, the number of spectra with $> 10$ at\% deviation is reduced from $4$ to $2$, and the number of spectra with $< 5$ at\% deviation is increased from $0$ to $3$.
 For GaSb, the average deviation decrease when $r$ is divided by a higher number, but the deviations are $> 20$ at\% anyway, which is quite poor.
 % DONE discuss: ZAF A implies that GaAs needs abs. corr, but that GaSb have issue with something else. Z is close for Ga and As, while far apart for Ga Sb. Thus, Z effects might not be negligble as stated in Goldstein.
 
@@ -585,21 +585,21 @@ Both ways are presented in \cref{tab:results:XPP_compositions}, where the uncorr
 Average numbers for the XPP corrections are given in \cref{tab:results:XPP_compositions_stats}.
 $F$ and $f(\chi)$ are calculated with the XPP notebook, and are dependent on $E_0$, $E_C$ of the line, and the elements with their weight fraction of the elements.
 The elements and their weight fractions are used to calculate the density $\rho$, the mean atomic mass $M$, the mean ionization potential $J$, the mean atomic number $\bar{Z}$, the backscattering coefficient $R$, and $\mu_\rho$ of the line at $E_0$.
-The weight fractions used in the calculations are set to the equivalent of a 50:50 atomic percent composition, as this should give the best possible correction factors.
+The weight fractions used in the calculations are set to the equivalent of a $50:50$ atomic percent composition, as this should give the best possible correction factors.
 A finished product for XPP bulk corrections should have iterative calculations of the weight fractions, but these results are aiming to demonstrate the possible usefulness of XPP corrections, thus the best available input parameters are used.
 
 
 The corrections with $f(\chi)$, i.e. the absorption correction, improves the GaAs quantification.
 Similar to the ZAF absorption corrections, the GaSb quantification is not improved when corrected with $f(\chi)$.
-The absorption correction with XPP reduce the average deviation in GaAs from 12 at\% to 5 at\%, which is better than the ZAF absorption correction.
+The absorption correction with XPP reduce the average deviation in GaAs from $12$ at\% to $5$ at\%, which is better than the ZAF absorption correction.
 % DONE discuss: again, the GaSb is made much worse. Doing abs. corr if not needed seems to make the results bad, at lest with the avaliable input parameters used in this work.
 % TODO discuss: XPP better than ZAF.
 
 When GaSb is corrected with $F$, the average is unchanged. 
-However, in the uncorrected quantification, the 30 kV GaSb spectra are quantified very close to the reference value, and the $F$ correction makes these 30 kV spectra deviate more.
-The quantification of the 15 kV and 10 kV GaSb spectra are improved with the $F$ correction, which is why the average is unchanged.
-The XPP corrections are dependent on the beam energy, making the effect at 30 kV different from the effect at 15 kV and 10 kV.
-In the 30 kV spectra, the Ga line is given a weight which increase its composition relative to the Sb line, while the opposite is done in the 15 kV and 10 kV spectra.
+However, in the uncorrected quantification, the $30$ kV GaSb spectra are quantified very close to the reference value, and the $F$ correction makes these $30$ kV spectra deviate more.
+The quantification of the $15$ kV and $10$ kV GaSb spectra are improved with the $F$ correction, which is why the average is unchanged.
+The XPP corrections are dependent on the beam energy, making the effect at $30$ kV different from the effect at $15$ kV and $10$ kV.
+In the $30$ kV spectra, the Ga line is given a weight which increase its composition relative to the Sb line, while the opposite is done in the $15$ kV and $10$ kV spectra.
 
 % DONE discuss: add Fig 19.14 p.305 from Goldstein with F and F(chi) to illustrate why the chosen corrections were used.
 % DONE discuss: the right XPP corrections make the results better, but it may be that different kV and specimen (Z) should have different corrections applied. i.e. when Z is far apart, do Z corrections, but not if the lines chosen are x and y. cherry picking results?

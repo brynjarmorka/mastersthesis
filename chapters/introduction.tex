@@ -22,16 +22,16 @@ Properties of materials are strongly related to their nanoscale composition and 
 The main tool for studying nanoscale structures is the electron microscope (EM), which are divided into scanning electron microscopy (SEM) and transmission electron microscopy (TEM) \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
 % The two main tools for studying the nanoscale structure are the scanning and transmission electron microscopes (SEM and TEM). 
 The composition at the nanoscale can be studied by analyzing the X-ray spectrum created from the interactions between the material and the electron probe in the EM, thus getting both structural and compositional information \cite{jenkins_xrayspectroscopy}.
-The composition is revealed in the X-ray spectrum, where the characteristic lines have energy dependent on the atom of origin, which is a well understood quantum mechanical process \cite{hollas_modern_2004,goldstein_scanning_2018}.
+The composition is revealed in the X-ray spectrum, where the characteristic X-ray lines have energy dependent on the atom of origin, which is a well understood quantum mechanical process \cite{hollas_modern_2004,goldstein_scanning_2018}.
 % An X-ray spectrum contains characteristic X-rays lines, a signal from the well understood quantum mechanical process where the energy of the generated X-ray is dependent on the atomic number of the atom that emits the X-ray, revealing the composition of the material \cite{hollas_modern_2004,goldstein_scanning_2018}.
 The most common technique for analyzing the X-ray spectrum is energy dispersive X-ray spectroscopy (EDS).
 In EDS the electron beam of the microscope excites the material that generates the characteristic X-rays, which are detected and sorted by energy in an accumulating digital histogram.
-Even though EDS have limited energy resolution and is affected by several artifacts, it is still the most common technique for analyzing the X-ray spectrum in EM.
+Even though EDS have limited energy resolution and is affected by several artifacts, it is still the most common technique for analyzing the X-ray spectrum in EMs.
 
 % Paragraph 1.5, weakness of XRF and WDS
 There are three main techniques in EM for analyzing characteristic X-rays: X-ray fluorescence (XRF), wavelength dispersive spectrometers (WDS), and energy dispersive X-ray spectroscopy \cite{jenkins_xrayspectroscopy}.
 In XRF the material is excited by a beam of high-energy X-rays or gamma rays.
-The spatial resolution of XRF is limited both by the fact that the beam cannot be focused as thin as the electron beam and that the X-rays can penetrate deeper into the material \cite{xrf_spatial_resolution}.
+The spatial resolution of XRF is limited both by the fact that the beam cannot be focused as thin as the electron beam and that the beam X-rays can penetrate deeper into the material \cite{xrf_spatial_resolution}.
 XRF have some advantages over EDS, such as a very low detection limit and the possibility of being handheld, but the limit in spatial resolution makes it less suitable for EM, thus XRF is therefore not used in this work.
 In WDS the material is excited by electrons as in EDS, where the detector has a mechanical spectrometer which is tuned to only one wavelength at a time, that gives a high energy resolution around 10 eV and a high quality spectrum, i.e. a high peak-to-back-ground ratio and limited number of artifacts.
 The main issue with WDS is that the setup is much larger than a normal SEM and that the WDS technique is much slower than EDS, usually without the spatial resolution of a SEM \cite{goldstein_scanning_2018}.
@@ -47,23 +47,23 @@ Despite the limitations of EDS, the technique is easy to use in EM and gives a h
 In order to improve the performance of SEM EDS, it is necessary to examine the entire process from signal creation to interpretation, including the data treatment.
 By doing so, it becomes possible to identify and address factors that may be responsible for reduced performance.
 The EDS signal can be influenced by a range of factors between its creation and detection.
-As such, it is important to have a comprehensive understanding of (i) the experimental setup characteristics, (ii) the acquisition parameters, and (iii) the possible post-acquisition data treatment in order to improve the performance of SEM EDS.
+As such, it is important to have a comprehensive understanding of (i) the experimental setup characteristics, (ii) the acquisition parameters, and (iii) the possible post-acquisition data treatment in order to improve the EDS analysis.
 This is schematically illustrated in \cref{fig:intro:parameters}.
 % (i)
-(i) Experimental setup characteristics includes energy resolution in the acquired spectrum, signal-to-noise ratio (SNR) like the Fiori peak-to-background \cite{fiori_peak_background_1982}, detector efficiency, take off angle (TOA), shadowing, and system related artifacts such as strays\cite{goldstein_scanning_2018}.
+\brynjar{TODO REWRITE: (i) Experimental setup characteristics includes energy resolution in the acquired spectrum, signal-to-noise ratio (SNR) like the Fiori peak-to-background \cite{fiori_peak_background_1982}, detector efficiency, take off angle (TOA), shadowing, and system related artifacts such as strays\cite{goldstein_scanning_2018}.
 %, all play a crucial role in the quality of the acquired data 
 % Ton did not want: WD, linearity between generation and detection, and stability of resolution and peak positions,
 % (ii)
 (ii) Similarly, the acquisition parameters affect the spectrum quality and includes parameters like beam energy, probe current, process time, and dwell time. \cite{goldstein_scanning_2018}. % Ton did not want dead time here
 Additionally, the (ii) acquisition parameters are somewhat different in SEM and TEM.
 TEM samples are typically very thin, at around 100 nm, whereas SEM samples are usually bulk specimens.
-Hence, for TEM the SNR can be a limiting factor.
+Hence, for TEM the SNR can be a limiting factor.}
 For SEM, addition corrections might be required as signal is created over a larger volume and secondary effects as absorption and fluorescence need to be accounted for.
 The beam energy is also different, where TEM is typically operated at 100-300 kV, and SEM is typically operated at 1-30 kV.
 The latter energy range is similar to the energy of characteristic X-rays central to this work, and thus the overvoltage effect is significant \cite{williams_carter_companion_volume_2016}.
 % (iii)
 (iii) Finally, post-acquisition data treatment can have a significant impact on the compositional results.
-Post-acquisition data treatment can include making method-specific assumptions, model fitting, and noise treatment \cite{williams_carter_companion_volume_2016}.
+\brynjar{TODO REWRITE: Post-acquisition data treatment can include making method-specific assumptions, model fitting, and noise treatment \cite{williams_carter_companion_volume_2016}.}
 Characterization of key parameters is necessary to ensure that a spectrum is acquired correctly, and the detector is operating properly, potentially revealing the need for correction.
 
 
@@ -72,7 +72,7 @@ Characterization of key parameters is necessary to ensure that a spectrum is acq
   \centering
   \includegraphics[width=0.8\linewidth]{figures/intro_parameters.png}
   \caption{
-    \brynjar{Redo this figure.}
+    \brynjar{TODO: Redo this figure and caption.}
     Schematic illustration of parameters that can affect the performance and results of SEM EDS in the three groups.
     This work focuses on some parameters, with the aim of improving the performance of SEM EDS.
   }
@@ -90,7 +90,7 @@ Typically, only default quantification methods, such as Cliff-Lorimer \cite{CL19
 In recent years, there has been a growing movement towards open science \cite{opensource_2013}. % , which has led to an increasing role for open-source tools in EDS analysis.
 Community-driven freeware and open-source software have gained importance in the EDS community, for example through the development of open file formats such as .msa and .emsa \cite{iso_emsa_22029} and open source software for data analysis.
 For SEM EDS analysis, the main non-commercial software is probably DTSA-II \cite{dtsaii_1_getting_started}, which is developed at NIST by Nicholas W. M. Ritchie, inspired by the original DTSA microanalysis software developed by Chuck Fiori, Carol Swyt-Thomas, and Bob Myklebust.
-For TEM EDS analysis, the Python library HyperSpy \cite{hyperspy_1.7.1} is likely the most used open-source software \brynjar{cite?}.
+For TEM EDS analysis, the Python library HyperSpy \cite{hyperspy_1.7.1} is likely the most used open-source software. % \brynjar{cite?}
 HyperSpy does have quantification routines implemented, but they are not adapted to SEM EDS signals.
 However, HyperSpy has the advantage of being Python-based, which has become a primary programming language for scientific and collaborative work.
 Being Python based enables the analyst to benefit from the integration of algorithms from other fields, such as statistics or machine learning, available in Python libraries such as SciPy \cite{2020SciPy}.
@@ -115,28 +115,29 @@ Reference values for characteristics like the Fiori P/B \cite{fiori_peak_backgro
 To fill this gap, a Python notebook for characterization of performance parameters in a SEM EDS setup will be developed and published, including transparent documentation.
 The main focus will be SEM EDS, but the notebook should also be applicable to TEM EDS.
 Following the notebook will be a proposition for a SEM EDS tailored test specimen.
-This work will contribute to improving the EDS setup and acquisition of EDS data, which will aid quantitative analysis of EDS data, which is the most used method for compositional analysis with nm spatial resolution today \cite{goldstein_scanning_2018}.
+This work will contribute to improving the EDS setup and acquisition of EDS data, which will aid quantitative analysis of EDS data, as this is the most used method for compositional analysis with nm spatial resolution today \cite{goldstein_scanning_2018}.
 
 
 
 %%%%%%% Paragraph 5: the more hairy goal of adding bulk quantification to HyperSpy
 % A second, more ambitious, goal 
 The overall aim, as stated by the project title, is to improve EDS.
-The first goal is to systematically go through the parameter listed in \cref{fig:intro:parameters}, and characterize the performance of a SEM EDS setup.
-The main focus will be on the experimental characteristics and new data processing routines that become available through open-source packages.
+The first goal is to systematically go through the two first rows of parameters listed in \cref{fig:intro:parameters}, and characterize the performance of a SEM EDS setup and selected acquisition parameters.
+The main focus will be to describe possible metrics and implement them in open-source code, which allows for transparent and reproducible characterization of the performance.
+% on the experimental characteristics and new data processing routines that become available through open-source packages.
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
-The default approach for bulk is a ratio approach with a sensitivity factor, as for the now implemented Cliff-Lorimer ratio method that is accepted for thin specimen geometries as used in TEM, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
-Alternatively, the $\phi (\rho z)$ quantification method can correct for the bulk effects \cite{goldstein_scanning_2018,pap_1991}.
+The default approach for bulk is a ratio approach with a sensitivity factor \cite{goldstein_scanning_2018}.
+HyperSpy have an implemenetation of the Cliff-Lorimer quantification method for thin specimen, which is similar to the ratio approach, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
+Alternatively, calculation of the depth distribution $\phi (\rho z)$ can be used to correct for bulk effects \cite{goldstein_scanning_2018,pap_1991}.
+The $\phi (\rho z)$ corrections explored in this work are the XPP model, which is a version of the PAP model \cite{pap_1991}, and is supposedly the bulk corrections used in the commercial software AZtec \cite{oxford_blog_XPP,aztec_manual}.
 Neither the ZAF nor $\phi (\rho z)$ corrections are implemented in the published version HyperSpy.
-The available quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
+% The available quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
 % Other methods like the factorless internal composition determination \cite{nilsen_factorless_2021} \ton{is this correctly phrased?} can also be used for quantification. % TON: leave this out. It is an alternative when there is bench mark element, not often the case. We decided not to push a PR as it is not general enough. It would be interesting if in SEM geometry it could work, but I expect complications.
 The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z)$ corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
 
 
-%TODO: add something about PAP/XPP
 
-
-\brynjar{TODO PAP! And also Last paragraph will be a guide how the report is build up, as in the project report. Added later.}
+\brynjar{TODO: And also Last paragraph will be a guide how the report is build up, as in the project report. Added later.}
 
 
 % \brynjar{Comment from Ton:}
