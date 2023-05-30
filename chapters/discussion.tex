@@ -198,7 +198,7 @@ This option is discussed in the next paragraph.
 
 % Sb M-lines not in any table, but M is stated to be 0.733 keV at https://www.globalsino.com/EM/page4675.html
 Another take-away from the qualitative analysis is that the HyperSpy database does not contain Sb M-lines.
-The GaSb spectra have a clear peak at what is assumed to be the Sb M$\eta$ peak around $0.42$ keV, based on the qualitative analysis AZtec, as well as the absorption edge in Sb around $0.5$ keV.
+The GaSb spectra have a clear peak at what is assumed to be the Sb M$\zeta$ peak around $0.42$ keV, based on the qualitative analysis AZtec, as well as the absorption edge in Sb around $0.5$ keV.
 The energy of a line is located a few eV below the absorption edge.
 The online book "Practical electron microscopy" by Y. Liao \cite{liao2006practical} lists a Sb M lines at $0.733$ keV, but this is only visible in the spectra as a slight increase in counts and not a real peak.
 The HyperSpy database and the X-ray data Booklet \cite{thompson_x-ray_2004} does not list any M-lines below Z=$57$.
@@ -881,7 +881,7 @@ This would be the next step after finding suitable quantification routine, with 
 % GaSb $5$ kV, AZtec chose M line.
 One strange difference between the SEM EDS and TEM EDS setting in AZtec is the choice of Sb line for GaSb at $5$ kV.
 The SEM EDS setting chose the Sb L$\alpha$ lines, which as discussed probably has issues with overvoltage.
-However, the TEM EDS setting chose the Sb M$\eta$ line at around $0.4$ keV, which is does not have the same overvoltage issue, but is heavily affected by absorption.
+However, the TEM EDS setting chose the Sb M$\zeta$ line at around $0.4$ keV, which is does not have the same overvoltage issue, but is heavily affected by absorption in bulk specimen.
 The EDS detector is equipped with an ultrathin polymer window \cite{xmaxn_datasheet}, which should be highly transparent to the low energy X-rays, but the absorption in the matrix for bulk specimen is still high at such low energies.
 The thin film assumption is that the matrix does not absorb the X-rays, which is probably the reason why AZtec use the Sb M-line when operated in "TEM mode".
 As the HyperSpy library does not include any Sb M-lines, and that AZtec did not give a k-factor for Ga L$\alpha$ in the TEM quantification for this $5$ kV spectrum, it was not possible to quantify the $5$ kV GaSb spectrum with the CL method.
