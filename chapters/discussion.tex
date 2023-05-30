@@ -2,9 +2,9 @@
 \chapter{Discussion}
 \label{ch:discussion}
 
-The discussion chapter connects the results from the previous chapter to the theory, with focus on the aims of this work.
+The discussion chapter connects the results to the theory, with focus on the aims of this work.
 % Brief summary of the aims:
-The overall aim of this work is to improve the performance of SEM EDS, which is done in two parts:
+The overall aim is to improve the performance of SEM EDS, which is split in two parts:
 ($1$) to investigate performance parameters for the SEM EDS setup and the acquisition parameters, ($2$) to investigate bulk corrections for the quantification with open-source code.
 A good EDS analysis requires a well functioning setup, adequate acquisition parameters, and high quality data processing routines.
 The focus of this work for part ($1$) has been to find possible test metrics, describe them thoroughly in the theory chapter, and implement the metrics in code.
@@ -34,11 +34,14 @@ This chapter is built up as the results chapter, i.e. first an initial qualitati
 
 % overview of the data
 The overview spectra of GaAs and GaSb in \cref{fig:results:overviewGaSb_withArtifacts} and the voltage series in \cref{fig:results:GaAs_voltages,fig:results:GaSb_voltages} show that the acquired data is of varying quality.
-The spectrum quality is affected by the beam energy and the amount of counts, which is revealed by looking at group A and B, being the voltage series of GaAs and GaSb.
+Assessing the use of performance parameters on spectra of varying quality is important, as the performance parameters should be able to distinguish different quality spectra, and thus it was necessary to acquire spectra of varying quality.
+The spectrum quality is affected by the beam energy and the amount of counts, which is revealed by looking at group (A) and (B), being the voltage series of GaAs and GaSb.
 The $30$ kV and $15$ kV spectra are in general of good quality with high counts, not too much noise, and clear peaks.
 The spectra with high amount of counts have lower relative variations in the counts, seen as a more even plot of the blue $400$ pA PT $1$ spectrum compared to the $50$ pA PT $1$ spectrum in panel (a) of \cref{fig:results:overviewGaSb_withArtifacts}.
-However, the amount of artifacts also increases with the amount of counts, exemplified by the previously mentioned spectra.
-The $10$ kV and $5$ kV spectra have lower counts, as the beam current which was kept constant in the voltage series.
+However, the amount of artifacts also increases with the amount of counts, exemplified by this spectrum with the highest amount of counts.
+An increase amount of artifacts, e.g. the internal Si fluorescence peak, is also observed in the $30$ kV spectra, compared to the other voltages in (A) and (B). 
+This increase can be due to the higher count rate in the $30$ kV spectra.
+The $10$ kV and $5$ kV spectra have lower counts, as the beam current was kept constant in the voltage series.
 The lower counts were expected, and as seen in the voltage series figures, the $10$ kV and $5$ kV plots are visually of poorer quality.
 With visually poorer quality, such as more noise and less clear peaks, the metrics and the quantification were expected to be worse.
 In general the $5$ kV and $10$ kV spectra performed worse than the $15$ kV and $30$ kV spectra, which is discussed more in \cref{discussion:performance}.
@@ -49,28 +52,36 @@ These spectra all are assumed to have enough counts to be reasonably assessed wi
 % linear vs log scale, artifacts
 Qualitative analysis of EDS spectra are influenced by the choice of scale, i.e. linear or log scale.
 AZtec has a default setting of a linear scale, with the option of a log scale.
-The log scale is used in this work, as it highlights disturbances and makes the spectrum faster to assess.
+The log scale is used in most plots in this work, as it highlights disturbances and makes the spectrum faster to assess.
 This is especially true when a specimen contains trace elements, as the low peaks from the trace elements are more visible in the log scale.
 The linear scale emphasizes the high peaks, making artifacts and disturbances less visible.
 The coincidence peaks from the Sb L peaks visible in panel (a) of \cref{fig:results:overviewGaSb_withArtifacts} would be invisible in a linear scale, but the presence of coincidence counts lower the Fiori P/B metrics, tabulated in \cref{tab:results:fiori}.
-The lower Fiori P/B ratio implies a poorer quality, as it is fewer counts in the Sb L$\alpha$ peak than it should be, and this could lead to a wrong quantification.
+The lower Fiori P/B ratio implies a poorer quality, as it is fewer counts in the Sb L$\alpha$ peak than it should be, and this could lead to a higher deviation in the quantification.
 For GaSb spectra taken at $30$ kV, the Fiori P/B ratio is similar at PT $1$ and PT $6$ with $50$ pA beam current, and both these spectra have little coincidence counts.
 In the $30$ kV, $50$ pA and PT $1$ spectrum, where the coincidence rate is high, the Fiori P/B ratio is lower for Ga K$\alpha$, Sb L$\alpha$, and Sb L$\beta$.
-In the same spectrum, the amount of coincidence counts from Ga L$\alpha$ does not increase, and the Fiori P/B ratio is similar to the other $30$ kV spectra.
+In the same spectrum, the amount of coincidence counts from Ga L$\alpha$ does not increase, and this Fiori P/B ratio is similar to the other $30$ kV spectra.
 The log scale reveals the coincidence peaks, which is the source of the lower Fiori P/B ratio.
 
 
 Another difference in the voltage series which would be hidden by a linear scale is the relative amount of counts in the background versus the peaks.
 Below $2$ keV the difference between the $30$ kV and $15$ kV spectra is small, but at increasing X-ray energy the $30$ kV spectra have higher relative peak-to-background counts than the $15$ kV spectra.
-Looking at the Sb L$\alpha$ peak, which does not have an overvoltage issue, the background increase with a factor of around $2.5$, while the peak increase with a factor of around $4$.
+Looking at the difference between the Sb L$\alpha$ peak in the $30$ kV and $15$ kV spectra, which does not have an overvoltage issue, the background increase with a factor of around $2.5$, while the peak increase with a factor of around $4$.
 The Fiori P/B ratios for the voltage series support this, as the general rule seems to be that a lower beam energy gives a lower Fiori P/B ratio.
-As mentioned in \cref{tab:results:artifacts}, the coincidence peaks are at the same energy as possible Si escape peaks.
+The trend of increasing Fiori ratio with increasing $E_0$ is mentioned Williams and Carter \cite[p. 614]{williams_carter_tem_2009} for TEM EDS, and is also observed in the SEM EDS data acquired.
+It is not mentioned why it increase with $E_0$, only that higher ratios are better.
+However, the trend is not valid for all peaks, as seen on Ga L$\alpha$ in the GaSb spectra, where the value is $86$, $110$, $113$, and $91$ for $30$, $15$, $10$, and $5$ kV respectively, all with $50$ pA and PT $6$.
+
+
+As mentioned in \cref{tab:results:artifacts}, the artifacts annotated as "Coincidence 1" in \cref{fig:results:overviewGaSb_withArtifacts} are at the same energy as possible Si escape peaks from Ga K$\alpha$.
 The discussion done for the coincidence peaks is equally valid if the signal has contributions from Si escape peaks.
-If the spectra were only assessed with a linear scale, the difference in the background and peak counts would be less visible.
-When assessing the quality of a spectrum, the log scale is therefore preferred.
+However, the absorption probability in Si is greatest at around 2 keV, which is right above the Si K absorption edge, and because of this the ASTM 1508 state that the Si escape peak is negligible from about 8 keV \cite[8.3.2]{astm_e1508_eds_quantification}.
+Additionally, the coincidence peaks marked "Coincidence 1" are quite similar to "Coincidence 2" and "Coincidence 3", which support that the peaks are coincidence peaks and not Si escape peaks.
+Using a linear scale would hide artifacts like these, and it would be harder to assess which acquisition parameters give satisfactory low amounts of artifacts.
+Another artifact that would be difficult to assess on a linear scale is the background.
+In general, when assessing the quality of a spectrum, the log scale is therefore preferred.
 
-
-\ton{Did you want a comment on plotting "a.u." instead of "counts" in the figures?}
+% TODO discuss (?): counts vs a.u.
+% \ton{Did you want a comment on plotting "a.u." instead of "counts" in the figures?}
 
 
 
@@ -84,36 +95,47 @@ The noise peak around $0$ keV is present in all spectra, and is caused by the de
 Before the model fitting the spectra were sliced after the noise peak to avoid bad fitting.
 The fitting in HyperSpy is done with a polynomial background and Gaussian peaks for the lines present in the selected elements.
 If too many elements are selected, e.g. adding Si because of a small Si peak, the fitted peak of the non-present element will usually have around zero intensity.
-However, getting negative intensities is possible with the model fitting in HyperSpy, which a user should be aware of.
-Having peaks present in the spectrum which are not added in the model fitting will yield a worse background fit, as the background polynomial then will include the peak.
+However, getting negative intensities is mathematically possible, and can occur with the model fitting in HyperSpy, which a user should be aware of.
+Having peaks present in the spectrum which are not added in the model will yield a worse background fit, as the background polynomial then will compensate for the peak.
 One weakness of how the model fitting was done in this project, was that the spectra was sliced off around $0.2$ keV, which removed the noise peak, but did not remove the low energy peaks of no interest, e.g. the C K$\alpha$ peak and O K$\alpha$ peak.
 The HyperSpy model fitting was given either Ga and As, or Ga and Sb as the elements to fit, and the C and O peaks were not included in the model fitting.
 Fitting with C and O was experimented with, but it did not give a significantly better fit, as the C and O peaks have low intensity.
 Additionally, as explained below, the GaSb spectra have some low energy Sb M-lines which are not included in HyperSpy, and thus does not have a Gaussian peak fitted to them.
 The model fitting done in this work was inspected visually, and the fit was considered to be good enough.
-However, the fit might have been better if the background fit was not affected by the low energy peaks of no interest.
+However, the fit might have been slightly better if the background fit was not affected by the low energy peaks of no interest.
 The first peak of interest in this work, regarding the quantification, is the Ga L$\alpha$ peak at $1.1$ keV.
 Thus, a better choice might have been to slice the spectra at e.g. $0.6$ keV, to avoid the noise peak and the low energy peaks of no interest, and still have background to fit to before the Ga L$\alpha$ peak.
 % To get even better model fitting 
 % To avoid bad background fits, the spectra were sliced to remove both the noise peak and the low energy peaks of no interest, e.g. the C K$\alpha$ peak and O K$\alpha$ peak.
-
+% TODO conc: Slice off low E, at least noise, and preferably low E peaks of no interest for best fit. Slicing at E_0 or DH will give an even better fit and prevent extrapolation of the background when plotting later. Input to the fitting is: elements, E_0, and data points.
 
 % model fit and slicing
 % tailing background and use of the Duane-Hunt limit
 All the spectra were acquired over $0-20$ keV, and thus the $5$ kV, $10$ kV, and $15$ kV spectra had to be sliced at both ends.
-\cref{fig:results:GaAs_voltages,fig:results:GaSb_voltages}, the voltage series, show some tailing background counts, i.e. coincidence counts above the beam energy.
+\cref{fig:results:GaAs_voltages,fig:results:GaSb_voltages}, the voltage series, show some tailing background counts, i.e. coincidence counts above $E_0$.
 When using model fitting in HyperSpy, the background is fitted with a polynomial, and polynomials does not have an end.
-The fitting of the background is done from zero energy to the beam energy, which is available in the metadata of the spectrum.
-The energies above the beam energy are not included in the model fitting, but the polynomial is not cut off at the beam energy.
+The fitting of the background is done from zero energy to $E_0$, which is available in the metadata of the spectrum.
+The energies above $E_0$ are not included in the model fitting, but the polynomial is not cut off at $E_0$.
 In other words, fitting a $15$ kV spectrum recorded on a $0-20$ keV range gives nonphysical results above $15$ keV, as the background is extrapolated without any restrictions.
 This is illustrated in \cref{fig:discussion:model_slicing_fit}, where the data is plotted with black dots, the fit on the whole energy range is the red line, and the fit sliced at $0.2$ keV to $15$ keV is the green line.
-The red line is nonphysical, with an exponential increase of the background above the beam energy.
+The red line is nonphysical, with an exponential increase of the background above $E_0$.
 Visual inspections of the model fit reveals the error easily.
 Slicing the spectrum correctly prevents extrapolation like this, and will even give slightly better fits.
-% The HyperSpy model fitting takes in the spectra, where the beam energy is available in the metadata, but the model fitting is done on the whole range of the spectra.
-% This is probably an effect of the HyperSpy package being made for TEM EDS data, where it is uncommon to record spectra with a range higher than the beam energy.
-% However, the opposite is true for SEM EDS data, and a user of model fitting in HyperSpy on SEM EDS data should be aware of this.
 Using the Duane-Hunt limit, discussed in \cref{discussion:duane_hunt} as the upper limit, can be useful if the specimen is charging, as the effective beam energy then is lower than the set beam energy.
+Calculating the Duane-Hunt limit is also important for the fitting in HyperSpy, as the $E_0$ in the metadata is used to specify which lines are present in the spectrum.
+For example, the 5 kV spectra models does not have the Ga K lines.
+If the metadata is incorrect, the model fitting will yield incorrect results.
+Proper input data for the fitting, i.e. the correct $E_0$ and the correct elements, as well as the relevant spectrum data points, is important to get the best possible model fit.
+
+
+% absorption edge effects. suggest future work, splice
+Similar absorption edge effects as observed in \cite{project_report} are present in the acquired spectra, where strong absorption edges at lower to medium energy influence the background intensities strongly.
+This is illustrated well in \cref{fig:background_absorptionEdgeSi}, where the spectrum is overlaid with the mass absorption coefficient for Si.
+The background intensity is reduced by the absorption edge, i.e. the intensity of the background is higher before the peak than after the peak.
+This makes the background modelling more difficult, as the background is modelled with a polynomial function.
+Lower accuracy in the background modelling could lead to worse quantification, as well as incorrect metrics discussed in this work.
+One possible improvement to the background modelling is to use a spline function instead of a single polynomial function.
+% TODO FW: model background as a spline, and use the mu_rho as a input to refine where the absorption edge could be.
 
 
 % figures/discussion/model_slicing_fit.pdf
@@ -125,8 +147,9 @@ Using the Duane-Hunt limit, discussed in \cref{discussion:duane_hunt} as the upp
         Correct slicing of the spectra improve the background fit, and prevents unpredictable results above the beam energy.
         % Slicing out the noise peak and the low energy peaks of no interest will also improve the background fit.
         The sliced fit is the green line, which is not perfect at the very beginning and the end, but good enough around the peaks of interest.
-        The red line, fitted on the whole energy range ($0-20$ keV), fits poorly at the beginning and very poorly at the end.
-        The red line is not too bad around the peaks of interest, but fits worse than the green line here.
+        The red line is not sliced before fitting, and it fits poorly at the beginning and very poorly at the end.
+        Between $5$ and $12.5$ keV the red line is also deviating more from the data than the green line.
+        The red line is not too bad around the peaks of interest.
         The black dots are the data, which are from the $15$ kV $50$ pA GaSb spectrum.
     }
     \label{fig:discussion:model_slicing_fit}
@@ -140,46 +163,46 @@ Using the Duane-Hunt limit, discussed in \cref{discussion:duane_hunt} as the upp
 Some artifacts seem to be affected by the amount of counts, and other artifacts are not.
 As mentioned above, the coincidence events are affected by the amount of counts, giving both peaks and tailing counts.
 The internal fluorescence Si peak is not affected by the amount of counts as the coincidence events are, and is present at similar low relative intensities in all spectra.
-This Si peak is from the detector as explained in \cref{theory:eds:hardware}, and is expected to be present at low levels in all spectra.
-The Si signal could also have some contribution from the Si wafer that the specimen is mounted on, the spectra acquired on clean Al specimen stubs in \cite{project_report} also had similar relative amounts of Si.
-No other peaks like Fe from the column or the detector are present in the spectra, implying that the collimator on the detector is working as intended by limiting X-rays which originate from other points than the targeted point on the specimen.
+This Si peak is from the detector as explained in \cref{theory:eds:hardware}, and is expected to be present at low levels in all spectra, as SDDs have thin Si layers.
+The Si signal could also have some contribution from the Si wafer that the specimens are mounted on, but this is less likely when taken into account the results in \cite{project_report}, where spectra acquired on clean Al specimen stubs had similar relative amounts of Si.
+No other peaks like Fe from the column or the detector are present in the spectra.
+Nor are any Ag signal present from the Ag paint used as glue to mount the specimens.
+The low amount of stray signals imply that the collimator on the detector is working as intended by limiting X-rays which originate from other points than the targeted point on the specimen.
+% TODO conc: low amount of stray radiation, except for C, and possible O in GaSb. The collimator is working as intended.
+
+
+% C contamination
 The carbon contamination in the form of a C K$\alpha$ peak is present in all spectra.
 The absorption is high at low X-ray energies, but the C K$\alpha$ peak is present at similar relative intensities in all spectra.
 This C peak can both be from a contamination on the specimen, or from somewhere in the chamber, detector, or column.
-The most probable source is contamination on the specimen, as a post acquisition image in panel (b) of \cref{fig:SE_images:GaAs}, taken with the ETD detector, showed darker spots on the acquired areas and a darker square where the specimen was scanned.
-The ETD detector combines the SE and BSE signals, and the darker spots are therefore most likely carbon contamination on the specimen.
+The most probable source is contamination on the specimen, as a post acquisition image in panel (b) of \cref{fig:SE_images:GaAs}, taken with the ET detector, showed darker spots on the acquired areas and a darker square where the specimen was scanned.
+The ET detector combines SE and BSE signals, and the darker spots are therefore most likely carbon contamination on the specimen.
 The image also have some horizontal lines, which are scanning artifacts.
 The biggest dark spot, located highest, is from the $30$ kV spectrum, showing that the interaction volume is larger at higher beam energies.
+The backscattered electrons, together with the beam electrons, are depositing C on the surface, and the backscattered electrons originates from a larger volume at higher $E_0$.
+The C signal is probably from a combination of contaminations on the specimen surface, which could be plasma cleaned, and carbon present in the camber.
 The source of the C signal can be further investigated by looking at different specimens, and should be done when low energy lines are of interest.
 As the peaks used in this work are from $1$ keV and above, the signal from C is not of concern in the remainder of this work.
+% TODO conc: C contamination from specimen or carbon in the chamber. Probably a combination, but is not an issue for the results in this work.
 
 
 % O Ka peak
 Another artifact observed in the spectra is the O K$\alpha$ peak, which is present in the GaSb spectra, but not in the GaAs spectra.
 % However, the O K$\alpha$ peak is only present in the GaSb spectra, and not in the GaAs spectra.
-The mass absorption coefficients for GaAs is twice as high at O K$\alpha$ than for GaSb, which could have been the reason for the O K$\alpha$ peak not being present in the GaAs spectra, but then the same should have been true for the C K$\alpha$ peak.
+The mass absorption coefficients for GaAs is twice as high at O K$\alpha$ than for GaSb, which could have been the reason for the O K$\alpha$ peak not being present in the GaAs spectra, but then the same should then have been true for the C K$\alpha$ peak.
 % GaAs: mu_rho(O_Ka) = 7k, mu_rho(C_Ka) = 24k
 % GaSb: mu_rho(O_Ka) = 4k, mu_rho(C_Ka) = 11k
 Thus, another explanation is needed for the absence of the O K$\alpha$ peak in the GaAs spectra.
 It could be due to different contamination on the two specimens, where the GaSb specimen have a thicker oxide layer than the GaAs specimen.
 This can both be an effect of the As vs Sb, or the age of the specimens, as the GaSb specimen could have been exposed to air for a longer time than the GaAs specimen.
 Another possibility is that the O K$\alpha$ peak is mislabeled, and is actually a Sb M-line.
-This option is discussed in the second next paragraph.
-% \ton{Any other ideas for the 0.5 keV peak?}
+This option is discussed in the next paragraph.
 
-
-% absorption edge effects. suggest future work, splice
-Similar absorption edge effects as observed in \cite{project_report} are present in the acquired spectra, where strong absorption edges at lower to medium energy influence the background intensities strongly.
-This is illustrated well in \cref{fig:background_absorptionEdgeSi}, where the spectrum is overlaid with the mass absorption coefficient for Si.
-The background intensity is reduced by the absorption edge, i.e. the intensity of the background is higher before the peak than after the peak.
-This makes the background modelling more difficult, as the background is modelled with a polynomial function.
-Lower accuracy in the background modelling could lead to worse quantification, as well as incorrect metrics discussed in this work.
-One possible improvement to the background modelling is to use a spline function instead of a single polynomial function.
 
 
 % Sb M-lines not in any table, but M is stated to be 0.733 keV at https://www.globalsino.com/EM/page4675.html
-Another take-away from the qualitative analysis is that the HyperSpy database does not contain the Sb M-lines.
-The GaSb spectra have a clear peak at what is assumed to be the Sb M$\eta$ peak around $0.42$ keV, based on the qualitative analysis AZtec, as well as the absorption edge in Sb at $0.5$ keV.
+Another take-away from the qualitative analysis is that the HyperSpy database does not contain Sb M-lines.
+The GaSb spectra have a clear peak at what is assumed to be the Sb M$\eta$ peak around $0.42$ keV, based on the qualitative analysis AZtec, as well as the absorption edge in Sb around $0.5$ keV.
 The energy of a line is located a few eV below the absorption edge.
 The online book "Practical electron microscopy" by Y. Liao \cite{liao2006practical} lists a Sb M lines at $0.733$ keV, but this is only visible in the spectra as a slight increase in counts and not a real peak.
 The HyperSpy database and the X-ray data Booklet \cite{thompson_x-ray_2004} does not list any M-lines below Z=$57$.
@@ -190,10 +213,13 @@ The lack of the Sb M-lines in the HyperSpy database can be a source of error in 
 A solution to this is to slice off the spectrum before fitting the background so that unavailable lines are excluded from the background modelling.
 This requires that the user visually inspect the lower energies thoroughly, and that the user is aware of the possibility of missing lines.
 Another solution is to add the Sb M-lines to the HyperSpy database, which would require more research into M-lines of elements with Z lower than $57$.
+The use of M-lines around 0.5 keV might be limited with bulk specimen, as the absorption is high, but such lines could be useful in TEM where the absorption is lower.
+% TODO conc: the line is Sb M, when comparing GaAs and GaSb. Also, Sb have M lines, but not tabulated values.
+% TODO FW: investigave the occurance and possible use of M-lines for Z<57. Could at least be useful for TEM, where the absrption in the specimen is lower.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/discussion/AZtec_Mlines.png}
+    \includegraphics[width=0.99\linewidth]{figures/discussion/AZtec_Mlines.png}
     \caption{
         Screenshot from the AZtec software, showing the Sb M-lines identified at 0.4 and 0.7 keV.
         The right part of the screenshot show that tellurium and iodine match slightly better than antimony, but the L-lines present are definitely from antimony.
@@ -207,6 +233,8 @@ Another solution is to add the Sb M-lines to the HyperSpy database, which would 
 
 \subsection{Test specimen and scratched surfaces}
 \label{discussion:test_specimen}
+
+% TODO disc: test specimen, not finished.
 
 % test specimen
 \brynjar{TODO: not finished yet. Start with the goal of the standard, then what it may be.
@@ -237,7 +265,7 @@ The deviation from $50:50$ was around $10$ at.\% for the scratched areas.
 Establishing corrections for non-flat surfaces would require more data.
 Such corrections would probably both be dependent on the surface and the material, as the issue with non-flat surfaces is that the X-rays are absorbed more or less depending on the path length through the material, which is dependent on the surface.
 The first step towards non-flat corrections would be to get open-source bulk corrections working properly for flat surfaces, thus the focus was directed on the flat areas.
-
+% TODO FW: non-flat corrections, which migt be very useful, but probably requires lots of work. First step is getting open-source bulk corrections working properly for flat surfaces, which should be documented well so that further work is easier to do.
 
 
 
@@ -249,7 +277,7 @@ The first step towards non-flat corrections would be to get open-source bulk cor
 \section{EDS performance parameters}
 \label{discussion:performance}
 
-% Same sentence now as results:
+% TODO disc: order for performance parameters. Both sentence below and headers.
 The metrics measured to evaluate the performance of the detector and the acquisition parameters are the energy resolution, the scale, the offset, the peak deviations in calibrated positions, the peak ratios, the Duane-Hunt limit and the Fiori peak-to-background ratio.
 Additionally, observations for PT, $E_0$, and $i_b$ are discussed.
 
@@ -260,7 +288,7 @@ Additionally, observations for PT, $E_0$, and $i_b$ are discussed.
 
 
 % the first table with energy resolution in a spectrum
-\cref{results:performance} begins with a table showing an issue with the calculated energy resolution, which is that in a single spectrum, different reference peaks give different energy resolutions.
+\cref{results:performance} begins with a table showing an issue with the calculated energy resolution, which is that a single spectrum gives different energy resolutions when using different reference peaks in the calculation.
 The energy resolutions are calculated from the FWHM of different peaks, using \cref{eq:estimateFWHM} by Fiori and Newbury.
 Calculated energy resolutions for GaAs and GaSb taken at $30$ kV with $50$ pA is tabulated in \cref{tab:results:lines_info_30kV_50pA}.
 The calculated energy resolutions for GaAs varies from $123$ eV to $135$ eV, and for GaSb from $121$ eV to $133$ eV,  when using different peaks as the reference peak.
@@ -275,8 +303,8 @@ This does require that the user laboratory has a polished manganese specimen, wh
 
 
 Measuring directly on a Mn specimen is the first of three possibilities for measuring the energy resolution, introduced in \cref{theory:eds_performance:energyres}.
-The second method is to measure the FWHM of Ni K$\alpha$, e.g. with a NiO test specimen from Ted Pella, and then multiply the FWHM by $0.926$ to get the FWHM of Mn K$\alpha$.
-This method relies on specific specimen, which is expensive and had been ordered but not delivered during the time span of this work.
+The second method is to measure the FWHM of Ni K$\alpha$, e.g. with a NiO test specimen from Ted Pella, and then multiply the FWHM by $0.926$ to get the approximate FWHM of Mn K$\alpha$.
+This method relies on specific specimen, which can be expensive and had been ordered but not delivered during the time span of this work.
 Other non-standard Ni test specimen could probably be used, but the 0.926 factor is based on NiO test specimen and the results from a round-robin study in 1995 with five TEM laboratories \cite{bennett_egerton_1995}.
 The third method, which is given in Goldstein \cite{goldstein_scanning_2018}, is the Fiori and Newbury equation mentioned above.
 As neither a Mn specimen nor a NiO specimen was available for this project, the third method was used.
@@ -295,13 +323,13 @@ The third method is also more flexible and general, as it does not rely on speci
 %     SDD EDS, the energy resolution shall also be specified at high ICR, e.g. 50 000 counts/s, 500 000 counts/s."}
 
 % more on energy resolution
-Claiming that the energy resolution is a property of the detector, the acquisition parameters, the specimen, and additionally the choices during calculations, raises the question of what the energy resolution actually is.
+Claiming that the energy resolution is a property of the detector, the acquisition parameters, the specimen, and additionally the choices during calculations, raises the question of what the energy resolution of a detector actually is.
 The energy resolution is a much used comparison metric for EDS detectors, and is thus important.
 Having a single number for the energy resolution is convenient, but it is not a complete description of the energy resolution.
 Traditionally, the energy resolution is seen as a property of the detector, but the ISO standard 15632 \cite{iso_qc_15632} stress the need for specifying the ICR with the energy resolution, preferably with one number at low ICR and one at high ICR.
 When looking at the other acquisition parameters, the data in \cref{tab:results:energy_resolutions} shows a strong dependence on the PT, and a weaker trend with the ICR.
 These numbers are calculated with HyperSpy, which use \cref{eq:estimateFWHM}, but selects the reference peak as the alphabetically first $\alpha$ peak.
-Both the use of \cref{eq:estimateFWHM} and the choice of reference peak was not documented properly, so the author of this work raised an issue on the HyperSpy GitHub page with a suggestion for improvement with a pull request\footnote{Issue: \url{https://github.com/hyperspy/hyperspy/pull/3099}. Pull request: \url{https://github.com/hyperspy/hyperspy/issues/3098}}.
+Both the use of \cref{eq:estimateFWHM} and the choice of reference peak was not documented properly, so the author of this work raised an issue\footnote{Issue: \url{https://github.com/hyperspy/hyperspy/issues/3098}} on the HyperSpy GitHub page with a suggestion for improvement with a pull request. \footnote{Pull request: \url{https://github.com/hyperspy/hyperspy/pull/3099}}.
 Regarding the PT, it should be selected to give the best energy resolution, as it is safe to assume that the manufacturer has done this for the specifications of the detector.
 The highest PT gave an energy resolution of $127$ eV, while the lowest PT gave $158$ eV.
 The ICR trend is weaker, indicating that lower ICR gives better energy resolution, but the changes are around $\pm 2$ eV.
@@ -317,8 +345,8 @@ The lowest energy resolution for both spectra is from the Ga K$\beta$ line, impl
 For GaAs, the explanation could have been that the peak overlap some with As K$\alpha$, but that is not the case for GaSb, and another explanation is needed.
 The Ga K$\beta$ peak is much less intense than the other lines used as reference, which can give slightly worse model fit.
 Another possibility is that the equation used to estimate the FWHM works better for $\alpha$ lines, but that is contradicted by the As K$\beta$, Sb K$\beta_1$, and Sb K$\beta_2$ lines.
-The most probable cause is the low intensity.
-Cherry-picking reference line can give better energy resolution, but it is not a good practice as it is not a general solution.
+The most probable cause is the low intensity in the Ga K$\beta$ peak.
+By cherry picking a reference line, the reported energy resolution can be lowered, but it is not good practice and it is not a general solution.
 A solution for the method using \cref{eq:estimateFWHM} could be to average the estimated energy resolution for a fixed set of reference lines.
 This would then depend on a standardized test specimen.
 Regarding the small variations between spectra with similar or equal acquisition parameters, the cause is probably measurement noise.
@@ -328,7 +356,7 @@ Such small variations when measuring the metric are expected, and would probably
 To summarize, the energy resolution of a detector should be specified with the acquisition parameters, the specimen used for the measurement, and the method used for calculating the energy resolution.
 Alternatively, a larger uncertainty can be used to specify a more general energy resolution.
 An example of the first, based on the results in \cref{tab:results:energy_resolutions}, would be:  the energy resolution of the detector is $127$ eV at $30$ kV and $50$ pA, measured on a GaAs specimen, and calculated with \cref{eq:estimateFWHM} with the Ga K$\beta$ line as reference.
-The second way of specifying the energy resolution would be: the energy resolution of the detector is $127 \pm 6$ eV at optimal acquisition parameters, measured on a GaAs and GaSb specimen, calculated with \cref{eq:estimateFWHM}.
+The second way of specifying the energy resolution would be: the energy resolution of the detector is $127 \pm 6$ eV at satisfactory acquisition parameters, measured on a GaAs and GaSb specimen, calculated with \cref{eq:estimateFWHM}.
 
 
 
@@ -336,13 +364,25 @@ The second way of specifying the energy resolution would be: the energy resoluti
 \label{discussion:scale_offset}
 
 The calibration of the spectra was done with HyperSpy, and the results for the energy scale, the offset and the deviations in the peak positions are close to the expected values.
-The scale and offset is presented in \cref{tab:results:scale_offset}, and the deviations in \cref{tab:results:lines_info_30kV_50pA} are representative for the peak deviations.
+The scale and offset is presented in \cref{tab:results:scale_offset}, and the $\Delta E$ in \cref{tab:results:lines_info_30kV_50pA} are representative numbers for the peak deviations.
 Low deviations for the scale and offset show that the detector is calibrated properly.
+The calibration accuracy is further reinforced by the low peak deviations.
 The GaAs spectra have one order of magnitude higher standard deviation for the scale than the GaSb spectra, which is probably due more $15$ kV and $30$ kV spectra for GaSb.
 The numbers would probably be more similar if the same number of spectra were used for both specimens.
 However, the numbers are still comparable, as the scale and offset is not expected to change with the specimen nor the acquisition parameters.
-With a scale of $10$ eV, a peak deviation of $\pm 2$ eV is good, and any better is not necessary as the channel size and energy resolution limits perfect peak position.
+With a scale of $10$ eV, a peak position deviation of $\pm 2$ eV is good, and any better is not necessary as the channel size and energy resolution limits perfect peak position.
 
+%
+According to the responsible engineer\footnote{Verner Håkonsen, communication by mail and in person.} for the SEM Apreo at NTNU NanoLab, the calibration routine for the instrument used in this thesis is just to measure specific known reference peaks, and then the software does the calibration.
+For peaks at energy from $1$ keV, this appears to be sufficient and gives good results.
+However, it can be observed in panel (a) of \cref{fig:results:overviewGaSb_withArtifacts}, that low energy peaks have visual peak deviations.
+The center of the C K$\alpha$ and O K$\alpha$ peaks are offset from the theoretical values, marked by vertical dashed lines.
+The poorer calibration at low energies can both be due to lower amount of counts here combined with high absorption, and the calibration routine.
+The calibration routine is probably not optimized for low energy peaks, as the routine is probably optimized for the most common use cases.
+If a user needs higher accuracy in the lower energy region, the spectrum should be calibrated with reference peaks in the lower energy region before the analysis.
+In this work, where the focus is peaks at $1$ keV and above, the calibration is sufficiently accurate.
+% TODO conc: when working with peaks above 1 keV, the detector used has a well calibrated energy axis, with a scale of 10 eV and an offset of 0 eV. The peak position deviations are low. The detector is just calibrated with pure Cu and the short calibration.
+% TODO FW: additional calibration routine when low energy peaks are of interest.
 
 
 
@@ -350,16 +390,19 @@ With a scale of $10$ eV, a peak deviation of $\pm 2$ eV is good, and any better 
 \label{discussion:peak_ratios}
 
 The idea of measuring peak ratios was to get a number for the possible carbon contamination, as it is done in the work of Egerton \cite{egerton_nio_characterization_1994}.
-As there is some carbon present in both the GaAs and GaSb spectra, the peak ratios could give a number for the carbon contamination, and the change over time.
-However, the metric needs a time series of spectra, where the change in K to L peak ratio is plotted, and an increase in K over time would indicate carbon contamination.
+There is some carbon present in both the GaAs and GaSb spectra, thus the peak ratios could give a number for the carbon contamination, and the change over time.
+However, a metric like this needs a time series of spectra, where the change in K to L peak ratio is plotted, and an increase in K over time would indicate carbon contamination.
 Measuring time series of spectra was not prioritized in this work, as the focus was directed elsewhere.
 
+% See absorption with peak ratios
 The peak ratios in \cref{tab:results:peak_ratios} are not an example of a time series, but the ratios are still interesting.
-GaSb have around three times higher ratio for Ga K$\alpha$ and Ga L$\alpha$ than GaAs.
-The higher ratio either indicates more Ga K$\alpha$ or less Ga L$\alpha$.
+GaSb have around three times higher ratio for Ga K$\alpha$/L$\alpha$ than GaAs.
+The higher ratio either indicates more Ga K$\alpha$ or less Ga L$\alpha$ signal registered.
 The GaAs spectra have much intensity from the As L$\alpha$ peak, which can be absorbed by the Ga L$\alpha$ peak, and thus giving the Ga L$\alpha$ peak a higher relative intensity in the GaAs spectra.
-As explained in \cref{theory:xray_formation:characteristic}, the absorption probability is the highest right above the absorption edge, and thus the As L$\alpha$ X-rays are absorbed easier than the Sb L$\alpha$ X-rays.
+As explained in \cref{theory:xray_formation:characteristic}, the absorption probability is the highest right above the absorption edge.
+With As L$\alpha$ right above the enery of Ga L$\alpha$, the As L$\alpha$ X-rays are absorbed easier than the Sb L$\alpha$ X-rays, and such absorption can result in more fluorescence from Ga L$\alpha$.
 This is an indication of absorption, which will be discussed more in \cref{discussion:quantitative}.
+% TODO conc: peak ratios can indicate absorption, at least relative absorption when comparing specimen.
 
 
 
@@ -369,6 +412,7 @@ This is explained in the work of Egerton \cite{egerton_nio_characterization_1994
 The grid element must contain a high and low energy line, and the element in the targeted area must contain a line in between the two lines in the grid element.
 In the work of Egerton, which is the routine following the TED Pella NiO test specimen, the element in the targeted area is Ni and the grid element is Mo.
 The idea is that a high amount of Mo K signal indicate that there are electrons from the beam which are deflected and hit the grid directly.
+Backscattered electrons can also contribute to the Mo K signal, but increased amount of deflected beam electrons would certainly influence the ratio of K and L in Mo.
 If there are higher amounts of Mo L signal, the source of artifacts is more likely to be from secondary fluorescence from Ni K X-rays.
 Skomedal \cite{skomedal_improving_2022} investigated the use of a NiO specimen in STEM EDS, but such investigations are not done in this work as it requires specific specimen geometry.
 The use of flat wafers as test specimen make this test for source of artifacts impossible.
@@ -404,11 +448,12 @@ Acquiring spectra with a high PT limits the possibility of misidentifications, a
 When a specimen is labeled correctly, the peaks can be modelled as Gaussian functions.
 Model fitting can deal with overlapping peaks quite well, if the right lines are added to the model.
 A computer can separate overlapping peaks better than the human eye, and is less dependent on having the best possible energy resolution.
-
+% TODO conc: "Acquiring spectra with a high PT limits the possibility of misidentifications, as the peaks are more visible and separable."
+% TODO conc: computer separable and human separable are not the same, but high PT is in general adviced for achieving high quality spectra. The best PT is probably high, but not the highest, as a small loss in e-res can give a huge increase in throughput (or faster acqu)
 
 % Specimen dependence
 As the process time is very influential on the energy resolution, the best PT for an analysis is dependent on the specimen.
-If the specimen have many L lines which are of interest, the PT should be high.
+If the specimen have many close L lines which are of interest, the PT should be high.
 If the peaks of interest are in the higher energy range, the PT can be lower to allow higher throughput.
 As seen in panel (c) in \cref{fig:results:energy_resolutions_process_time}, the maximum and minimum PT does not make a big difference for the Ga K$\alpha$ peak, but the Ga L$\alpha$ peak is merged to a visible unseparable peak with Ga L$l$ in panel (a).
 However, the Gaussian modelling of the PT $1$ spectra separate the low energy peaks, and the quantification is actually the one closest to the expected values.
@@ -416,9 +461,10 @@ The quantification results, presented in \cref{fig:results:initial_quantificatio
 
 
 The best general PT is probably high, but not the highest possible.
-At $30$ kV and $50$ pA, PT $6$ have DT $44$\%, while PT $4$ have DT $13$\%.
-Acquiring a PT $6$ spectrum then takes $2-3$ times as long as a PT $4$ spectrum, and the energy resolution difference is $127$ eV vs $132$ eV, given in \cref{tab:results:PTvsFWHMs}.
-The high increase in DT and acquisition time is in many applications not worth the small improvement of energy resolution.
+As mentioned in \cref{theory:eds_performance:energyres} and stated in Goldstein \cite{goldstein_scanning_2018}, it is often better to have sligtly lower energy resolution, as this allows a much higher throughput.
+For example, at $30$ kV and $50$ pA, PT $6$ have DT $44$\%, while PT $4$ have DT $13$\%.
+Acquiring this PT $6$ spectrum then takes $2-3$ times as long as the PT $4$ spectrum, and the energy resolution difference is $127$ eV vs $132$ eV, given in \cref{tab:results:PTvsFWHMs}.
+The high increase in DT and acquisition time, thus lowered throughput, is in many applications not worth the small improvement of energy resolution.
 
 
 
@@ -429,31 +475,43 @@ Setting the beam energy and beam current is important for the throughput and the
 The combination of beam energy and beam current is setting the amount of X-rays generated, and thus the amount of counts recorded.
 The beam energy is important for the overvoltage, which for example is an issue for the Sb L lines at $5$ kV and $10$ kV.
 Seen in the voltage series figures (\cref{fig:results:GaAs_voltages,fig:results:GaSb_voltages}), the $15$ kV and $30$ kV spectra are very similar around $1$ keV, but then the $15$ kV spectra falls off faster than the $30$ kV spectra.
-This is probably due to the overvoltage being lower faster at $15$ kV than at $30$ kV, and thus the ionization cross-section is decreasing faster at $15$ kV than at $30$ kV.
+This is probably due to the overvoltage decreasing faster at $15$ kV than at $30$ kV, and thus the ionization cross-section is also decreasing faster.
 
 % the choise of constant current for the voltage series, a bad idea?
-The voltage series were acquired with constant beam current, which probably could have been done better with constant input count rate.
+The voltage series were acquired with constant beam current, which probably could have been done better with for example constant input count rate.
 The constant beam current was selected to make the spectra as comparable as possible, but the low ICR at $10$ kV and $5$ kV made the spectra noisy, as an addition to the low overvoltages in these spectra.
 The combination of low beam current and low overvoltage resulted in few counts, and thus not very good spectra.
 The idea was to acquire spectra that did not need normalization for good comparison, but a different approach could have solved this better.
 Keeping the input rate constant should result in more similar spectra which also does not need normalization, and such an approach can be tested in future works.
+Another solution for voltage series is to use a medium PT, e.g. PT $4$, as this will give more counts in all spectra and might mitigate the issue with low ICR at low beam energies.
+Even though the $5$ kV and $10$ kV spectra had lower quality, they were still useful in this work, because the effect of performance parameters is best visualized with spectra of varying quality.
+% TODO conc: doing a voltage series with constant count rate can yield better results than with constant current, as the lower energy spectra had few counts. alternatively, a lower PT can be selected for all spectra, as this will increase the counts. 5 and 10 kV spectr had too few counts.
+% TODO FW: record voltage series with constant count rate, or with constant current but with PT4. To achieve better quality spectra and further investigate the low voltage spectra.
 
 
-% DT as a measurement for artifacts
-In the literature (see \cref{theory:eds:user_controlled_parameters}), the DT is given as the parameter that determines the amount of artifacts in the spectrum, but the results in this work do not support this.
+% DT as a measurement for artifacts in the literature
+In the literature \cite{astm_e1508_eds_quantification,iso_quantification_22309,newbury_deadtime_2014} (see \cref{theory:eds:user_controlled_parameters}), the DT is given as the parameter that determines the amount of artifacts in the spectrum, but the results in this work do not support this.
+These advices set $40$\%, $30$\%, and $15$\% as DT limits, which probably are based on the older Si(Li) detectors, while the SDDs can handle much higher count rates, and thus higher DT without the same issues with artifacts.
+The 2018 version of the Goldstein textbook \cite{goldstein_scanning_2018} is updated with the advice saying that spesific DTs are not really useful for SDDs, but rather that a test spectrum should be acquired to see if the acquisition parameters are suitable for the specimen.
+This is in accordance with the results in this work, and the argument for this is presented below. 
+
+% examples of spectra with high DT and low DT, and the amount of artifacts
 The two spectra with the highest DT at $53$\% and $77$\% had similar amount of artifacts as a spectrum with DT $18$\%, and the amount was low.
 The mentioned spectra are the GaSb $15$ kV and PT $6$ spectra, where the DT increase with $i_b$ ($50$, $200$, $400$ pA).
 These three spectra were very similar, except for the amount of counts, which increase with higher $i_b$.
 The spectrum with clearly the most prominent artifacts was the one with the highest amount of counts, recorded at high $i_b$ and low PT, which is the GaSb $30$ kV, $400$ pA, PT $1$ spectrum.
-This combination gave around $6-10$ times more counts in the peak of interest than the other spectra, but also very clear artifacts.
+This combination gave around $6-10$ times more counts in the peak of interest than the other spectra, but also clear artifacts which were not present in other spectra.
 The spectrum is plotted in \cref{fig:results:overviewGaSb_withArtifacts}, and the artifacts are annotated.
 The DT of this spectrum was only $28$\%.
 The result implies that artifacts are more present when the amount of counts is high and the detector have little time to process the signal.
-It might be that the AZtec software is doing some data treatment to reduce the amount of artifacts, and thus that the outputted raw data in the \verb|.emsa| file is not the as "raw" as it is assumed to be.
-This is just speculations, as the documentation does not give information about this.
-The DT advice given in Goldstein is probably the best one, which states that the analyst should run a test spectrum first to see if the acquisition parameters are suitable for the specimen, without generating too many and intense artifacts.
-In other words, the DT is not as useful as a parameter to determine the quality of the spectrum, and should mainly be used when considering the acquisition time.
-Other parameters like the count rate and PT should be used to adjust the amount of artifacts, and even though the DT is a product of these parameters, it is not a good measurement for the artifacts.
+However, it might be that the AZtec software is doing some data treatment to reduce the amount of artifacts, and thus that the outputted raw data in the \verb|".emsa"| file is not the as "raw" as it is assumed to be.
+This is just speculations, as the documentation \cite{aztec_manual} does not give information about this.
+
+
+In conclusion, the DT is not as useful as a parameter to determine the quality of the spectrum, and should mainly be used when considering the acquisition time.
+The DT advice given in Goldstein is probably the best one, which states that a test spectrum is needed to assess if the acquisition parameters are suitable for the specimen, without generating too many and intense artifacts.
+Other parameters like the ICR (through $i_b$ and $E_0$) and PT should be used to adjust the amount of artifacts, and even though the DT is a product of these parameters, it is not a good measurement for the artifacts.
+% TODO conc: DT is not a measurement for the occurence of artifacts, at least not for SDDs. Suitable artifacts levels, on eg. sum peaks, is best assessed by testing the acquisition parameters on the specimen of interest, and are probably first present at very high ICRs.
 
 
 
@@ -476,6 +534,8 @@ Conversely, having too many parameters can make a test routine overwhelming, and
 A solution for this is to have a test routine that gives some standard output, and checks additional parameters in the background which are alerted if they are outside the expected values.
 Defining the expected value range for the Duane-Hunt limit needs more testing, but a starting point is $\pm 0.5-1$ keV from the set beam energy.
 This is much higher than the deviation seen in this work, but the test specimen was not expected to have charging issues.
+% TODO conc: DH limit is useful for checking the metadata and for condution test. The metric does not require much interpretation, and could be hidden in the background of a test routine.
+% TODO FW: run DH limit, but only give warning at higher deviations, as giving all parameters always will just result in information overflow. A more sophisticated and complete notebook.
 
 
 
@@ -486,9 +546,9 @@ This is much higher than the deviation seen in this work, but the test specimen 
 % (A function of: the detector, the specimen, the line selected, the acquisition parameters, and the calculation method.)
 
 The Fiori P/B ratio is a selling point for EDS manufacturers, at least for TEM EDS, where the metric is an indication of how much signal the detector can get in the peak of interest compared to the background.
-The background acquired in an EDS spectrum is noise which is unwanted, while the useful signal is the counts in the peak of interest.
+The background acquired in an EDS spectrum is unwanted noise, while the useful signal is the counts in the peak of interest.
 The numbers for TEM EDS are usually very high, for example above $3000$ as the previously mentioned TEM EDS round-robin paper suggests as good values \cite{bennett_egerton_1995,ted_pella_nio_tem_2019}.
-The extremely high numbers are due to the fact that all the counts in a peak is divided by the background counts in just a single channel under the center of the peak.
+The extremely high numbers are due to the fact that all the counts in a peak is divided by the background counts in just a single channel (or a corresponding $10$ eV window) under the center of the peak.
 This is illustrated in \cref{fig:fiori_pb}.
 The reasons for using just one channel for the background is explained in \cref{theory:eds_performance:fiori}, where the one of the reasons is that the metric is not dependent on the energy resolution.
 This is seen in the results, where the $30$ kV and $50$ pA spectra at PT $1$ and PT $6$ have similar P/B ratios, even though the energy resolution is much better at PT $6$ ($158$ eV vs. $127$ eV).
@@ -539,15 +599,16 @@ Pure specimen does not absorb as much of the background just below the line, but
 Achieving high Fiori numbers are of interest for manufacturers as a selling point, but EDS analysis of pure specimens are not usually of high scientific interest.
 
 
-
 % the parameters which affect the Fiori numbers
-
 Aside from the specimen, the acquisition parameters also affect the Fiori numbers.
 The different PTs tested on GaSb in (C) and (D) does not seem to have a noticeable effect with a trend in either direction, i.e. the energy resolution does not affect the Fiori numbers.
 An increase in $i_b$ appears to have a decreasing effect on the Fiori numbers, but the effect is small.
 This $i_b$ effect can be seen on the three $15$ kV GaSb spectra, with $50$ pA, $200$ pA, and $400$ pA.
 The same effect is visible for the $30$ kV GaSb spectra taken with $50$ pA and $400$ pA at PT $1$, with the Ga L$\alpha$ peak as an exception.
 However, the biggest effect and trend appears to come from $E_0$.
+The $E_0$ trend is expected in well performing AEM setup \cite{williams_carter_tem_2009}, and as it is visible in the results, the trend can be assumed to be present in SEM EDS as well.
+However, the trend should also vary more in SEM EDS, as $E_0$ is in the same range as $E_C$, and then the overvoltages are changing more than in TEM setups.
+This should lead to some variation in the trend between the Fiori numbers and $E_0$, which is observed in the results.
 For the GaAs specimen, the Fiori P/B ratio of Ga L$\alpha$ increase with increasing $E_0$.
 The same $E_0$ effect is visible for the Ga K$\alpha$, Sb L$\alpha$, and Sb L$\beta$ peaks in the GaSb spectra.
 The Ga L$\alpha$ peak in the GaSb spectra does not follow this trend, but this ratio is changing much less than the ratios for the three other peaks.
@@ -562,7 +623,7 @@ The trend is an increase with a maximum between $U=2$ and $U=5$, and then a decr
 From \cref{fig:PAP:ionization_cross_section}, the maximum Q is achieved at $3.7$ kV for Ga L$\alpha$ and $4.3$ kV for As L$\alpha$.
 As Q decrease above the maximum, the probability of exciting X-rays decrease, and from this statement alone it would be expected that the $5$ kV spectra have the highest Fiori numbers, and then the number should decrease with increasing $E_0$.
 However, the opposite is observed in the data.
-The reason for this is that the electron beam travel deeper into the specimen with increasing $E_0$, both illustrated in the interaction volume in \cref{fig:interaction_volume} and given in numbers with the Kanaya-Okayama parameterization of the electron range in \cref{tab:results:ZAF_corrections_range_r}.
+The reason for this is that the electron beam travel deeper into the specimen with increasing $E_0$, illustrated by numbers for the electron range in \cref{tab:results:ZAF_corrections_range_r}.
 At higher $E_0$, the probability of ionization at each level is lower, but the number of levels is higher.
 This explanation is not complete, as it does not explain why thin TEM specimen can achieve Fiori numbers above $3000$ or $4000$.
 When thin specimen are probed with high $E_0$, the probability of multiple scattering events are negligible, and thus the background level is reduced compared to thicker specimen \cite{liao2006practical}.
@@ -574,6 +635,9 @@ Additionally, as explained and discussed in the theory about the Fiori P/B ratio
 Different calculation methods, such as using background windows close or far from the peak, can give different results.
 The window integration method appears to be the most used method, but using model fitting of the peak and the background will give results which are closer to the original definition.
 The use of model fitting will also reduce the user bias, which can make Fiori numbers from different detectors more comparable.
+This is emphasized by the ISO standard 15632 on SEM EDS performance \cite{iso_qc_15632}, where a slightly different SNR is used, and it is calculated with integration windows.
+As the SNR in the ISO standard use integration windows, it is specified that "the ratio is only relevant for the comparison of spectrometers with similar resolution performance" \cite[p. 4]{iso_qc_15632}.
+Using the Fiori P/B ratio as a metric for SEM EDS performance would be better, as it both can be used to compare different resolutions, and it is more robust than the SNR given in the ISO standard.
 However, if two different detectors have measured a Fiori number for the same peak in two different specimens, the numbers are not comparable.
 Thus, to get comparable numbers between detectors, the same specimen, calculation method, and acquisition parameters should be used, at least the same $E_0$.
 
@@ -590,27 +654,29 @@ This could be explored further in future work.
 Regarding the beam current, it was observed that spectra with increased beam current, and thus increased dead time and acquisition time, had similar Fiori numbers.
 This is an implication that the data quality is similar, and thus that a threshold for the beam current could be found where the data quality will not improve with increased beam current.
 For mapping applications, this could reduce the acquisition time to allow faster or more detailed acquisition.
+% TODO conc: Fiori is useful in SEM to assess a spectrum, but probably not as a metric for the setup. The number is highly dependent on the specimen (GaAs > GaSb, pure > composite), and thus to use the Fiori number as a metric for the setup requires that the metric is recorded on a equal standard specimen. "Thus, to get comparable numbers between detectors, the same specimen, calculation method, and acquisition parameters should be used, at least the same $E_0$."
+% TODO conc: Fiori ratio can be used to assess the acqu params, and optimize the time. Spectra with similar Fiori numbers for the peak of interest should have similar quality. It is not necessary to aquire more counts, if the amount in the BG and peaks increse equally much. Could rather aquire more spectra, larger areas or for shorter times.%
+
+% TODO FW: continue to investigate the usefulness of the Fiori ratio in SEM EDS, eg on different acu params to see if it can be used to optimize acuq params.
+% TODO FW: Fiori ratio as a measure of peak overlap with varying energy resolution (if the number of counts in the overlapping peaks are the same, relative to the bg, the Fiori number should be the same. Thus, there should be no issue, but if the ratio change, the peaks are not seperated).
 
 
-% % The ISO standard
-% TODO discuss: the stuff below
-% \brynjar{The ISO standard is pretty bad here, as it seems to be aimed at manufactures of SEM EDS, and not users.
-%It goes: "The peak-to-background ratio shall be derived at the point of manufacture of the spectrometer from an acquired spectrum of an 55Fe source as a characteristic spectrometer parameter. The ratio shall be given by the peak height of the manganese K$\alpha$ line divided by the background. The background shall be calculated as the mean number of counts per channel within the energy range from 0.9 keV to 1.1 keV. Sufficient counts shall be recorded in the spectrum to make the measure statistically significant (as per A.4) and the electronic threshold(s) shall be set up so that any energy cut-off occurs well below the specified range. \dots Beside other factors, the peak-to-background ratio depends on spectrometer resolution. Therefore, the ratio is only relevant for the comparison of spectrometers with similar resolution performance."}
+
 
 
 
 \subsection{Summarization of the performance parameters}
 \label{discussion:summarization_of_the_performance_parameters}
-
-% \cref{tab:results:performance_summary} gives the values for the parameters with a comment.
+% TODO conc: all that is written here in "Summarization of the performance parameters"
 
 The summarization of the performance parameters in \cref{tab:results:performance_summary} gives an indication of how well the detector performs, and what acquisition parameters are important.
+The first paragraph is about the detector, and the second paragraph is about the acquisition parameters.
 
 
 % the detector
 Based on the calculated metrics, the detector performs well.
 The energy resolution achieved at $127 \pm6$ eV is the same as the manufacturer specification.
-As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the XMAX-N detector is $127$ eV\cite{oxford_xmax_80}, with typical values of $125$ eV, and this fits well with the variations observed when using different peaks as the reference peak.
+As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the X-max$^N$ detector is $127$ eV\cite{oxford_xmax_80}, with typical values of $125$ eV, and this fits well with the variations observed when using different peaks as the reference peak.
 The energy axis through the scale and offset is calibrated well, as their deviations from the set values are small, and the deviations for the calibrated peak positions are very low.
 In addition to the scale and offset, the Duane-Hunt limit further indicates that there are no issues between the communication between the detector, the software and the SEM.
 The peak ratios gave indications of absorption.
@@ -625,7 +691,7 @@ The acquisition parameters are important for acquisition of good spectra.
 Some spectra acquired had too few counts, which were reflected in low Fiori numbers and high peak ratios.
 The energy resolution was not affected by few counts, showing that it was high background and much noise that disturbed the poorer quality spectra, as similar energy resolution indicate that the detection worked equally well.
 The spectra with too few counts were due to low beam current.
-However, the Fiori numbers and the quantification indicate that some spectra had more counts than necessary.
+In addition to spectra with too few counts, the Fiori numbers and the quantification indicate that some spectra had more counts than necessary.
 Optimization of $i_b$ is important for EDS analysis, because reduced acquisition time will reduce the risk of beam damage and allow faster acquisition.
 Faster acquisition allows more mapping, detailed mapping, and less time spent on expensive instruments.
 Some spectra show issues with beam energy through overvoltage, but also through low counts, as  $E_0$ and $i_b$ together with specimen properties determine the number of X-rays generated in the specimen.
@@ -695,7 +761,7 @@ SEM EDS bulk corrections are, to the author's knowledge, not available in an ope
 The DTSA-II software is open-source, but written in Java.
 A followup of the DTSA-II software in the newer programming language Julia is available and called "NeXL Spectrum"\footnote{Available at \url{https://pages.nist.gov/NeXLSpectrum.jl/} and \url{https://github.com/usnistgov/NeXLSpectrum.jl}}, but its documentation is not extensive.
 The use of Julia in scientific programming may be increasing, but the language is not as widespread as Python.
-Implementation of SEM EDS bulk corrections in Python is a novelty, and this work is a step towards achieving this goal.
+Implementation of open-source SEM EDS bulk corrections in Python is a novelty, and this work is a step towards achieving this goal.
 This section is a discussion of the results from the quantification \cref{results:quantitative}, presented in the same order as the results.
 
 
@@ -725,6 +791,7 @@ For example, the poor quality of the $5$ kV GaSb spectrum was quantified without
 Such results can be avoided when the user takes multiple spectra, but a warning from the software would be helpful.
 It would be even more helpful if the user knew what the software did through the documentation, but AZtec is not documented in detail, for the public at least.
 Even though the software is a black box, it is readily used in high quality publications in journals such as Nature\cite{aztec_nature_2019}.
+% TODO conc: AZtec is accurate, but a black box.
 
 
 % from results:
@@ -733,18 +800,23 @@ The GaSb spectrum at $5$ kV is poorly quantified, both by AZtec and by the inten
 Both methods use the Ga L$\alpha$ and Sb L$\alpha$ peaks, and the Sb L$\alpha$ peak is at $3.6$ keV, which is quite close to $E_0$.
 The overvoltage on Sb L$\alpha$ in the $5$ kV spectrum is below $1.4$, while the overvoltage on the Ga L$\alpha$ is above $4.5$, which results in a severely underestimated Sb content with the intensity ratio.
 As explained in \cref{theory:eds:user_controlled_parameters}, the overvoltage is important to achieve high quality spectra and quantification.
-As seen in the table, the area of the Ga L$\alpha$ peak is $19$ times larger than the area of the Sb L$\alpha$ peak, thus the intensity ratio method gives a $97:3$ composition.
+The advice in Goldstein is to keep $U > 1.5$, and the $5$ kV GaSb spectrum is not following this advice.
+As seen in \cref{tab:results:initial_quantification}, the intensity of the Ga L$\alpha$ peak is $19$ times larger than the intensity of the Sb L$\alpha$ peak, thus the intensity ratio method gives a $97:3$ composition.
 AZtec is doing some corrections for this, but overestimates the weight for Sb, and ends on a $39:61$ composition.
+Based on the results from the $5$ kV GaSb spectrum, the overvoltage should be much higher than $1.5$ to avoid severe overvoltage issues.
 In general, it is difficult to do high accuracy quantification at low $E_0$ when the peaks are close to $E_0$, as the overvoltage between different peaks will be big, the background is changing rapidly, and the absorption can be high.
 To do high quality quantification at low $E_0$, the input parameters to the model used must be refined.
 The issue in the $5$ kV GaSb spectrum is probably most affected by the issue with the overvoltage.
 This show that quantification routines needs improvement and tailoring for low beam energies.
 
 
+% TODO conc: "To do high quality quantification at low $E_0$, the input parameters to the model used must be refined. The issue in the $5$ kV GaSb spectrum is probably most affected by the issue with the overvoltage."
+% TODO FW: "This show that quantification routines needs improvement and tailoring for low beam energies."
 
 
 
-% TODO: rewirte, taken from results:
+
+
 % What corrections are needed for the intensity ratio?
 The initial quantification also present the uncorrected intensity ratio results, and from these results it is possible to see what corrections are needed.
 \cref{tab:results:initial_quantification} and \cref{fig:results:initial_quantification} show that the need for corrections are varying with both specimen and acquisition parameters.
@@ -753,19 +825,18 @@ Different $i_b$ are not affecting the correction needs much, but the $E_0$ is.
 All the GaAs spectra need corrections which increase the weight of the As signal to achieve a $50:50$ composition.
 AZtec have applied corrections to the GaAs spectra, where the results are pushing As too high at $5$ kV and $10$ kV, and not high enough at $30$ kV.
 The $15$ kV GaAs corrections done by AZtec on GaAs is good, resulting at $50.6:49.4$.
-% TODO discuss: the need to increase the weight of As is due to absorption of As X-rays is Ga.
 The intensity ratio method show that the As content is too low.
 The need to increase the weight of As is due to absorption of As X-rays in the specimen, which is higher for the As line than the Ga line.
+% TODO conc: "the need for corrections are varying with both specimen and acquisition parameters"
 
 
 % GaSb
 The trend in the GaSb spectra are not as clear as for GaAs.
 The $30$ kV GaSb spectra appears to require little corrections, and have good results with the intensity ratio.
-The $15$ kV and $10$ kV spectra of GaSb need corrections to increase the weight of Sb.
 The GaSb $15$ kV and $10$ kV spectra are quantified with Ga L$\alpha$ and Sb L$\alpha$.
 % The intensity in the Sb L$\alpha$ peak in the $15$ kV and $10$ kV spectrum are too low, compared to the Ga L$\alpha$ peak.
-AZtec have corrected the GaSb $15$ kV and $10$ kV compositions to values close to $50:50$.
 The intensity ratio method show that the Sb content is too low in the $10$ kV and $15$ kV spectra, i.e. Sb needs to be increased to achieve a $50:50$ composition.
+AZtec have corrected the GaSb $15$ kV and $10$ kV compositions to values close to $50:50$.
 
 
 % TODO discuss: the need to increase the weight of Sb. The absorption should be stronger of Ga La, so this is not the reason. Probably a Z effect. Also overvoltage. Maybe omega.
@@ -773,11 +844,14 @@ Since the absorption should be stronger of the Ga L$\alpha$ peak than the Sb L$\
 The low Sb content in the $15$ kV and $10$ kV spectra can be due to the overvoltage differences.
 Ga L$\alpha$ has overvoltage $U = 15/1.1 = 13.6$, and Sb L$\alpha$ has $U = 15/3.6 = 4.2$ at $15$ kV.
 From the estimated ionization cross-section as a function of overvoltage, seen in \cref{fig:PAP:ionization_cross_section}, the maximum $Q(U)$ is at $U = 3.4$.
-Thus, the overvoltage at $15$ kV should not be the reason for the low Sb content.
-% TODO discuss: the reason for the low Sb content at $15$ kV is not the overvoltage, but something else.
-The different intensities can have numerous reasons, such as different fluorescence yield, detector efficiency, or effects from atomic number.
+Thus, the overvoltage at $15$ kV should not be the reason for the low Sb content, as Sb L$\alpha$ is close to the maximum $Q(U)$.
+However, as shown in \cref{fig:PAP:ionization_cross_section}, higher $E_C$ give lower $Q(U)$, and this can partly explain the difference between Ga L$\alpha$ and Sb L$\alpha$.
+The different intensities can have other reasons too, such as different fluorescence yield, detector efficiency, or effects from atomic number.
 The most probable reason for the low Sb L$\alpha$ intensity compared to the Ga L$\alpha$ intensity is atomic number effects, as the difference between Ga and Sb is $20$.
+Different $E_C$ is one of the effects of different Z.
 The Z difference between Ga and As is just two, which may be why the GaAs spectra need different corrections than the GaSb spectra.
+
+% TODO conc: GaAs is most affected by absorption, while GaSb is probably affected most by Z effects.
 
 
 
@@ -793,8 +867,9 @@ The best improvement was achieved when the specimen thickness was set to $200$ n
 When comparing this thickness to the electron ranges in \cref{tab:results:ZAF_corrections_range_r}, there is no obvious reason why this thickness should be the best.
 At $30$ kV the electrons can penetrate around $4000$ nm while still have enough energy to excite the relevant X-rays.
 This range is decreased to around $1200$ nm at $15$ kV, $600$ nm at $10$ kV, and $200$ nm at $5$ kV.
-It might be that the thickness which gives the best corrections are varying between specimen, and thus using the $200$ nm thickness on other specimen will probably not work as well.
+It might be that the thickness which gives the best corrections are varying between specimen, and using the $200$ nm thickness on other specimen may not work equally well.
 The thickness $200$ nm does not have a physical meaning, as the bulk specimens used are $300$ \textmu m.
+% TODO conc: In general, the TEM EDS routines did not yield very good results for the SEM EDS data.
 
 % selection of thicknesses
 The selection of tested thicknesses was done to cover the range of conventional TEM specimen thicknesses, and to increase the $t$ towards bulk thicknesses.
@@ -802,13 +877,16 @@ The highest thickness at $10000$ nm was chosen to see the effect of the absorpti
 The CL method did not raise any warnings or errors with such high numbers, and the results were not obviously wrong.
 This may just be a reflection of the fact that the quality of the results were compared to a reference of $50:50$, and not an extensive analysis with multiple different compositions.
 This would be the next step after finding suitable quantification routine, with corresponding bulk corrections.
+% TODO conc: assessing the results with a reference of $50:50$ is a limitation of this work, and is not best practice. But it is a start.
+% TODO FW: "an extensive analysis with multiple different compositions.", not just 50:50.
 
 
 % GaSb $5$ kV, AZtec chose M line.
 One strange difference between the SEM EDS and TEM EDS setting in AZtec is the choice of Sb line for GaSb at $5$ kV.
 The SEM EDS setting chose the Sb L$\alpha$ lines, which as discussed probably has issues with overvoltage.
 However, the TEM EDS setting chose the Sb M$\eta$ line at around $0.4$ keV, which is does not have the same overvoltage issue, but is heavily affected by absorption.
-The EDS detector is equipped with an ultrathin polymer window \cite{xmaxn_datasheet}, which should be highly transparent to the low energy X-rays, but the absorption is still high in the specimen at such low energies.
+The EDS detector is equipped with an ultrathin polymer window \cite{xmaxn_datasheet}, which should be highly transparent to the low energy X-rays, but the absorption in the matrix for bulk specimen is still high at such low energies.
+The thin film assumption is that the matrix does not absorb the X-rays, which is probably the reason why AZtec use the Sb M-line when operated in "TEM mode".
 As the HyperSpy library does not include any Sb M-lines, and that AZtec did not give a k-factor for Ga L$\alpha$ in the TEM quantification for this $5$ kV spectrum, it was not possible to quantify the $5$ kV GaSb spectrum with the CL method.
 However, the quality of that spectrum was poor anyway.
 
@@ -830,6 +908,8 @@ The test of the settings in AZtec confirms that the SEM EDS settings are applyin
 In the Oxford Instruments blog post\cite{oxford_blog_XPP} it is stated that the bulk corrections applied are based on the XPP model, but the documentation of AZtec does not specify this or any other information about the bulk corrections\cite{aztec_manual}.
 Secondly, the results presented in \cref{results:quantification_cliff_lorimer} show that applying absorption corrections can improve the quantification results.
 In general, using TEM EDS routines on bulk data is too unreliable.
+
+% TODO conc: use of thin film assumption on bulk data show: (1) similar routines, but not directly transferable, and (2) absorption corrections can improve the results. However, "In general, using TEM EDS routines on bulk data is too unreliable."
 
 
 
@@ -877,9 +957,9 @@ However, using a method like this with an average point might be a too simple mo
 
 % the results
 The compositional results presented in \cref{tab:results:ZAF_corrections_compositions_stats} show that the GaAs quantifications are improved by applying the ZAF absorption corrections, but the GaSb results are not.
-Dividing r by a higher number made the results closer to the reference values, with an average $7$ at.\% deviation for GaAs, which is improved from $11$ at.\% deviation in the uncorrected results.
+Dividing r by a higher number made the results closer to the reference values, with an average $7$ at.\% deviation for GaAs, which is improved from $11$ at.\% deviation in the uncorrected intensity ratio results.
 These results show that one of the issues with the GaAs specimen is probably absorption, and that the ZAF absorption corrections can push the results in the right direction.
-However, the GaSb results increase from a $6$ at.\% deviation in the uncorrected results to a $30$ at.\% deviation with $r/2$, which decrease to a 21 at.\% deviation with $r/4$.
+However, the GaSb results increase from a $6$ at.\% deviation in the uncorrected results to a $30$ at.\% deviation with $r/2$, which decrease to a $21$ at.\% deviation with $r/4$.
 This is an indication that the GaSb specimen have other issues than absorption.
 
 
@@ -897,15 +977,13 @@ The absorption in GaSb is high, as shown in \cref{fig:mass_absorption_coefficien
 The best correction for GaSb might include a combination of absorption and other corrections, but the assumption given in Goldstein \cite[p. 300]{goldstein_scanning_2018} that the two effects of Z cancel each other out is not valid for GaSb.
 One of the corrections applied from the XPP model is investigating the possibility for Z corrections, and the other XPP correction combines Z and A corrections.
 
-
 % why GaAs still is off with the ZAF corrections.
 % DONE discuss: mu_rho is taken from HS, and slight deviations can give large impacts, as mu_rho is in the exponent. ref to eq. in theory. 
-Even though the ZAF absorption corrections improved the results for GaAs, the results are deviating too much from the reference values.
+Even though the ZAF absorption corrections improved the results for GaAs, the results are deviating too much from the reference values to be regarded as useful.
 Possible reasons for this is the aforementioned issues with the average point, or that the input parameters for the model is not good enough.
 The most important input parameter is probably the mass absorption coefficient $\mu_\rho$.
 In the absorption correction (\cref{eq:theory:quantitative:absorption}), $\mu_\rho$ is used in the exponent, and small deviations in $\mu_\rho$ can give large impacts on the results.
 A more detailed discussion of $\mu_\rho$ is given in \cref{discussion:quantitative:xpp}, as $\mu_\rho$ is also used in the XPP model.
-
 
 
 % DONE discuss: my model is not reality. I had a bug for the range r, and when i fixed in the GaAs quantification was actually deviating more.
@@ -917,9 +995,9 @@ The implementation is done to the author's best knowledge, but there is no guara
 Additionally, every model is a simplification of reality, and the models used in this work are no exception.
 The assumptions and simplifications made in the ZAF correction model in this work does seem to be on track for GaAs, but still having plenty of room for improvements.
 
-
-
-
+% TODO conc: bugs are ugs. not guaranteed to be bug free.
+% TODO conc: ZAF A, "This is an indication that the method might provide reasonable results, if a better average point is used. However, using a method like this with an average point might be a too simple model." Improves GaAs, but not GaSb
+% TODO conc: the assumtion that the two effects of Z cancel each other out is aparently not valid for GaSb.
 
 
 
@@ -927,17 +1005,17 @@ The assumptions and simplifications made in the ZAF correction model in this wor
 \subsection{XPP bulk corrections}
 \label{discussion:quantitative:xpp}
 
-Implementation of the XPP model from the PAP paper \cite{pap_1991} gave the possibility to plot the depth distribution $\phi(\rho z)$ and to calculate correction factors based on more advanced models than the ZAF model, with multiple input parameters.
+Implementation of the XPP model from the PAP paper \cite{pap_1991} gave the possibility to plot the depth distribution $\phi(\rho z)$, and to calculate more advanced correction factors than the ZAF model, with multiple input parameters.
 The XPP model is using fundamental physical concepts to get an accurate description of the X-ray generation and emittance in the specimen, treating correction factors in a single framework.
 The corrections from the XPP model applied to the measured intensities did not give as good results as the AZtec software, which supposedly is using the same model.
 This difference is probably due to implementation differences, and is discussed after the plots of the $\phi(\rho z)$ curves.
 
 % DONE discussion: add PAP $\phi(\rho z)$ curves.
-Plotting $\phi(\rho z)$ can be done with the parameters $A$, $B$, $a$, $b$ and $\phi(0)$, using \cref{eq:theory:quantitative:pap:phi_of_rho_z}.
 While implementing physical models, it is useful to plot the results from different steps in the model to verify that the implementation is correct.
 Such plots can both be compared to figures in textbooks or papers, and can be used to reason about the results.
 Code bugs are easier to reveal when parts of the code can be tested separately.
 Plots of the steps in the XPP model are shown in \cref{theory:quantitative:pap}, which can be compared to the plots in the PAP paper \cite{pap_1991}.
+Plotting $\phi(\rho z)$ can be done with the parameters $A$, $B$, $a$, $b$ and $\phi(0)$, using \cref{eq:theory:quantitative:pap:phi_of_rho_z}.
 \cref{fig:discussion:pap:phi_of_rhoz} is a plot of $\phi(\rho z)$ for Ga L$\alpha$ in Ga, with beam energy $30$ kV, $15$ kV, $10$ kV and $5$ kV.
 
 % figures/PAP_phi_of_rhoz.pdf
@@ -956,12 +1034,12 @@ Plots of the steps in the XPP model are shown in \cref{theory:quantitative:pap},
 The plot of the depth distribution $\phi(\rho z)$ in \cref{fig:discussion:pap:phi_of_rhoz} can be compared to plots in the PAP paper\cite{pap_1991}, which illustrates that the implementation of the XPP model is working mostly as intended.
 Other comparisons were done, for example with figure 1 and 2 in the PAP paper, where $\phi(\rho z)$ of C K$\alpha$ in C and W are plotted.
 This plot is shown in \cref{fig:discussion:pap:phi_of_rhoz_C_Ka}, where the general trend is equal to the plot in the PAP paper, but there are some differences, for example that the curve in C is rounder and broader in the PAP paper.
-The plotting of $\phi(\rho z)$ was also compared to other sources, for example figure 19.9 in Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
+The plotting of $\phi(\rho z)$ was also compared to other sources, for example figure 19.9 in Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}, which is adapted in \cref{fig:theory:quantification:phi_rho_z_curves}.
 The plotting of $\phi(\rho z)$ in Goldstein is done with the PROZA model, but the results should be similar to the XPP model.
-As shown in \cref{fig:discussion:pap:phi_of_rhoz_Goldstein}, the general trend is similar, but slight differences between $\phi(0)$ and the shape at the end of the curve can be seen.
+\cref{fig:theory:quantification:phi_rho_z_curves} and \cref{fig:discussion:pap:phi_of_rhoz_Goldstein} are in general similar, but slight differences between $\phi(0)$ and the shape at the end of the curve can be seen, where the XPP model gives the curve a longer tail.
 These plots show that the implementation of the XPP model is not perfect, but should be close enough to be useful.
-The source of the deviation is discussed towards the end of this section.
-
+Possible sources of deviation is discussed towards the end of this section.
+% TODO conc: "These plots show that the implementation of the XPP model is not perfect, but should be close enough to be useful."
 
 % figures/PAP_phi_of_rhoz_C_Ka.pdf
 \begin{figure}[htbp]
@@ -981,8 +1059,8 @@ The source of the deviation is discussed towards the end of this section.
     \centering
     \includegraphics[width=0.6\linewidth]{figures/discussion/PAP_phi_of_rhoz_Goldstein.pdf}
     \caption{
-        Plot of $\phi(\rho z)$ for Al K$\alpha$ in Al, Ti K$\alpha$ in Ti, and Cu K$\alpha$ in Cu, with beam energy $15$ kV.
-        Comparison of the plot can be done with figure 19.9 in Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
+        Plot of $\phi(\rho z)$ from the XPP model for Al K$\alpha$ in Al, Ti K$\alpha$ in Ti, and Cu K$\alpha$ in Cu, with beam energy $15$ kV.
+        Comparison of the plot can be done with \cref{fig:theory:quantification:phi_rho_z_curves}, which is an adapted figure from Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
     }
     \label{fig:discussion:pap:phi_of_rhoz_Goldstein}
 \end{figure}
@@ -993,7 +1071,7 @@ The source of the deviation is discussed towards the end of this section.
 % The correctios done with XPP
 Two type of bulk corrections from the XPP model were implemented and tested, one which only corrected for the calculated generation of X-rays, and one which corrected for the ratio between the emitted and generated signal, i.e. the absorption factor.
 The first correction divide the measured intensity by $F$ (see \cref{theory:quantitative:pap:calculation_of_F}), which the area of the $\phi(\rho z)$ curve, i.e. the generated signal.
-This correction is supposed to correct for different Z.
+This correction is supposed to correct for different Z, and should cover differences in factors like the critical ionization energy (see \cref{theory:xray_formation:energy}), and fluorescence yield (see \cref{fig:theory:fluorescence_yield}). 
 The second correction divide the measured intensity by $f(\chi)$ (see \cref{eq:theory:quantitative:pap:absorption_correction}), which is the XPP absorption factor.
 The correction with $f(\chi)$ is supposed to correct for both Z and A, as the calculated absorption factor is dependent on both $F$ and $F(\chi)$, where $F(\chi)$ is the $\phi(\rho z)$ curve with absorption correction in each layer.
 $F$ and $F(\chi)$ are illustrated in \cref{fig:discussion:pap:F_and_Fchi}.
@@ -1027,17 +1105,18 @@ The GaSb specimen is corrected best with $F$, which implies that the Z effects a
 As the results show, the $10$ kV and $15$ kV GaSb spectrum are corrected quite nicely with the $F$ correction, but the $30$ kV spectrum is pushed away from the reference value.
 Overall, the average quantification deviation in GaSb is both $6$ at.\% at the uncorrected and the $F$ corrected results, while the $f(\chi)$ corrected results have a large deviation at $38$ at.\%.
 
+% TODO conc: Two corrections tested from the XPP model, one for only Z and one for Z and A (whole). GaAs is best corrected with f(chi), while GaSb is best corrected with F.
 
 % why the large deviation in GaSb? mu_rho
 % Possible source of error for my implementation of the PAP model:
 The large deviation in the $f(\chi)$ corrected results for GaSb is probably caused by the $\mu_\rho$ values used in the calculation of $F(\chi)$.
-Section II.E in the PAP paper is discussing the absorption coefficients for the PAP model, and Appendix 5 in the paper lists some values for $\mu_\rho$ associated with the PAP procedure \cite{pap_1991}.
+Section II.E in the PAP paper is discussing the absorption coefficients for the PAP model, and Appendix 5 \cite[p. 63]{pap_1991} in the paper lists some values for $\mu_\rho$ associated with the PAP procedure.
 These numbers are in the same range as the numbers provided by HyperSpy, but there are deviations.
 All the following examples for $\mu_\rho$ are in units of cm$^2$/g.
 For example, the line As L$\alpha$ in GaAs bulk is given $\mu_\rho = 7000$ in the PAP paper, and the value $\mu_\rho = 3744$ by HyperSpy.
 Cu L$\alpha$ in pure Cu is given $\mu_\rho = 1755$ in the PAP paper, and $\mu_\rho = 1515$ by HyperSpy.
-Cu L$\beta$ in pure Cu is given $\mu_\rho = 750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta1$.
-These deviations might be a source of error, which would lead to some adjustments of the PAP or XPP equations.
+Cu L$\beta$ in pure Cu is given $\mu_\rho = 6750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta_1$.
+These deviations are almost certainly a source of error, which should lead to some adjustments of the XPP equations.
 As explained in \cref{discussion:quantitative:zaf_absorption_correction}, the value of $\mu_\rho$ is critical because it is in the exponent of the absorption calculation.
 Such corrections might have been published as an update to the PAP/XPP procedure in a more recent paper.
 If this is a source of error, it can explain why the AZtec software is getting better results, because Oxford Instruments have had time to refine their input parameters and equations.
@@ -1068,7 +1147,7 @@ This could lead to more accurate results, as the analytical solutions are approx
 Testing out numerical calculations of the $\phi(\rho z)$ curves can be done in future works, to see if the corrections can be improved.
 
 % DONE discuss: Other methods, such as the PROZA96 model, could be tested in future works, using the code developed in this work as a starting point, because there are overlapping parts between the models.
-Yet another possibility is to test other correction methods, such as the PROZA96 model \cite{bastin_proza96_1998}.
+Yet another possibility is to test other correction models, such as the PROZA96 model \cite{bastin_proza96_1998}.
 Testing the PROZA96 model can be done with the code developed in this work as a starting point, because there are overlapping parts between the models.
 The paper by Bastin et al. \cite{bastin_proza96_1998} which presents the PROZA96 model is referring to the PAP paper for calculations of the area $F$ of the $\phi(\rho z)$ curves.
 This code can be copied from the XPP model.
@@ -1077,26 +1156,6 @@ Other models which are not based on relative intensities, like the PAP and PROZA
 % TODO discuss: the F and f(chi) is calculated for relative intensities. To calculate absolute number of X-rays generated, the probe current must be know. That was not possible in this project. Calculations of absoule generated X-rays are done in e.g. the Zeta method for thin films.
 Such models, like the Zeta method for thin specimen \cite[Ch. 35.5]{williams_carter_tem_2009}, require the probe current as an input parameter.
 Measuring the probe current is not possible with the equipment available in this work, but a Faraday cup could be installed in the SEM to test out such models \cite{goldstein_scanning_2018}.
-
-
-
-% DONE discuss: selge at jeg har skrevet teori og implementeri i kode, selge det.
-% The XPP implemented is far from finished, but it is a starting point for future work.
-% DONE discuss. but it is far from a finished results. Probably both a problem with the interpretation and the implementation of the XPP bulk corrections in the notebook. This can be investigated further, and the advice is to start with ...
-% DONE discuss: føles ikke perfekt, men er et steg i riktig retning. Sub tings kan jeg plotte, men det er mange likninger som kan være litt feil. Små feil i koden eller i parameters som rho eller mu kan gi store utslag.
-The XPP model implemented in this work is far from finished, but it is a starting point for future work.
-As discussed, the model may be improved by refinement of the input parameters, by testing on different specimen, applying restrictions for which corrections to use in which cases, and by refining the code.
-There might still be errors in the implementation, and even the interpretation of the equations to use, but the general trend of the model is an improvement of the results.
-The corrections used suggest that the model is working, but still needs refinement.
-The refinement needed are probably both in the input parameters and in the implementation of the equations in the notebook.
-Regardless of this, the code developed and the work done is a step towards better EDS through open science.
-
-
-
-
-
-
-
 
 
 
@@ -1112,18 +1171,35 @@ Regardless of this, the code developed and the work done is a step towards bette
 \subsection{Bulk correction summary}
 \label{discussion:quantitative:summary}
 
-\brynjar{TODO: Do I need this here? I do not think so. If no, also remove from results (unfinished).}
+
+SEM EDS analysis through AZtec can provide accurate results, which are better than the bulk corrected results from the XPP model implemented in this work.
+The XPP model implemented in this work is far from finished, but it is a starting point for future work.
+Earlier attempts\footnote{Issue \#800: \url{https://github.com/hyperspy/hyperspy/issues/800}}\footnote{Issue \#2332: \url{https://github.com/hyperspy/hyperspy/issues/2332}} have been made to implement ZAF corrections for SEM EDS quantification in HyperSpy, but these have stagnated.
+The stagnation is probably in part due to the aforementioned issues with the input parameters, and that ZAF corrections may be less suited for a wide range of specimen, which $\phi (\rho z)$ corrections like the XPP model are.
+In other words, bulk corrections from the XPP model are probably better suited than ZAF for HyperSpy or similar software packages.
+
+
+As discussed, the model coded in this project cna be improved by refinement of the input parameters, by testing on different specimen, applying restrictions for which corrections to use in which cases, and by refining the code.
+There might still be errors in the implementation, and even the interpretation of the equations to use, but the general trend of the model is an improvement of the results.
+The corrections used suggest that the model is working, but still needs refinement.
+The refinement needed are probably both in the input parameters and in the implementation of the equations in the notebook.
+Regardless of this, the code developed and the work done is a step towards better EDS through open science.
 
 
 
 
 
 
-% \subsection{Calibration}
+% TODO conc: the input parameters are probably off, especially mu_rho, which is important. The numbers avaliable through hyperspy are less accurate at the relevant energies and around absorption edges, which is a critical source of error.
+% TODO FW: finding better mu_rho, as they most likely have done in AZtec, would probably improve the results. This is outside the scope of this work, but can be a starting point for future work. other imput parameters could also need refinement, but mu_rho is really important and does for sure need refinement.
 
-% For some reason, it works better to calibrate the offset and then the scale/dispersion.
-% HyperSpy allows for calibration of offset, scale or energy resolution, but only one at a time.
-% The procedure used was: calibrate offset, calibrate scale, recaliabrate offset, and recalibrate scale.
-% After the recalibration, the difference was compared to the first calibration, and if the change was more than 5\%, the calibration was repeated.
-% By default, the HyperSpy calibration uses all alpha lines.
-% It is possible to specify certain lines to calibrate on, but this yeilded the same or worse results as using all alpha lines.
+% TODO conc: a complete correction program must give different corrections to different specimen. If absorption is an issue, eg. with similar Z, is must be corrected. And if Z distance is large, the Z effects play a role. AZtec is most likely doing such selections, but that is unknown.
+
+% TODO FW: refine the XPP model. It works in AZtec pretty well, so it should work, but might need to compensate differently with different compositions.
+
+% TODO FW: do the XPP calculations analytically, might improve the results. Should be possible with standard modern computers.
+
+% TODO FW: test other correction models, like PROZA96. The code here can be a start, as F is reused from the PAP model. Also test absolute models, where the probe current is measured with a Faraday cup.
+
+% TODO conc: main XPP, the work done here is a start, but not a finished model. Refining parameters and equations, squashing bugs, and extensive testing is needed. The general trend is that the model is correct, but not perfect. Even so, this work is a step towards better EDS through open science.
+
