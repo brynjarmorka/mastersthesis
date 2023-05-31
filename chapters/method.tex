@@ -4,8 +4,8 @@
 This chapter describes the method used in this project.
 The method is divided into four parts: the materials studied, the instruments used, the acquisition settings in the measurement series, and the data treatment.
 The data treatment is described further with the code in the Jupyter notebooks, which is documented with comments and docstrings.
-The notebooks and the data are available at GitHub, \verb|\cref or cite or footnote or hyperref|.
-% TODO: cite GitHub and appendices
+The notebooks and the data are available at GitHub in the repositories \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"} and \href{https://github.com/brynjarmorka/sem-eds-qc}{"sem-eds-qc"}.
+% TODO: change sem-eds-qc to a single notebook?
 
 
 
@@ -100,25 +100,21 @@ The Si wafer was attached to an Al FIB stub, which was loaded into the SEM.
 \section{Instruments}
 \label{method:instruments}
 
-% TODO methods: specs of EDS detector!
 The acquisition of the spectra was done with an Oxford Instruments Xmax$^N$ $80$ mm$^2$ silicon drift detector for EDS, equipped on a SEM Apreo from FEI.
-\brynjar{TODO from Ton: "Check theory part if all relevant parameters stated there, are listed here." [Relevant parameters of the detector.]}
-The Apreo is a field emission SEM, which in addition to the EDS sensor has a Everhart-Thornley detector, in-lens detectors for SE and BSE, a directional BSE detector, and a navigation camera.
+The Apreo is a field emission SEM, which in addition to the EDS sensor has an Everhart-Thornley detector, in-lens detectors for SE and BSE, a directional BSE detector, and a navigation camera.
 In this work, the ET detector was used to verify that the areas studied were clean, flat and representative.
 The maximum accelerating voltage is $30$ kV, and the maximum beam current is $400$ nA.
 During this work, the acceleration voltage has been in the range $5-30$ kV, and the beam current has been in the range $25-400$ pA.
 The acquisition settings used in this study are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
 The instrument is located at the NTNU NanoLab, a NorFab facility.
-\brynjar{TODO: Cite NorFab.}
 
-\brynjar{TODO: The detector is XMAX-N, not just XMAX.}
-The details about the EDS detector is from \cite{oxford_xmax_80} and the description provided by NanoLab.
-The Oxford Xmax$^N$ SDD has an $80$ mm$^2$ active area, which gives a solid angle of $0.03409$ sr at WD=$10$ mm.
-The detector is from before 2010, with a claimed count rate of $> 500$k cps and throughout $> 200$k cps \cite{oxford_xmax_80}.
-% TODO methods: I do not think the sentence about 2010 is correct!
-The specifications list an energy resolution of $127$ eV, with typical FWHM(Mn K$\alpha$) of 125 eV.
-The specified resolution is in compliance with the ISO 15632:2002 standard, the older version of \cite{iso_qc_15632}.
-All elements from Be to Pu can be analyzed.
+
+The details about the EDS detector is from \cite{xmaxn_datasheet} and the description provided by NanoLab.
+The Oxford Xmax$^N$ SDD has an $80$ mm$^2$ active area. %, which gives a solid angle of $0.03409$ sr at WD=$10$ mm.
+The specifications list the following FWHM energy resolutions at $50$k cps: Mn K$\alpha$ at 127 eV, F  K$\alpha$ at 64 eV, and C  K$\alpha$ at 56 eV.
+Giving the specifications like this is in compliance with the ISO 15632:2012 standard \cite{iso_qc_15632}.
+% The detector is from before 2010, with a claimed count rate of $> 500$k cps and throughout $> 200$k cps \cite{xmaxn_datasheet}.
+All elements from Be to Cf can be analyzed, as the detector has a thin polymer window.
 The detector is mounted at $35$\textdegree.
 The process time settings range from $1$ to $6$, and they have no further explanation of what the number indicates.
 The detector is operated with the AZtec software, provided by Oxford Instruments NanoAnalysis \cite{aztec_manual}.
@@ -129,14 +125,13 @@ The detector is operated with the AZtec software, provided by Oxford Instruments
 \label{method:acquisition_settings}
 
 The settings selected are based on Goldstein \cite{goldstein_scanning_2018} and the goal of analyzing spectra with varying acquisition parameters.
-% TODO discuss: to verify that the metrics actually score low on poor quality spectra, some of the spectra had to have poor quality.
 The acquisition is divided into four groups, where the two first are acquisition with varying acceleration voltage and constant beam current.
 (A) is the voltage series on GaAs, and (B) is the voltage series on GaSb.
 The two other series test parameter variation on the GaSb specimen: (C) is with varying PT, (D) is with varying $i_b$, PT, and $E_0$.
 The voltage series is used to study the effect of the acceleration voltage, to figure out if an optimal voltage exists.
 The other acquisition settings tested variations of different settings on the GaSb specimen, to see if any of these settings could improve the quality of the spectra.
-The acquisition settings are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
 An overview of all acquisition settings for each spectrum is given in \cref{tab:method:acquisition_settings:all_spectra}.
+The acquisition settings are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
 Dead time (DT) and input count rate (ICR) is a function of the other settings.
 
 
@@ -146,11 +141,11 @@ The tilt of the specimen was kept at $0$\textdegree, and thus the TOA was $35$\t
 The live time for each spectrum was $120$ s, except for two of the spectra in the (D) series, which had a high DT.
 The range of the spectra was $0-20$ keV, with a scale of $10$ eV/channel.
 
+\input{tables/table_method_all_spectra.tex}
 
 \input{tables/table_method_settings.tex}
 
 
-\input{tables/table_method_all_spectra.tex}
 
 
 
@@ -169,12 +164,19 @@ The range of the spectra was $0-20$ keV, with a scale of $10$ eV/channel.
 
 
 
-
+\clearpage
 
 \section{Data treatment}
 \label{method:data_treatment}
 
 The data treatment is divided into three parts: acquisition and extraction, performance parameters, and quantification.
+All the notebooks run on Python 3.10, with the packages listed in \cref{tab:method:packages}.
+All dependencies were installed using the package manager Mamba 1.4.0, with Conda 22.11.1.
+When contributing to HyperSpy, the developer version of HyperSpy was installed using pip 23.0.
+One notebook is attached in the appendix of this thesis, and both this and the other notebooks are available at GitHub in the repositories \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"} and \href{https://github.com/brynjarmorka/sem-eds-qc}{"sem-eds-qc"}. 
+
+\input{tables/table_method_packages.tex}
+
 
 \subsection{Acquisition and extraction - AZtec}
 \label{method:data_treatment:aztec}
@@ -205,67 +207,35 @@ Initial qualitative analysis was done with the AZtec software, to get an overvie
 All spectra were quantitatively analyzed with the AZtec software to later compare with HyperSpy and the notebooks developed in this thesis.
 The "SEM EDS" quantification in AZtec give the composition and the calculated k-ratios for each element.
 Additionally, quantification with the "TEM EDS" setting in AZtec was tested, where both the composition and calculated k-factors were extracted.
-This "TEM EDS" step was done to verify that AZtec does use matrix corrections, and to get the k-factors for quantification with HyperSpy.
+This "TEM EDS" step was done to verify that AZtec does use matrix corrections, and to get the k-factors for CL quantification with HyperSpy.
+
+
+
 
 
 
 \subsection{Performance parameters - Jupyter notebooks}
 \label{method:data_treatment:notebook}
 
-Two Jupyter notebooks were developed as a part of this work for the analysis of SEM EDS performance parameters, i.e. the top and middle row of \cref{fig:intro:parameters}.
+A Jupyter notebooks was developed for the calculation of SEM EDS performance parameters, i.e. the top and middle row of \cref{fig:intro:parameters}.
 The notebooks for performance parameters calibrates the spectrum, and calculates: the Duane-Hunt limit, the energy resolution, the Fiori P/B, peak intensities, FWHMs, peak deviations, and specified peak ratios.
-The notebooks for quantification is described in \cref{method:data_treatment:quantification}.
-
-
-All the notebooks run on Python 3.10, with the packages listed in \cref{tab:method:packages}.
-All dependencies were installed using the package manager Mamba 1.4.0, with Conda 22.11.1.
-When contributing to HyperSpy, the developer version of HyperSpy was installed using pip 23.0.
-The notebooks are both attached in the appendix of this thesis, and available at the author of this thesis' GitHub \verb|TODO: \cref{} or link|.
-% TODO method: GitHub link
-Two first notebooks is for analysis of a single spectrum with a ".csv" output, and second is one for statistics on a set of outputted ".csv" files.
-
-\input{tables/table_method_packages.tex}
-
-
-
-
+The list below describes the steps in the notebooks, which are included as headers in the notebooks.
+See \hyperref[appendix:performance]{Appendix A} for the notebook, or \href{https://github.com/brynjarmorka/sem-eds-qc/blob/main/healthcheck.ipynb}{view it on GitHub}.
 The performance parameter notebook does the following steps:
-% TODO methods and notebook: add these headers to the notebook, and say here that they are headers.
 
 \begin{enumerate}
     \item Import the packages
-    \item Import the data with HyperSpy, and set the elements in the spectrum
-    \item Set the variables like the beam current, acceleration voltage, ICR, and PT for the output
-    \item Slice off the noise peak
+    \item Select spectra, and specify settings like $i_b$, $E_0$, ICR, and PT
+    \item Import the data with HyperSpy, set the elements in the spectrum, and slice off the noise peak
     \item Calculate the Duane-Hunt limit, and slice the spectrum to the limit
-    \item Make a model of the spectrum, with the background as a polynomial and the peaks as Gaussian functions
-    \item Fit the background, then fit the whole model
+    \item Make a model of the spectrum, and fit it to the data
     \item Calibrate the offset and scale
     \item Calibrate the energy resolution
     \item Calibrate the energy and width of the peaks
     \item Calculate Fiori P/B, peak intensities, FWHMs, and peak deviations
     \item Calculate the relevant peak ratios
-    \item Visualization of the results
-    \item Make a DataFrame with the results and output it as a ".csv" file
+    \item Save the results in a DataFrame in a ".csv" file
 \end{enumerate}
-
-\brynjar{TODO from Ton: "These are headers, have them in the notebook as headers.
-    This listing is for reader not so informative. Suggestions: Could have behind each link to theory "(section 2.x, specifically implementation of eq. 2.x)". The main content is in the notebooks in the appendix. To list all here makes them unreadable, reader need to use appendix and notebook needs headers and comments to have it readable.
-    When linking parts by referring have same phrasing and numbers/labels."}
-
-
-The statistics notebook loads the wanted ".csv" files into Pandas DataFrames, which are then used to calculate the statistics and look at differences in the metrics.
-Some data is plotted, some are shown in tables.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -279,9 +249,56 @@ Some data is plotted, some are shown in tables.
 \subsection{Quantification - HyperSpy and Jupyter notebooks}
 \label{method:data_treatment:quantification}
 
+The different quantification routines performed in the notebooks are described in this section.
+See the notebooks for further details, which are available at the author of this thesis' GitHub in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}, under the user "brynjarmorka".
+The initial quantification was done with the intensity ratio method, where the intensities were extracted from a model fit of the spectrum through HyperSpy.
+The next paragraphs describe: the CL method in HyperSpy, the calculation of the ZAF absorption correction, and the implementation of the XPP model.
 
-Intro \dots
+% CL
+The Cliff-Lorimer quantification in HyperSpy was done according to the documentation.
+The Jupyter notebook with the quantification is named \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/quant-of-SEM-EDS-with-Cliff-Lorimer.ipynb}{quant-of-SEM-EDS-with-Cliff-Lorimer.ipynb}.
+The spectrum was loaded, and the elements were set.
+The data was sliced after the noise peak, and at the $E_0$ from the metadata.
+A model, with a polynomial background and Gaussian peaks, were made and fitted.
+The intensities of the peaks were extracted, and given as input to the Cliff-Lorimer quantification routine.
+The k-factors, calculated by AZtec, was also given as input to the Cliff Lorimer routine.
+The different absorption correction thicknesses were tested.
+The results, as compositions, were plotted for inspection, and saved in an Excel file.
 
-% TODO methods: describe quantification notebook and XPP correction notebook
+% ZAF
+The ZAF absorption corrections (A) use the intensities from a model fit, and applies absorption corrections to these.
+A Jupyter notebook with the ZAF absorption correction is named \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/ZAF-absorption-correction-model.ipynb}{ZAF-absorption-correction-model.ipynb}.
+To calculate A, the code needs some factors. 
+The average density of the mixture is from HyperSpy.
+The electron range is calculated with an implementation of the Kanaya-Okayama parameterization.
+The average depth is calculated as the maximum electron range, divided by 2, 3, or 4.
+The path length is calculated with the TOA and the average depth.
+With these factors, the measured intensity is corrected with \cref{eq:theory:quantitative:absorption}, to get an approximation for the generated intensity. 
+The generated intensities are used to calculate corrected compositions, which are given in atomic percent.
+In the end, the results are saved in an Excel file.
 
-\brynjar{TODO: Unfinished. I use XPP, this section comes when the notebook is more finished.}
+
+% XPP
+The XPP model is implemented in Python files, which are imported into Jupyter notebooks.
+The code replicates the PAP paper \cite{pap_1991} as close as possible, with the equations described in \cref{theory:quantitative:pap}.
+All the equations are also explained in the notebooks, and every function has a NumPy-style docstring.
+One notebook in the repository is used to apply the model on the acquired spectra, and another notebook is used to plot different parts of the model.
+The implementation of the equations are separated into smaller functions in the Python files, so that they can be reused easier.
+Attaching all the code in the notebooks in the Appendix would make this thesis unnecessarily long, and code in PDF-format is hard to reuse.
+Thus, the code is rather available at the author of this thesis' GitHub, in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}.
+
+
+% The XPP files
+The Python files 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_parameterization.py}{PAP-parameterization.py}, 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_helper_functions.py}{PAP-helper-functions.py}, and 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_area_F.py}{PAP-area.py} are for the calculation of the XPP model.
+The 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_parameterization.py}{PAP-parameterization.py}
+file calculates $F(\chi)$ and $f(\chi)$, see \cref{sec:theory:quantitative:pap:emergent_intensity} and \cref{eq:theory:quantitative:pap:general_principle:f_absorption_correction}.
+The 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_helper_functions.py}{PAP-helper-functions.py}
+file contains helper functions, e.g. for getting the theoretical energy of a line, and converting at.\% to wt.\%.
+The 
+\href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_area_F.py}{PAP-area.py}
+file calculates $F$, see \cref{theory:quantitative:pap:calculation_of_F}.

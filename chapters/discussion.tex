@@ -431,7 +431,7 @@ The time aspect is especially important when measuring EDS maps, as these can be
 As seen in the results, the PT affect the energy resolution, the evenness of the spectrum through the amount of counts, the amount of artifacts with increasing ICR, and the DT.
 
 
-% visible seperable vs gaussian modelling
+% visible separable vs gaussian modelling
 For quantitative analysis, it is probably best to have a high PT, as the energy resolution is better, and the amount of artifacts is lower.
 This allows the user and potential automatic detection software to detect and separate peaks easier.
 Using automatic detection should be done with caution, as there are cases where peaks are labeled incorrectly.
@@ -653,7 +653,7 @@ For mapping applications, this could reduce the acquisition time to allow faster
 % DONE conc: Fiori ratio can be used to assess the acqu params, and optimize the time. Spectra with similar Fiori numbers for the peak of interest should have similar quality. It is not necessary to aquire more counts, if the amount in the BG and peaks increse equally much. Could rather aquire more spectra, larger areas or for shorter times.%
 
 % TODO FW: continue to investigate the usefulness of the Fiori ratio in SEM EDS, eg on different acu params to see if it can be used to optimize acuq params.
-% TODO FW: Fiori ratio as a measure of peak overlap with varying energy resolution (if the number of counts in the overlapping peaks are the same, relative to the bg, the Fiori number should be the same. Thus, there should be no issue, but if the ratio change, the peaks are not seperated).
+% TODO FW: Fiori ratio as a measure of peak overlap with varying energy resolution (if the number of counts in the overlapping peaks are the same, relative to the bg, the Fiori number should be the same. Thus, there should be no issue, but if the ratio change, the peaks are not separated).
 
 
 
@@ -671,7 +671,7 @@ The first paragraph is about the detector, and the second paragraph is about the
 % the detector
 Based on the calculated metrics, the detector performs well.
 The energy resolution achieved at $127 \pm6$ eV is the same as the manufacturer specification.
-As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the X-max$^N$ detector is $127$ eV\cite{oxford_xmax_80}, with typical values of $125$ eV, and this fits well with the variations observed when using different peaks as the reference peak.
+As stated in \cref{method:instruments}, Oxford Instruments claim that the energy resolution of the X-max$^N$ detector is $127$ eV \cite{xmaxn_datasheet}, and this fits well with the variations observed when using different peaks as the reference peak.
 The energy axis through the scale and offset is calibrated well, as their deviations from the set values are small, and the deviations for the calibrated peak positions are very low.
 In addition to the scale and offset, the Duane-Hunt limit further indicates that there are no issues between the communication between the detector, the software and the SEM.
 The peak ratios gave indications of absorption.
@@ -1041,7 +1041,7 @@ Possible sources of deviation is discussed towards the end of this section.
 % figures/PAP_phi_of_rhoz_C_Ka.pdf
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/discussion/PAP_phi_of_rhoz_C_Ka.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/discussion/PAP_phi_of_rhoz_C_Ka.pdf}
     \caption{
         Plot of $\phi(\rho z)$ for C K$\alpha$ in C and W, at different beam energies.
         The plot is used to compare the implementation of the XPP model to the PAP paper \cite[Fig. 1 and 2]{pap_1991}.
@@ -1054,7 +1054,7 @@ Possible sources of deviation is discussed towards the end of this section.
 % figures/PAP_phi_of_rhoz_Goldstein.pdf
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/discussion/PAP_phi_of_rhoz_Goldstein.pdf}
+    \includegraphics[width=0.7\linewidth]{figures/discussion/PAP_phi_of_rhoz_Goldstein.pdf}
     \caption{
         Plot of $\phi(\rho z)$ from the XPP model for Al K$\alpha$ in Al, Ti K$\alpha$ in Ti, and Cu K$\alpha$ in Cu, with beam energy $15$ kV.
         Comparison of the plot can be done with \cref{fig:theory:quantification:phi_rho_z_curves}, which is an adapted figure from Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}.
@@ -1075,16 +1075,16 @@ $F$ and $F(\chi)$ are illustrated in \cref{fig:discussion:pap:F_and_Fchi}.
 The two corrections were tested because of the implications of the previously discussed results, where GaAs probably need absorption corrections, while GaSb also need corrections for different Z.
 
 % figures/discussion/xpp_absorption_correction.png
-\begin{figure}[htbp]
+\begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/discussion/xpp_absorption_correction.png}
+    \includegraphics[width=0.75\linewidth]{figures/discussion/xpp_absorption_correction.png}
     \caption{
         Illustration of $F$ and $F(\chi)$.
         $F$ is the area of the $\phi(\rho z)$ curve, while $F(\chi)$ is the area of the $\phi(\rho z)$ curve with absorption correction in each layer.
         $F$ is the generated signal, while $F(\chi)$ is the emitted signal.
         $f(\chi) = F(\chi) / F$ is the absorption factor.
         The $\phi(\rho z)$ curve is for Al K$\alpha$ in a Cu matrix at $E_0 = 20$ keV.
-        The figure is adapted from \cite[Fig. 19.14]{goldstein_scanning_2018}.
+        Adapted from \cite[Fig. 19.14]{goldstein_scanning_2018}.
     }
     \label{fig:discussion:pap:F_and_Fchi}
 \end{figure}

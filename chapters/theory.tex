@@ -385,7 +385,7 @@ However, the background radiation can be used to calculate at least one paramete
 Through pre-modelling of the background based on the sample geometry and composition, the background signal can also be used to check for incorrect tilt or shadowing \cite{edax_insight_2019}.
 To do accurate qualitative analysis, the background radiation must be subtracted from the total spectrum.
 This can be done in multiple ways, like pre-modelling, linear interpolation, background filtering, and background modelling \cite{liao2006practical}.
-In this thesis, the background is modelled as a polynomial function of the energy and fitted to the data with a least squares method \cite{hyperspy_1.7.1}.
+In this thesis, the background is modelled as a polynomial function of the energy and fitted to the data with the least squares method \cite{hyperspy_1.7.1}.
 
 
 % the energy, 1/E
@@ -873,7 +873,7 @@ The spectrum is then sent to the computer, where the user can analyze the spectr
 % SDD vs Si(Li) detectors
 There are some key differences between the Si(Li) and SDD detectors. 
 The cooling needed in the more modern silicon drift detectors (SDD) is not as strong as for the Si(Li) detectors. 
-The SDDs need no more than a Peltier cooling (ca.$ -20$ to $-30$\textdegree C), which is easy to operate and maintain.
+The SDDs need no more than a Peltier cooling (ca.$ -20 $ to $-30$\textdegree C), which is easy to operate and maintain.
 The anode in the SDDs is just a small centerpiece, while in the Si(Li) detectors the anode covers the whole detector.
 As the anode is smaller, the capacitance is lower and the voltage noise is reduced.
 In SDDs the area of the active layer can be made bigger with a constant anode size, which keeps the capacitance constant. \cite{notaros_electromagnetics_2010}.
@@ -983,7 +983,7 @@ As the electronics broadens the peaks to Gaussian curves, the model fitting of t
     f(x) = \frac{A}{\sqrt{2\pi}\sigma}\exp\left[{-\frac{(x-x_0)^2}{2\sigma^2}}\right]
 \end{equation}
 
-where $A$ is the amplitude, $x_0$ is the mean, $\sigma$ is the standard deviation, and $x$ is the energy.
+Where $A$ is the amplitude, $x_0$ is the mean, $\sigma$ is the standard deviation, and $x$ is the energy.
 The model fitting in this thesis is done using the HyperSpy package \cite{hyperspy_1.7.1}.
 With the sigma of a Gaussian curve, the full width at half maximum (FWHM) can be calculated as FWHM $= 2\sqrt{2\ln(2)}\sigma$.
 Different detectors and detector settings can give different peak widths, and thus the FWHM are used as a measurement of the resolution of the detector and the acquisition parameters.
@@ -1512,7 +1512,7 @@ Specimen with low conductivity will get problems with charging, which will lower
 Thus, a deviation between the nominal and effective beam energy of several kilo-electronvolts is a sign of charging \cite{dtsaii_2_manipulating_spectra}.
 Charging of specimen are covered in detail in a paper by Postek and Vladár \cite{postek_charging_2015}.
 Another explanation of a large deviation is that the voltage indicated by the SEM is imprecise, and $E_0$ is a central metadata factor in data treatment routines, such as fitting and quantification.
-If either the metedata is wrong or the specimen is charging, a quantitative analysis will yield poor results \cite{iso_quantification_22309}.
+If either the metadata is wrong or the specimen is charging, a quantitative analysis will yield poor results \cite{iso_quantification_22309}.
 Thus, the Duane-Hunt limit is an important metric to verify.
 
 
@@ -2249,7 +2249,7 @@ Both formulations will however be tested, to verify this assumption.
 % TODO: do not mention notebook in theory.
 
 
-\textbf{The deceleration factor $1/S$} is a measure of the electrons energy loss in the specimen, as a function of the energy that the electrons have.
+\textbf{The deceleration factor $1/S$} is a measure of the electrons' energy loss in the specimen, as a function of the energy that the electrons have.
 $1/S$ is an integral from $E_0$ to $E_C$ of the product of the ionization cross-section ($Q(U)$) and the energy loss function ($dE/d\rho s$):
 
 % 1/S = int_E_C^E_0 Q_l^A(E)(dE/d rho s) dE
