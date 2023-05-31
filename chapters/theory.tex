@@ -894,7 +894,6 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
         Illustration of the detector efficiency ($\varepsilon$) of a Si(Li) and an SDD, as a function of the X-ray energy.
         The efficiency of the SDDs decrease at higher energies because the active layer is thin, and thus high energy X-ray photons have a higher probability of passing through without creating an electron-hole pair.
         Figure adapted from \cite{liao2006practical}. %\cite[Fig. 4655c]{liao2006practical}
-        \brynjar{TODO: Consider an alternative source.}
     }
     \label{fig:detector_efficiency}
 \end{figure}
@@ -1135,7 +1134,6 @@ In Goldstein, it is stated that the Si(Li) detectors were usually operated at lo
 Further it is stated in Goldstein that SDDs should not be operated according to specific dead times, but rather according to an acceptable low coincidence rate.
 With different advice on maximum DT, the best procedure is probably to follow the last advice mentioned from Goldstein.
 This requires the user to make a pre-analysis of the coincidence rate.
-% TODO discuss: refer back to advices DT
 
 
 % process time
@@ -1195,15 +1193,7 @@ The count rate is related to the dead time through the ICR and OCR, as described
 As such, it has been common to suggest a certain dead time to avoid coincidence peaks, which is discussed in \cref{theory:eds:user_controlled_parameters}.
 A coincidence peak from Si is shown in \cref{fig:background_absorptionEdgeSi}, and coincidence counts from the background is shown in \cref{fig:duanehunt}.
 Limiting the coincidence peaks is important for accurate quantification, as the coincidence peaks are counts belonging to other peaks, and a coincidence peak can lead to misidentification of elements not present.
-% TODO discuss: the low coincidence peak rates might be due to operation on the low end of the cps that the detector can handle. This was done as the PT was set high. In general not a big issue in the data aqcuired. Or the sofware. Read the ASTM thing below
 
-% Coincidence peaks, ASTM 1508:
-% "8.3.1 [...] Systems with SDDs generally have smaller pileup
-% peaks under the same conditions, because the reduced capacitance
-% of the SDD makes it easier for the pulse processing
-% electronics to recognize close coincidences as separate events.
-% EDS systems often have software to model pileup peaks and
-% correct for them."
 
 
 Another artifact which give similar issues as coincidence peaks is \textbf{stray radiation}, or spurious X-rays.
@@ -1227,24 +1217,6 @@ As SDDs have much thinner dead layers than the Si(Li) detectors, the internal fl
 The incoming X-ray which ionizes a Si atom loose some energy, which results in the count being recorded at $1.74$ keV lower than where the incoming X-ray was supposed to be.
 The counts at $1.74$ keV lower than the incoming X-ray make the escape peak.
 Both escape peaks and sum peaks are most probable to occur from the strongest line, as there are more events where these artifacts can occur \cite{astm_e1508_eds_quantification}.
-% TODO discuss: mention the ASTM (9.2.4) advice below, i.e. look for escape and sum from the strongest line. If not present here, they are unlikely to be present in other lines.
-% TODO discuss: Si Ka is expected to be present and low, since an SDD is used. This is observed.
-% TODO discuss: higher energy lines (like Cu Ka), does not have escape peaks in SDD (ASTM 8.3.2)
-
-% When looking at artifacts from the strongest line, ASTM 1508:
-% "9.2.4 While working with the most intense line, look for
-% escape and sum peaks. If they are not found for this line, they
-% are unlikely to cause interferences. If they are present, keep
-% looking for them after other identifications."
-
-% Silicon escape peak, ASTM 1508:
-% "8.3.2 A silicon escape peak [...].
-% This artifact is greatest at about 2 keV. [...]
-% The artifact cannot occur at energies
-% below the absorption edge of the Si K line, and it becomes
-% negligible at higher energies such as the Cu Ka line. [...]
-% SDD are thinner and have more silicon escape peaks."
-
 
 
 % Noise peak
@@ -1345,7 +1317,6 @@ Literature on performance parameters for SEM EDS setups are less common, but som
 Goldstein also include details on a range of parameters, such as linearity and stability of the detector, along with possible SEM EDS issues, such as beam-sensitive specimen and specimen with irregular topography \cite{goldstein_scanning_2018}.
 The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
 One of the challenges in this work is to find the most relevant test characteristics for SEM, and especially what ranges of values should be acceptable for a well performing detector.
-% \brynjar{TODO: Get these ranges/value numbers into results and the discussion, and link back here.}
 Out of range values could indicate a suboptimal setup or affect calculating composition.
 Identification of setup parameters with optimization and correction should lead to better EDS analysis.
 The value range challenge is affected by both the change from TEM to SEM and the change from the older Si(Li) detectors to the now more commonly used SDDs.
@@ -1356,7 +1327,7 @@ Before the test characteristics are described, an overview is given and a summar
 \subsection{Overview}
 \label{theory:eds_performance:overview}
 
-\brynjar{TODO: Rethink order. Ton: "For me the logic order would be, Overview, Scale and offset, energy resolution, deviations positions, Fiori, DH as this order you will do it, importance and reading plot left to right."}
+% \brynjar{TODO: Rethink order. Ton: "For me the logic order would be, Overview, Scale and offset, energy resolution, deviations positions, Fiori, DH as this order you will do it, importance and reading plot left to right."}
 
 % 35
 %   Duane-Hunt limit 

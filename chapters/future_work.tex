@@ -6,44 +6,133 @@
 % future works: factorless
 % future works: det jeg har prøvd er første iterasjon i loopen. ved ukjent comp må corrections kjøre flere runder, evt med forskjellig utgangspunkt.
 
-
-Repeat suggestions from the discussion.
-
-Briefly introduce other possible test.
-Linearity and stability, shadowing, optimal WD.
+This final chapter will discuss possible future work based on the results and discussion in the previous chapters.
+The first part summarize the previously mentioned possibilities, while the second part discuss other ideas which have emerged during the work.
+The goal of improving SEM EDS analysis had to be narrowed down during the work, as there are many possible improvements.
 
 
-% \brynjar{TODO from Ton: "if not used, do not include them. But consider to use them in discussion leading to concrete future work (last chapter)"}
+\section{Summary of possible future work}
+\label{sec:summary_of_possible_future_work}
 
-% Other test are described in the literature, but they were not used in this work.
+% FW: model background as a spline, and use the mu_rho as a input to refine where the absorption edge could be.
+Modern EDS analysis is typically containing some sort of model fitting, and the work in this thesis is no exception.
+One possible improvement is to use a more advanced model for the background, such as a spline.
+It is observed in this work, and in the author's project report \cite{project_report}, that the background typically decrease drastically after a strong absorption edge, especially if the absorption edge is in the lower energy range.
+The polynomial background cannot model abrupt changes, and will compensate with a poorer fit around the absorption edge.
+As the peak that gives this absorption edge is typically the peak of interest, it would be beneficial to have a better model for the background.
+Combination of $\mu_\rho$ can be used to estimate where the absorption edge is, and this can be used as an input to the model.
+Then the background can be modeled as a spline, having one node before the absorption edge and one after.
 
-% \subsubsection*{Linearity and stability}
-% In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests for an EDS detector are linearity and stability.
-% This is stated in the section about what to look for when buying a detector.
-% The reason for not including these two test in the work is mainly their dependence on a way to measure the probe current, which e.g. can be done with a Faraday cup.
-% Such tests could be used in the future and are therefore briefly described here.
-% Linearity of the detector is that the number of X-rays measured is proportional to the number of X-rays generated.
-% Stability is that the detector resolution and the peak positions does not change significantly with different probe currents.
-% Both tests require multiple spectra of the same sample with different probe currents.
-% The ISO 22309 standard on quantification of EDS spectra \cite{iso_quantification_22309} also mentions these two tests.
+% M-lines for Z < 57
+Another improvement to model fitting, especially in the lower energies, is to investigate the possibility of using M-lines for elements with Z $ < 57$.
+It is observed in this work that the Sb M$\zeta$ line is visible in the spectrum, but as it is not present in the HyperSpy library, it is not used in the analysis and not in the model fitting.
+The interest of M-lines should be even higher for TEM EDS, as the absorption in the bulk is much lower than in bulk specimen, and thus the M-lines should be easier to detect and use.
 
-% % \brynjar{ISO 22309: "Whatever type of detector is being used, the count rate capabilities of the system should be checked by
-% %     comparing a spectrum obtained at a count rate below 2 000 counts/s with a spectrum obtained at the highest
-% %     count rate to be used, to look for peak shift and pile-up distortion that might affect relative peak heights. A
-% %     minimum of two checks on beam stability, using a Faraday cup, or a known reference specimen, should be
-% %     made prior to and following the analysis."}
+% corrections for uneven surface
+Implementation of corrections for uneven surfaces could provide very useful.
+EDS analysis of uneven surfaces is readily done, even if the results are less accurate than for flat surfaces.
+The effect of uneven surfaces is complex, but through work with empirical data and simulations could lead to a correction method, based on the surface roughness and composition.
+First step towards such corrections would proper open-source bulk corrections for flat surfaces, which should be documented well so that further work is easier to do.
 
-% \subsubsection*{Shadowing}
-% \brynjar{From ISO 15632: "In many cases the specific geometry of the EDS detector at a particular SEM/EPMA chamber can result in a reduction of the net active sensor area as expected after subtraction of shadowing area caused by the window grid. For example, a falsely mounted collimator, electron trap or shadowing by other parts in the SEM chamber can reduce additionally the illumination of the detector with X-rays. A practical procedure how to determine experimentally the effective area of an EDS detector and under which conditions are described in Reference [5]."}
-% % [5] Procop M., Hodoroaba V.-D., Terborg R., Berger D., Determination of the Effective
-% % Detector Area of an Energy-Dispersive X-Ray Spectrometer at the Scanning Electron
-% % Microscope Using Experimental and Theoretical X-Ray Emission Yields, Microsc. Microanal.,
-% % 22 (2016), pp. 1360-1368
-% % Shadowing
+% low energy calibration
+The peaks below $1$ keV were not of interest in the metrics and compositional analysis in this work, but it was observed that the calibration in this region was poorer than above $1$ keV.
+The calibration above $1$ keV had high accuracy, but specific calibration routines for lower energy lines are probably needed to improve the calibration in this region.
+
+% voltage series
+When voltage series are of interest, it is important to achieve enough counts in all the spectra.
+The ICR decreases with lower voltage, if the $i_b$ is kept constant, as it was in this work.
+Two possible suggestions to increase the amount of counts in a voltage series are to lower the PT, or to keep the ICR constant, by compensating with a higher $i_b$.
+The PT could for example be 4 instead of 6, which was shown to lower the DT much.
+The acquisition time could also be increased, but it is more efficient to use a slightly lower PT or compensate with a higher $i_b$.
+Both solutions could yield more comparable voltage series than the ones in this work.
+
+% The usefulness of th DH limit
+The Duane-Hunt limit should be included in a test for SEM EDS performance parameters, as the metric is important to verify $E_0$ and the conductive path.
+A sophisticated and complete test routine could hide the metric when the detector is performing well, and give warnings when the deviations are too large.
+This is in general a good idea for metrics that test the performance, as it prevents an information overflow.
+
+% Fiori usefulness
+The Fiori P/B ratio should be investigated further to see if it can be used to optimize the acquisition settings for specific specimens.
+The metric might be used to find the ceiling where more counts does not improve the quality of the spectra, and are thus just a waste of time and resources.
+The Fiori metric could also be used to figure out when two peaks are overlapping too much for the computer to separate them properly.
+If the metric of two peaks change when the energy resolution is changed, but other acquisition parameters are kept constant, the peaks are probably overlapping too much.
+
+% The 50:50 test of the code developed
+The code developed for bulk corrections were not tested extensively, as it was only compared to a reference goal of $50:50$.
+This was viewed as sufficient in this work to get indications for the different models, but the code should be tested more thoroughly.
+An extensive analysis of the code with specimen composed of multiple different elements should be done.
+
+% better mu_rho
+One of the potential main improvements to the bulk correction models are refinement of the input factors, especially $\mu_\rho$.
+Deviations were observed between the listed values in the original PAP paper \cite{pap_1991} and values used in this work from HyperSpy \cite{hyperspy_1.7.1}, which are from a NIST database \cite{nist_xraydatabase_hyperspy}.
+The input parameters are important for accurate results, and should be investigated further.
+
+% refine the equations
+The implementation and use of the XPP corrections can benefit from refinements too.
+The developers behind AZtec have had many years to refine their equations, and the equations used in this work are not as refined.
+As the XPP corrections apparently work well in AZtec, similar results should be achieved with refinements of the code in this work.
+
+% analytical solutions
+Another possible way to improve the XPP corrections is to use analytical solutions instead of numerical solutions.
+The original paper on XPP corrections \cite{pap_1991} uses analytical solutions, but the equations could be solved numerically too, which may increase the accuracy.
+
+% PROZA96 and other models
+In addition, or in comparison, to the XPP model, the other models like PROZA96 could be implemented and tested.
+The code in this work can be used as a starting point for the PROZA96 model, as there are overlaps between the two models.
+Alternatively, absolute intensity models can be tested, where the probe current is needed as an input parameter.
+The probe current can be measured with a Faraday cup, and would be used to calculate the absolute intensity of the X-rays, instead of the relative intensity used in the XPP model.
 
 
-% \subsubsection*{Optimal WD}
+
+
+
+
+\section{Other ideas for future work}
+\label{sec:other_ideas_for_future_work}
+
+The test routines for the performance of a SEM EDS setup implemented in this work is not complete, and there are many other tests that could be done.
+Four possible test, which are important for the performance, are linearity, stability, shadowing, and optimal WD.
+
+% linearity and stability
+In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests for an EDS detector are linearity and stability.
+This is stated in the section about what to look for when buying a detector.
+The reason for not including these two test in the work is that they depend on the measurement of the probe current.
+Linearity of the detector is that the number of X-rays measured is proportional to the number of X-rays generated.
+Stability is that the detector resolution and the peak positions does not change significantly with different probe currents.
+Both tests require multiple spectra of the same sample with different probe currents.
+The ISO 22309 standard on quantification of EDS spectra \cite{iso_quantification_22309} also mentions these two tests.
+
+% shadowing
+Shadowing is another important test, as shadowing can reduce the net active sensor area of the detector, which reduce the counts registered.
+Shadowing can for example be caused by an erroneously mounted collimator, or by other parts in the SEM chamber.
+A description of how to test for shadowing is given in \cite{shadowing_procop_2016}.
+
+% optimal WD
 % \url{https://www.cstl.nist.gov/div837/837.02/epq/dtsa2/FaultsFoiblesEDS.pdf}
-% % \brynjar{En geometri-greie. Er det forskjellig for ulike materialer? Passer under acquisition params}
+A test for the optimal WD could also be important, to verify if the WD that the SEM software suggest actually is the optimal one.
+This would be done by measuring identical spectra with different WD, plot the intensity of a major peak as a function of WD, and find the WD that gives the highest intensity.
+In the spectra, $E_0$, $i_b$, and live time must be kept constant.
+Any specimen should be suitable for this test.
+An EDS spectrum map, acquired at the found optimal WD, can be acquired to verify if the center of the map is the most intense area.
+The center of the map is the intersection of the electron beam axis and the detector axis on the specimen, and should be the most intense area if the WD is optimal.
 
-Also mention maps?
+% comment on maps and PCA
+Aside from the test routines, there are other ideas for future work.
+In the work of Skomedal \cite{skomedal_improving_2022}, principal component analysis (PCA) is shown to be useful in noise reduction of EDS maps.
+PCA is a statistical method that reduces the dimensionality of a dataset, and is used in many fields.
+For EDS maps, PCA can be used to separate the signal from peaks and the noise (e.g. background), which could allow better qualitative and quantitative analysis.
+Maps were acquired in this work too, but there was not enough time to test out denoising routines properly.
+
+
+% refine XPP, and apply to unknown comp with multiple iterations
+The work done in this thesis on implementation of the XPP corrections can be viewed as the first iteration in a quantification routine.
+The XPP model, and other correction models, use composition as an input parameter.
+This is paradoxical, as the goal of the quantification is to find the composition.
+However, for unknown compositions, this is solved by iterating over the quantification routine multiple times, with an initial guess for the composition.
+As the results show, the XPP corrections are improving the results, but the results are not perfect.
+In other words, the first step in an eventual iterative routine is not good enough.
+% Thus, implementing a loop with multiple iterations in this project would be unnecessary, as the accuracy of the first step is not good enough, yet.
+First the accuracy of the XPP corrections should be improved, when the input composition is perfect, and later the iterative routine can be implemented.
+Doing the corrections in an iterative routine can be done with multiple initial guesses for the compositions, as the calculations in the model are not heavy.
+With multiple initial guesses, the best fitting results after iterations can be used as the final results.
+Implementing an iterative routine for the XPP model should not be too difficult, but it would be unnecessary in this work, as the first step is not accurate enough, yet.
