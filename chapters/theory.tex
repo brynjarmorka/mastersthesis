@@ -773,7 +773,6 @@ These two aspects are the key differences, and TEM image formation is not discus
 
 
 % Ok to discus principle of detection using Si(Li). Have a figure. 
-% TODO: Si(Li) figure?? I think not
 
 % Intro
 % Energy dispersive X-ray spectroscopy is a technique for the analysis of the elemental composition of a sample with high spatial resolution.
@@ -1060,7 +1059,7 @@ When the overvoltage is higher, the electrons can scatter multiple times within 
 ISO 22309 about quantitative analysis in SEM advise an overvoltage of $1.8$ \cite{iso_emsa_22029}, and ASTM E1508 on the same topic advise an overvoltage of at least $1.5$ \cite{astm_e1508_eds_quantification}.
 In Goldstein the advice is to keep the overvoltage above $1.5$ \cite[Ch. 20.2.2]{goldstein_scanning_2018}.
 A higher overvoltage will produce more X-rays, but also decrease the spatial resolution of the analysis as the interaction volume is increased with $E_0$. % ton: fine section
-% TODO: mention advices U in discussion
+% DONE: mention advices U in discussion
 
 
 % figres/overvoltage2ionizationcrosssection.pdf
@@ -1237,7 +1236,7 @@ The AZtec software have a built-in method to remove coincidence peaks, called "P
 The AZtec user manual state that this method works best for single pixels or areas with the same composition, and that it might produce bad results when scanning over a larger heterogeneous area \cite[p. 99]{aztec_manual}.
 Aside from this brief description, a user does not get any information on how the method works.
 This illustrates one of the challenges with digital solutions implemented by the vendors, as the software is a black box which can enhance the spectrum, but also produce bad results due to incorrect handling of artifacts. %can produce bad results.
-% TODO discuss: software removing escape peaks.
+% DONE discuss: software removing escape peaks.
 
 
 % figures/artifacts.pdf
@@ -1437,7 +1436,7 @@ The peaks in the spectrum from the test specimen should overlap less than the ex
 For repeatability, the sample should not be reactive.
 Additionally, the sample should preferably both be easy to acquire and not expensive.
 When vendors, like Ted Pella who provides the NiO test sample for TEM, are used, the sample might not be available immediately, and the delivery time can be long, as experienced during this work and in the project report \cite{project_report}.
-% TODO suggested standard specimen:
+% DONE suggested standard specimen:
 % Low and high lines. Not a overvoltage issue in SEM. Also viable for low energy? Clear peaks, not severe overlap issues.
 % Easy to find. Not expensive. Not restricted by delivery from a vendor. Not reactive.
 
@@ -1589,7 +1588,7 @@ Deviations above the specification could be related to the acquisition settings 
 If the user cannot achieve the energy resolution in the specification with optimal settings, the user should probably contact the EDS detector vendor for support.
 In Goldstein, it is stated that most specimen would benefit of a small loss in energy resolution to get higher throughput \cite[16.3.2]{goldstein_scanning_2018}.
 The trade-off between energy resolution and throughput allows a small loss in resolution for a high gain in throughput.
-%TODO discuss: yes, the advice of higher throughput for a bit lower e-res is nice and confirmed.
+% DONE discuss: yes, the advice of higher throughput for a bit lower e-res is nice and confirmed.
 However, the user must be aware of the elements in the specimen, as overlapping peaks become more difficult to resolve with a lower energy resolution.
 Thus, the user should adjust the trade-off according to the specimen used and the aim of the analysis.
 
@@ -1729,7 +1728,7 @@ The inconsistency of the actual calculation of the Fiori P/B is a problem for th
 This problem could be solved by fitting the spectrum to a model, and using the fitted curves to calculate the P and the B, to easily compare reported or claimed values from different setups.
 The metric might be more comparable on different setups if the calculations are done truer to the original definition, which also would make the metric more robust as the users subjective opinions does not affect the calculation.
 Calculating the Fiori P/B through model fitting is explored in this work.
-% TODO: In discussion debate this choice to alternatives.
+% DONE: In discussion debate this choice to alternatives.
 
 
 
@@ -1738,10 +1737,10 @@ Calculating the Fiori P/B through model fitting is explored in this work.
 % Acceptable range
 There are some papers \cite{egerton_nio_characterization_1994,egerton_nio_characterization_1994,ted_pella_nio_tem_2019} suggesting acceptable thresholds for the Fiori P/B, but they are for TEM EDS spectra.
 It is stated in Williams and Carter \cite[p. 614]{williams_carter_tem_2009} that in a well constructed AEM the Fiori P/B ratio should increase with increasing beam energy.
-% TODO discuss: the Fiori P/B increase with E_0 in SEM too, as stated in W&C.
+% TODO discuss: the Fiori P/B increase with E_0 in SEM too, as stated in W&C. I do not know why, but mention it
 % "In a well-constructed AEM, the P/B ratio will increase with keV." (Williams and Carter, p.614)
 This should probably be true for SEM EDS setups too, and it is explored in this work.
-% TODO: results and discussion on this
+% DONE: results and discussion on this
 TEM EDS signals can have lower relative background intensity compared to SEM EDS signals, because the specimen is thin for TEM as explained in \cref{theory:sem:tem}.
 This implies that a threshold should be lowered for SEM EDS signals.
 Egerton and Chengs paper from 1994 \cite{egerton_nio_characterization_1994} suggests that a good TEM setup with a good signal have a Fiori P/B above $3000$, while a number under $1000$ indicates a bad signal.
@@ -1768,7 +1767,7 @@ Other peaks could also be used for this purpose, as long as one is close and abo
 The Ted Pella Info sheet \cite{ted_pella_nio_tem_2019} contains a formula for calculating the thickness of the contamination layer, but the assumptions used are not valid for SEM EDS signals.
 A good reference numbers have not been identified for this metric for SEM EDS, and will depend on the chosen test specimen.
 However, detecting the contamination can be done by comparing a K/L peak ratio over time, where a decrease is an indication of carbon contamination.
-% TODO discuss: mu_rho real is also affected by other elements present, e.g. C and O. Thus mislabeling is even a feilkilde here, and the mu_rho used can be off because of this.
+% DONE discuss: mu_rho real is also affected by other elements present, e.g. C and O. Thus mislabeling is even a feilkilde here, and the mu_rho used can be off because of this.
 
 
 Another use of peak ratios is to give information about the stray radiation.
@@ -1789,7 +1788,7 @@ Both X-ray photons from background radiation and other elements can excite the M
 \input{tables/table_performance_parameters.tex}
 
 
-% TODO 
+% DONE 
 % \ton{Everything above this page is more or less finished now. How would you rate it?}
 % It is good, detailed. The visualizations/figures are very useful for the reader, the summarizing tables not always.
 % Some points are repeated and as long (but keep as it is now!) less interested reader could loose the red line. 
@@ -1976,7 +1975,6 @@ The k-ratio of element $i$ is defined as:
     k_i = \frac{I_\textnormal{i, unknown}}{I_\textnormal{i, standard}}
 \end{equation}
 
-% TODO discuss: "This is when having standard. You are not using standards (can be hard). It is OK, but mention how calculated.  Discussion: Not precise k has effect on accuracy of result."
 
 To get the more accurate composition through the k-ratio, the ZAF-corrections can be used.
 The corrections must be applied to both the unknown and the standard, and the composition of the unknown can be found through the equation:
@@ -2149,7 +2147,7 @@ A summary of the variables in this principle part of the PAP model is given in \
     n_A = C_A \frac{N^0}{A} Q(U) F
 \end{equation}
 
-Where $n_A$ is the number of generated primary ionizations from atoms of element A, $C_A$ is the concentration of element A in weight percent\footnote{Note that in quantitative EDS the calculations are done in wt.\%, but the results can be given in at.\%.}, $N^0$ is Avogadro's number, $A$ is the atomic weight of element A\footnote{It is not stated explicit in the PAP-paper, but based on \cite{love_scott_1990} and an analysis of the units, $A$ must be the atomic weight.}, $Q(U)$ is the ionization cross-section of the line with the given overvoltage ($U$)\footnote{$Q(U)$ is noted as $Q_l^A(E_0)$ in the PAP-paper.}, and $F$ is the integral of $\phi(\rho z)$.
+Where $n_A$ is the number of generated primary ionizations from atoms of element A, $C_A$ is the concentration of element A in weight percent\footnote{Note that in quantitative EDS the calculations are done in wt.\%, but the results can be given in at.\%.}, $N^0$ is Avogadro's number, $A$ is the atomic weight of element A\footnote{It is not stated explicit in the PAP paper, but based on \cite{love_scott_1990} and an analysis of the units, $A$ must be the atomic weight.}, $Q(U)$ is the ionization cross-section of the line with the given overvoltage ($U$)\footnote{$Q(U)$ is noted as $Q_l^A(E_0)$ in the PAP paper.}, and $F$ is the integral of $\phi(\rho z)$.
 
 % F = int_0^infty phi(rho z) dz
 \begin{equation}
@@ -2208,16 +2206,16 @@ F is the product of the deceleration factor ($1/S$) and the backscatter factor (
     F = \frac{R}{S}   \frac{1}{Q(U)}
 \end{equation}
 
-The PAP-paper is at times somewhat confusing, both because the lack of explanation of some symbols, and because of slightly contradicting equations.
+The PAP paper is at times somewhat confusing, both because the lack of explanation of some symbols, and because of slightly contradicting equations.
 In equation (2) it is stated that $n_A = C_A (N^0/A) Q(U) F$, and in equation (3) it is stated that $n_A = C_A (N^0/A) (R/S)$.
 This implies that $(R/S) = Q(U) F$.
 However, equation (13) states that $F = (R/S) \cdot Q(U)$, which is a contradiction to equation (2) and (3).
 Based on a units analysis and the fact that the generated intensity should depend on $Q(U)$ as the probability of ionization, it is assumed that $F = (R/S) / Q(U)$ is the correct equation.
 Both formulations will however be tested, to verify this assumption.
-% TODO discuss: why the correction shuld be divided by Q(U), as it can be viewed as a probability.
-% TODO discuss: not including 1/Q gave very wrong results, and were excluded from the results, but can be tested with the Notebook.
-% TODO discuss: both multiplying with Q and ignoring Q gave unstable and unreasonalbe results.
-% TODO: do not mention notebook in theory.
+% DONE discuss: why the correction shuld be divided by Q(U), as it can be viewed as a probability.
+% DONE discuss: not including 1/Q gave very wrong results, and were excluded from the results, but can be tested with the Notebook.
+% DONE discuss: both multiplying with Q and ignoring Q gave unstable and unreasonalbe results.
+% DONE: do not mention notebook in theory.
 
 
 \textbf{The deceleration factor $1/S$} is a measure of the electrons' energy loss in the specimen, as a function of the energy that the electrons have.
@@ -2500,7 +2498,7 @@ Where $X$ and $Y$ are given by:
 \end{itemize}
 
 
-% TODO: add back the sentence below?
+% add back the sentence below? No
 % It is stated in the XPP computation scheme that "If $ F/\bar{R} < \phi(0) $, impose the condition $ \bar{R} = F/\phi(0) $" \cite[Appendix 4]{pap_1991}.
 
 
@@ -2518,7 +2516,7 @@ Where $g$ and $h$ are given by:
     \item $ h = 1 - 10(1-\frac{1}{1+ U_0/10})/\bar{Z}_b^2 $
 \end{itemize}
 
-% TODO: add back the sentence below?
+% add back the sentence below? No
 % ", but can be ignore to date when rewritten for current generation of ...."
 % The slope $P$ have a similar comment as $\bar{R}$, which states that "If necessary, limit the value $ g \cdot h^4 $ to the value $ 0.9 \cdot b\cdot  \bar{R}^2 \cdot [b - 2 \phi(0)/F] $".
 
@@ -2549,7 +2547,7 @@ The parameters are calculated sequentially, starting with $b$, then $a$, then $\
     \varepsilon = \frac{a-b}{b}
 \end{equation}
 
-% TODO: add back the sentence below?
+% add back the sentence below? No
 % The PAP paper have the following comment on the value of $\varepsilon$: "If necessary, impose on $\varepsilon$ a minimum absolute value (e.g. $10^{-6}$), and then assume $ a = b \cdot(1+\varepsilon) $".
 % The comment is aimed at computational issues in the 90s where values too close to zero would cause numerical issues.
 % ", but can be ignore to date when rewritten for current generation of ...."
@@ -2577,6 +2575,5 @@ Plotting the $\phi(\rho z)$ curves can be done with the now calculated parameter
     \phi (\rho z) = A \cdot \exp(- a \cdot (\rho z)) + (B \cdot (\rho z) + \phi(0) - A) \cdot \exp(- b \cdot (\rho z))
 \end{equation}
 
-% TODO consider having a plot here, instead of in discussion.
 
 This should cover the necessary theory for the XPP model to be implemented in code developed in this project.
