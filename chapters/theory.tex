@@ -227,7 +227,7 @@ The IUPAC naming convention notes both the orbital in the inner and outer shell,
 The transition lines are grouped and named based on the orbital the vacancy is in, and the orbital the electron is relaxed from.
 The naming convention is semi-systematic because it is the original empirical system published in Nature by the Swedish physicist Kai Siegbahn in 1916 \cite{siegbahn_relations_1916}, without the modern theoretical knowledge on orbitals.
 % K, L, M
-The X-rays lines of a family is named by the shell of the generated hole, i.e. the principal quantum number $n$ of the vacancy orbital.
+A family of X-ray lines is named by the shell of the generated hole, i.e. the principal quantum number $n$ of the vacancy orbital.
 Relaxations to the innermost shell $n=1$ is named K-transitions, relaxations to $n=2$ is L-transitions, relaxations to $n=3$ is M-transitions.
 % LOL, Github Copilot foreslo setningen under utfra "K, "
 % K, L, and M are the first letters in the German words for the shells, Korbital, Lorbital, and Morbital.
@@ -660,9 +660,7 @@ The figure show that a higher Z gives more BSE, marked as red lines.
 Additionally, the figure show that the size of the interaction volume is dependent on Z too, as all the scatterings are more concentrated in (d) with Au.
 The blue lines are electrons which have had all their energy absorbed within the specimen.
 In addition to the three types of electron signals, the beam interaction can also create X-ray photons.
-
-
-\brynjar{TODO: Insert SE and BSE images of C-film on Cu-grid with Ga. Topology and Z-contrast.}
+\cref{fig:SE_vs_BSE} show the difference between a SE and a BSE image.
 
 
 % Characteristic X-rays and background X-rays
@@ -732,6 +730,9 @@ EDS spectra can also be recorded as a 1D spectrum from a point on the sample.
 \end{figure}
 
 
+
+
+
 \subsection{Note on transmission electron microscopy}
 \label{theory:sem:tem}
 
@@ -752,7 +753,21 @@ These two aspects are the key differences, and TEM image formation is not discus
 
 
 
-
+% figures/SE_images/SE_vs_BSE.jpg
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/SE_images/SE_vs_BSE.jpg}
+    \caption{
+        Example of the difference between SE and BSE images.
+        The image is a Cu grid with a C-film, and the material on top is GaAs.
+        The SE image in panel (a) shows more spatial details, and the topological information of the grid.
+        The BSE image in panel (B) is flatter, i.e. show little topological information, but the Z-contrast of the different materials give an initial compositional overview.
+        For example, the contamination in the middle left is probably carbon, as the C-film, as both are black.
+        The different Z of the grid and the deposited material is also visible.
+        The images were acquired in \cite{project_report}.
+    }
+    \label{fig:SE_vs_BSE}
+\end{figure}
 
 
 
@@ -1178,7 +1193,6 @@ The artifacts are illustrated in \cref{fig:eds_artifacts}, and summarized in \cr
 
 
 % Sum peaks
-% TODO: only use coincidence, or use the mix?
 Acquiring a good spectrum requires a certain amount of counts, but having a high count rate increase the probability of \textbf{coincidence peaks}.
 Coincidence peaks are also called sum peaks.
 Coincidence peaks are when two X-rays are counted as one, where the assigned energy is the sum of the two X-rays.
@@ -1311,7 +1325,7 @@ The industry and standard authorities have not yet agreed on a standard set of m
 
 % not new paragraph?
 An ISO standard for selected SEM EDS performance was introduced in 2002 (revised in 2012 and 2021), which includes details on calibration metrics \cite{iso_qc_15632}.
-Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO-thin film test standards.
+Some literature is available on performance parameters for TEM EDS setups, e.g. the work of Egerton and Cheng \cite{egerton_nio_characterization_1994}, updated and easily accessible in the info-sheet by Ted Pella \cite{ted_pella_nio_tem_2019}, which also sells NiO thin film test standards.
 Literature on performance parameters for SEM EDS setups are less common, but some papers \cite{software_dtsaii,dtsaii_1_getting_started,dtsaii_2_manipulating_spectra} are available and the software DTSA-II \cite{software_dtsaii} includes a quality control program, described in the textbook by Goldstein \cite{goldstein_scanning_2018}.
 Goldstein also include details on a range of parameters, such as linearity and stability of the detector, along with possible SEM EDS issues, such as beam-sensitive specimen and specimen with irregular topography \cite{goldstein_scanning_2018}.
 The similarities between EDS in SEM and TEM allow much overlap in the performance parameters, but there are also some differences.
@@ -1518,7 +1532,7 @@ The remainder of this section will focus on the Mn K$\alpha$ peak.
 
 
 % Approaching the theoretical limit? Find source, Goldstein?
-% TODO: amplifier noise is described with an equation in Woldseth 1973, referenced in bennett_egerton_1995.
+% NOT DONE: amplifier noise is described with an equation in Woldseth 1973, referenced in bennett_egerton_1995.
 % Woldseth 1973 figure remake in Goldstein 2003 3rd ed.: It can readily be seen that even if the noise contribution were totally eliminated, the theoretical energy resolution limit would still be greater than 100 eV for Fe Ka at 6.4 keV
 
 % How
@@ -1666,16 +1680,16 @@ The relevance to the generated characteristic X-ray comes from having the denomi
 All these arguments were made for TEM, but they are equally true for SEM, and thus the metric is relevant for SEM EDS.
 
 
-% figures/FioriPB_TODO_remake.png
+% figures/pp_fiori_definition
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/FioriPB_TODO_remake.png}
+    \includegraphics[width=0.6\linewidth]{figures/pp_fiori_definition.pdf}
     \caption{
-        Illustration of the Fiori P/B.
-        P is all the counts in the actual peak, i.e. the part with the horizontal lines that does not including the background.
+        Illustration of the Fiori peak-to-background ratio.
+        P is all the counts in the actual peak, not including the background.
         B is the counts in a $10$ eV window at the peak center.
         Figure adapted from \cite{zemyan_standard_performance_1994}.
-        \brynjar{TODO: remake this figure. Uniform layout.}}
+        }
     \label{fig:fiori_pb}
 \end{figure}
 
@@ -1698,7 +1712,7 @@ The figure illustrates one of the ways to calculate the P and B: the background 
     \caption{
         Illustration of how the Fiori P/B is calculated in practice, with integration windows.
         Figure adapted from \cite{zemyan_standard_performance_1994}.
-        \brynjar{TODO: remake this figure?}
+        % \brynjar{TODO: remake this figure?}
     }
     \label{fig:fiori_pb_reality}
 \end{figure}
@@ -2031,7 +2045,7 @@ The detector is placed at a certain angle and thus the path length becomes:
 Where $z$ is the depth of origin of the X-ray, TOA is the take-off angle, and csc is the cosecant function.
 Tilting the specimen will change the TOA (see \cref{fig:eds_geometry}), which change the path length of the X-ray, and thus the absorption.
 
-% TODO theory: illustrate the TOA and (rho z)?
+% NOT DONE theory: illustrate the TOA and (rho z)?
 
 
 % calculating I_0 from an average point or for the whole interaction volume
@@ -2083,8 +2097,7 @@ The difference between the PAP and PROZA96 models is the calculation of the $\ph
 Another model from Packwood and Brown \cite{packwood_1981} is also using Gaussians to calculate the $\phi(\rho z)$ curve.
 According to an Oxford Instruments blog post \cite{oxford_blog_XPP}, it is the XPP model which is used for SEM EDS bulk corrections in AZtec\footnote{Neither the AZtec user manual nor the software \cite{aztec_manual} are mentioning how the bulk corrections are calculated.}.
 Both the PAP and the PROZA96 model use the area under the $\phi(\rho z)$ curve for parameterization, where the PROZA96 model refers to the PAP paper for the calculation of this area \cite{bastin_proza96_1998}.
-At the end of the section, \verb|\cref{tab:quantitative:PAP:variables}| summarize all the variables, with their name, their use, and their units.
-\brynjar{TODO: Fix the table.}
+\cref{tab:quantitative:PAP:variables:principle} summarize the most central variables in the XPP model, with their name, their use, and their units.
 
 
 
@@ -2335,8 +2348,6 @@ i.e.
     f(V) = 6.6 \cdot 10^{-6}\cdot V^{0.78} + 1.12\cdot 10^{-5}\cdot (1.35 - 0.45 J^2) \cdot V^{0.1} + \frac{2.2 \cdot 10^{-6}}{J} \cdot V^{-(0.5-0.25J)}
 \end{equation}
 
-
-\brynjar{TODO: Add a table with the constants and their units?}
 
 
 The PAP paper gives an analytical solution for $1/S$ through the expression for the ionization cross-section and the deceleration of the electrons, where $ T_K = 1 + P_k - m$, as:
