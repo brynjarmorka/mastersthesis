@@ -91,7 +91,7 @@ The probe current can be measured with a Faraday cup, and would be used to calcu
 \label{sec:other_ideas_for_future_work}
 
 The test routines for the performance of a SEM EDS setup implemented in this work is not complete, and there are many other tests that could be done.
-Four possible test, which are important for the performance, are linearity, stability, shadowing, and optimal WD.
+Four possible test, which are important for the performance, are linearity, stability, shadowing, optimal WD, and detector efficiency.
 
 % linearity and stability
 In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests for an EDS detector are linearity and stability.
@@ -117,6 +117,10 @@ An EDS spectrum map, acquired at the found optimal WD, can be acquired to verify
 The center of the map is the intersection of the electron beam axis and the detector axis on the specimen, and should be the most intense area if the WD is optimal.
 
 % TODO detector efficiency (see BAM, it is hard to measure good)
+The detector efficiency, illustrated in \cref{fig:detector_efficiency}, is more influential in SDDs than in Si(Li) detectors.
+Calculating the detector efficiency is not trivial \cite{rackwitz_2015_bam}, and is most accurately done with radiation from a synchrotron.
+As the illustration shows, the detector efficiency in SDDs change with energy, and thus a calculation with a normal EDS spectrum requires many peaks.
+The EDS-TM002 test specimen from BAM \cite{rackwitz_2015_bam} can be used, and inspiration from this specimen and their routine can be a starting point.
 
 % comment on maps and PCA
 Aside from the test routines, there are other ideas for future work.
