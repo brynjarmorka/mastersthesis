@@ -1,6 +1,11 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
+% from masteravtalen:
+% •	Characterize detector and beam parameters and use them for better quantification.
+% •	Develop detector characterization and quantification routines for bulk samples in open-source.
+
+
 % The function of this chapter (ca. 2 pages) is to introduce the work, place it for the reader in a context. Often a big problem and after some sub-problems needed to resolve the big one. The introduction leads to a problem statement. After state how this work will tackle the (sub)problem and how (“what is done”). The final paragraph can be guide how the thesis is structured. 
 
 
@@ -19,14 +24,14 @@
 
 % Paragraph 1, intro to X-ray analysis and why it is important.
 Properties of materials are strongly related to their nanoscale composition and structure \cite{callister2014materials}.
-The main tool for studying nanoscale structures is the electron microscope (EM), which are divided into scanning electron microscopy (SEM) and transmission electron microscopy (TEM) \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
+The main tool for studying nanoscale structures is electron microscopy (EM), which are divided into scanning electron microscopy (SEM) and transmission electron microscopy (TEM) \cite{goldstein_scanning_2018,williams_carter_tem_2009}.
 % The two main tools for studying the nanoscale structure are the scanning and transmission electron microscopes (SEM and TEM). 
 The composition at the nanoscale can be studied by analyzing the X-ray spectrum created from the interactions between the material and the electron probe in the EM, thus getting both structural and compositional information \cite{jenkins_xrayspectroscopy}.
 The composition is revealed in the X-ray spectrum, where the characteristic X-ray lines have energy dependent on the atom of origin, which is a well understood quantum mechanical process \cite{hollas_modern_2004,goldstein_scanning_2018}.
 % An X-ray spectrum contains characteristic X-rays lines, a signal from the well understood quantum mechanical process where the energy of the generated X-ray is dependent on the atomic number of the atom that emits the X-ray, revealing the composition of the material \cite{hollas_modern_2004,goldstein_scanning_2018}.
 The most common technique for analyzing the X-ray spectrum is energy dispersive X-ray spectroscopy (EDS).
 In EDS the electron beam of the microscope excites the material that generates the characteristic X-rays, which are detected and sorted by energy in an accumulating digital histogram.
-Even though EDS have limited energy resolution and is affected by several artifacts, it is still the most common technique for analyzing the X-ray spectrum in EM.
+Even though EDS have limited energy resolution and is affected by several artifacts, it is the most common technique for analyzing the X-ray spectrum in EM.
 
 % Paragraph 1.5, weakness of XRF and WDS
 There are three main techniques in EM for analyzing characteristic X-rays: X-ray fluorescence (XRF), wavelength dispersive spectrometers (WDS), and energy dispersive X-ray spectroscopy \cite{jenkins_xrayspectroscopy}.
@@ -47,23 +52,25 @@ Despite the limitations of EDS, the technique is easy to use in EM and gives a h
 In order to improve the performance of SEM EDS, it is necessary to examine the entire process from signal creation to interpretation, including the data treatment.
 By doing so, it becomes possible to identify and address factors that may be responsible for reduced performance.
 The EDS signal can be influenced by a range of factors between its creation and detection.
-As such, it is important to have a comprehensive understanding of (i) the experimental setup characteristics, (ii) the acquisition parameters, and (iii) the possible post-acquisition data treatment in order to improve the EDS analysis.
+As such, it is important to have a comprehensive understanding of (i) the experimental setup characteristics, (ii) the acquisition settings, and (iii) the possible post-acquisition data treatment in order to improve the EDS analysis.
 This is schematically illustrated in \cref{fig:intro:parameters}.
 % (i)
-\brynjar{TODO REWRITE: (i) Experimental setup characteristics includes energy resolution in the acquired spectrum, signal-to-noise ratio (SNR) like the Fiori peak-to-background \cite{fiori_peak_background_1982}, detector efficiency, take off angle (TOA), shadowing, and system related artifacts such as strays\cite{goldstein_scanning_2018}.
-%, all play a crucial role in the quality of the acquired data 
-% Ton did not want: WD, linearity between generation and detection, and stability of resolution and peak positions,
+In this work, performance parameters of the setup (i) and the acquisition settings (ii) are investigated, as these have overlapping metrics.
+The parameters investigated are the Fiori peak-to-background ratio (P/B) \cite{fiori_peak_background_1982}, energy resolution, Duane-Hunt limit \cite{Duane_Hunt_1915}, peak ratios, scale, offset, and peak deviations.
+The acquisition setting which affect the parameters and the spectrum quality are beam energy, probe current, process time, and acquisition time \cite{goldstein_scanning_2018}, in addition to the EDS detector, the specimen analyzed and the calculations methods used.
+Understanding and having a thorough knowledge of one's experimental setup is of utmost importance for users, as it allows for higher quality results through the optimization of the setup and the acquisition, and faster troubleshooting when problems arise.
+% \brynjar{DONE REWRITE: (i) Experimental setup characteristics includes energy resolution in the acquired spectrum, signal-to-noise ratio (SNR) like the Fiori peak-to-background , detector efficiency, take off angle (TOA), shadowing, and system related artifacts such as strays\cite{goldstein_scanning_2018}.
 % (ii)
-(ii) Similarly, the acquisition parameters affect the spectrum quality and includes parameters like beam energy, probe current, process time, and dwell time. \cite{goldstein_scanning_2018}. % Ton did not want dead time here
-Additionally, the (ii) acquisition parameters are somewhat different in SEM and TEM.
-TEM samples are typically very thin, at around 100 nm, whereas SEM samples are usually bulk specimens.
-Hence, for TEM the SNR can be a limiting factor.}
-For SEM, addition corrections might be required as signal is created over a larger volume and secondary effects as absorption and fluorescence need to be accounted for.
-The beam energy is also different, where TEM is typically operated at 100-300 kV, and SEM is typically operated at 1-30 kV.
-The latter energy range is similar to the energy of characteristic X-rays central to this work, and thus the overvoltage effect is significant \cite{williams_carter_companion_volume_2016}.
+% (ii) Similarly, 
+% Additionally, the (ii) acquisition parameters are somewhat different in SEM and TEM.
+% TEM samples are typically very thin, at around 100 nm, whereas SEM samples are usually bulk specimens.
+% Hence, for TEM the SNR can be a limiting factor.}
+% For SEM, addition corrections might be required as signal is created over a larger volume and secondary effects as absorption and fluorescence need to be accounted for.
+% The beam energy is also different, where TEM is typically operated at 100-300 kV, and SEM is typically operated at 1-30 kV.
+% The latter energy range is similar to the energy of characteristic X-rays central to this work, and thus the overvoltage effect is significant \cite{williams_carter_companion_volume_2016}.
 % (iii)
-(iii) Finally, post-acquisition data treatment can have a significant impact on the compositional results.
-\brynjar{TODO REWRITE: Post-acquisition data treatment can include making method-specific assumptions, model fitting, and noise treatment \cite{williams_carter_companion_volume_2016}.}
+Finally, post-acquisition data treatment (iii) can have a significant impact on the compositional results.
+Post-acquisition data treatment are for example model fitting, noise treatment, quantification methods, and bulk corrections for SEM EDS data \cite{goldstein_scanning_2018,williams_carter_tem_2009,pap_1991,hollas_modern_2004}.
 Characterization of key parameters is necessary to ensure that a spectrum is acquired correctly, and the detector is operating properly, potentially revealing the need for correction.
 
 
@@ -72,8 +79,7 @@ Characterization of key parameters is necessary to ensure that a spectrum is acq
   \centering
   \includegraphics[width=0.8\linewidth]{figures/intro_parameters.png}
   \caption{
-    \brynjar{TODO: Redo this figure and caption.}
-    Schematic illustration of parameters that can affect the performance and results of SEM EDS in the three groups.
+    Schematic illustration of parameters that can affect SEM EDS analysis, divided into three groups.
     This work focuses on some parameters, with the aim of improving the performance of SEM EDS.
   }
   \label{fig:intro:parameters}
@@ -119,10 +125,9 @@ This work will contribute to improving the EDS setup and acquisition of EDS data
 
 
 
-%%%%%%% Paragraph 5: the more hairy goal of adding bulk quantification to HyperSpy
 % A second, more ambitious, goal 
-The overall aim, as stated by the project title, is to improve EDS.
-The first goal is to systematically go through the two first rows of parameters listed in \cref{fig:intro:parameters}, and characterize the performance of a SEM EDS setup and selected acquisition parameters.
+The overall aim, as stated by the project title, is to improve SEM EDS data analysis in open-source software.
+The first goal is to systematically go through parameters that characterize the performance of a SEM EDS setup and selected acquisition settings, such as the energy resolution and the Fiori P/B.
 The main focus will be to describe possible metrics and implement them in open-source code, which allows for transparent and reproducible characterization of the performance.
 % on the experimental characteristics and new data processing routines that become available through open-source packages.
 The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
@@ -137,7 +142,14 @@ The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z
 
 
 
-\brynjar{TODO: And also Last paragraph will be a guide how the report is build up, as in the project report. Added later.}
+This report is structures as follows. 
+The theory chapter covers first the basics of characteristic X-ray generation, the SEM setup, and the EDS system.
+Then the theory of the performance parameters and the bulk corrections are covered.
+The method chapter covers the experimental setup, and the data treatment.
+The following chapter presents the results from the characterization of the performance parameters, and the quantification with and without bulk corrections.
+The discussion chapter connects the theory and the results, and the conclusion chapter summarizes the findings.
+Lastly, suggestions for future work are given, followed by the references and the appendices.
+All the developed code is available on GitHub, and an accompanying notebook is provided in Appendix A.
 
 
 % \brynjar{Comment from Ton:}
@@ -147,11 +159,7 @@ The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z
 
 
 
-\brynjar{TODO: add something like "important for a user to really know their setup". Both here, and in conclusion, and abstract.}
-% "most people do not think about the stuff i work with. So it is important (to know your equipment)" (also add in discussion)
 
-% from masteravtalen:
-% •	Characterize detector and beam parameters and use them for better quantification.
-% •	Develop detector characterization and quantification routines for bulk samples in open-source.
+
 
 

@@ -2,6 +2,8 @@
 \chapter{Discussion}
 \label{ch:discussion}
 
+% TODO disc: sjekke "possibility", "may",  "might", "possibly". også "not"
+
 The discussion chapter connects the results to the theory, with focus on the aims of this work.
 % Brief summary of the aims:
 The overall aim is to improve the performance of SEM EDS, which is split in two parts:
@@ -56,7 +58,7 @@ The lower Fiori P/B ratio implies a poorer quality, as it is fewer counts in the
 For GaSb spectra taken at $30$ kV, the Fiori P/B ratio is similar at PT $1$ and PT $6$ with $50$ pA beam current, and both these spectra have little coincidence counts.
 In the $30$ kV, $50$ pA and PT $1$ spectrum, where the coincidence rate is high, the Fiori P/B ratio is lower for Ga K$\alpha$, Sb L$\alpha$, and Sb L$\beta$.
 In the same spectrum, the amount of coincidence counts from Ga L$\alpha$ does not increase, and this Fiori P/B ratio is similar to the other $30$ kV spectra.
-The log scale reveals the coincidence peaks, which is the source of the lower Fiori P/B ratio.
+The log scale reveals the coincidence peaks in the visualization, which is the source of the lower Fiori P/B ratio.
 
 
 Another difference in the voltage series which would be hidden by a linear scale is the relative amount of counts in the background versus the peaks.
@@ -1045,7 +1047,7 @@ Plotting $\phi(\rho z)$ can be done with the parameters $A$, $B$, $a$, $b$ and $
 One of the uncertainties which was partly clarified with plotting, was how to use $Q(U)$ in the calculation of $F$.
 As mentioned in \cref{theory:quantitative:pap:calculation_of_F}, the PAP paper is ambiguous about how to use $Q(U)$, when comparing equation (2) and (3) with (13) in the original paper \cite{pap_1991}.
 With interpretations of plots, testing the implementation, a units' analysis, and additional literature \cite{goldstein_scanning_2018,reimer_sem}, it was confirmed that equation (13) is incorrect.
-In the testing and plotting, the alternative uses of $Q(U)$ gave both unstable and unreasonalbe results.
+In the testing and plotting, the alternative uses of $Q(U)$ gave both unstable and unreasonable results.
 % This means that $ F = R / (S \cdot Q(U)) $, i.e. that the area of $\phi (\rho z)$ is inversely proportional to the ionization cross-section.
 % This conclusion is logical, when viewing the ionization cross-section as the probability for an ionization, and 
 
@@ -1054,7 +1056,7 @@ The plot of the depth distribution $\phi(\rho z)$ in \cref{fig:discussion:pap:ph
 Other comparisons were done, for example with figure 1 and 2 in the PAP paper, where $\phi(\rho z)$ of C K$\alpha$ in C and W are plotted.
 This plot is shown in \cref{fig:discussion:pap:phi_of_rhoz_C_Ka}, where the general trend is equal to the plot in the PAP paper, but there are some differences, for example that the curve in C is rounder and broader in the PAP paper.
 The plotting of $\phi(\rho z)$ was also compared to other sources, for example figure 19.9 in Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}, which is adapted in \cref{fig:theory:quantification:phi_rho_z_curves}.
-The plotting of $\phi(\rho z)$ in Goldstein is done with the PROZA model, but the results should be similar to the XPP model.
+The plotting of $\phi(\rho z)$ in Goldstein is done with the PROZA model \cite{bastin_proza96_1998}, but the results should be similar to the XPP model.
 \cref{fig:theory:quantification:phi_rho_z_curves} and \cref{fig:discussion:pap:phi_of_rhoz_Goldstein} are in general similar, but slight differences between $\phi(0)$ and the shape at the end of the curve can be seen, where the XPP model gives the curve a longer tail.
 These plots show that the implementation of the XPP model is not perfect, but should be close enough to be useful.
 Possible sources of deviation is discussed towards the end of this section.
@@ -1137,16 +1139,16 @@ Cu L$\alpha$ in pure Cu is given $\mu_\rho = 1755$ in the PAP paper, and $\mu_\r
 Cu L$\beta$ in pure Cu is given $\mu_\rho = 6750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta_1$.
 These deviations are almost certainly a source of error, which should lead to some adjustments of the XPP equations.
 Additionally, misidentifications of peaks are important for the value of  $\mu_\rho$, because the value is dependent on the elements present and their concentrations.
-It may be that the presence of C contaminations on both specimen, and possible O on GaSb, are a source of error, as additional elements change the materials absorption capabilities.
+It may be that the presence of C contamination on both specimen, and possible O on GaSb, are a source of error, as additional elements change the materials absorption capabilities.
 As explained in \cref{discussion:quantitative:zaf_absorption_correction}, the value of $\mu_\rho$ is critical because it is in the exponent of the absorption calculation.
 Such corrections might have been published as an update to the PAP/XPP procedure in a more recent paper.
-If this is a source of error, it can explain why the AZtec software is getting better results, because Oxford Instruments have had time to refine their input parameters and equations.
+If this is a source of error, it can explain why the AZtec software is getting better results, because Oxford Instruments have had time to gradually refine their input parameters and equations.
 
 
 In this work, the $\mu_\rho$ values from HyperSpy were used, and as the package is emergent from the TEM community, the values could be less accurate at low voltages.
 The original source is NIST standard reference database 66, mentioned in \cref{theory:xray_formation:characteristic}, where it is stated in the documentation of the database that the values are less accurate between $0.03$ keV to $3$ keV, and around absorption edges \cite{nist_xraydatabase_hyperspy}.
 Further, the documentation to the NIST database state that revised values for $\mu_\rho$ can lead to "significant qualitative and quantitative improvement" \cite{nist_xraydatabase_hyperspy}\footnote{\url{https://www.nist.gov/pml/nist-x-ray-form-factor-attenuation-and-scattering-tables-database-cont}, accessed 26.05.23.}.
-Investigating such possibilities are outside scope of this work, but can be a starting point for future work.
+% Investigating such possibilities are outside scope of this work, but can be a starting point for future work.
 
 
 % using different corrections tailored for different specimen
