@@ -865,8 +865,9 @@ The X-rays enter through the cathode side, ionize Si atoms, and create electron-
 In the center of the backside is a small anode, where the electron-hole pairs are collected.
 The anode is connected to a FET transistor which amplifies the voltage signal.
 The signal is then sent to the electronics, where the pulse processor is converting the analogue signals to digital signals.
-The digital signals are sent to the multichannel analyzer, which makes a spectrum from the digital signals.
-The spectrum is then sent to the computer, where the user can analyze the spectrum.
+The digital signals are sent to the multichannel analyzer, which makes a digital spectrum sent to the computer.
+% spectrum from the digital signals.
+% The spectrum is then sent to the computer, where the user can analyze the spectrum.
 
 
 % figures/EDS_SDD.png
@@ -887,7 +888,7 @@ The spectrum is then sent to the computer, where the user can analyze the spectr
 % SDD vs Si(Li) detectors
 There are some key differences between the Si(Li) and SDD detectors. 
 The cooling needed in the more modern silicon drift detectors (SDD) is not as strong as for the Si(Li) detectors. 
-The SDDs need no more than a Peltier cooling (ca.$ -20 $ to $-30$\textdegree C), which is easy to operate and maintain.
+The SDDs need no more than a Peltier cooling (ca. $-20 $ to $-30$\textdegree C), which is easy to operate and maintain.
 The anode in the SDDs is just a small centerpiece, while in the Si(Li) detectors the anode covers the whole detector.
 As the anode is smaller, the capacitance is lower and the voltage noise is reduced.
 In SDDs the area of the active layer can be made bigger with a constant anode size, which keeps the capacitance constant. \cite{notaros_electromagnetics_2010}.
@@ -901,7 +902,7 @@ The lower efficiency of the SDDs is due to the thinner active layer, which allow
 
 
 % figure/detector_efficiency_illustration.pdf
-\begin{figure}[pht]
+\begin{figure}[phtb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/detector_efficiency_illustration.pdf}
     \caption{
@@ -941,7 +942,7 @@ Both a too low and too high WD will limit the number of counts, and most EDS ope
     \includegraphics[width=0.6\linewidth]{figures/EDS_geometry.png}
     \caption{
         A schematic of the geometry of the sample and detector in EDS.
-        The solid angle ($\Omega$) is a function of A and r, giving the fraction of the hemisphere above the sample that is covered by the detector.
+        The solid angle ($\Omega$) is a function of $A$ and $r$, giving the fraction of the hemisphere above the sample that is covered by the detector.
         X-rays with trajectory outside the yellow triangle will not hit the detector.
         The $TOA$ is take-off angle, $WD$ is working distance, $az$ is the azimuthal angle, $A$ is the active area of the detector, and $r$ is the distance from the sample to the detector.
     }
@@ -989,18 +990,18 @@ Energy resolution is also discussed more in \cref{theory:eds_performance:energyr
 
 
 
-As the electronics broadens the peaks to Gaussian curves, the model fitting of the peaks are done by:
-
-\begin{equation}
-    \label{eq:gaussian}
-    f(x) = \frac{A}{\sqrt{2\pi}\sigma}\exp\left[{-\frac{(x-x_0)^2}{2\sigma^2}}\right]
-\end{equation}
-
+As the electronics broadens the peaks to Gaussian curves, the model fitting of the peaks are done by the equation $f(x) = \frac{A}{\sqrt{2\pi}\sigma}\exp\left[{-\frac{(x-x_0)^2}{2\sigma^2}}\right]$.
+% 
+% \begin{equation}
+    % \label{eq:gaussian}
+    % f(x) = \frac{A}{\sqrt{2\pi}\sigma}\exp\left[{-\frac{(x-x_0)^2}{2\sigma^2}}\right]
+% \end{equation}
+% 
 Where $A$ is the amplitude, $x_0$ is the mean, $\sigma$ is the standard deviation, and $x$ is the energy.
 The model fitting in this thesis is done using the HyperSpy package \cite{hyperspy_1.7.1}.
 With the sigma of a Gaussian curve, the full width at half maximum (FWHM) can be calculated as FWHM $= 2\sqrt{2\ln(2)}\sigma$.
 Different detectors and detector settings can give different peak widths, and thus the FWHM are used as a measurement of the resolution of the detector and the acquisition parameters.
-The relation between peak width and peak energy is described more in \cref{theory:eds_performance:energyres}, e.g. with \cref{eq:estimateFWHM}.
+The relation between peak width and peak energy is described in \cref{theory:eds_performance:energyres}. %, e.g. with \cref{eq:estimateFWHM}.
 
 
 \input{tables/table_eds_hardware.tex}
@@ -1057,7 +1058,7 @@ When the overvoltage for a specimen is discussed, it is referring to the overvol
 
 
 % overvoltage and ionization cross-section
-To produce a satisfactory amount of X-rays, it is not enough to just have the overvoltage slightly above 1, as the \textbf{ionization cross-section}, $Q$, plays a critical role.
+To produce a satisfactory amount of X-rays, it is not enough to just have the overvoltage slightly above $1$, as the \textbf{ionization cross-section}, $Q$, plays a critical role.
 The ionization cross-section can be viewed as the probability of an ionization, as described in \cref{theory:xray_formation:intensity} and \cref{eq:ionizationcrosssection}.
 The relation between the overvoltage and the ionization cross-section is shown in \cref{fig:overvoltage2ionizationcrosssection}.
 As seen in the figure, the probability of ionization increase sharply until U is around 4, and then it decreases.
@@ -1080,7 +1081,7 @@ A higher overvoltage will produce more X-rays, but also decrease the spatial res
 % figres/overvoltage2ionizationcrosssection.pdf
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/overvoltage2ionizationcrosssection.pdf}
+    \includegraphics[width=0.65\linewidth]{figures/overvoltage2ionizationcrosssection.pdf}
     \caption{
         The ionization cross-section as a function of overvoltage.
         Adapted from \cite[Fig. 4.4]{williams_carter_tem_2009}.
@@ -1388,7 +1389,7 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/pp_duane-hunt.pdf}
+    \includegraphics[width=0.8\linewidth]{figures/pp_duane-hunt.pdf}
     \caption{
         Illustration of a spectrum where the Duane-Hunt limit is different due to charging.
         The charging sample (red) has a lower effective beam energy than expected ($10$ keV).
@@ -1401,7 +1402,7 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 % figures/pp_fiori_snr.pdf
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/pp_fiori_snr.pdf}
+    \includegraphics[width=0.95\linewidth]{figures/pp_fiori_snr.pdf}
     \caption{
         Illustration of different spectra with signal-to-noise ratios.
         The peak intensity is the green area, and the background is the blue.
@@ -1417,7 +1418,7 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 % figures/pp_peak_deviations.pdf
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/pp_peak_deviation.pdf}
+    \includegraphics[width=0.95\linewidth]{figures/pp_peak_deviation.pdf}
     \caption{
         Illustration of peak deviations.
         Panel (a) is well calibrated for the medium high energy Ga K$\alpha$ peak.
@@ -1429,7 +1430,7 @@ Energy resolution is illustrated above, in \cref{fig:theory:energy_resolution}.
 % figures/pp_strays.pdf
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/pp_strays.pdf}
+    \includegraphics[width=0.95\linewidth]{figures/pp_strays.pdf}
     \caption{
         Illustration of strays.
         The expected spectrum (blue) has additional peaks (green) due to stray radiation.
@@ -1683,7 +1684,7 @@ All these arguments were made for TEM, but they are equally true for SEM, and th
 % figures/pp_fiori_definition
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/pp_fiori_definition.pdf}
+    \includegraphics[width=0.8\linewidth]{figures/pp_fiori_definition.pdf}
     \caption{
         Illustration of the Fiori peak-to-background ratio.
         P is all the counts in the actual peak, not including the background.
@@ -1708,9 +1709,11 @@ The figure illustrates one of the ways to calculate the P and B: the background 
 % figures/FioriPB_reality_TODO_remake.png
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/FioriPB_reality_TODO_remake.png}
+    \includegraphics[width=0.8\linewidth]{figures/FioriPB_reality_TODO_remake.png}
     \caption{
         Illustration of how the Fiori P/B is calculated in practice, with integration windows.
+        The background is the average of B1 and B2.
+        The peak intensity are the counts in the middle intergration window, minus the average background.
         Figure adapted from \cite{zemyan_standard_performance_1994}.
         % \brynjar{TODO: remake this figure?}
     }

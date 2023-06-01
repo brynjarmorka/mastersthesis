@@ -126,19 +126,20 @@ This work will contribute to improving the EDS setup and acquisition of EDS data
 
 
 % A second, more ambitious, goal 
-The overall aim, as stated by the project title, is to improve SEM EDS data analysis in open-source software.
+The overall aim of the project is to improve SEM EDS data analysis in open-source software.
 The first goal is to systematically go through parameters that characterize the performance of a SEM EDS setup and selected acquisition settings, such as the energy resolution and the Fiori P/B.
-The main focus will be to describe possible metrics and implement them in open-source code, which allows for transparent and reproducible characterization of the performance.
+The main focus is to describe possible metrics and implement them in open-source code, which allows for transparent and reproducible characterization of the performance.
 % on the experimental characteristics and new data processing routines that become available through open-source packages.
-The second goal is to develop open-source software for bulk quantification of EDS data, as an addition to the HyperSpy package.
+The second goal is to develop open-source software for bulk quantification of EDS data, possibly as an addition to the HyperSpy package.
 The default approach for bulk is a ratio approach with a sensitivity factor \cite{goldstein_scanning_2018}.
 HyperSpy have an implementation of the Cliff-Lorimer quantification method for thin specimen, which is similar to the ratio approach, but bulk specimen needs an iterative and model-based correction routine for atomic number (Z), absorption (A) and fluorescence (F) \cite{goldstein_scanning_2018}.
 Alternatively, calculation of the depth distribution $\phi (\rho z)$ can be used to correct for bulk effects \cite{goldstein_scanning_2018,pap_1991}.
 The $\phi (\rho z)$ corrections explored in this work are the XPP model, which is a version of the PAP model \cite{pap_1991}, and is supposedly the bulk corrections used in the commercial software AZtec \cite{oxford_blog_XPP,aztec_manual}.
-Neither the ZAF nor $\phi (\rho z)$ corrections are implemented in the published version HyperSpy.
+Neither the ZAF nor $\phi (\rho z)$ corrections are implemented in the published version HyperSpy, and thus this work can serve as a starting point for implementing these corrections in HyperSpy or similar open-source software packages.
 % The available quantification method in the published version of HyperSpy utilize the thin-film approximation, which is for thin TEM specimen.
 % Other methods like the factorless internal composition determination \cite{nilsen_factorless_2021} \ton{is this correctly phrased?} can also be used for quantification. % TON: leave this out. It is an alternative when there is bench mark element, not often the case. We decided not to push a PR as it is not general enough. It would be interesting if in SEM geometry it could work, but I expect complications.
-The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z)$ corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
+
+% The second aim of this work is to explore whether iterative ZAF or $\phi (\rho z)$ corrections can be implemented in the HyperSpy environment, to allow quantification in the low energy range for bulk specimen.
 
 
 
