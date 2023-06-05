@@ -2,7 +2,7 @@
 \label{ch:conclusion}
 % Er det viktigste, etter abstract
 
-This chapter gives the conclusions from the work in this thesis. 
+This chapter gives the conclusions from the work in this thesis.
 First all the sub-conclusions from the discussion are given, and then the main conclusion of this work is given.
 The aim of this work, to improve SEM EDS analysis, is put into perspective.
 Suggestions for future work are given in \cref{ch:future_work}.
@@ -27,14 +27,21 @@ Suggestions for future work are given in \cref{ch:future_work}.
 % the acquisition parameters
 
 % voltage series
-The two voltage series acquired yielded poor spectra for the 5 kV and 10 kV spectra, due to few counts, because the beam current was constant.
+The two voltage series acquired yielded poor spectra for the $5$ kV and $10$ kV spectra, due to few counts, because the beam current was constant and set by a DT limit at $30$ kV.
 The lower quality spectra were useful to see how the selected performance parameters varied with quality.
-Acquiring better voltage series can probably be done with a constant ICR, i.e. compensating for lower $E_0$ with higher $i_b$.
+Acquiring better voltage series can be done with a constant ICR, i.e. compensating for lower $E_0$ with higher $i_b$.
 Another possible solution is to keep $i_b$ constant, but use a lower PT to get sufficient amount of counts at all voltages.
 
+% the acquisition parameters
+Achieving good spectra requires enough counts in the peaks, which is affected by $E_0$, $i_b$, and PT.
+Overvoltage of $1.4$ gave issues, and the recommendation to use at least $1.5$ might be too low.
+Variation in PT affect the energy resolution and the OCR, i.e. the throughput.
+A small reduction in energy resolution to greatly increase the throughput is in general recommended, i.e. using a medium to high PT, but not the highest.
+
 % Dead time
-DT is traditionally used as a measure to limit coincidence events, but this is outdated as it is based on Si(Li) detectors.
-The usefulness of DT is limited, as it only gives information about total acquisition time.
+DT is traditionally used as a practical measure to limit coincidence events, but this is outdated as it is based on Si(Li) detectors.
+The results and discussion show that DT as a guide is limited, as it only gives information about total acquisition time.
+The shift to SDDs requires that acceptable rates for coincidence events are found through testing.
 % In this work, the possible use of DT is only to figure out how long the acquisition of a spectrum will be. 
 
 % suitable levels of coincidence events
@@ -42,14 +49,16 @@ Finding acquisition settings which give a suitable low level of coincidence even
 In general, coincidence events are first present at very high ICR.
 Most of the spectra acquired in this work had low levels of coincidence events.
 This is probably due to the relatively low ICR used, compared to the capability of the detector.
-Additionally, the software used, AZtec, may have reduced the amount of coincidence events by data manipulation, but as the software is poorly documented, this is not confirmed.
+Additionally, the software used, AZtec, could have reduced the amount of coincidence events by automatic routines, but as the software is poorly documented, this is not confirmed.
 
 
 
 % getting good fit
-Achieving good model fit is important in EDS analysis, and the fit is dependent on the inputs, which are the elements, $E_0$, and the data points in the spectrum.
-The elements must be correct, and thus a through qualitative analysis is necessary.
-Mislabeling of elements in a qualitative analysis is less probable with more separated peaks, i.e. with better energy resolution, which is achieved with higher PT.
+Achieving good model fit is important in EDS analysis, and the fit is dependent on the inputs, which are the expected elements, $E_0$, and the data points in the spectrum.
+The elements must be correct and artifacts, such as coincident events and escape peaks, must be identified, which is done by a through qualitative analysis.
+Mislabeling of elements in a qualitative analysis is less probable with well-spaced peaks, i.e. at higher energies and with better energy resolution.
+The latter is achieved with higher PT.
+Additionally, the wellness of the fit should always be inspected visually.
 When the elements are set correct, a computer can separate peaks better than the human eye, and thus in the analysis spectrum the PT can be lowered in favor of a higher throughput.
 The data points used in the model fit should not include the noise peak, and preferably not low energy peaks if they are not of interest.
 Slicing the spectrum at the effective beam energy will also improve the fit slightly, and prevents extrapolated values above $E_0$ if the model later is plotted.
@@ -58,32 +67,33 @@ Slicing the spectrum at the effective beam energy will also improve the fit slig
 % sub-conclusions for the detector
 
 % stray artifacts
-The collimator on the EDS detector used is probably working as intended, based on that the spectra have low amount of stray radiations.
-However, there are carbon contamination present in the chamber or on the specimen analyzed.
-Post acquisition BSE images show darker areas on the specimen, which are probably due to carbon deposition after beam exposure.
+The collimator on the here used EDS detector is working as intended, based on that the spectra have low amount of stray radiations.
+However, there are carbon contamination present in the chamber or on the specimen analyzed, which affects the surface of the specimen.
+Post acquisition BSE images show darker areas on the specimen, which are due to carbon deposition after beam exposure.
 In addition to the C peak, the GaSb spectra show a low peak which match with the O K$\alpha$ peak.
-Regarding the metrics and quantification, both the peak from C and O are below the lines of interest in this work, and thus they were not further investigated.
+Regarding the metrics and quantification, both the peak from C and O are below the lines of interest in this work.
 
 % Sb M lines
 Another low energy line observed in the GaSb spectra is the Sb M$\zeta$ peak.
 No Sb M-lines are tabulated in the HyperSpy library \cite{hyperspy_1.7.1} or the X-ray Data Booklet \cite{thompson_x-ray_2004}, but the line is clearly visible in the GaSb spectra, and not in the GaAs spectra.
 The line was identified as Sb M$\zeta$ through AZtec, the plot of $\mu_\rho$, and Y. Liao \cite{liao2006practical}.
-A signal in the GaSb spectra was also observed from what is probably due to Sb M$\gamma$, but this signal was weak.
+A signal in the GaSb spectra was also observed from the Sb M$\gamma$ line, but this signal was weak.
 
 % Calibration of the detector
 The EDS detector used, an Oxford Instruments X-max$^N$ detector, was confirmed to be well calibrated, at least for peaks above $1$ keV.
 The spectra recorded had scale and offset which match the settings used in the acquisition, and the recorded peak deviations were deviating at most $\pm 2$ eV from the expected peak positions.
-The lower energy peaks of C and O were not investigated in the calculations, but showed a bigger deviation from the expected peak positions.
-This is most likely due to the calibration routine of the detector, which is aimed at peaks from around 1 keV and above.
-If the lower energy peaks are to be analyzed, the spectra acquired should be calibrated for the lower energy peaks.
+The lower energy peaks of C and O from contamination and surface alteration showed a bigger deviation from the expected peak positions.
+% This is most likely due to the calibration routine of the detector, which is aimed at peaks from around $1$ keV and above.
+If the lower energy peaks are to be analyzed, the acquisition parameters and processing routines should be optimized, and the spectra acquired should be calibrated for the lower energy peaks.
 
 
 % Use of peak ratios
 The peak ratios recorded, which show a difference between Ga K$\alpha$/L$\alpha$ in GaAs and GaSb, indicate relative absorption differences between the two materials.
-Peak ratios can be used to assess stray radiations, but this requires special specimen geometries which are not used in this work.
+The $\alpha/\beta$ ratios have not been systematically analyzed, but does not seem to indicate relevant information on the setup characteristic.
+Peak ratios can be used to assess stray radiations, but this requires special specimen geometries with for example a grid where the grid pattern is outside the targeted area, and such geometries were not used in this work.
 
 % Use of the duane-hunt limit
-The Duane-Hunt limit can be used to check the metadata value of $E_0$, and to verify the conductive path between the specimen and ground, which both are important for quantification.
+The Duane-Hunt limit can be used to check the metadata value of $E_0$, specimen charging, and to verify the conductive path between the specimen and ground, which both are important for quantification.
 The metric does not need much interpretation, as it is a simple pass/fail test.
 If the deviation is too high, e.g. $>1$ keV, the specimen and setup must be checked for errors.
 All the Duane-Hunt limits calculated in this work were well within the accepted range, with an average deviation of $0.06$ keV.
@@ -92,7 +102,7 @@ All the Duane-Hunt limits calculated in this work were well within the accepted 
 The Fiori P/B ratio is useful to assess the quality of an acquired spectrum from the selected settings, but the use of the metric to compare different detectors is limited.
 The Fiori metric is highly dependent on the specimen (GaAs $>$ GaSb, and pure $>$ mixture), and thus comparing different detectors requires that the same (standard) specimen is used.
 If the Fiori metric is used to compare different detectors, it is also important to calculate the metric the same way, and using model fitting is both recommended and the closest solution to the original definition of the metric.
-As the metric is dependent on the acquisition settings, it could probably be used to find the optimal settings for a given specimen.
+As the metric is dependent on the acquisition settings, it could be used to find the optimal settings for a given specimen.
 When a spectrum is recorded, and the counts in the background and peaks increase equally much, the Fiori metric will be constant.
 Using this fact, the metric can be used to find out where longer acquisition time or higher ICR would not increase the SNR, i.e. having a constant quality.
 In other words, finding the acquisition settings which give enough counts at a quality limit.
@@ -100,16 +110,41 @@ This is useful to acquire higher resolution, bigger areas, or more spectra in th
 
 
 % summery of the detector
-The EDS detector used is performing well.
+To conclude on the first part on performance parameters:
+The EDS detector used is performing well, and are within the specifications.
 The energy resolution at $127 \pm6$ eV is as the specifications, and the energy axis is calibrated well.
 The Duane-Hunt limits are correct.
-The highest Fiori P/B achieved was 770 for GaAs, and 410 for GaSb.
+The highest Fiori P/B achieved was $770$ for GaAs, and $410$ for GaSb.
+The Python notebook for testing an EDS point spectrum is available under the MIT license at the author's GitHub page\footnote{\url{https://github.com/brynjarmorka/sem-eds-qc/blob/main/SEM_EDS_performance_parameters.ipynb}}.
+The output of the notebook can be used to compare previous and future evaluations of the setup, and an example from the $30$ kV, $50$ pA, PT $6$ GaAs spectrum is shown in \cref{tab:conclusion:performance_parameters}.
 
-% the acquisition parameters
-Achieving good spectra requires enough counts in the peaks, which is affected by $E_0$, $i_b$, and PT.
-Overvoltage of $1.4$ gave issues, and the recommendation to use at least $1.5$ might be too low.
-Variation in PT affect the energy resolution and the OCR, i.e. the throughput.
-A small reduction in energy resolution to greatly increase the throughput is in general recommended, i.e. using a medium to high PT, but not the highest.
+\begin{table}[hbt]
+    \begin{center}
+        \caption{
+            Performance parameters from the $30$ kV, $50$ pA, PT $6$ GaAs spectrum. ICR was $16.4$k cps and DT was 44\%.
+        }
+        \renewcommand*{\arraystretch}{1.1}
+        \label{tab:conclusion:performance_parameters}
+        \begin{tabular}{p{5cm}p{5cm}}
+            \hline
+            \textbf{Metric and unit}          & \textbf{Value}        \\
+            \hline
+            Duane-Hunt limit [kV]             & NaN                   \\
+            Scale [keV]                       & 0.01005               \\
+            Offset [keV]                      & 0.19385               \\
+            Energy resolution [eV]            & 129                   \\
+            % Ratio (As K$\alpha$/As L$\alpha$) & 1.30                  \\
+            Ratio (Ga K$\alpha$/Ga L$\alpha$) & 0.91                  \\
+            Ratio (Ga L$\alpha$/As L$\alpha$) & 2.37                  \\
+            Fiori P/B (Ga L$\alpha$)          & 586                   \\
+            Fiori P/B (As L$\alpha$)          & 236                   \\
+            Fiori P/B (Ga K$\alpha$)          & 762                   \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+
 
 
 
@@ -117,14 +152,16 @@ A small reduction in energy resolution to greatly increase the throughput is in 
 
 % Quantification
 % the 50:50 goal 
-Assessing the quality of different quantification results based on a reference goal at $50:50$, which is known to be the composition in the analyzed specimens, is not an ideal solution.
+Regarding the second aspect, bulk quantification routines, different approaches were tested.
+Assessing the quality of different quantification results based on a reference goal at $50:50$ for Ga to As or Sb, which is known to be the composition in the analyzed specimens, is not an ideal solution.
 Two errors can cancel each other out.
 However, doing this is gives implications for how the corrections are weighed, and is regarded as sufficient for this work, when used with caution.
+To compare and develop quantification routines it is seen as a practical approach.
 
 % the need for corrections
-The analysis and metrics recorded in this work showed that the GaAs spectrum needed absorption corrections, while the GaSb spectrum needed Z corrections.
-In other words, the need for corrections is dependent on the specimen.
-Achieving high quality quantification at low $E_0$ requires caution and tailoring, as the possibility of severe overvoltage issues is high.
+The analysis and metrics recorded in this work showed that the GaAs spectrum needed absorption corrections, while the GaSb spectrum needed primarily Z corrections.
+In other words, the need for corrections is dependent on the specimen and the specific lines used.
+Achieving high quality quantification at low $E_0$ requires caution and tailoring, as the issues with overvoltage and absorption sensitivity are more prominent.
 
 % AZtec
 When quantifying SEM EDS spectra, AZtec can give accurate results, but the software is a black box and lacks proper user-end documentation.
@@ -132,17 +169,17 @@ The results from the uncorrected and bulk corrected quantification routines impl
 The quantification in AZtec is using XPP bulk corrections, which can correct for both GaAs and GaSb, if implemented correctly.
 
 % TEM routine
-The quantification of SEM EDS data with the thin film approximation is too unreliable, but gives two implications.
-Firstly, the routines for quantification of thin and bulk specimens are very similar, but not directly transferable, and should be avoided.
-Secondly, the CL results from HyperSpy show that the GaAs specimen is quantified more accurately with absorption corrections, while the GaSb specimen needs other corrections.
+The quantification of SEM EDS data with the thin film approximation based on Cliff-Lorimer is unreliable, both in AZtec and HyperSpy, and should be avoided.
+% Firstly, the routines for quantification of thin and bulk specimens are very similar, but not directly transferable
+% The CL results from HyperSpy show that the GaAs specimen is quantified more accurately with absorption corrections, while the GaSb specimen needs other corrections.
 
 % ZAF A
 The ZAF absorption correction routine implemented in this work is most useful as an indicator of possible improved results with absorption corrections.
-The assumption that the Z effects in a specimen cancel out is observed to not be true for GaSb, but is probably true for GaAs.
+The assumption in Goldstein \cite{goldstein_scanning_2018} that the Z effects in a specimen cancel out is observed to not be true for GaSb, but is to a degree true for the GaAs results, where the elements are close in atomic number.
 The implementation used show that the method could provide reasonable results, but that the specific implementation is too simple.
 
 % the XPP corrections
-The XPP corrections implemented could both be used for the GaAs and GaSb specimen, as the model can be used to give different corrections based on the needs of the specimen.
+The XPP corrections implemented, for the first time in open-source Python code, could both be used for the GaAs and GaSb specimen, as the model can be used to give different corrections based on the needs of the specimen.
 The GaAs specimen was best corrected with $f(\chi)$, i.e. XPP absorption corrections, where the average deviation from $50:50$ was $5$ at.\%.
 The GaSb specimen was best corrected with $F$, i.e. XPP Z corrections, where the average deviation from $50:50$ was $6$ at.\%.
 Plots of the implemented XPP model show that there are some differences to the literature, but the model is close enough to be used.
@@ -153,8 +190,8 @@ Values for $\mu_\rho$ were found through HyperSpy, which are less accurate at th
 
 % a complete quantification routine
 A complete quantification routine for SEM EDS data must give different corrections based on the specimen.
-This is most likely done in AZtec, where Oxford Instruments have had many years to refine the equations and input parameters of their model.
-The XPP model implemented in this work is a good start, but it is not a finished model. 
+This is most likely done in AZtec, where Oxford Instruments has refined the equations and input parameters of their model.
+The XPP model implemented in this work is a good start, but it needs to be optimized further.
 It needs refinement for the input parameters and equations, squashing of bugs, and extensive testing.
 The results show that the model can work, but is not perfect.
 
@@ -162,9 +199,11 @@ The results show that the model can work, but is not perfect.
 % And main conclusion of this work.
 
 The work in this thesis is split into two parts, where both are aimed at improving the performance of SEM EDS analysis.
+To summarize the conclusions:
 The first part illustrate how an analyst can assess the performance of a detector and selected acquisition settings.
 This is important to achieve good spectra, as it is always important to "know your equipment".
-The metrics tested are suited for SEM EDS analysis, and can be developed further into a more complete test routine, and the theory chapter can be used as a reference for the metrics.
+The metrics tested are suited for SEM EDS analysis, obtained via an EDS point analysis and calculated with the developed notebook.
+The notebook can be developed further into a more complete test routine, and the theory chapter can be used as a reference for the metrics.
 The second part of this work is aimed at improving the quantification of SEM EDS data, with open-source bulk corrections in Python.
-The results show that the XPP correction model is a good start, but needs refinement.
-The implementation of the model is not perfect, but it is a step towards better EDS analysis through open science.
+The results show that the XPP correction model is a good start, and a more promising path than ZAF corrections, but the XPP model needs refinement.
+The present study is a step towards better EDS analysis through open science.
