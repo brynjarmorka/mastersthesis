@@ -6,13 +6,29 @@
 % future works: factorless
 % future works: det jeg har prøvd er første iterasjon i loopen. ved ukjent comp må corrections kjøre flere runder, evt med forskjellig utgangspunkt.
 
+The goal of improving SEM EDS analysis had to be narrowed down in this work.
 This final chapter will discuss possible future work based on the results and discussion in the previous chapters.
-The first part summarize the previously mentioned possibilities, while the second part discuss other ideas which have emerged during the work.
-The goal of improving SEM EDS analysis had to be narrowed down during the work, as there are many possible improvements.
+The suggestions listed in this chapter are both the previously mentioned possibilities, and other ideas that have emerged during the work.
+% The first part summarize the previously mentioned possibilities, while the second part discuss other ideas which have emerged during the work.
+The first part are directed towards the previously mentioned possibilities, and they are:
+\begin{enumerate}
+    \item Improved model fitting with spline and $\mu_\rho$
+    \item M-lines for Z $ < 57$
+    \item Corrections for uneven surfaces
+    \item Low energy calibration
+    \item Acquiring better voltage series
+    \item The usefulness of the Duane-Hunt limit
+    \item The usefulness of the Fiori P/B ratio
+    \item Testing the results with other specimens and compositions
+    \item Refining the input parameters for the XPP corrections, especially $\mu_\rho$
+    \item Refining the equations for the XPP corrections
+    \item Testing numerical solutions for the XPP model
+    \item Testing the PROZA96 model
+\end{enumerate}
 
 
-\section{Summary of possible future work}
-\label{sec:summary_of_possible_future_work}
+% \section{Summary of possible future work}
+% \label{sec:summary_of_possible_future_work}
 
 % FW: model background as a spline, and use the mu_rho as a input to refine where the absorption edge could be.
 Modern EDS analysis is typically containing some sort of model fitting, and the work in this thesis is no exception.
@@ -87,11 +103,18 @@ The probe current can be measured with a Faraday cup, and would be used to calcu
 
 
 
-\section{Other ideas for future work}
-\label{sec:other_ideas_for_future_work}
+% \section{Other ideas for future work}
+% \label{sec:other_ideas_for_future_work}
 
-The test routines for the performance of a SEM EDS setup implemented in this work is not complete, and there are many other tests that could be done.
-Four possible test, which are important for the performance, are linearity, stability, shadowing, optimal WD, and detector efficiency.
+Other ideas for work that could be done is briefly discussed below.
+The test routines for the performance of a SEM EDS setup implemented in this work is not complete, and there are other tests that could be done.
+Useful expansion of the performance test would be on linearity, stability, shadowing, optimal WD, and detector efficiency. 
+Additionally, a short comment is made on the use of principal component analysis (PCA) for noise reduction in EDS maps, and completing the XPP correction model, where input specimen have unknown composition.
+% \begin{enumerate}
+%     \item Expanding the performance test with linearity, stability, shadowing, optimal WD, and detector efficiency
+%     \item Using PCA for noise reduction in EDS maps
+%     \item Completing the XPP correction model, where input specimen have unknown composition
+% \end{enumerate}
 
 % linearity and stability
 In Goldstein \cite[p. 232]{goldstein_scanning_2018} it is stated that the two most important tests for an EDS detector are linearity and stability.
@@ -116,7 +139,7 @@ Any specimen should be suitable for this test.
 An EDS spectrum map, acquired at the found optimal WD, can be acquired to verify if the center of the map is the most intense area.
 The center of the map is the intersection of the electron beam axis and the detector axis on the specimen, and should be the most intense area if the WD is optimal.
 
-% TODO detector efficiency (see BAM, it is hard to measure good)
+% DONE detector efficiency (see BAM, it is hard to measure good)
 The detector efficiency, illustrated in \cref{fig:detector_efficiency}, is more influential in SDDs than in Si(Li) detectors.
 Calculating the detector efficiency is not trivial \cite{rackwitz_2015_bam}, and is most accurately done with radiation from a synchrotron.
 As the illustration shows, the detector efficiency in SDDs change with energy, and thus a calculation with a normal EDS spectrum requires many peaks.
@@ -124,8 +147,8 @@ The EDS-TM002 test specimen from BAM \cite{rackwitz_2015_bam} can be used, and i
 
 % comment on maps and PCA
 Aside from the test routines, there are other ideas for future work.
-In the work of Skomedal \cite{skomedal_improving_2022}, principal component analysis (PCA) is shown to be useful in noise reduction of EDS maps.
-PCA is a statistical method that reduces the dimensionality of a dataset, and is used in many fields.
+In the work of Skomedal \cite{skomedal_improving_2022}, PCA is shown to be useful in noise reduction of EDS maps.
+PCA is a statistical method that reduces the dimensionality of a dataset \cite{pca_textbook}, and is used in many fields.
 For EDS maps, PCA can be used to separate the signal from peaks and the noise (e.g. background), which could allow better qualitative and quantitative analysis.
 Maps were acquired in this work too, but there was not enough time to test out denoising routines properly.
 
