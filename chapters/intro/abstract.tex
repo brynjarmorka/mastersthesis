@@ -6,31 +6,33 @@
 
 % what I have done
 This work is aimed at improving SEM EDS analysis through performance parameters and bulk corrections for SEM EDS data in open-source software.
-The routines were tested on EDS spectra of GaAs and GaSb wafers, acquired using a FEI Apreo SEM with the X-Max$^N$ 80mm$^2$ EDS detector from Oxford Instruments.
+The developed routines were tested on EDS spectra of GaAs and GaSb wafers, acquired using a FEI Apreo SEM with an Oxford Instruments X-Max$^N$ $80$mm$^2$ EDS detector.
 
 % Part 1 - be concrete. use conclusions
-The performance parameters are calculated in a Python notebook to test the EDS system and the selected acquisition settings.
+The performance parameters are calculated in a Python notebook to test the EDS setup and the selected acquisition settings.
 The parameters investigated are energy resolution, Fiori peak-to-background ratio (P/B), Duane-Hunt limit, peak ratios, scale, offset, and peak deviations.
 The results from the equipment used in this work show that the system specifications are met.
-The energy resolution was measured to be 127 eV, with some variations between specimen, reference peak, and acquisition settings.
-The highest Fiori P/B ratio was 770 for Ga K$\alpha$ in GaAs, and 410 for Sb L$\alpha$ in GaSb.
-The energy axis was well calibrated.
-The output spectra had few artifact related issues. 
-Low levels of coincidence counts were observed, unless very high count rates were used.
-Settings and factors affecting the performance parameters are identified, for example the high specimen dependence of the Fiori P/B ratio.
-It is discussed how different calculation methods of energy resolution and Fiori P/B affects the results, making the metrics less comparable between different systems.
-The performance test routine is not complete, and should be extended with tests like linearity, stability, and efficiency.
+The energy resolution was measured to be $127$ eV, with some variations between specimen, reference peak, and acquisition settings.
+The highest Fiori P/B ratio was $770$ for Ga K$\alpha$ in GaAs, and $410$ for Sb L$\alpha$ in GaSb.
+The scale was $10$ eV/channel, confirming that the energy axis was well calibrated.
+% The output spectra had few artifact related issues. % Ton: "I would take this out. Artifacts could be mentioned, but you recognizing these manually, not via notebook."
+Low levels of coincidence counts were observed when the input count rate was below $50$k cps.
+Settings and factors affecting the performance parameters are identified, for example how the Fiori P/B is observed to be highly specimen dependent.
+It is discussed how different calculation methods of energy resolution and Fiori P/B affects the results, making the metrics suited to compare EDS hardware.
+In future work, the performance test routine should be extended to determining the detectors' linearity, stability, and efficiency, which all require an extended notebook and acquisition routine.
+% linearity and stability, as well as the efficiency across the spectrum range, which all require an extended notebook and acquisition routine.
 
 
 % part 2 - what have i done, which is new
 To improve quantification routines in SEM EDS analysis, implementation of bulk corrections in open-source Python software is explored.
-The XPP bulk corrections from the PAP (Pouchou and Pichoir) model are implemented.
+Bulk corrections from the model made by Pouchou and Pichoir are implemented, more specifically the XPP version.
 The results are compared to the commercial software AZtec, to the quantification routine in the open-source Python package HyperSpy, and to a simple implementation ZAF corrections.
-The quantification routine in HyperSpy use the thin film approximation, and these results show that SEM bulk specimen should not be treated as thin films.
-AZtec is most accurate, but it is a black box software where the user-end documentation is limited, and thus the software is not flexible and transparent.
-The implemented XPP model looks more promising than the ZAF model, but this first implementation needs to be refined, for example through input factors like $\mu_\rho$.
-The transparency and flexibility of open-source Python software makes the XPP model a good candidate for further development.
-The code developed is a step towards better EDS analysis through open science.
+The quantification routine in HyperSpy use the thin film approximation, and this study show that SEM bulk specimen should not be treated as thin films.
+AZtec is most accurate, but it is a black box software where the user-end documentation is limited.
+Black box software is not flexible and not transparent, thus the results cannot be verified, and the analysis cannot be extended.
+The implemented XPP model looks more promising than the ZAF model, but this first implementation needs to be further refined, for example through input factors like the mass absorption coefficient. % $\mu_\rho$.
+The transparency and flexibility of open-source Python software makes the implemented XPP model a good candidate for further development.
+The code in this work is published under an MIT license, and it is a step towards better EDS analysis through open science.
 
 
 
