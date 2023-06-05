@@ -249,27 +249,26 @@ The performance parameter notebook does the following steps:
 \subsection{Quantification - HyperSpy and Jupyter notebooks}
 \label{method:data_treatment:quantification}
 
-The different quantification routines performed in the notebooks are described in this section.
-See the notebooks for further details, which are available at the author of this thesis' GitHub in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}, under the user "brynjarmorka".
+The different quantification routines and bulk corrections performed in the notebooks are made available at the author of this thesis' GitHub in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}, under the user "brynjarmorka"\footnote{\url{https://github.com/brynjarmorka/eds-sem-bulk-corrections/}}.
 The initial quantification was done with the intensity ratio method, where the intensities were extracted from a model fit of the spectrum through HyperSpy.
-The next paragraphs describe: the CL method in HyperSpy, the calculation of the ZAF absorption correction, and the implementation of the XPP model.
+The next paragraphs describe: the Cliff-Lorimer (CL) method in HyperSpy, the calculation of the ZAF absorption correction, and the implementation of the XPP model.
 
 % CL
-The Cliff-Lorimer quantification in HyperSpy was done according to the documentation.
+The CL quantification in HyperSpy was done according to the documentation.
 The Jupyter notebook with the quantification is named \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/quant-of-SEM-EDS-with-Cliff-Lorimer.ipynb}{quant-of-SEM-EDS-with-Cliff-Lorimer.ipynb}.
 The spectrum was loaded, and the elements were set.
-The data was sliced after the noise peak, and at the $E_0$ from the metadata.
+The data was sliced after the noise peak at $0.2$ eV, and at the $E_0$ from the metadata.
 A model, with a polynomial background and Gaussian peaks, were made and fitted.
-The intensities of the peaks were extracted, and given as input to the Cliff-Lorimer quantification routine.
-The k-factors, calculated by AZtec, was also given as input to the Cliff Lorimer routine.
-The different absorption correction thicknesses were tested.
-The results, as compositions, were plotted for inspection, and saved in an Excel file.
+The intensities of the peaks were extracted, and given as input to the CL quantification routine.
+The k-factors, calculated by AZtec based on the element and $E_0$, were also given as input to the Cliff Lorimer routine, and are tabulated in \cref{tab:results:TEM_quantification}.
+The different absorption correction thicknesses were tested for a range of thicknesses between $50$ nm and $10$k nm.
+The results, as compositions, were plotted for inspection, and saved in an external file.
 
 % ZAF
 The ZAF absorption corrections (A) use the intensities from a model fit, and applies absorption corrections to these.
 A Jupyter notebook with the ZAF absorption correction is named \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/ZAF-absorption-correction-model.ipynb}{ZAF-absorption-correction-model.ipynb}.
 To calculate A, the code needs some factors. 
-The average density of the mixture is from HyperSpy.
+The average density was calculated with \verb|density_of_mixture()| from HyperSpy.
 The electron range is calculated with an implementation of the Kanaya-Okayama parameterization.
 The average depth is calculated as the maximum electron range, divided by 2, 3, or 4.
 The path length is calculated with the TOA and the average depth.
@@ -280,15 +279,10 @@ In the end, the results are saved in an Excel file.
 
 % XPP
 The XPP model is implemented in Python files, which are imported into Jupyter notebooks.
-The code replicates the PAP paper \cite{pap_1991} as close as possible, with the equations described in \cref{theory:quantitative:pap}.
-All the equations are also explained in the notebooks, and every function has a NumPy-style docstring.
+The implementation of the equations are separated into smaller functions in the Python files, so that they are more flexible and easier to reuse.
+The Python files contains many functions which does small steps, and thus the code is easier to reuse and debug.
+Unlike the performance parameters, the XPP model is exemplified through two notebooks.
 One notebook in the repository is used to apply the model on the acquired spectra, and another notebook is used to plot different parts of the model.
-The implementation of the equations are separated into smaller functions in the Python files, so that they can be reused easier.
-Attaching all the code in the notebooks in the Appendix would make this thesis unnecessarily long, and code in PDF-format is hard to reuse.
-Thus, the code is rather available at the author of this thesis' GitHub, in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}.
-
-
-% The XPP files
 The Python files 
 \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_parameterization.py}{PAP-parameterization.py}, 
 \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_helper_functions.py}{PAP-helper-functions.py}, and 
@@ -302,3 +296,8 @@ file contains helper functions, e.g. for getting the theoretical energy of a lin
 The 
 \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections/blob/main/PAP_functions/PAP_area_F.py}{PAP-area.py}
 file calculates $F$, see \cref{theory:quantitative:pap:calculation_of_F}.
+The code is based on the PAP paper \cite{pap_1991}, and all the equations are described in \cref{theory:quantitative:pap}.
+Additionally, all the equations are written out with \LaTeX in the notebooks, and every function has a NumPy-style docstring.
+The files and notebooks contains many lines and are cannot be printed practically, and thus the code is not attached, but it is available under a MIT license at the author of this thesis' GitHub, in the repository \href{https://github.com/brynjarmorka/eds-sem-bulk-corrections}{"eds-sem-bulk-corrections"}.
+
+% The XPP files
