@@ -5,7 +5,7 @@
 \addcontentsline{toc}{chapter}{Abstract}
 
 % what I have done
-This work is aimed at improving SEM EDS analysis through performance parameters and bulk corrections for SEM EDS data in open-source software.
+This work is aimed at improving SEM EDS analysis through performance parameters and bulk corrections in open-source software.
 The developed routines were tested on EDS spectra of GaAs and GaSb wafers, acquired using a FEI Apreo SEM with an Oxford Instruments X-Max$^N$ $80$mm$^2$ EDS detector.
 
 % Part 1 - be concrete. use conclusions
@@ -15,12 +15,10 @@ The results from the equipment used in this work show that the system specificat
 The energy resolution was measured to be $127$ eV, with some variations between specimen, reference peak, and acquisition settings.
 The highest Fiori P/B ratio was $770$ for Ga K$\alpha$ in GaAs, and $410$ for Sb L$\alpha$ in GaSb.
 The scale was $10$ eV/channel, confirming that the energy axis was well calibrated.
-% The output spectra had few artifact related issues. % Ton: "I would take this out. Artifacts could be mentioned, but you recognizing these manually, not via notebook."
 Low levels of coincidence counts were observed when the input count rate was below $50$k cps.
 Settings and factors affecting the performance parameters are identified, for example how the Fiori P/B is observed to be highly specimen dependent.
-It is discussed how different calculation methods of energy resolution and Fiori P/B affects the results, making the metrics suited to compare EDS hardware.
+It is discussed how different calculation methods of energy resolution and Fiori P/B affects the results, making the metrics less suited to compare EDS hardware.
 In future work, the performance test routine should be extended to determining the detectors' linearity, stability, and efficiency, which all require an extended notebook and acquisition routine.
-% linearity and stability, as well as the efficiency across the spectrum range, which all require an extended notebook and acquisition routine.
 
 
 % part 2 - what have i done, which is new
@@ -37,4 +35,3 @@ The code in this work is published under an MIT license, and it is a step toward
 
 
 % Keywords: SEM EDS, performance parameters, XPP bulk corrections, quantification, open-source Python code, materials characterization.
-% \brynjar{Mention HyperSpy? Or the fact that the results are not perfect? AZtec?}
