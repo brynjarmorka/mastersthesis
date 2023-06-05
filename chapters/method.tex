@@ -51,7 +51,7 @@ The Si wafer was attached to an Al FIB stub, which was loaded into the SEM.
     \centering
     \includegraphics[width=.99\textwidth]{figures/SE_images/GaAs_close.jpg}
     \caption{
-        Close up of the GaAs specimen, from the ET detector.
+        Close up of the GaAs specimen, 
         Annotated in panel (a) are the areas which were analyzed.
         Panel (b) is a zoomed out view of the area in panel (a), after the spectra have been acquired.
         This image shows both beam damage from the focused probe beam as black dots, and the whole area from the scanning as a darker square.
@@ -65,10 +65,9 @@ The Si wafer was attached to an Al FIB stub, which was loaded into the SEM.
     \centering
     \includegraphics[width=.99\textwidth]{figures/SE_images/GaSb_close.jpg}
     \caption{
-        Close up of the GaSb specimen, where the point spectra were acquired.
+        Close up of the GaSb specimen, from the ET detector.
         Panel (a) is the polished area, and panel (b) is the scratched area.
         Both panels are annotated with the areas which were analyzed.
-        Acquired with the ET detector.
     }
     \label{fig:SE_images:GaSb}
 \end{figure}
@@ -128,13 +127,13 @@ The detector is operated with the AZtec software, provided by Oxford Instruments
 \label{method:acquisition_settings}
 
 The settings selected are based on Goldstein \cite{goldstein_scanning_2018} and the goal of analyzing spectra with varying acquisition parameters.
+The acquisition settings for each spectrum are given in \cref{tab:method:acquisition_settings:all_spectra}.
 The acquisition is divided into four groups, where the two first are acquisition with varying acceleration voltage and constant beam current.
 (A) is the voltage series on GaAs, and (B) is the voltage series on GaSb.
 The two other series test parameter variation on the GaSb specimen: (C) is with varying PT, (D) is with varying $i_b$, PT, and $E_0$.
 The voltage series is used to study the effect of the acceleration voltage, to figure out if an optimal voltage exists.
 The other acquisition settings tested variations of different settings on the GaSb specimen, to see if any of these settings could improve the quality of the spectra.
-An overview of all acquisition settings for each spectrum is given in \cref{tab:method:acquisition_settings:all_spectra}.
-The acquisition settings are listed in \cref{tab:method:acquisition_settings:voltage} and \cref{tab:method:acquisition_settings:other}.
+\cref{tab:method:acquisition_settings:voltage} show settings for (A) and (B), \cref{tab:method:acquisition_settings:other} covers (C) and (D).
 Dead time (DT) and input count rate (ICR) is a function of the other settings.
 
 
@@ -195,14 +194,13 @@ The point spectra was extracted as ".emsa" files.
 
 Summarized, the acquisition and extraction in AZtec was done as follows:
 \begin{enumerate}
-    \item "SEM EDS" setting selected.
-    \item Data type selected as "Point \& ID".
-    \item Navigated to the area of interest with the ET detector.
-    \item Selected settings for the acquisition, see \cref{tab:method:acquisition_settings:all_spectra}.
-    \item Started the acquisition.
-    \item Verified the element with the spectrum and an interactive periodic table.
-    \item AZtec calculated the composition.
-    \item The spectra were extracted for notebook analysis.
+    \item Navigated to the area of interest with the ET detector
+    \item Selected the setting "SEM EDS" and acquisition type "Point \& ID"
+    \item Selected settings for the acquisition, see \cref{tab:method:acquisition_settings:all_spectra}, and started the acquisition
+    % \item Started the acquisition
+    \item Verified the element with the spectrum and an interactive periodic table
+    \item Noted down the composition calculated by AZtec
+    \item Extracted the spectra as ".emsa" files for notebook analysis
 \end{enumerate}
 
 
@@ -277,7 +275,7 @@ The average depth is calculated as the maximum electron range, divided by 2, 3, 
 The path length is calculated with the TOA and the average depth.
 With these factors, the measured intensity is corrected with \cref{eq:theory:quantitative:absorption}, to get an approximation for the generated intensity. 
 The generated intensities are used to calculate corrected compositions, which are given in atomic percent.
-In the end, the results are saved in an Excel file.
+In the end, the results are saved in an external file.
 
 
 % XPP
