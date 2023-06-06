@@ -1539,7 +1539,7 @@ The remainder of this section will focus on the Mn K$\alpha$ peak.
 % How
 Three different approaches to measure the energy resolution are described below.
 The first is to directly measure the Mn K$\alpha$ peak in a specimen with Mn.
-The second is using the Ni K$\alpha$ peak and multiply it by a factor of 0.926, which is suggested by Ted Pella, Inc. \cite{ted_pella_nio_tem_2019}.
+The second is using the Ni K$\alpha$ peak and multiply it by a factor of $0.926$, which is suggested by Ted Pella, Inc. \cite{ted_pella_nio_tem_2019}.
 The third is to use any peak in the spectrum, and calculate what the energy resolution would be if there was a Mn K$\alpha$ peak in the spectrum, using \cref{eq:estimateFWHM}.
 The second approach is a special case of the third, where the Ni K$\alpha$ peak is used as the reference peak, but with a much simplified equation which is only valid in certain FWHM ranges.
 The third approach is the one which is used in the code developed in this work.
@@ -1558,14 +1558,14 @@ The FWHM measurement should be from a numerical fitting of a Gaussian to the pea
 Another approach, which can be used when a sample with Ni is available, is to measure the FWHM of Ni K$\alpha$ and multiply the value with $0.926$ \cite{bennett_egerton_1995}.
 This approach is based on a round-robin study in 1995 \cite{bennett_egerton_1995} where five TEM laboratories were given a standard NiO test specimen with a series of EDS test measurements to be done, where one of the tests were focused on the energy resolution.
 The test used the Ni K$\alpha$ and O K$\alpha$ peaks, where the FWHM of these two lines were measured, and a linear correlation between photon energy and the square of the energy resolution was assumed.
-Then the FWHM of Mn K$\alpha$ was determined by interpolation, and the factor 0.926 was reported as a sufficiently good conversion from Ni K$\alpha$ to Mn K$\alpha$ for the five TEM laboratories.
+Then the FWHM of Mn K$\alpha$ was determined by interpolation, and the factor $0.926$ was reported as a sufficiently good conversion from Ni K$\alpha$ to Mn K$\alpha$ for the five TEM laboratories.
 This approach is the recommended method provided by Ted Pella Inc., who manufactures standardized NiO test specimens for TEM \cite{egerton_nio_characterization_1994,ted_pella_nio_tem_2019}.
 
 
 % HyperSpy
 A third and more general approach, is to use the energy calibration method in HyperSpy, which estimates the FWHM of Mn K$\alpha$.
-The method, \verb|EDSModel.calibrate_energy_axis()|, is available for EDS spectrum from SEM and TEM.
-The method has two default arguments: \verb|calibrate='resolution'| and \verb|xray_lines='all_alpha'|.
+The method, \verb|calibrate_energy_axis()|, is available for  SEM and TEM EDS spectrum.
+The method has \verb|calibrate='resolution'| and \verb|xray_lines='all_alpha'| as default arguments.
 The estimation of the FWHM of Mn K$\alpha$ is done in two steps.
 The first step is to fit the width of all the lines in the spectrum, which is needed to get a correct reference peak width, i.e. an account for the peak broadening of the detector.
 The second step utilizes an equation by Fiori and Newbury from a conference paper in 1978, and while this original paper is hard to get hold of (neither the NTNU library nor paper depositories could provide it), the equation is included in Goldstein \cite[Ch. 16.1.1]{goldstein_scanning_2018} with a reference to the original paper\footnote{One of the two authors of the original 1978 publication is D. Newbury, who is also the second author of the Goldstein textbook \cite{goldstein_scanning_2018}.}.
@@ -1629,7 +1629,7 @@ Calibration of the energy axis is done by: ($1$) fitting the background and Gaus
 The calibration can be done by hand, or by using the HyperSpy function \verb|calibrate_energy_axis|.
 The HyperSpy function needs the argument \verb|calibrate| to be either \verb|'scale'| or \verb|'offset'|, which specifies if the scale or the offset should be calibrated.
 The function also takes the argument \verb|xray_lines|, which is used to specify the peaks that should be used for the calibration.
-In the project report, the author made a function from scratch to calibrate the energy axis, which was used for a lab exercise in the course TFY4255 \cite{project_report}.
+In the project report, the author made a function from scratch to calibrate the energy axis, which was used for a lab exercise in the course TFY$4255$ \cite{project_report}.
 
 
 % Why
