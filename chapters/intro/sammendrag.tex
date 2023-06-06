@@ -2,28 +2,26 @@
 \label{ch:Sammendrag}
 \addcontentsline{toc}{chapter}{Sammendrag}
 
-Dette arbeidet har som mål å forbedre analysen av data fra energidispersiv røntgenspektroskopi i skanneelektronmikroskop (SEM EDS) ved hjelp av ytelsesparametere og bulkkorrigeringer i åpen kildekodeprogramvare. 
-De utviklede rutinene ble testet på EDS-spektre av GaAs- og GaSb-wafere, som ble innhentet ved hjelp av et FEI Apreo SEM med en Oxford Instruments X-Max$^N$ $80$mm$^2$ EDS-detektor.
+Målet med dette arbeidet er å forbedre analysen av data fra energidispersiv røntgenspektroskopi i skanneelektronmikroskop (SEM EDS) gjennom ($1$) måling av ytelsesparametere og ($2$) bulkkorrigeringer for kvalitativ analyse i åpen kildekodeprogramvare i Python.
+De utviklede rutinene ble testet på EDS-spektre av GaAs- og GaSb-wafere, hvor dataen ble innhentet fra en FEI Apreo SEM med en Oxford Instruments X-Max$^N$ $80$mm$^2$ EDS-detektor.
 
 
-Ytelsesparametrene beregnes i en Python-notebook for å teste EDS-oppsettet og de valgte innhentingsinnstillingene. 
-De undersøkte parameterne inkluderer energioppløsning, Fiori topp-til-bakgrunn forholdet (P/B), Duane-Hunt-grensen, toppforholdstall, energiskala, forskyvning og toppavvik. 
-Resultatene viser at systemspesifikasjonene til det brukte utstyret oppfylles.
+Ytelsesparameterne blir beregnet i en Jupyter notebook for å teste EDS-oppsettet og de valgte innhentingsinnstillingene. 
+De undersøkte parameterne er energioppløsning, Fiori topp-til-bakgrunn forholdet (P/B), Duane-Hunt-grensen, toppforholdstall, energiskala, forskyvning og toppavvik. 
+Resultatene viser at systemspesifikasjonene til det brukte utstyret er oppfylt.
 Energioppløsningen ble målt til $127$ eV, med noe variasjon mellom prøvene, referansetoppene og innhentingsinnstillingene. 
-Den høyeste Fiori P/B-forholdet var $770$ for Ga K$\alpha$ i GaAs og $410$ for Sb L$\alpha$ i GaSb. 
-Skalaen var $10$ eV/kanal.
-Det ble observert lave nivåer av sammenfallende tellinger når telleraten var under $50$k cps. 
-Innstillinger og faktorer som påvirker ytelsesparametrene er identifisert, for eksempel hvordan Fiori P/B-forholdet er avhengig av prøven. 
+Den høyeste Fiori P/B var $770$ for Ga K$\alpha$ i GaAs og $410$ for Sb L$\alpha$ i GaSb. 
+Skalaen var $10$ eV/kanal, som viser at energiaksen var godt kalibrert.
+Det ble observert lave nivåer av sammenfallende tellinger når telleraten var under $50$k tellinger per sekund. 
+Innstillinger og faktorer som påvirker ytelsesparameterne er identifisert, for eksempel hvordan Fiori P/B-forholdet er avhengig av prøven. 
 Det blir diskutert hvordan ulike beregningsmetoder for energioppløsning og Fiori P/B påvirker resultatene, noe som begrenser sammenlikningsgrunnlaget mellom ulike systemer.
-I fremtidig arbeid bør rutinen for ytelsestesting utvides for å bestemme detektorenes linearitet, stabilitet og effektivitet, noe som krever en utvidet notebook og innhentingsrutine.
+I fremtidig arbeid bør rutinen for ytelsestesting bli utvidet for blant annet å bestemme detektorenes linearitet, stabilitet og effektivitet, noe som krever en utvidet Jupyter notebook og mer omfattende innhentingsrutiner.
 
 
-For å forbedre kvantifiseringsrutinene i SEM EDS-analyse, utforskes implementeringen av bulkkorrigeringer i Python.
-Den mest lovende modellen er basert på arbeidet til Pouchou og Pichoir, spesifikt XPP-versjonen.
+For å forbedre kvantifiseringsrutinene i SEM EDS-analyse, er implementeringen av bulkkorrigeringer i Python utforsket.
+Den mest lovende modellen er basert på arbeidet til Pouchou og Pichoir i 1991, spesifikt XPP-versjonen.
 Resultatene er sammenlignet med den kommersielle programvaren AZtec, en kvantifiseringsrutine i HyperSpy, og en enkel implementering av ZAF-korrigeringer.
-Kvantifiseringsrutinen i HyperSpy bruker tynnfilmtilnærmingen, men denne studien viser at SEM-bulkprøver ikke bør behandles som tynnfilmer i kvantifisering.
-AZtec er mest nøyaktig, men det er en "black box"-programvare der dokumentasjonen for brukeren er begrenset, hvilket betyr at brukeren ikke kan verifisere resultatene.
-% "Black box"-programvare er ikke fleksibel og transparent, noe som resulterer i at resultatene ikke kan verifiseres, og analysen kan ikke utvides.
-Den implementerte XPP-modellen ser mer lovende ut enn ZAF-modellen, men denne første implementeringen må forbedres videre, for eksempel gjennom faktorer som inngår i beregningen av massabsorpsjonskoeffisienten. % $\mu_\rho$.
-Gjennom åpen kildekodeprogramvaren i Python er den implementerte XPP-modellen et godt utgangspunkt for videre utvikling.
-Koden i dette arbeidet er publisert under en MIT-lisens, og dette representerer et skritt mot bedre EDS-analyse gjennom åpen vitenskap.
+Kvantifiseringsrutinen i HyperSpy bruker tynnfilmtilnærmingen, og denne studien viser at SEM-bulkprøver ikke bør bli behandlet som tynnfilmer i kvantifisering.
+AZtec er mest nøyaktig, men det er en svart-boks programvare der dokumentasjonen for brukeren er begrenset, hvilket betyr at brukeren ikke kan verifisere resultatene og ikke utvide analysen etter egne behov.
+Den implementerte XPP-modellen ser mer lovende ut enn ZAF-modellen, men denne første implementeringen trenger videre utvikling, for eksempel ved oppdatering av inputvariabler som masseabsorpsjonskoeffisienten. 
+Koden i dette arbeidet er publisert under MIT-lisensen, og arbeidet representerer et skritt mot bedre EDS-analyse. 
