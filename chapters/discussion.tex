@@ -793,7 +793,7 @@ The notebook can be used to figure out if a lower PT setting yields similar resu
 % Documentation is not extensive, but think has matrix corrected composition analysis. (Furture work)"
 SEM EDS bulk corrections are, to the author's knowledge, not available in an open-source Python format.
 The DTSA-II software is open-source, but written in Java.
-A followup of the DTSA-II software in the newer programming language Julia is available and called "NeXL Spectrum"\footnote{Available at \url{https://pages.nist.gov/NeXLSpectrum.jl/} and \url{https://github.com/usnistgov/NeXLSpectrum.jl}}, but its documentation is not extensive.
+A followup of the DTSA-II software in the newer programming language Julia is available and called "NeXL Spectrum"\footnote{Available at \url{https://pages.nist.gov/NeXLSpectrum.jl/} and \url{https://github.com/usnistgov/NeXLSpectrum.jl}}, but its documentation is still very limited.
 The use of Julia in scientific programming may be increasing, but the language is not as widespread as Python.
 Implementation of open-source SEM EDS bulk corrections in Python is a novelty, and this work is a step towards achieving this goal.
 This section is a discussion of the results from the quantification \cref{results:quantitative}, presented in the same order as the results.
@@ -822,18 +822,20 @@ Thus, comparing the results to a $50:50$ compositions should be sufficient to ev
 
 
 % AZtec as the "truth"
-The results from the AZtec software are quite close to the reference values, but should not be considered as the "truth".
-There are variations in the results, which is expected in EDS analysis, but trusting black box software can give a false sense of security.
+The results from the AZtec software are quite close to the expected reference values, but should not be considered as the "truth".
+There are variations in the results, which is expected in the order of around $2$ at\% in EDS analysis \cite{goldstein_scanning_2018,williams_carter_tem_2009}, but trusting black box software can give a false sense of security.
 For example, the poor quality of the $5$ kV GaSb spectrum was quantified without any warnings from the software, and the results were not flagged as poor.
 Such results can be avoided when the user takes multiple spectra, but a warning from the software would be helpful.
 It would be even more helpful if the user knew what the software did through the documentation, but AZtec is not documented in detail, for the public at least.
-Even though the software is a black box, it is readily used in high quality publications in journals such as Nature\cite{aztec_nature_2019}.
+% Even though the software is a black box, it is readily used in high quality publications in journals such as Nature\cite{aztec_nature_2019}.
+% TON: I check reference and some extra details are give, AZtec, XPP and all data points in SI. On safe side, delete the last sentence. Could be that Nature has rules on how report EDX and in minerology there are often critical questions on EDX. In other fields quant results from commercial might be used without proof.
+Delete last sentence?
 % DONE conc: AZtec is accurate, but a black box.
 
 
 % from results:
 % comment on the severely poor results from GaAs at $5$ kV
-The GaSb spectrum at $5$ kV is poorly quantified, both by AZtec and by the intensity ratio.
+The GaSb spectrum at $5$ kV is quantified far off from the expected reference values, both by AZtec and by the intensity ratio.
 Both methods use the Ga L$\alpha$ and Sb L$\alpha$ peaks, and the Sb L$\alpha$ peak is at $3.6$ keV, which is quite close to $E_0$.
 The overvoltage on Sb L$\alpha$ in the $5$ kV spectrum is below $1.4$, while the overvoltage on the Ga L$\alpha$ is above $4.5$, which results in a severely underestimated Sb content with the intensity ratio.
 As explained in \cref{theory:eds:user_controlled_parameters}, the overvoltage is important to achieve high quality spectra and quantification.
@@ -858,7 +860,7 @@ This show that quantification routines needs improvement and tailoring for low b
 The initial quantification also present the uncorrected intensity ratio results, and from these results it is possible to see what corrections are needed.
 \cref{tab:results:initial_quantification} and \cref{fig:results:initial_quantification} show that the need for corrections are varying with both specimen and acquisition parameters.
 % GaAs
-Different $i_b$ are not affecting the correction needs much, but the $E_0$ is.
+Different $i_b$ is not affecting the correction needs much, but the $E_0$ does.
 All the GaAs spectra need corrections which increase the weight of the As signal to achieve a $50:50$ composition.
 AZtec have applied corrections to the GaAs spectra, where the results are pushing As too high at $5$ kV and $10$ kV, and not high enough at $30$ kV.
 The $15$ kV GaAs corrections done by AZtec on GaAs is good, resulting at $50.6:49.4$.
@@ -897,12 +899,12 @@ The Z difference between Ga and As is just two, which may be why the GaAs spectr
 \subsection{Quantification of SEM EDS data with the thin film assumption}
 \label{discussion:quantitative:thin_film_assumption}
 
-Quantification of SEM EDS data with the thin film assumption is done to illustrate the possibility of using wrong assumptions, and to test if the Cliff-Lorimer method in HyperSpy with absorption corrections can be used for quantification of SEM EDS data.
-In general, the TEM EDS routines did not yield very good results for the SEM EDS data.
+Quantification of SEM EDS data with the thin film assumption is done to illustrate the risk of using wrong assumptions, and to test if the Cliff-Lorimer method in HyperSpy with absorption corrections can be used for quantification of SEM EDS data.
+In general, the TEM EDS routines gave poor quantitative results for the SEM EDS data of a bulk specimen.
 One interesting result is the effect of the absorption correction in the CL method, which did improve the results.
 The best improvement was achieved when the specimen thickness was set to $200$ nm, both for GaAs and GaSb.
 When comparing this thickness to the electron ranges in \cref{tab:results:ZAF_corrections_range_r}, there is no obvious reason why this thickness should be the best.
-At $30$ kV the electrons can penetrate around $4000$ nm while still have enough energy to excite the relevant X-rays.
+As the table shows, the electrons accelerated by $30$ kV can penetrate around $4000$ nm while still have enough energy to excite the relevant X-rays.
 This range is decreased to around $1200$ nm at $15$ kV, $600$ nm at $10$ kV, and $200$ nm at $5$ kV.
 It might be that the thickness which gives the best corrections are varying between specimen, and using the $200$ nm thickness on other specimen may not work equally well.
 The thickness $200$ nm does not have a physical meaning, as the bulk specimens used are $300$ \textmu m.
@@ -918,23 +920,25 @@ This would be the next step after finding suitable quantification routine, with 
 
 
 % GaSb $5$ kV, AZtec chose M line.
-One strange difference between the SEM EDS and TEM EDS setting in AZtec is the choice of Sb line for GaSb at $5$ kV.
+One strange difference between the SEM EDS and TEM EDS setting in AZtec is the default choice of Sb line for GaSb at $5$ kV.
 The SEM EDS setting chose the Sb L$\alpha$ lines, which as discussed probably has issues with overvoltage.
 However, the TEM EDS setting chose the Sb M$\zeta$ line at around $0.4$ keV, which is does not have the same overvoltage issue, but is heavily affected by absorption in bulk specimen.
-The EDS detector is equipped with an ultrathin polymer window \cite{xmaxn_datasheet}, which should be highly transparent to the low energy X-rays, but the absorption in the matrix for bulk specimen is still high at such low energies.
+The EDS detector is equipped with an ultrathin polymer window \cite{xmaxn_datasheet}, which should have a low absorption of X-rays, but the matrix absorption is still high at low energies.
 The thin film assumption is that the matrix does not absorb the X-rays, which is probably the reason why AZtec use the Sb M-line when operated in "TEM mode".
 As the HyperSpy library does not include any Sb M-lines, and that AZtec did not give a k-factor for Ga L$\alpha$ in the TEM quantification for this $5$ kV spectrum, it was not possible to quantify the $5$ kV GaSb spectrum with the CL method.
-However, the quality of that spectrum was poor anyway.
+It would be possible to manually measure the Sb M$\zeta$ intensity with integration windows, but this was not done as the quality of this $5$ kV spectrum was poor anyway.
 
 
 % better k-factors?
-A major impact on the TEM EDS quantification results is the k-factor, which is calculated theoretically by AZtec.
-The k-factors change with specimen, line, and beam energy.
+A major impact on the TEM EDS quantification results is the k-factors used, which is calculated theoretically by AZtec.
+The k-factors change with specimen, line, and beam energy, and the exact equation can be found in Williams and Carter \cite{williams_carter_tem_2009}.
 If the k-factors could be refined, the TEM quantification results would probably improve.
-How much this improvement would be is just speculations, but the results could then be more comparable to the SEM EDS results.
+% How much this improvement would be is just speculations, but t
+The results might then be more comparable to the SEM EDS results.
 The discussion of implementation of k-factor calculations in HyperSpy have been discussed on the HyperSpy issues page on GitHub, and on the Gitter discussion forum for HyperSpy.
 The conclusion so far is that the uncertainty in such calculated k-factors would be too large, as the k-factors are a function of the detector.
-Achieving better k-factors can be done by measuring standard specimens on the same microscope, but then the SEM EDS k-ratio method could be used instead.
+Achieving better k-factors can be done by measuring standard specimens on the same microscope as commonly known \cite{goldstein_scanning_2018,goodhew_2001,williams_carter_tem_2009}, although this process can be demanding to do consistently for a broad range of phases and compositions \cite{williams_carter_tem_2009}.
+% but then the SEM EDS k-ratio method could be used instead.
 
 
 % what the results imply
@@ -942,8 +946,8 @@ The use of the thin film assumption on the SEM EDS data have two implications.
 Firstly, it shows that the quantification routines for TEM EDS and SEM EDS is built on similar principles, but are not directly transferable.
 The test of the settings in AZtec confirms that the SEM EDS settings are applying some kind of matrix corrections, which are not applied in the TEM EDS settings.
 In the Oxford Instruments blog post\cite{oxford_blog_XPP} it is stated that the bulk corrections applied are based on the XPP model, but the documentation of AZtec does not specify this or any other information about the bulk corrections\cite{aztec_manual}.
-Secondly, the results presented in \cref{results:quantification_cliff_lorimer} show that applying absorption corrections can improve the quantification results.
-In general, using TEM EDS routines on bulk data is too unreliable.
+Secondly, the results presented in \cref{results:quantification_cliff_lorimer} show that applying absorption corrections can improve the quantification results to some degree.
+In general, using TEM EDS routines on bulk data is unreliable.
 
 % DONE conc: use of thin film assumption on bulk data show: (1) similar routines, but not directly transferable, and (2) absorption corrections can improve the results. However, "In general, using TEM EDS routines on bulk data is too unreliable."
 
@@ -955,7 +959,7 @@ In general, using TEM EDS routines on bulk data is too unreliable.
 
 Absorption corrections from the ZAF model were tested to figure out if a simple and easily understandable bulk correction method could be sufficient for quantification of SEM EDS data.
 If it turned out to be sufficient, the implementation of such a ZAF model in HyperSpy could be done as a part of this project.
-As pointed out earlier in this discussion, there are multiple indications showing that the GaAs specimen needs absorption corrections, while the GaSb specimen have other issues.
+As pointed out earlier in this discussion, there are multiple indications showing that the GaAs specimen needs absorption corrections, while the GaSb specimen have other issues, such as strong Z effects.
 It may be that the GaSb specimen also have absorption issues, but this alone cannot explain the uncorrected quantification results.
 
 
@@ -967,8 +971,20 @@ The three points were the maximum generation depth, based on the Kanaya-Okayama 
 \cref{fig:discussion:depth_generation_iv} shows the three points in the interaction volume, with an illustrative $\phi (\rho z)$ curve on the left side.
 
 
+
+% DONE discuss: the ZAF A corrections are not good enough, at lest with the average point method tested in this work.
+% DONE discuss on selected average point: maybe this approximation is severely wrong. Monte Carlo simulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results. Also, the phi-rho-z curves show that there is a skew towards z=0, at Rc.}
+The $\phi (\rho z)$ curve is the intensity from different mass depths in the specimen, which is illustrated in \cref{fig:discussion:depth_generation_iv} and plotted with calculated data in \cref{fig:theory:quantification:phi_rho_z_curves}.
+Using the parameterization of $\phi (\rho z)$ from the XPP model (\cref{eq:theory:quantitative:pap:phi_of_rho_z}), the curve for Ga L$\alpha$ is plotted in \cref{fig:discussion:pap:phi_of_rhoz}, at different beam energies.
+As this figure shows, the curves are dependent on the beam energy.
+The dependence on $E_0$ is explained in \cref{theory:sem:sem_signals}, and showed with numbers from the Kanaya-Okayama parameterization for electron range in \cref{tab:results:ZAF_corrections_range_r}.
+The $\phi (\rho z)$ curves have a skew towards the surface where $z = \rho z = 0$.
+The absorption corrections done with the ZAF model show that dividing the maximum generation depth by $4$ works better than by $2$ or $3$.
+This is an indication that the method might provide reasonable results, if a better average point is used.
+However, using a method like this with an average point might be a too simple model.
+
 % figures/discussion/phi_rhoz_illustrated_with_interaction_volume.png
-\begin{figure}[htbp]
+\begin{figure}[hbtp]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/discussion/phi_rhoz_illustrated_with_interaction_volume.png}
     \caption{
@@ -979,24 +995,12 @@ The three points were the maximum generation depth, based on the Kanaya-Okayama 
     \label{fig:discussion:depth_generation_iv}
 \end{figure}
 
-% DONE discuss: the ZAF A corrections are not good enough, at lest with the average point method tested in this work.
-% DONE discuss on selected average point: maybe this approximation is severely wrong. Monte Carlo simulations show a skew towards z=0, and the numbers from HS is big. However, testing different numbers for r did not give any other more satisfactory results. Also, the phi-rho-z curves show that there is a skew towards z=0, at Rc.}
-The $\phi (\rho z)$ curve is the intensity from different mass depths in the specimen, which is illustrated in \cref{fig:discussion:depth_generation_iv} and plotted with calculated data in \cref{fig:theory:quantification:phi_rho_z_curves}.
-Using the parameterization of $\phi (\rho z)$ from the XPP model (\cref{eq:theory:quantitative:pap:phi_of_rho_z}), the curve for Ga L$\alpha$ is plotted in \cref{fig:discussion:pap:phi_of_rhoz}, at different beam energies.
-As this figure shows, the curves are dependent on the beam energy.
-The dependence on $E_0$ is explained in \cref{theory:sem:sem_signals}, and showed with numbers from the Kanaya-Okayama parameterization for electron range in \cref{tab:results:ZAF_corrections_range_r}.
-The $\phi (\rho z)$ curves have a skew towards the surface where $z = \rho z = 0$.
-The absorption corrections done with the ZAF model show that dividing the maximum generation depth by $2$ or $3$ did not work as well as dividing by $4$.
-This is an indication that the method might provide reasonable results, if a better average point is used.
-However, using a method like this with an average point might be a too simple model.
-
-
 % the results
 The compositional results presented in \cref{tab:results:ZAF_corrections_compositions_stats} show that the GaAs quantifications are improved by applying the ZAF absorption corrections, but the GaSb results are not.
 Dividing r by a higher number made the results closer to the reference values, with an average $7$ at.\% deviation for GaAs, which is improved from $11$ at.\% deviation in the uncorrected intensity ratio results.
 These results show that one of the issues with the GaAs specimen is probably absorption, and that the ZAF absorption corrections can push the results in the right direction.
 However, the GaSb results increase from a $6$ at.\% deviation in the uncorrected results to a $30$ at.\% deviation with $r/2$, which decrease to a $21$ at.\% deviation with $r/4$.
-This is an indication that the GaSb specimen have other issues than absorption.
+This is an indication that the quantification based on GaSb spectra have more important corrections than absorption.
 
 
 % why GaAs has absorption issues
@@ -1006,7 +1010,7 @@ The atomic number difference between Ga and As is just $2$, thus giving the elem
 
 
 % why GaSb has other issues
-The GaSb specimen have other issues as pointed out earlier, e.g. in \cref{discussion:quantitative:initial_quantification}.
+% The GaSb specimen have other issues as pointed out earlier, e.g. in \cref{discussion:quantitative:initial_quantification}.
 The atomic number difference of $20$ makes the generation properties more different for Ga and Sb compared to Ga and As.
 This may be part of the explanation why the absorption corrections did not improve the results for GaSb.
 The absorption in GaSb is high, as shown in \cref{fig:mass_absorption_coefficients}, but the results show that corrections for absorption alone is not sufficient for GaSb (see \cref{theory:quantitative:zaf}).
@@ -1017,19 +1021,21 @@ One of the corrections applied from the XPP model is investigating the possibili
 % DONE discuss: mu_rho is taken from HS, and slight deviations can give large impacts, as mu_rho is in the exponent. ref to eq. in theory. 
 Even though the ZAF absorption corrections improved the results for GaAs, the results are deviating too much from the reference values to be regarded as useful.
 Possible reasons for this is the aforementioned issues with the average point, or that the input parameters for the model is not good enough.
-The most important input parameter is probably the mass absorption coefficient $\mu_\rho$.
+The most important input parameter is the mass absorption coefficient, $\mu_\rho$.
 In the absorption correction (\cref{eq:theory:quantitative:absorption}), $\mu_\rho$ is used in the exponent, and small deviations in $\mu_\rho$ can give large impacts on the results.
 A more detailed discussion of $\mu_\rho$ is given in \cref{discussion:quantitative:xpp}, as $\mu_\rho$ is also used in the XPP model.
 
 
 % DONE discuss: my model is not reality. I had a bug for the range r, and when i fixed in the GaAs quantification was actually deviating more.
-Another possible reason for the deviation is the implementation of the ZAF correction, which may have bugs in the code.
+Another reason for the deviation is the implementation of the ZAF correction, which may have bugs in the code.
+To trace errors in the code, the code should be tested on a range of unknown standards with different elements and beam energies, as this will reveal how the model behaves on a broader range of data.
 For example, the first implementation of the range $r$ was wrong, and when it was fixed, the quantification results for GaAs was actually worse.
 This show that using $50:50$ as the reference to evaluate the results can be misleading, and that more testing is needed to verify the usefulness of the code developed in this work.
 The code is implemented with both the purpose of testing different possibilities for corrections, and to be used as a starting point for future works.
-The implementation is done to the author's best knowledge, but there is no guarantee that the code is bug free.
+The implementation is done to the author's best knowledge, but the code should be tested more systematically and be reviewed by other people to ensure that it is bug free.
+% , but there is no guarantee that the code is bug free.
 Additionally, every model is a simplification of reality, and the models used in this work are no exception.
-The assumptions and simplifications made in the ZAF correction model in this work does seem to be on track for GaAs, but still having plenty of room for improvements.
+The assumptions and simplifications made in the ZAF correction model in this work does seem to be on track for GaAs, but still having plenty of room for further improvements.
 
 % DONE conc: bugs are ugs. not guaranteed to be bug free.
 % DONE conc: ZAF A, "This is an indication that the method might provide reasonable results, if a better average point is used. However, using a method like this with an average point might be a too simple model." Improves GaAs, but not GaSb
@@ -1049,7 +1055,7 @@ This difference is probably due to implementation differences, and is discussed 
 % DONE discussion: add PAP $\phi(\rho z)$ curves.
 While implementing physical models, it is useful to plot the results from different steps in the model to verify that the implementation is correct.
 Such plots can both be compared to figures in textbooks or papers, and can be used to reason about the results.
-Code bugs are easier to reveal when parts of the code can be tested separately.
+Code bugs are easier to reveal and trace when parts of the code can be tested separately.
 Plots of the steps in the XPP model are shown in \cref{theory:quantitative:pap}, which can be compared to the plots in the PAP paper \cite{pap_1991}.
 Plotting $\phi(\rho z)$ can be done with the parameters $A$, $B$, $a$, $b$ and $\phi(0)$, using \cref{eq:theory:quantitative:pap:phi_of_rho_z}.
 \cref{fig:discussion:pap:phi_of_rhoz} is a plot of $\phi(\rho z)$ for Ga L$\alpha$ in Ga, with beam energy $30$ kV, $15$ kV, $10$ kV and $5$ kV.
@@ -1057,7 +1063,7 @@ Plotting $\phi(\rho z)$ can be done with the parameters $A$, $B$, $a$, $b$ and $
 % figures/PAP_phi_of_rhoz.pdf
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/discussion/PAP_phi_of_rhoz.pdf}
+    \includegraphics[width=0.85\linewidth]{figures/discussion/PAP_phi_of_rhoz.pdf}
     \caption{
         Plot of $\phi(\rho z)$ for Ga L$\alpha$ in Ga.
         The curve is calculated with \cref{eq:theory:quantitative:pap:phi_of_rho_z}.
@@ -1080,7 +1086,7 @@ This plot is shown in \cref{fig:discussion:pap:phi_of_rhoz_C_Ka}, where the gene
 The plotting of $\phi(\rho z)$ was also compared to other sources, for example figure 19.9 in Goldstein \cite[Fig. 19.9]{goldstein_scanning_2018}, which is adapted in \cref{fig:theory:quantification:phi_rho_z_curves}.
 The plotting of $\phi(\rho z)$ in Goldstein is done with the PROZA model \cite{bastin_proza96_1998}, but the results should be similar to the XPP model.
 \cref{fig:theory:quantification:phi_rho_z_curves} and \cref{fig:discussion:pap:phi_of_rhoz_Goldstein} are in general similar, but slight differences between $\phi(0)$ and the shape at the end of the curve can be seen, where the XPP model gives the curve a longer tail.
-These plots show that the implementation of the XPP model is not perfect, but should be close enough to be useful.
+These plots show that the XPP Python implementation is not perfect yet, but should be close enough to be useful.
 Possible sources of deviation is discussed towards the end of this section.
 % DONE conc: "These plots show that the implementation of the XPP model is not perfect, but should be close enough to be useful."
 
@@ -1112,18 +1118,18 @@ Possible sources of deviation is discussed towards the end of this section.
 
 
 % The correctios done with XPP
-Two type of bulk corrections from the XPP model were implemented and tested, one which only corrected for the calculated generation of X-rays, and one which corrected for the ratio between the emitted and generated signal, i.e. the absorption factor.
+Two type of bulk corrections from the XPP model were implemented and tested; (i) only corrected for the calculated generation of X-rays, and (ii) corrected for the ratio between the emitted and generated signal, i.e. the absorption factor.
 The first correction divide the measured intensity by $F$ (see \cref{theory:quantitative:pap:calculation_of_F}), which the area of the $\phi(\rho z)$ curve, i.e. the generated signal.
 This correction is supposed to correct for different Z, and should cover differences in factors like the critical ionization energy (see \cref{theory:xray_formation:energy}), and fluorescence yield (see \cref{fig:theory:fluorescence_yield}).
 The second correction divide the measured intensity by $f(\chi)$ (see \cref{eq:theory:quantitative:pap:absorption_correction}), which is the XPP absorption factor.
-The correction with $f(\chi)$ is supposed to correct for both Z and A, as the calculated absorption factor is dependent on both $F$ and $F(\chi)$, where $F(\chi)$ is the $\phi(\rho z)$ curve with absorption correction in each layer.
+The correction with $f(\chi)$ is supposed to correct for both atomic number Z and absorption A, as the calculated absorption factor is dependent on both $F$ and $F(\chi)$, where $F(\chi)$ is the $\phi(\rho z)$ curve with absorption correction in each layer.
 $F$ and $F(\chi)$ are illustrated in \cref{fig:discussion:pap:F_and_Fchi}.
-The two corrections were tested because of the implications of the previously discussed results, where GaAs probably need absorption corrections, while GaSb also need corrections for different Z.
+The two corrections were tested because of the implications of the previously discussed results, where GaAs need absorption corrections, while GaSb also need corrections for different Z.
 
 % figures/discussion/xpp_absorption_correction.png
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/discussion/xpp_absorption_correction.png}
+    \includegraphics[width=0.8\linewidth]{figures/discussion/xpp_absorption_correction.png}
     \caption{
         Illustration of $F$ and $F(\chi)$.
         $F$ is the area of the $\phi(\rho z)$ curve, while $F(\chi)$ is the area of the $\phi(\rho z)$ curve with absorption correction in each layer.
@@ -1142,7 +1148,7 @@ This was expected, as the materials have different properties for generation and
 % GaAs
 The GaAs specimen is corrected best with $f(\chi)$, and the results from this absorption correction is better than from the ZAF correction.
 The $F$ correction on GaAs from the uncorrected results is only giving an improvement from $12$ at.\% to $11$ at.\%.
-This is an implication that the Z effects alone are not that strong in GaAs, but when the Z effect is added to the absorption effect, the results are improved.
+This is an implication that the Z effects alone are not that strong in GaAs, but the combination of Z and A corrections gave the best results.
 % GaSb
 The GaSb specimen is corrected best with $F$, which implies that the Z effects are most important for this specimen.
 As the results show, the $10$ kV and $15$ kV GaSb spectrum are corrected quite nicely with the $F$ correction, but the $30$ kV spectrum is pushed away from the reference value.
@@ -1154,17 +1160,19 @@ Overall, the average quantification deviation in GaSb is both $6$ at.\% at the u
 % Possible source of error for my implementation of the PAP model:
 The large deviation in the $f(\chi)$ corrected results for GaSb is probably caused by the $\mu_\rho$ values used in the calculation of $F(\chi)$.
 Section II.E in the PAP paper is discussing the absorption coefficients for the PAP model, and Appendix 5 \cite[p. 63]{pap_1991} in the paper lists some values for $\mu_\rho$ associated with the PAP procedure.
-These numbers are in the same range as the numbers provided by HyperSpy, but there are deviations.
+These numbers are in the same range as the numbers provided by HyperSpy, but there are noticeable deviations.
 All the following examples for $\mu_\rho$ are in units of cm$^2$/g.
 For example, the line As L$\alpha$ in GaAs bulk is given $\mu_\rho = 7000$ in the PAP paper, and the value $\mu_\rho = 3744$ by HyperSpy.
 Cu L$\alpha$ in pure Cu is given $\mu_\rho = 1755$ in the PAP paper, and $\mu_\rho = 1515$ by HyperSpy.
 Cu L$\beta$ in pure Cu is given $\mu_\rho = 6750$ in the PAP paper, while HyperSpy give $\mu_\rho = 8763$ for Cu L$\beta_1$.
 These deviations are almost certainly a source of error, which should lead to some adjustments of the XPP equations.
+Improvements to the values could be found through simulations, and should be confirmed with empirical measurements.
 Additionally, misidentifications of peaks are important for the value of  $\mu_\rho$, because the value is dependent on the elements present and their concentrations.
 It may be that the presence of C contamination on both specimen, and possible O on GaSb, are a source of error, as additional elements change the materials absorption capabilities.
+However, the C and O contamination are only on the surface, and their effect is limited.
 As explained in \cref{discussion:quantitative:zaf_absorption_correction}, the value of $\mu_\rho$ is critical because it is in the exponent of the absorption calculation.
 Such corrections might have been published as an update to the PAP/XPP procedure in a more recent paper.
-If this is a source of error, it can explain why the AZtec software is getting better results, because Oxford Instruments have had time to gradually refine their input parameters and equations.
+If this is a source of error, it can explain why the AZtec software is getting better results, because Oxford Instruments have gradually refined their input parameters and equations through testing.
 
 
 In this work, the $\mu_\rho$ values from HyperSpy were used, and as the package is emergent from the TEM community, the values could be less accurate at low voltages.
@@ -1179,7 +1187,7 @@ Correcting for absorption when it is not needed can lead to worse results, as se
 The best results for the GaAs spectra is obtained with a combination of Z and A effects through the $f(\chi)$ correction, while the best results for the GaSb spectra is obtained with the Z effect through the $F$ correction.
 This implies that the best results are obtained by using different corrections tailored for different specimen.
 It may be that such a solution is implemented in the AZtec software, for example that absorption effects are taken into account if certain conditions are met.
-Even though Oxford Instruments refer to the XPP model in the original PAP paper, they have definitely made continuous improvements and adjustments to their commercial software.
+Even though Oxford Instruments refer to the XPP model in the original PAP paper, the exact equations used in their commercial software is not published.
 Refining input parameters and adjusting the equations requires extensive testing and validation on different elements and specimen.
 Just testing different elements is not enough, as seen in the results where the Ga signal is behaving differently depending on the other element in the specimen.
 With the right corrections applied to the specimen of interest, the quantitative EDS results can be improved.
@@ -1194,12 +1202,12 @@ This could lead to more accurate results, as the analytical solutions are approx
 Testing out numerical calculations of the $\phi(\rho z)$ curves can be done in future works, to see if the corrections can be improved.
 
 % DONE discuss: Other methods, such as the PROZA96 model, could be tested in future works, using the code developed in this work as a starting point, because there are overlapping parts between the models.
-Yet another possibility is to test other correction models, such as the PROZA96 model \cite{bastin_proza96_1998}.
-Testing the PROZA96 model can be done with the code developed in this work as a starting point, because there are overlapping parts between the models.
+Other correction models, such as the PROZA96 model \cite{bastin_proza96_1998}, should also be tested in future work.
+The PROZA96 model can be implemented with the code developed in this work as a starting point, because there are overlapping parts between the models.
 The paper by Bastin et al. \cite{bastin_proza96_1998} which presents the PROZA96 model is referring to the PAP paper for calculations of the area $F$ of the $\phi(\rho z)$ curves.
 This code can be copied from the XPP model.
 However, if the main issue is the input parameters like the $\mu_\rho$ values, the PROZA96 model might suffer from the same problems as the XPP model developed in this work.
-Other models which are not based on relative intensities, like the PAP and PROZA96 models, could also be tested in future works.
+Other models which are not based on relative intensities, like the PAP and PROZA96 models, could also be tested in parallel in future works.
 % DONE discuss: the F and f(chi) is calculated for relative intensities. To calculate absolute number of X-rays generated, the probe current must be know. That was not possible in this project. Calculations of absoule generated X-rays are done in e.g. the Zeta method for thin films.
 Such models, like the Zeta method for thin specimen \cite[Ch. 35.5]{williams_carter_tem_2009}, require the probe current as an input parameter.
 Measuring the probe current is not possible with the equipment available in this work, but a Faraday cup could be installed in the SEM to test out such models \cite{goldstein_scanning_2018}.
